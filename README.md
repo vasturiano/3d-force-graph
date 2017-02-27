@@ -40,26 +40,8 @@ myGraph(<myDOMElement>);
 
 ## API reference
 
-new CompProp('width', window.innerWidth),
-		new CompProp('height', window.innerHeight),
-		new CompProp('graphData', {
-			nodes: { 1: { name: 'mock', val: 1 } },
-			links: [[1, 1]] // [from, to]
-		}),
-		new CompProp('nodeRelSize', 4), // volume per val unit
-		new CompProp('lineOpacity', 0.2),
-		new CompProp('valAccessor', node => node.val),
-		new CompProp('nameAccessor', node => node.name),
-		new CompProp('colorAccessor', node => node.color),
-		new CompProp('initialEngineTicks', 0), // how many times to tick the force engine at init before starting to render
-		new CompProp('maxConvergeTime', 15000), // ms
-		new CompProp('maxConvergeFrames', 300)
-
 ```
 ForceGraph3D()
-
-
-
      .width(<px>)
      .height(<px>)
      .graphData(<data>)
@@ -73,6 +55,7 @@ ForceGraph3D()
      .maxConvergeFrames(<# frames to stop engine. default: 300>)
      .resetState()
 ```
+
 ## Data syntax
 
 ```
