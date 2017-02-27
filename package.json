@@ -1,0 +1,50 @@
+{
+  "name": "3d-force-graph",
+  "version": "0.0.1",
+  "description": "UI component for a 3D force-directed graph using ThreeJS and ngraph.forcelayout3d layout engine",
+  "main": "dist/3d-force-graph.js",
+  "jsnext:main": "src/index",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/vasturiano/3d-force-graph.git"
+  },
+  "homepage": "https://github.com/vasturiano/3d-force-graph",
+  "keywords": [
+    "3d",
+    "force",
+    "graph",
+    "three",
+    "ngraph",
+    "webgl"
+  ],
+  "author": {
+    "name": "Vasco Asturiano",
+    "url": "http://bl.ocks.org/vasturiano"
+  },
+  "bugs": {
+    "url": "https://github.com/vasturiano/3d-force-graph/issues"
+  },
+  "scripts": {
+    "build": "rm -rf dist && mkdir dist && rollup -c --banner \"$(preamble)\"",
+    "watch": "rollup -c -w",
+    "minify": "uglifyjs dist/3d-force-graph.js -o dist/3d-force-graph.min.js -c -m --preamble \"$(preamble)\"",
+    "prepublish": "npm run build"
+  },
+  "dependencies": {
+    "ngraph.forcelayout3d": "~0.0.16",
+    "ngraph.graph": "~0.0.12",
+    "three": "~0.84",
+    "three-trackballcontrols": "~0.0.5"
+  },
+  "devDependencies": {
+    "package-preamble": "^0.0.2",
+    "postcss-nested": "^1.0",
+    "postcss-simple-vars": "^3.0",
+    "rollup": "^0.36",
+    "rollup-plugin-commonjs": "^5.0",
+    "rollup-plugin-node-resolve": "^2.0",
+    "rollup-plugin-postcss": "^0.2",
+    "rollup-watch": "^2.5",
+    "uglify-js": "^2.7"
+  }
+}
