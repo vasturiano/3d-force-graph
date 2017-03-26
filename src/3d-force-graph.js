@@ -214,7 +214,8 @@ export default function() {
 				];
 
 				line.geometry.verticesNeedUpdate = true;
-			})
+				line.geometry.computeBoundingSphere();
+			});
 		}
 	}
 
