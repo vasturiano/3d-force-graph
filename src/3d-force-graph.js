@@ -3,9 +3,8 @@ import './3d-force-graph.css';
 import * as THREE from 'three';
 import TrackballControls from 'three-trackballcontrols';
 
-import graph from 'ngraph.graph';
-import forcelayout3d from 'ngraph.forcelayout3d';
-const ngraph = { graph, forcelayout3d };
+import * as d3ForceSimulation from './d3-force';
+d3.forceSimulation = d3ForceSimulation;
 
 export default function() {
 
@@ -129,52 +128,63 @@ export default function() {
 		env.scene = new THREE.Scene(); // Clear the place
 
 		// Build graph with data
-		const graph = ngraph.graph();
-		for (let nodeId in env.graphData.nodes) {
-			graph.addNode(nodeId, env.graphData.nodes[nodeId]);
+		const d3Nodes = [];
+		for (let nodeId in env.graphData.nodes) { // Turn nodes into array
+			const node = env.graphData.nodes[nodeId];
+			node._id = nodeId;
+			d3Nodes.push(node);
 		}
-		for (let link of env.graphData.links) {
-			graph.addLink(...link, {});
-		}
+		const d3Links = env.graphData.links.map(link => {
+			return { source: link[0], target: link[1] };
+		});
+		if (!d3Nodes.length) { return; }
+
 
 		// Add WebGL objects
-		graph.forEachNode(node => {
-			const nodeMaterial = new THREE.MeshBasicMaterial({ color: env.colorAccessor(node.data) || 0xffffaa, transparent: true });
+		d3Nodes.forEach(node => {
+			const nodeMaterial = new THREE.MeshBasicMaterial({ color: env.colorAccessor(node) || 0xffffaa, transparent: true });
 			nodeMaterial.opacity = 0.75;
 
 			const sphere = new THREE.Mesh(
-				new THREE.SphereGeometry(Math.cbrt(env.valAccessor(node.data) || 1) * env.nodeRelSize),
+				new THREE.SphereGeometry(Math.cbrt(env.valAccessor(node) || 1) * env.nodeRelSize),
 				nodeMaterial
 			);
-			sphere.name = env.nameAccessor(node.data) || '';
+			sphere.name = env.nameAccessor(node) || '';
 
-			env.scene.add(node.data.sphere = sphere)
+			env.scene.add(node._sphere = sphere)
 		});
 
 		const lineMaterial = new THREE.MeshBasicMaterial({ color: 0xf0f0f0, transparent: true });
 		lineMaterial.opacity = env.lineOpacity;
-		graph.forEachLink(link => {
+		d3Links.forEach(link => {
 			const line = new THREE.Line(new THREE.Geometry(), lineMaterial);
-			line.name = `${getNodeName(link.fromId)} > ${getNodeName(link.toId)}`;
+			line.geometry.vertices=[new THREE.Vector3(0,0,0), new THREE.Vector3(0,0,0)];
+			line.name = `${getNodeName(link.source)} > ${getNodeName(link.target)}`;
 
-			env.scene.add(link.data.line = line)
+			env.scene.add(link._line = line);
 
 			function getNodeName(nodeId) {
-				return env.nameAccessor(graph.getNode(nodeId).data);
+				return env.nameAccessor(env.graphData.nodes[nodeId]);
 			}
 		});
 
 		env.camera.lookAt(env.scene.position);
-		env.camera.position.z = Math.cbrt(Object.keys(env.graphData.nodes).length) * CAMERA_DISTANCE2NODES_FACTOR;
+		env.camera.position.z = Math.cbrt(d3Nodes.length) * CAMERA_DISTANCE2NODES_FACTOR;
 
 		// Add force-directed layout
-		const layout = ngraph.forcelayout3d(graph);
+		const layout = d3.forceSimulation()
+			.numDimensions(3)
+			.nodes(d3Nodes)
+			.force('link', d3.forceLink().id(d => d._id).links(d3Links))
+			.force('charge', d3.forceManyBody())
+			.force('center', d3.forceCenter())
+			.stop();
 
-		for (let i=0; i<env.initialEngineTicks; i++) { layout.step(); } // Initial ticks before starting to render
+		for (let i=0; i<env.initialEngineTicks; i++) { layout.tick(); } // Initial ticks before starting to render
 
 		let cntTicks = 0;
 		const startTickTime = new Date();
-		env.onFrame = layoutTick;
+		layout.on("tick", layoutTick).restart();
 
 		//
 
@@ -187,30 +197,21 @@ export default function() {
 		}
 
 		function layoutTick() {
-			if (cntTicks++ > env.maxConvergeFrames || (new Date()) - startTickTime > env.maxConvergeTime) {
-				env.onFrame = ()=>{}; // Stop ticking graph
-			}
-
-			layout.step(); // Tick it
-
 			// Update nodes position
-			graph.forEachNode(node => {
-				const sphere = node.data.sphere,
-					pos = layout.getNodePosition(node.id);
-
-				sphere.position.x = pos.x;
-				sphere.position.y = pos.y;
-				sphere.position.z = pos.z;
+			d3Nodes.forEach(node => {
+				const sphere = node._sphere;
+				sphere.position.x = node.x;
+				sphere.position.y = node.y || 0;
+				sphere.position.z = node.z || 0;
 			});
 
 			// Update links position
-			graph.forEachLink(link => {
-				const line = link.data.line,
-					pos = layout.getLinkPosition(link.id);
+			d3Links.forEach(link => {
+				const line = link._line;
 
 				line.geometry.vertices = [
-					new THREE.Vector3(pos.from.x, pos.from.y, pos.from.z),
-					new THREE.Vector3(pos.to.x, pos.to.y, pos.to.z)
+					new THREE.Vector3(link.source.x, link.source.y || 0, link.source.z || 0),
+					new THREE.Vector3(link.target.x, link.target.y || 0, link.target.z || 0)
 				];
 
 				line.geometry.verticesNeedUpdate = true;
