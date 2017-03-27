@@ -154,8 +154,10 @@ export default function() {
 		const lineMaterial = new THREE.MeshBasicMaterial({ color: 0xf0f0f0, transparent: true });
 		lineMaterial.opacity = env.lineOpacity;
 		graph.forEachLink(link => {
-			const line = new THREE.Line(new THREE.Geometry(), lineMaterial);
-			line.name = `${getNodeName(link.fromId)} > ${getNodeName(link.toId)}`;
+			const line = new THREE.Line(new THREE.Geometry(), lineMaterial),
+				fromName = getNodeName(link.fromId),
+				toName = getNodeName(link.toId);
+			if (fromName && toName) { line.name = `${fromName} > ${toName}`; }
 
 			env.scene.add(link.data.line = line)
 
