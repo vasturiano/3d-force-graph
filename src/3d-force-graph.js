@@ -3,7 +3,7 @@ import './3d-force-graph.css';
 import * as THREE from 'three';
 import TrackballControls from 'three-trackballcontrols';
 
-import * as d3Force from './d3-force';
+import * as d3Force from './d3-force-custom.min';
 var d3 = d3Force.__moduleExports;
 
 export default function() {
