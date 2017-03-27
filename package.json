@@ -1,6 +1,6 @@
 {
   "name": "3d-force-graph",
-  "version": "0.1.0-d3-force",
+  "version": "0.2.0-d3-force",
   "description": "UI component for a 3D force-directed graph using ThreeJS and ngraph.forcelayout3d layout engine",
   "main": "dist/3d-force-graph.js",
   "jsnext:main": "src/index",
