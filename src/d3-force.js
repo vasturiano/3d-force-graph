@@ -380,7 +380,7 @@ var simulation = function(nodes, numDimensions) {
         var radius = initialRadius * (nDim > 2 ? Math.cbrt(i) : (nDim > 1 ? Math.sqrt(i) : i)),
           rollAngle = i * initialAngleRoll,
           yawAngle = i * initialAngleYaw;
-        node.x = radius * Math.cos(rollAngle);
+        node.x = radius * (nDim > 1 ? Math.cos(rollAngle) : 1);
         if (nDim > 1) { node.y = radius * Math.sin(rollAngle); }
         if (nDim > 2) { node.z = radius * Math.sin(yawAngle); }
       }
