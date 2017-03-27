@@ -200,6 +200,10 @@ export default function() {
 		}
 
 		function layoutTick() {
+			if (cntTicks++ > env.maxConvergeFrames || (new Date()) - startTickTime > env.maxConvergeTime) {
+				layout.stop(); // Stop ticking graph
+			}
+
 			// Update nodes position
 			d3Nodes.forEach(node => {
 				const sphere = node._sphere;
