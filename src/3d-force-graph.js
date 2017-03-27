@@ -31,6 +31,7 @@ export default function() {
 			nodes: { 1: { name: 'mock', val: 1 } },
 			links: [[1, 1]] // [from, to]
 		}),
+		new CompProp('numDimensions', 3),
 		new CompProp('nodeRelSize', 4), // volume per val unit
 		new CompProp('lineOpacity', 0.2),
 		new CompProp('valAccessor', node => node.val),
@@ -176,7 +177,7 @@ export default function() {
 
 		// Add force-directed layout
 		const layout = d3.forceSimulation()
-			.numDimensions(3)
+			.numDimensions(env.numDimensions)
 			.nodes(d3Nodes)
 			.force('link', d3.forceLink().id(d => d._id).links(d3Links))
 			.force('charge', d3.forceManyBody())
