@@ -6,7 +6,7 @@
 
 A web component to represent a graph data structure in a 3-dimensional space using a force-directed iterative layout.
 Uses ThreeJS/WebGL for 3D rendering.
-A big shout-out to [anvaka's](https://github.com/anvaka) [ngraph](https://github.com/anvaka/ngraph) for the [layout physics engine](https://github.com/anvaka/ngraph.forcelayout3d).
+A shout-out to [anvaka's](https://github.com/anvaka) [ngraph](https://github.com/anvaka/ngraph) for the [layout physics engine](https://github.com/anvaka/ngraph.forcelayout3d).
 
 Live example: http://bl.ocks.org/vasturiano/02affe306ce445e423f992faeea13521
 

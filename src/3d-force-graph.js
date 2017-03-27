@@ -159,8 +159,11 @@ export default function() {
 		d3Links.forEach(link => {
 			const line = new THREE.Line(new THREE.Geometry(), lineMaterial);
 			line.geometry.vertices=[new THREE.Vector3(0,0,0), new THREE.Vector3(0,0,0)];
-			line.name = `${getNodeName(link.source)} > ${getNodeName(link.target)}`;
-
+			
+			const fromName = getNodeName(link.source),
+				toName = getNodeName(link.target);
+			if (fromName && toName) { line.name = `${fromName} > ${toName}`; }
+			
 			env.scene.add(link._line = line);
 
 			function getNodeName(nodeId) {
