@@ -37,9 +37,9 @@ export default function() {
 		new CompProp('valAccessor', node => node.val),
 		new CompProp('nameAccessor', node => node.name),
 		new CompProp('colorAccessor', node => node.color),
-		new CompProp('initialEngineTicks', 0), // how many times to tick the force engine at init before starting to render
-		new CompProp('maxConvergeTime', 15000), // ms
-		new CompProp('maxConvergeFrames', 300)
+		new CompProp('warmUpTicks', 0), // how many times to tick the force engine at init before starting to render
+		new CompProp('coolDownTicks', Infinity),
+		new CompProp('coolDownTime', 15000) // ms
 	];
 
 	function initStatic() {
@@ -172,7 +172,7 @@ export default function() {
 		// Add force-directed layout
 		const layout = ngraph.forcelayout3d(graph);
 
-		for (let i=0; i<env.initialEngineTicks; i++) { layout.step(); } // Initial ticks before starting to render
+		for (let i=0; i<env.warmUpTicks; i++) { layout.step(); } // Initial ticks before starting to render
 
 		let cntTicks = 0;
 		const startTickTime = new Date();
@@ -189,7 +189,7 @@ export default function() {
 		}
 
 		function layoutTick() {
-			if (cntTicks++ > env.maxConvergeFrames || (new Date()) - startTickTime > env.maxConvergeTime) {
+			if (cntTicks++ > env.coolDownTicks || (new Date()) - startTickTime > env.coolDownTime) {
 				env.onFrame = ()=>{}; // Stop ticking graph
 			}
 
@@ -256,9 +256,9 @@ export default function() {
 			.valAccessor(node => node.val)
 			.nameAccessor(node => node.name)
 			.colorAccessor(node => node.color)
-			.initialEngineTicks(0)
-			.maxConvergeTime(15000) // ms
-			.maxConvergeFrames(300);
+			.warmUpTicks(0)
+			.coolDownTicks(Infinity)
+			.coolDownTime(15000); // ms
 
 		return this;
 	};
