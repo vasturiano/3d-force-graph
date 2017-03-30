@@ -33,6 +33,7 @@
   "dependencies": {
     "d3": "^4.7.0",
     "d3-binarytree": "^0.1",
+    "d3-force-3d": "^1.0",
     "d3-octree": "^0.1",
     "three": "~0.84",
     "three-trackballcontrols": "~0.0.5"
