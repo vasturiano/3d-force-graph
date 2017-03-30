@@ -50,9 +50,9 @@ ForceGraph3D()
      .valAccessor(<function(node) to extract numeric value. default: node.val>)
      .nameAccessor(<function(node) to extract name string. default: node.name>)
      .colorAccessor(<function(node) to extract color hex number. default: node.color>)
-     .initialEngineTicks(<number of layout engine cycles to run before start rendering. default: 0>)
-     .maxConvergeTime(<ms to stop engine. default: 15000>)
-     .maxConvergeFrames(<# frames to stop engine. default: 300>)
+     .warmUpTicks(<number of layout engine cycles to run before start rendering. default: 0>)
+     .coolDownTicks(<# frames to stop engine. default: Infinity>)
+     .coolDownTime(<ms to stop engine. default: 15000>)
      .resetState()
 ```
 
