@@ -1,7 +1,7 @@
 import './3d-force-graph.css';
 
-import * as THREE from 'three';
-import TrackballControls from 'three-trackballcontrols';
+import './threeGlobal';
+import 'three/examples/js/controls/TrackBallControls';
 
 import graph from 'ngraph.graph';
 import forcelayout3d from 'ngraph.forcelayout3d';
@@ -97,7 +97,7 @@ export default function() {
 		env.domNode.appendChild(env.renderer.domElement);
 
 		// Add camera interaction
-		env.controls = new TrackballControls(env.camera, env.renderer.domElement);
+		env.controls = new THREE.TrackballControls(env.camera, env.renderer.domElement);
 
 
 		env.initialised = true;

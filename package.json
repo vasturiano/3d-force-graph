@@ -33,8 +33,7 @@
   "dependencies": {
     "ngraph.forcelayout3d": "~0.0.16",
     "ngraph.graph": "~0.0.12",
-    "three": "~0.84",
-    "three-trackballcontrols": "~0.0.5"
+    "three": "~0.84"
   },
   "devDependencies": {
     "package-preamble": "^0.0.2",
