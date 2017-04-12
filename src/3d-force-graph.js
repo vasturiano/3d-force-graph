@@ -143,7 +143,7 @@ export default function() {
 			nodeMaterial.opacity = 0.75;
 
 			const sphere = new THREE.Mesh(
-				new THREE.SphereGeometry(Math.cbrt(env.valAccessor(node.data) || 1) * env.nodeRelSize),
+				new THREE.SphereGeometry(Math.cbrt(env.valAccessor(node.data) || 1) * env.nodeRelSize, 8, 8),
 				nodeMaterial
 			);
 			sphere.name = env.nameAccessor(node.data) || '';
