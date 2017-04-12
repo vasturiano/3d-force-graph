@@ -159,7 +159,7 @@ export default function() {
 				toName = getNodeName(link.toId);
 			if (fromName && toName) { line.name = `${fromName} > ${toName}`; }
 
-			env.scene.add(link.data.line = line)
+			env.scene.add(link.data.line = line);
 
 			function getNodeName(nodeId) {
 				return env.nameAccessor(graph.getNode(nodeId).data);
