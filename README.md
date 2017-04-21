@@ -8,6 +8,8 @@ A web component to represent a graph data structure in a 3-dimensional space usi
 Uses ThreeJS/WebGL for 3D rendering.
 A shout-out to [anvaka's](https://github.com/anvaka) [ngraph](https://github.com/anvaka/ngraph) for the [layout physics engine](https://github.com/anvaka/ngraph.forcelayout3d).
 
+See also the [VR version](https://github.com/vasturiano/3d-force-graph-vr).
+
 Live example: http://bl.ocks.org/vasturiano/02affe306ce445e423f992faeea13521
 
 [![NPM](https://nodei.co/npm/3d-force-graph.png?compact=true)](https://nodei.co/npm/3d-force-graph/)
