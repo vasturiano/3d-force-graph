@@ -55,7 +55,7 @@ ForceGraph3D()
      .warmUpTicks(<number of layout engine cycles to run before start rendering. default: 0>)
      .coolDownTicks(<# frames to stop engine. default: Infinity>)
      .coolDownTime(<ms to stop engine. default: 15000>)
-     .resetState()
+     .resetProps()
 ```
 
 ## Data syntax
