@@ -32,7 +32,7 @@ var ForceGraph3D = require('3d-force-graph');
 ```
 or even
 ```
-<script src="/path/to/dist/3d-force-graph.js"></script>
+<script src="//unpkg.com/3d-force-graph/dist/3d-force-graph.js"></script>
 ```
 then
 ```
@@ -46,15 +46,21 @@ myGraph(<myDOMElement>);
 ForceGraph3D()
      .width(<px>)
      .height(<px>)
+     .jsonUrl(<URL of JSON file to load graph data directly from, as an alternative to specifying graphData directly>)
      .graphData(<data>)
+     .numDimensions(<number of dimensions, between [1,3]. default: 3>)
      .nodeRelSize(<(number) node volume per value unit>)
      .lineOpacity(<between [0,1]>)
-     .valAccessor(<function(node) to extract numeric value. default: node.val>)
-     .nameAccessor(<function(node) to extract name string. default: node.name>)
-     .colorAccessor(<function(node) to extract color hex number. default: node.color>)
-     .warmUpTicks(<number of layout engine cycles to run before start rendering. default: 0>)
-     .coolDownTicks(<# frames to stop engine. default: Infinity>)
-     .coolDownTime(<ms to stop engine. default: 15000>)
+     .autoColorBy(<node object accessor property name, only affects nodes without a color field>)
+     .idField(<node object accessor property name. default: 'id'>)
+     .valField(<node object accessor property name. default: 'val'>)
+     .nameField(<node object accessor property name. default: 'name'>)
+     .colorField(<node object accessor property name. default: 'color'>)
+     .linkSourceField(<link object accessor property name. default: 'source'>)
+     .linkTargetField(<link object accessor property name. default: 'target'>)
+     .warmupTicks(<number of layout engine cycles to run before start rendering. default: 0>)
+     .cooldownTicks(<# frames to stop engine. default: Infinity>)
+     .cooldownTime(<ms to stop engine. default: 15000>)
      .resetProps()
 ```
 
@@ -62,19 +68,24 @@ ForceGraph3D()
 
 ```
 {
-    nodes: { 
-        id1: { 
+    nodes: [ 
+        { 
+          id: 'id1',
           name: "name1",
           val: 1 
         },
-        id2: { 
+        { 
+          id: 'id2',
           name: "name2",
           val: 10 
         },
         (...)
-    },
+    ],
     links: [
-        ['id1', 'id2'], // [from, to]
+        {
+            source: 'id1',
+            target: 'id2'
+        },
         (...)
     ]
 }

@@ -31,8 +31,10 @@
     "prepublish": "npm run build"
   },
   "dependencies": {
+    "ngraph.forcelayout": "~0.1.2",
     "ngraph.forcelayout3d": "~0.0.16",
     "ngraph.graph": "~0.0.12",
+    "qwest": "^4.4",
     "swc": "^0.1",
     "three": "~0.84"
   },
