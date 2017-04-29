@@ -47,7 +47,7 @@ export default SWC.createComponent({
 		let navInfo;
 		domNode.appendChild(navInfo = document.createElement('div'));
 		navInfo.className = 'graph-nav-info';
-		navInfo.textContent = "MOVE mouse &amp; press LEFT/A: rotate, MIDDLE/S: zoom, RIGHT/D: pan";
+		navInfo.textContent = "MOVE mouse & press LEFT/A: rotate, MIDDLE/S: zoom, RIGHT/D: pan";
 
 		// Setup tooltip
 		const toolTipElem = document.createElement('div');
