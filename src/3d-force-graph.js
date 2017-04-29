@@ -115,16 +115,18 @@ export default SWC.createComponent({
 		})();
 	},
 
-	update: state => {
+	update: function updateFn(state) {
 		resizeCanvas();
 
 		state.onFrame = null; // Pause simulation
 
-		if (state.jsonUrl && !state.graphData.nodes.length && !state.graphData.links.length) {
+		if (!state.fetchingJson && state.jsonUrl && !state.graphData.nodes.length && !state.graphData.links.length) {
 			// (Re-)load data
+			state.fetchingJson = true;
 			qwest.get(state.jsonUrl).then((_, json) => {
+				state.fetchingJson = false;
 				state.graphData = json;
-				this.update(state);  // Force re-update
+				updateFn(state);  // Force re-update
 			});
 		}
 
@@ -156,7 +158,6 @@ export default SWC.createComponent({
 
 		const lineMaterial = new THREE.LineBasicMaterial({ color: 0xf0f0f0, transparent: true });
 		lineMaterial.opacity = state.lineOpacity;
-
 		state.graphData.links.forEach(link => {
 			const line = new THREE.Line(new THREE.Geometry(), lineMaterial);
 			line.geometry.vertices=[new THREE.Vector3(0,0,0), new THREE.Vector3(0,0,0)];
