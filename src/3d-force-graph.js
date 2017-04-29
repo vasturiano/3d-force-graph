@@ -81,17 +81,17 @@ export default SWC.createComponent({
 			}
 		}, false);
 
-		// Setup camera
-		state.camera = new THREE.PerspectiveCamera();
-		state.camera.far = 20000;
-		state.camera.position.z = 1000;
-
-		// Setup scene
-		state.scene = new THREE.Scene();
-
 		// Setup renderer
 		state.renderer = new THREE.WebGLRenderer();
 		domNode.appendChild(state.renderer.domElement);
+
+		// Setup scene
+		const scene = new THREE.Scene();
+		scene.add(state.graphScene = new THREE.Group());
+
+		// Setup camera
+		state.camera = new THREE.PerspectiveCamera();
+		state.camera.far = 20000;
 
 		// Add camera interaction
 		const tbControls = new THREE.TrackballControls(state.camera, state.renderer.domElement);
@@ -104,13 +104,13 @@ export default SWC.createComponent({
 
 			// Update tooltip
 			raycaster.setFromCamera(mousePos, state.camera);
-			const intersects = raycaster.intersectObjects(state.scene.children)
+			const intersects = raycaster.intersectObjects(state.graphScene.children)
 				.filter(o => o.object.name); // Check only objects with labels
 			toolTipElem.textContent = intersects.length ? intersects[0].object.name : '';
 
 			// Frame cycle
 			tbControls.update();
-			state.renderer.render(state.scene, state.camera);
+			state.renderer.render(scene, state.camera);
 			requestAnimationFrame(animate);
 		})();
 	},
@@ -119,7 +119,6 @@ export default SWC.createComponent({
 		resizeCanvas();
 
 		state.onFrame = null; // Pause simulation
-		state.scene = new THREE.Scene(); // Clear the place
 
 		if (state.jsonUrl && !state.graphData.nodes.length && !state.graphData.links.length) {
 			// (Re-)load data
@@ -136,12 +135,13 @@ export default SWC.createComponent({
 		state.graphData.links.forEach(link => {
 			link.source = link[state.linkSourceField];
 			link.target = link[state.linkTargetField];
-			link.id = [link.source, link.target].join(' > ');
 		});
 
 		// Add WebGL objects
+		while (state.graphScene.children.length) { state.graphScene.remove(state.graphScene.children[0]) } // Clear the place
+
 		state.graphData.nodes.forEach(node => {
-			const nodeMaterial = new THREE.MeshLambertMaterial({ color: node[state.colorField] || 0xffffaa, transparent: true });
+			const nodeMaterial = new THREE.MeshBasicMaterial({ color: node[state.colorField] || 0xffffaa, transparent: true });
 			nodeMaterial.opacity = 0.75;
 
 			const sphere = new THREE.Mesh(
@@ -151,7 +151,7 @@ export default SWC.createComponent({
 
 			sphere.name = node[state.nameField]; // Add label
 
-			state.scene.add(node.__sphere = sphere);
+			state.graphScene.add(node.__sphere = sphere);
 		});
 
 		const lineMaterial = new THREE.LineBasicMaterial({ color: 0xf0f0f0, transparent: true });
@@ -161,10 +161,10 @@ export default SWC.createComponent({
 			const line = new THREE.Line(new THREE.Geometry(), lineMaterial);
 			line.geometry.vertices=[new THREE.Vector3(0,0,0), new THREE.Vector3(0,0,0)];
 
-			state.scene.add(link.__line = line);
+			state.graphScene.add(link.__line = line);
 		});
 
-		state.camera.lookAt(state.scene.position);
+		state.camera.lookAt(state.graphScene.position);
 		state.camera.position.z = Math.cbrt(state.graphData.nodes.length) * CAMERA_DISTANCE2NODES_FACTOR;
 
 		// Add force-directed layout
