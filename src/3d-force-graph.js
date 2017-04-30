@@ -87,6 +87,7 @@ export default SWC.createComponent({
 
 		// Setup scene
 		const scene = new THREE.Scene();
+		scene.background = new THREE.Color(0x0000A);
 		scene.add(state.graphScene = new THREE.Group());
 
 		// Add lights
@@ -123,6 +124,10 @@ export default SWC.createComponent({
 		resizeCanvas();
 
 		state.onFrame = null; // Pause simulation
+
+		if (state.graphData.nodes.length || state.graphData.links.length) {
+			console.log('3d-force-graph loading', state.graphData.nodes.length + ' nodes', state.graphData.links.length + ' links');
+		}
 
 		if (!state.fetchingJson && state.jsonUrl && !state.graphData.nodes.length && !state.graphData.links.length) {
 			// (Re-)load data
