@@ -89,6 +89,10 @@ export default SWC.createComponent({
 		const scene = new THREE.Scene();
 		scene.add(state.graphScene = new THREE.Group());
 
+		// Add lights
+		scene.add(new THREE.AmbientLight(0xbbbbbb));
+		scene.add(new THREE.DirectionalLight(0xffffff, 0.6));
+
 		// Setup camera
 		state.camera = new THREE.PerspectiveCamera();
 		state.camera.far = 20000;
@@ -143,7 +147,7 @@ export default SWC.createComponent({
 		while (state.graphScene.children.length) { state.graphScene.remove(state.graphScene.children[0]) } // Clear the place
 
 		state.graphData.nodes.forEach(node => {
-			const nodeMaterial = new THREE.MeshBasicMaterial({ color: node[state.colorField] || 0xffffaa, transparent: true });
+			const nodeMaterial = new THREE.MeshLambertMaterial({ color: node[state.colorField] || 0xffffaa, transparent: true });
 			nodeMaterial.opacity = 0.75;
 
 			const sphere = new THREE.Mesh(
