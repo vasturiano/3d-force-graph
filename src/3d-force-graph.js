@@ -49,6 +49,11 @@ export default SWC.createComponent({
 		navInfo.className = 'graph-nav-info';
 		navInfo.textContent = "MOVE mouse & press LEFT/A: rotate, MIDDLE/S: zoom, RIGHT/D: pan";
 
+		// Add info space
+		domNode.appendChild(state.infoElem = document.createElement('div'));
+		state.infoElem.className = 'graph-info-msg';
+		state.infoElem.textContent = '';
+
 		// Setup tooltip
 		const toolTipElem = document.createElement('div');
 		toolTipElem.classList.add('graph-tooltip');
@@ -124,6 +129,7 @@ export default SWC.createComponent({
 		resizeCanvas();
 
 		state.onFrame = null; // Pause simulation
+		state.infoElem.textContent = 'Loading...';
 
 		if (state.graphData.nodes.length || state.graphData.links.length) {
 			console.log('3d-force-graph loading', state.graphData.nodes.length + ' nodes', state.graphData.links.length + ' links');
@@ -188,6 +194,7 @@ export default SWC.createComponent({
 		let cntTicks = 0;
 		const startTickTime = new Date();
 		state.onFrame = layoutTick;
+		state.infoElem.textContent = '';
 
 		//
 
