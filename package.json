@@ -31,6 +31,9 @@
     "prepublish": "npm run build"
   },
   "dependencies": {
+    "d3-binarytree": "^0.1",
+    "d3-force-3d": "^1.0",
+    "d3-octree": "^0.1",
     "ngraph.forcelayout": "~0.1.2",
     "ngraph.forcelayout3d": "~0.0.16",
     "ngraph.graph": "~0.0.12",

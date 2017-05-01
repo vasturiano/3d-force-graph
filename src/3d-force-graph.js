@@ -3,6 +3,7 @@ import './3d-force-graph.css';
 import './threeGlobal';
 import 'three/examples/js/controls/TrackBallControls';
 
+import * as d3 from 'd3-force-3d';
 import graph from 'ngraph.graph';
 import forcelayout from 'ngraph.forcelayout';
 import forcelayout3d from 'ngraph.forcelayout3d';
@@ -34,6 +35,7 @@ export default SWC.createComponent({
 		new SWC.Prop('colorField', 'color'),
 		new SWC.Prop('linkSourceField', 'source'),
 		new SWC.Prop('linkTargetField', 'target'),
+		new SWC.Prop('forceEngine', 'd3'), // d3 or ngraph
 		new SWC.Prop('warmupTicks', 0), // how many times to tick the force engine at init before starting to render
 		new SWC.Prop('cooldownTicks', Infinity),
 		new SWC.Prop('cooldownTime', 15000) // ms
@@ -105,6 +107,13 @@ export default SWC.createComponent({
 
 		// Add camera interaction
 		const tbControls = new THREE.TrackballControls(state.camera, state.renderer.domElement);
+
+		// Add D3 force-directed layout
+		state.d3ForceLayout = d3.forceSimulation()
+			.force('link', d3.forceLink())
+			.force('charge', d3.forceManyBody())
+			.force('center', d3.forceCenter())
+			.stop();
 
 		//
 
@@ -183,13 +192,29 @@ export default SWC.createComponent({
 		state.camera.lookAt(state.graphScene.position);
 		state.camera.position.z = Math.cbrt(state.graphData.nodes.length) * CAMERA_DISTANCE2NODES_FACTOR;
 
-		// Add force-directed layout
-		const graph = ngraph.graph();
-		state.graphData.nodes.forEach(node => { graph.addNode(node[state.idField]); });
-		state.graphData.links.forEach(link => { graph.addLink(link.source, link.target); });
-		const layout = ngraph['forcelayout' + (state.numDimensions === 2 ? '' : '3d')](graph);
+		// Feed data to force-directed layout
+		const isD3Sim = state.forceEngine !== 'ngraph';
+		let layout;
+		if (isD3Sim) {
+			// D3-force
+			(layout = state.d3ForceLayout)
+				.stop()
+				.alpha(1)// re-heat the simulation
+				.numDimensions(state.numDimensions)
+				.nodes(state.graphData.nodes)
+				.force('link')
+					.id(d => d[state.idField])
+					.links(state.graphData.links);
+		} else {
+			// ngraph
+			const graph = ngraph.graph();
+			state.graphData.nodes.forEach(node => { graph.addNode(node[state.idField]); });
+			state.graphData.links.forEach(link => { graph.addLink(link.source, link.target); });
+			layout = ngraph['forcelayout' + (state.numDimensions === 2 ? '' : '3d')](graph);
+			layout.graph = graph; // Attach graph reference to layout
+		}
 
-		for (let i=0; i<state.warmupTicks; i++) { layout.step(); } // Initial ticks before starting to render
+		for (let i=0; i<state.warmupTicks; i++) { layout[isD3Sim?'tick':'step'](); } // Initial ticks before starting to render
 
 		let cntTicks = 0;
 		const startTickTime = new Date();
@@ -211,12 +236,13 @@ export default SWC.createComponent({
 				state.onFrame = null; // Stop ticking graph
 			}
 
-			layout.step(); // Tick it
+			layout[isD3Sim?'tick':'step'](); // Tick it
 
 			// Update nodes position
 			state.graphData.nodes.forEach(node => {
 				const sphere = node.__sphere,
-					pos = layout.getNodePosition(node[state.idField]);
+					pos = isD3Sim ? node : layout.getNodePosition(node[state.idField]);
+
 				sphere.position.x = pos.x;
 				sphere.position.y = pos.y || 0;
 				sphere.position.z = pos.z || 0;
@@ -224,13 +250,21 @@ export default SWC.createComponent({
 
 			// Update links position
 			state.graphData.links.forEach(link => {
-				const line = link.__line,
-					pos = layout.getLinkPosition(graph.getLink(link.source, link.target).id);
+				const line = link.__line;
 
-				line.geometry.vertices = [
-					new THREE.Vector3(pos.from.x, pos.from.y || 0, pos.from.z || 0),
-					new THREE.Vector3(pos.to.x, pos.to.y || 0, pos.to.z || 0)
-				];
+				if (isD3Sim) {
+					line.geometry.vertices = [
+						new THREE.Vector3(link.source.x, link.source.y || 0, link.source.z || 0),
+						new THREE.Vector3(link.target.x, link.target.y || 0, link.target.z || 0)
+					];
+				} else { // ngraph
+					var pos = layout.getLinkPosition(layout.graph.getLink(link.source, link.target).id);
+
+					line.geometry.vertices = [
+						new THREE.Vector3(pos.from.x, pos.from.y || 0, pos.from.z || 0),
+						new THREE.Vector3(pos.to.x, pos.to.y || 0, pos.to.z || 0)
+					];
+				}
 
 				line.geometry.verticesNeedUpdate = true;
 				line.geometry.computeBoundingSphere();
