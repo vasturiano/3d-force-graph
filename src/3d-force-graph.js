@@ -167,12 +167,9 @@ export default SWC.createComponent({
 		while (state.graphScene.children.length) { state.graphScene.remove(state.graphScene.children[0]) } // Clear the place
 
 		state.graphData.nodes.forEach(node => {
-			const nodeMaterial = new THREE.MeshLambertMaterial({ color: node[state.colorField] || 0xffffaa, transparent: true });
-			nodeMaterial.opacity = 0.75;
-
 			const sphere = new THREE.Mesh(
 				new THREE.SphereGeometry(Math.cbrt(node[state.valField] || 1) * state.nodeRelSize, 8, 8),
-				nodeMaterial
+				new THREE.MeshLambertMaterial({ color: node[state.colorField] || 0xffffaa, transparent: true, opacity: 0.75 })
 			);
 
 			sphere.name = node[state.nameField]; // Add label
@@ -184,7 +181,6 @@ export default SWC.createComponent({
 		lineMaterial.opacity = state.lineOpacity;
 		state.graphData.links.forEach(link => {
 			const line = new THREE.Line(new THREE.Geometry(), lineMaterial);
-			line.geometry.vertices=[new THREE.Vector3(0,0,0), new THREE.Vector3(0,0,0)];
 
 			state.graphScene.add(link.__line = line);
 		});
