@@ -177,12 +177,9 @@ export default SWC.createComponent({
 			state.graphScene.add(node.__sphere = sphere);
 		});
 
-		const lineMaterial = new THREE.LineBasicMaterial({ color: 0xf0f0f0, transparent: true });
-		lineMaterial.opacity = state.lineOpacity;
+		const lineMaterial = new THREE.LineBasicMaterial({ color: 0xf0f0f0, transparent: true, opacity: state.lineOpacity });
 		state.graphData.links.forEach(link => {
-			const line = new THREE.Line(new THREE.Geometry(), lineMaterial);
-
-			state.graphScene.add(link.__line = line);
+			state.graphScene.add(link.__line = new THREE.Line(new THREE.Geometry(), lineMaterial));
 		});
 
 		state.camera.lookAt(state.graphScene.position);
