@@ -179,7 +179,11 @@ export default SWC.createComponent({
 
 		const lineMaterial = new THREE.LineBasicMaterial({ color: 0xf0f0f0, transparent: true, opacity: state.lineOpacity });
 		state.graphData.links.forEach(link => {
-			state.graphScene.add(link.__line = new THREE.Line(new THREE.Geometry(), lineMaterial));
+			const line = new THREE.Line(new THREE.Geometry(), lineMaterial);
+
+			line.renderOrder = 10; // Prevent visual glitches of dark lines on top of spheres by rendering them last
+
+			state.graphScene.add(link.__line = line);
 		});
 
 		state.camera.lookAt(state.graphScene.position);
