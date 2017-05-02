@@ -254,7 +254,7 @@ export default SWC.createComponent({
 						new THREE.Vector3(link.target.x, link.target.y || 0, link.target.z || 0)
 					];
 				} else { // ngraph
-					var pos = layout.getLinkPosition(layout.graph.getLink(link.source, link.target).id);
+					const pos = layout.getLinkPosition(layout.graph.getLink(link.source, link.target).id);
 
 					line.geometry.vertices = [
 						new THREE.Vector3(pos.from.x, pos.from.y || 0, pos.from.z || 0),
