@@ -250,7 +250,9 @@ export default SWC.createComponent({
 			// Update links position
 			state.graphData.links.forEach(link => {
 				const line = link.__line,
-					pos = isD3Sim ? link : layout.getLinkPosition(layout.graph.getLink(link.source, link.target).id),
+					pos = isD3Sim
+						? link
+						: layout.getLinkPosition(layout.graph.getLink(link.source, link.target).id),
 					start = pos[isD3Sim ? 'source' : 'from'],
 					end = pos[isD3Sim ? 'target' : 'to'],
 					linePos = line.geometry.attributes.position;
