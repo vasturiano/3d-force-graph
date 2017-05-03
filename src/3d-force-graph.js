@@ -179,7 +179,9 @@ export default SWC.createComponent({
 
 		const lineMaterial = new THREE.LineBasicMaterial({ color: 0xf0f0f0, transparent: true, opacity: state.lineOpacity });
 		state.graphData.links.forEach(link => {
-			const line = new THREE.Line(new THREE.Geometry(), lineMaterial);
+			const geometry = new THREE.BufferGeometry();
+			geometry.addAttribute('position', new THREE.BufferAttribute(new Float32Array(2 * 3), 3));
+			const line = new THREE.Line(geometry, lineMaterial);
 
 			line.renderOrder = 10; // Prevent visual glitches of dark lines on top of spheres by rendering them last
 
@@ -247,23 +249,20 @@ export default SWC.createComponent({
 
 			// Update links position
 			state.graphData.links.forEach(link => {
-				const line = link.__line;
+				const line = link.__line,
+					pos = isD3Sim ? link : layout.getLinkPosition(layout.graph.getLink(link.source, link.target).id),
+					start = pos[isD3Sim ? 'source' : 'from'],
+					end = pos[isD3Sim ? 'target' : 'to'],
+					linePos = line.geometry.attributes.position;
 
-				if (isD3Sim) {
-					line.geometry.vertices = [
-						new THREE.Vector3(link.source.x, link.source.y || 0, link.source.z || 0),
-						new THREE.Vector3(link.target.x, link.target.y || 0, link.target.z || 0)
-					];
-				} else { // ngraph
-					const pos = layout.getLinkPosition(layout.graph.getLink(link.source, link.target).id);
+				linePos.array[0] = start.x;
+				linePos.array[1] = start.y || 0;
+				linePos.array[2] = start.z || 0;
+				linePos.array[3] = end.x;
+				linePos.array[4] = end.y || 0;
+				linePos.array[5] = end.z || 0;
 
-					line.geometry.vertices = [
-						new THREE.Vector3(pos.from.x, pos.from.y || 0, pos.from.z || 0),
-						new THREE.Vector3(pos.to.x, pos.to.y || 0, pos.to.z || 0)
-					];
-				}
-
-				line.geometry.verticesNeedUpdate = true;
+				linePos.needsUpdate = true;
 				line.geometry.computeBoundingSphere();
 			});
 		}
