@@ -28,7 +28,7 @@
     "build": "rm -rf dist && mkdir dist && rollup -c --banner \"$(preamble)\"",
     "watch": "rollup -c -w",
     "minify": "uglifyjs dist/3d-force-graph.js -o dist/3d-force-graph.min.js -c -m --preamble \"$(preamble)\"",
-    "prepublish": "npm run build"
+    "prepublish": "npm run build && npm run minify"
   },
   "dependencies": {
     "d3-binarytree": "^0.1",
@@ -50,6 +50,6 @@
     "rollup-plugin-node-resolve": "^2.0",
     "rollup-plugin-postcss": "^0.2",
     "rollup-watch": "^2.5",
-    "uglify-js": "^2.7"
+    "uglify-js-es6": "^2.8.9"
   }
 }
