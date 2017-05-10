@@ -38,7 +38,7 @@
     "ngraph.forcelayout3d": "~0.0.16",
     "ngraph.graph": "~0.0.12",
     "qwest": "^4.4",
-    "swc": "^0.1",
+    "swc": "^0.2",
     "three": "~0.84"
   },
   "devDependencies": {
