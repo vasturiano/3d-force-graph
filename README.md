@@ -64,7 +64,7 @@ ForceGraph3D()
      .resetProps()
 ```
 
-## Data syntax
+## Input graphData syntax
 
 ```
 {
