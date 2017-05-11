@@ -16,7 +16,7 @@ Live example: http://bl.ocks.org/vasturiano/02affe306ce445e423f992faeea13521
 ## Quick start
 
 ```
-import { default as ForceGraph3D } from '3d-force-graph';
+import ForceGraph3D from '3d-force-graph';
 ```
 or
 ```
