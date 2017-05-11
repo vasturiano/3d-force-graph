@@ -5,7 +5,7 @@
 </p>
 
 A web component to represent a graph data structure in a 3-dimensional space using a force-directed iterative layout.
-Uses ThreeJS/WebGL for 3D rendering and either [d3-force-3d](https://github.com/vasturiano/d3-force-3d) or [anvaka's](https://github.com/anvaka) [ngraph](https://github.com/anvaka/ngraph.forcelayout3d) as the underlying physics engine.
+Uses [ThreeJS](https://github.com/mrdoob/three.js/)/WebGL for 3D rendering and either [d3-force-3d](https://github.com/vasturiano/d3-force-3d) or [anvaka's](https://github.com/anvaka) [ngraph](https://github.com/anvaka/ngraph.forcelayout3d) for the underlying physics engine.
 
 See also the [VR version](https://github.com/vasturiano/3d-force-graph-vr).
 
