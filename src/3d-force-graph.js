@@ -94,7 +94,7 @@ export default SWC.createComponent({
 
 		// Setup scene
 		const scene = new THREE.Scene();
-		scene.background = new THREE.Color(0x0000A);
+		scene.background = new THREE.Color(0x00022);
 		scene.add(state.graphScene = new THREE.Group());
 
 		// Add lights
