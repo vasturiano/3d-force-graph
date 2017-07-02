@@ -39,7 +39,7 @@
     "ngraph.graph": "~0.0.12",
     "qwest": "^4.4",
     "swc": "^0.2",
-    "three": "~0.84"
+    "three": "~0.86"
   },
   "devDependencies": {
     "package-preamble": "^0.0.2",
