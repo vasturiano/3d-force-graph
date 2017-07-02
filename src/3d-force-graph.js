@@ -188,8 +188,11 @@ export default SWC.createComponent({
 			state.graphScene.add(link.__line = line);
 		});
 
-		state.camera.lookAt(state.graphScene.position);
-		state.camera.position.z = Math.cbrt(state.graphData.nodes.length) * CAMERA_DISTANCE2NODES_FACTOR;
+		if (state.camera.position.x === 0 && state.camera.position.y === 0) {
+			// If camera still in default position (not user modified)
+			state.camera.lookAt(state.graphScene.position);
+			state.camera.position.z = Math.cbrt(state.graphData.nodes.length) * CAMERA_DISTANCE2NODES_FACTOR;
+		}
 
 		// Feed data to force-directed layout
 		const isD3Sim = state.forceEngine !== 'ngraph';
