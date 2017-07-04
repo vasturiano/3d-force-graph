@@ -28,6 +28,7 @@ export default SWC.createComponent({
 		new SWC.Prop('numDimensions', 3),
 		new SWC.Prop('nodeRelSize', 4), // volume per val unit
 		new SWC.Prop('nodeResolution', 8), // how many slice segments in the sphere's circumference
+		new SWC.Prop('onNodeClick'),
 		new SWC.Prop('lineOpacity', 0.2),
 		new SWC.Prop('autoColorBy'),
 		new SWC.Prop('idField', 'id'),
@@ -86,6 +87,18 @@ export default SWC.createComponent({
 					scrollLeft = window.pageXOffset || document.documentElement.scrollLeft,
 					scrollTop = window.pageYOffset || document.documentElement.scrollTop;
 				return { top: rect.top + scrollTop, left: rect.left + scrollLeft };
+			}
+		}, false);
+
+		// Handle click events on nodes
+		domNode.addEventListener("click", ev => {
+			if (state.onNodeClick) {
+				raycaster.setFromCamera(mousePos, state.camera);
+				const intersects = raycaster.intersectObjects(state.graphScene.children)
+					.filter(o => o.object.__data); // Check only objects with data (nodes)
+				if (intersects.length) {
+					state.onNodeClick(intersects[0].object.__data);
+				}
 			}
 		}, false);
 
@@ -183,6 +196,7 @@ export default SWC.createComponent({
 			const sphere = new THREE.Mesh(sphereGeometries[val], sphereMaterials[color]);
 
 			sphere.name = node[state.nameField]; // Add label
+			sphere.__data = node; // Attach node data
 
 			state.graphScene.add(node.__sphere = sphere);
 		});
