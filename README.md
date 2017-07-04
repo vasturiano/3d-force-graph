@@ -43,6 +43,7 @@ myGraph(<myDOMElement>)
 | <b>jsonUrl</b>([<i>url</i>]) | URL of JSON file to load graph data directly from, as an alternative to specifying <i>graphData</i> directly. ||
 | <b>numDimensions</b>([<i>int</i>]) | Getter/setter for number of dimensions to run the force simulation on (1, 2 or 3). | 3 |
 | <b>nodeRelSize</b>([<i>num</i>]) | Getter/setter for the ratio of node sphere volume (cubic px) per value unit. | 4 |
+| <b>nodeResolution</b>([<i>num</i>]) | Getter/setter for the geometric resolution of each node, expressed in how many slice segments to divide the circumference. Higher values yield smoother spheres. | 8 |
 | <b>lineOpacity</b>([<i>num</i>]) | Getter/setter for line opacity of links, between [0,1]. | 0.2 |
 | <b>autoColorBy</b>([<i>str</i>]) | Node object accessor attribute to automatically group colors by, only affects nodes without a color attribute. ||
 | <b>idField</b>([<i>str</i>]) | Node object accessor attribute for unique node id (used in link objects source/target). | id |

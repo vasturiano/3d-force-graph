@@ -27,6 +27,7 @@ export default SWC.createComponent({
 		}),
 		new SWC.Prop('numDimensions', 3),
 		new SWC.Prop('nodeRelSize', 4), // volume per val unit
+		new SWC.Prop('nodeResolution', 8), // how many slice segments in the sphere's circumference
 		new SWC.Prop('lineOpacity', 0.2),
 		new SWC.Prop('autoColorBy'),
 		new SWC.Prop('idField', 'id'),
@@ -166,11 +167,20 @@ export default SWC.createComponent({
 		// Add WebGL objects
 		while (state.graphScene.children.length) { state.graphScene.remove(state.graphScene.children[0]) } // Clear the place
 
+		let sphereGeometries = {}; // indexed by node value
+		let sphereMaterials = {}; // indexed by color
 		state.graphData.nodes.forEach(node => {
-			const sphere = new THREE.Mesh(
-				new THREE.SphereGeometry(Math.cbrt(node[state.valField] || 1) * state.nodeRelSize, 8, 8),
-				new THREE.MeshLambertMaterial({ color: node[state.colorField] || 0xffffaa, transparent: true, opacity: 0.75 })
-			);
+			const val = node[state.valField] || 1;
+			if (!sphereGeometries.hasOwnProperty(val)) {
+				sphereGeometries[val] = new THREE.SphereGeometry(Math.cbrt(val) * state.nodeRelSize, state.nodeResolution, state.nodeResolution);
+			}
+
+			const color = node[state.colorField] || 0xffffaa;
+			if (!sphereMaterials.hasOwnProperty(color)) {
+				sphereMaterials[color] = new THREE.MeshLambertMaterial({ color, transparent: true, opacity: 0.75 });
+			}
+
+			const sphere = new THREE.Mesh(sphereGeometries[val], sphereMaterials[color]);
 
 			sphere.name = node[state.nameField]; // Add label
 
