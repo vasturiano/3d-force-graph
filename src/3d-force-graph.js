@@ -9,41 +9,41 @@ import forcelayout from 'ngraph.forcelayout';
 import forcelayout3d from 'ngraph.forcelayout3d';
 const ngraph = { graph, forcelayout, forcelayout3d };
 
-import * as SWC from 'swc';
+import Kapsule from 'kapsule';
 
 //
 
 const CAMERA_DISTANCE2NODES_FACTOR = 150;
 
-export default SWC.createComponent({
+export default Kapsule({
 
-	props: [
-		new SWC.Prop('width', window.innerWidth),
-		new SWC.Prop('height', window.innerHeight),
-		new SWC.Prop('jsonUrl'),
-		new SWC.Prop('graphData', {
+	props: {
+		width: { default: window.innerWidth },
+		height: { default: window.innerHeight },
+		jsonUrl: {},
+		graphData: { default: {
 			nodes: [],
 			links: []
-		}),
-		new SWC.Prop('numDimensions', 3),
-		new SWC.Prop('nodeRelSize', 4), // volume per val unit
-		new SWC.Prop('nodeResolution', 8), // how many slice segments in the sphere's circumference
-		new SWC.Prop('onNodeClick'),
-		new SWC.Prop('lineOpacity', 0.2),
-		new SWC.Prop('autoColorBy'),
-		new SWC.Prop('idField', 'id'),
-		new SWC.Prop('valField', 'val'),
-		new SWC.Prop('nameField', 'name'),
-		new SWC.Prop('colorField', 'color'),
-		new SWC.Prop('linkSourceField', 'source'),
-		new SWC.Prop('linkTargetField', 'target'),
-		new SWC.Prop('forceEngine', 'd3'), // d3 or ngraph
-		new SWC.Prop('warmupTicks', 0), // how many times to tick the force engine at init before starting to render
-		new SWC.Prop('cooldownTicks', Infinity),
-		new SWC.Prop('cooldownTime', 15000) // ms
-	],
+		}},
+		numDimensions: { default: 3 },
+		nodeRelSize: { default: 4 }, // volume per val unit
+		nodeResolution: { default: 8 }, // how many slice segments in the sphere's circumference
+		onNodeClick: {},
+		lineOpacity: { default: 0.2 },
+		autoColorBy: {},
+		idField: { default: 'id' },
+		valField: { default: 'val' },
+		nameField: { default: 'name' },
+		colorField: { default: 'color' },
+		linkSourceField: { default: 'source' },
+		linkTargetField: { default: 'target' },
+		forceEngine: { default: 'd3' }, // d3 or ngraph
+		warmupTicks: { default: 0 }, // how many times to tick the force engine at init before starting to render
+		cooldownTicks: { default: Infinity },
+		cooldownTime: { default: 15000 } // ms
+	},
 
-	init: (domNode, state) => {
+	init(domNode, state) {
 		// Wipe DOM
 		domNode.innerHTML = '';
 
