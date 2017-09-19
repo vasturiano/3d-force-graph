@@ -21,10 +21,13 @@ export default Kapsule({
 		width: { default: window.innerWidth },
 		height: { default: window.innerHeight },
 		jsonUrl: {},
-		graphData: { default: {
-			nodes: [],
-			links: []
-		}},
+		graphData: {
+			default: {
+				nodes: [],
+				links: []
+			},
+			onChange(_, state) { state.onFrame = null; } // Pause simulation
+		},
 		numDimensions: { default: 3 },
 		nodeRelSize: { default: 4 }, // volume per val unit
 		nodeResolution: { default: 8 }, // how many slice segments in the sphere's circumference
@@ -266,8 +269,10 @@ export default Kapsule({
 
 			// Update nodes position
 			state.graphData.nodes.forEach(node => {
-				const sphere = node.__sphere,
-					pos = isD3Sim ? node : layout.getNodePosition(node[state.idField]);
+				const sphere = node.__sphere;
+				if (!sphere) return;
+
+				const pos = isD3Sim ? node : layout.getNodePosition(node[state.idField]);
 
 				sphere.position.x = pos.x;
 				sphere.position.y = pos.y || 0;
@@ -276,8 +281,10 @@ export default Kapsule({
 
 			// Update links position
 			state.graphData.links.forEach(link => {
-				const line = link.__line,
-					pos = isD3Sim
+				const line = link.__line;
+				if (!line) return;
+
+				const pos = isD3Sim
 						? link
 						: layout.getLinkPosition(layout.graph.getLink(link.source, link.target).id),
 					start = pos[isD3Sim ? 'source' : 'from'],
