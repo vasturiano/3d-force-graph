@@ -1,0 +1,36 @@
+<head>
+    <style> body { margin: 0; } </style>
+
+    <script src="//unpkg.com/3d-force-graph"></script>
+</head>
+
+<body>
+    <div id="3d-graph"></div>
+
+    <script>
+        const gData = {
+            nodes: [ {id: 0 } ],
+            links: []
+        };
+        const Graph = ForceGraph3D()
+            (document.getElementById("3d-graph"))
+                .onNodeClick(removeNode)
+                .graphData(gData);
+
+        setInterval(() => {
+            const id = gData.nodes.length;
+            gData.nodes.push({ id });
+            gData.links.push({ source: id, target: Math.round(Math.random() * (id-1)) });
+            Graph.graphData(gData);
+        }, 1000);
+
+        //
+
+        function removeNode(node) {
+            gData.links = gData.links.filter(l => l.source !== node && l.target !== node); // Remove links attached to node
+            gData.nodes.splice(node.id, 1); // Remove node
+            gData.nodes.forEach((n, idx) => { n.id = idx; }); // Reset node ids to array index
+            Graph.graphData(gData);
+        }
+    </script>
+</body>

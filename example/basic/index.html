@@ -1,0 +1,27 @@
+<head>
+    <style> body { margin: 0; } </style>
+
+    <script src="//unpkg.com/3d-force-graph"></script>
+</head>
+
+<body>
+    <div id="3d-graph"></div>
+
+    <script>
+        // Random tree
+        const N = 300;
+        const gData = {
+            nodes: [...Array(N).keys()].map(i => ({ id: i })),
+            links: [...Array(N).keys()]
+                .filter(id => id)
+                .map(id => ({
+                    source: id,
+                    target: Math.round(Math.random() * (id-1))
+                }))
+        }
+
+        const Graph = ForceGraph3D()
+            (document.getElementById('3d-graph'))
+                .graphData(gData);
+    </script>
+</body>
