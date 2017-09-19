@@ -18,10 +18,12 @@
                 .graphData(gData);
 
         setInterval(() => {
-            const id = gData.nodes.length;
-            gData.nodes.push({ id });
-            gData.links.push({ source: id, target: Math.round(Math.random() * (id-1)) });
-            Graph.graphData(gData);
+            const { nodes, links } = Graph.graphData();
+            const id = nodes.length;
+            Graph.graphData({
+                nodes: [...nodes, { id }],
+                links: [...links, { source: id, target: Math.round(Math.random() * (id-1)) }]
+            });
         }, 1000);
 
         //
