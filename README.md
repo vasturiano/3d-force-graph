@@ -85,10 +85,3 @@ myGraph(<myDOMElement>)
     ]
 }
 ```
-
-## Local development
-
-```
-npm install
-npm run watch
-```
