@@ -8,14 +8,14 @@
     <div id="3d-graph"></div>
 
     <script>
-        const gData = {
+        const initData = {
             nodes: [ {id: 0 } ],
             links: []
         };
         const Graph = ForceGraph3D()
             (document.getElementById("3d-graph"))
                 .onNodeClick(removeNode)
-                .graphData(gData);
+                .graphData(initData);
 
         setInterval(() => {
             const { nodes, links } = Graph.graphData();
@@ -29,10 +29,11 @@
         //
 
         function removeNode(node) {
-            gData.links = gData.links.filter(l => l.source !== node && l.target !== node); // Remove links attached to node
-            gData.nodes.splice(node.id, 1); // Remove node
-            gData.nodes.forEach((n, idx) => { n.id = idx; }); // Reset node ids to array index
-            Graph.graphData(gData);
+            let { nodes, links } = Graph.graphData();
+            links = links.filter(l => l.source !== node && l.target !== node); // Remove links attached to node
+            nodes.splice(node.id, 1); // Remove node
+            nodes.forEach((n, idx) => { n.id = idx; }); // Reset node ids to array index
+            Graph.graphData({ nodes, links });
         }
     </script>
 </body>
