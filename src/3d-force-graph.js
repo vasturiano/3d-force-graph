@@ -34,6 +34,7 @@ export default Kapsule({
 		onNodeClick: {},
 		lineOpacity: { default: 0.2 },
 		autoColorBy: {},
+        nodeColor: { default: 0xffffaa },
 		idField: { default: 'id' },
 		valField: { default: 'val' },
 		nameField: { default: 'name' },
@@ -191,7 +192,7 @@ export default Kapsule({
 				sphereGeometries[val] = new THREE.SphereGeometry(Math.cbrt(val) * state.nodeRelSize, state.nodeResolution, state.nodeResolution);
 			}
 
-			const color = node[state.colorField] || 0xffffaa;
+			const color = node[state.colorField] || state.nodeColor;
 			if (!sphereMaterials.hasOwnProperty(color)) {
 				sphereMaterials[color] = new THREE.MeshLambertMaterial({ color, transparent: true, opacity: 0.75 });
 			}
