@@ -204,9 +204,10 @@ export default Kapsule({
 			state.graphScene.add(node.__sphere = sphere);
 		});
 
-		const lineMaterial = new THREE.LineBasicMaterial({ color: 0xf0f0f0, transparent: true, opacity: state.lineOpacity });
 		state.graphData.links.forEach(link => {
 			const geometry = new THREE.BufferGeometry();
+            const color = link[state.colorField] || 0xf0f0f0;
+		    const lineMaterial = new THREE.LineBasicMaterial({ color: color, transparent: true, opacity: state.lineOpacity });
 			geometry.addAttribute('position', new THREE.BufferAttribute(new Float32Array(2 * 3), 3));
 			const line = new THREE.Line(geometry, lineMaterial);
 
