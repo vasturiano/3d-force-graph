@@ -45,15 +45,15 @@ myGraph(<myDOMElement>)
 | <b>nodeRelSize</b>([<i>num</i>]) | Getter/setter for the ratio of node sphere volume (cubic px) per value unit. | 4 |
 | <b>nodeResolution</b>([<i>num</i>]) | Getter/setter for the geometric resolution of each node, expressed in how many slice segments to divide the circumference. Higher values yield smoother spheres. | 8 |
 | <b>lineOpacity</b>([<i>num</i>]) | Getter/setter for line opacity of links, between [0,1]. | 0.2 |
-| <b>autoColorBy</b>([<i>str</i>]) | Node object accessor attribute to automatically group colors by, only affects nodes without a color attribute. ||
-| <b>idField</b>([<i>str</i>]) | Node object accessor attribute for unique node id (used in link objects source/target). | id |
-| <b>valField</b>([<i>str</i>]) | Node object accessor attribute for node numeric value (affects sphere volume). | val |
-| <b>nameField</b>([<i>str</i>]) | Node object accessor attribute for name (shown in label). | name |
-| <b>colorField</b>([<i>str</i>]) | Node object accessor attribute for node color (affects sphere color). | color |
+| <b>autoColorBy</b>([<i>str</i> or <i>fn</i>]) | Node object accessor function (`fn(node)`) or attribute (e.g. `'type'`) to automatically group colors by. Only affects nodes without a color attribute. ||
+| <b>idField</b>([<i>str</i>]) | Node object accessor attribute for unique node id (used in link objects source/target). | 'id' |
+| <b>valField</b>([<i>num</i>, <i>str</i> or <i>fn</i>]) | Node object accessor function, attribute or a numeric constant for the node numeric value (affects sphere volume). | 'val' |
+| <b>nameField</b>([<i>str</i> or <i>fn</i>]) | Node object accessor function or attribute for name (shown in label). | 'name' |
+| <b>colorField</b>([<i>str</i> or <i>fn</i>]) | Node object accessor function or attribute for node color (affects sphere color). | 'color' |
 | <b>onNodeClick</b>(<i>fn</i>) | Callback function for node clicks. The node object is included as single argument `onNodeClick(node)`. | - |
-| <b>linkSourceField</b>([<i>str</i>]) | Link object accessor attribute referring to id of source node. | source |
-| <b>linkTargetField</b>([<i>str</i>]) | Link object accessor attribute referring to id of target node. | target |
-| <b>forceEngine</b>([<i>str</i>]) | Getter/setter for which force-simulation engine to use ([*d3*](https://github.com/vasturiano/d3-force-3d) or [*ngraph*](https://github.com/anvaka/ngraph.forcelayout)). | d3 |
+| <b>linkSourceField</b>([<i>str</i>]) | Link object accessor attribute referring to id of source node. | 'source' |
+| <b>linkTargetField</b>([<i>str</i>]) | Link object accessor attribute referring to id of target node. | 'target' |
+| <b>forceEngine</b>([<i>str</i>]) | Getter/setter for which force-simulation engine to use ([*d3*](https://github.com/vasturiano/d3-force-3d) or [*ngraph*](https://github.com/anvaka/ngraph.forcelayout)). | 'd3' |
 | <b>warmupTicks</b>([<i>int</i>]) | Getter/setter for number of layout engine cycles to dry-run at ignition before starting to render. | 0 |
 | <b>cooldownTicks</b>([<i>int</i>]) | Getter/setter for how many build-in frames to render before stopping and freezing the layout engine. | Infinity |
 | <b>cooldownTime</b>([<i>num</i>]) | Getter/setter for how long (ms) to render for before stopping and freezing the layout engine. | 15000 |

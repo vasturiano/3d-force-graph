@@ -3,6 +3,8 @@ import './3d-force-graph.css';
 import './threeGlobal';
 import 'three/examples/js/controls/TrackBallControls';
 import qwest from 'qwest';
+import accessorFn from 'accessor-fn';
+import { schemeCategory20 } from 'd3-scale';
 
 import * as d3 from 'd3-force-3d';
 import graph from 'ngraph.graph';
@@ -184,22 +186,25 @@ export default Kapsule({
         // Add WebGL objects
         while (state.graphScene.children.length) { state.graphScene.remove(state.graphScene.children[0]) } // Clear the place
 
+        const nameAccessor = accessorFn(state.nameField);
+        const valAccessor = accessorFn(state.valField);
+        const colorAccessor = accessorFn(state.colorField);
         let sphereGeometries = {}; // indexed by node value
         let sphereMaterials = {}; // indexed by color
         state.graphData.nodes.forEach(node => {
-            const val = node[state.valField] || 1;
+            const val = valAccessor(node) || 1;
             if (!sphereGeometries.hasOwnProperty(val)) {
                 sphereGeometries[val] = new THREE.SphereGeometry(Math.cbrt(val) * state.nodeRelSize, state.nodeResolution, state.nodeResolution);
             }
 
-            const color = node[state.colorField] || 0xffffaa;
+            const color = colorAccessor(node) || 0xffffaa;
             if (!sphereMaterials.hasOwnProperty(color)) {
                 sphereMaterials[color] = new THREE.MeshLambertMaterial({ color, transparent: true, opacity: 0.75 });
             }
 
             const sphere = new THREE.Mesh(sphereGeometries[val], sphereMaterials[color]);
 
-            sphere.name = node[state.nameField]; // Add label
+            sphere.name = nameAccessor(node); // Add label
             sphere.__data = node; // Attach node data
 
             state.graphScene.add(node.__sphere = sphere);
@@ -305,19 +310,20 @@ export default Kapsule({
         }
 
         function autoColorNodes(nodes, colorBy, colorField) {
-            if (!colorBy) return;
+            if (!colorBy || typeof colorField !== 'string') return;
 
-            // Color brewer paired set
-            const colors = ['#a6cee3','#1f78b4','#b2df8a','#33a02c','#fb9a99','#e31a1c','#fdbf6f','#ff7f00','#cab2d6','#6a3d9a','#ffff99','#b15928'];
+            const colorByAccessor = accessorFn(colorBy);
+
+            const colors = schemeCategory20; // Paired color set
 
             const uncoloredNodes = nodes.filter(node => !node[colorField]),
                 nodeGroups = {};
 
-            uncoloredNodes.forEach(node => { nodeGroups[node[colorBy]] = null });
+            uncoloredNodes.forEach(node => { nodeGroups[colorByAccessor(node)] = null });
             Object.keys(nodeGroups).forEach((group, idx) => { nodeGroups[group] = idx });
 
             uncoloredNodes.forEach(node => {
-                node[colorField] = parseInt(colors[nodeGroups[node[colorBy]] % colors.length].slice(1), 16);
+                node[colorField] = parseInt(colors[nodeGroups[colorByAccessor(node)] % colors.length].slice(1), 16);
             });
         }
     }
