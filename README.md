@@ -24,7 +24,7 @@ var ForceGraph3D = require('3d-force-graph');
 ```
 or even
 ```
-<script src="//unpkg.com/3d-force-graph/dist/3d-force-graph.min.js"></script>
+<script src="//unpkg.com/3d-force-graph"></script>
 ```
 then
 ```

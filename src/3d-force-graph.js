@@ -4,7 +4,7 @@ import './threeGlobal';
 import 'three/examples/js/controls/TrackBallControls';
 import qwest from 'qwest';
 import accessorFn from 'accessor-fn';
-import { schemeCategory20 } from 'd3-scale';
+import { schemePaired } from 'd3-scale-chromatic';
 
 import * as d3 from 'd3-force-3d';
 import graph from 'ngraph.graph';
@@ -314,7 +314,7 @@ export default Kapsule({
 
             const colorByAccessor = accessorFn(colorBy);
 
-            const colors = schemeCategory20; // Paired color set
+            const colors = schemePaired; // Paired color set from color brewer
 
             const uncoloredNodes = nodes.filter(node => !node[colorField]),
                 nodeGroups = {};
