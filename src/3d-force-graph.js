@@ -47,7 +47,7 @@ export default Kapsule({
         cooldownTime: { default: 15000 } // ms
     },
 
-    init(domNode, state) {
+    init: function(domNode, state) {
         // Wipe DOM
         domNode.innerHTML = '';
 
@@ -127,7 +127,7 @@ export default Kapsule({
         const tbControls = new THREE.TrackballControls(state.camera, state.renderer.domElement);
 
         // Add D3 force-directed layout
-        state.d3ForceLayout = d3.forceSimulation()
+        this.d3ForceLayout = state.d3ForceLayout = d3.forceSimulation()
             .force('link', d3.forceLink())
             .force('charge', d3.forceManyBody())
             .force('center', d3.forceCenter())
