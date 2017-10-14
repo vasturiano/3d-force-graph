@@ -41,7 +41,8 @@
     "ngraph.forcelayout3d": "^0.0.16",
     "ngraph.graph": "^0.0.14",
     "qwest": "^4.5.0",
-    "three": "^0.87.1"
+    "three": "^0.87.1",
+    "three-trackballcontrols": "^0.0.6"
   },
   "devDependencies": {
     "babel-core": "^6.26.0",

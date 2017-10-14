@@ -1,7 +1,7 @@
 import './3d-force-graph.css';
 
-import './threeGlobal';
-import 'three/examples/js/controls/TrackBallControls';
+import * as THREE from 'three';
+import trackballControls from 'three-trackballcontrols';
 import qwest from 'qwest';
 import accessorFn from 'accessor-fn';
 import { schemePaired } from 'd3-scale-chromatic';
@@ -126,7 +126,7 @@ export default Kapsule({
         state.camera.far = 20000;
 
         // Add camera interaction
-        const tbControls = new THREE.TrackballControls(state.camera, state.renderer.domElement);
+        const tbControls = new trackballControls(state.camera, state.renderer.domElement);
 
         // Add D3 force-directed layout
         this.d3ForceLayout = state.d3ForceLayout = d3.forceSimulation()
