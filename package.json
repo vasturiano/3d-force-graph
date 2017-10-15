@@ -3,7 +3,7 @@
   "version": "1.9.3",
   "description": "UI component for a 3D force-directed graph using ThreeJS and ngraph.forcelayout3d layout engine",
   "main": "dist/3d-force-graph.min.js",
-  "jsnext:main": "src/index",
+  "module": "src/index",
   "repository": {
     "type": "git",
     "url": "git+https://github.com/vasturiano/3d-force-graph.git"
