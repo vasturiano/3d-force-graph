@@ -12,10 +12,7 @@ export default {
     moduleName: 'ForceGraph3D',
     plugins: [
         commonJs(),
-        nodeResolve({
-            jsnext: true,
-            main: true
-        }),
+        nodeResolve(),
         postCss({
             plugins: [
                 postCssSimpleVars(),

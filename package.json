@@ -31,12 +31,12 @@
     "prepublish": "npm run build && npm run minify"
   },
   "dependencies": {
-    "accessor-fn": "^1.1.0",
+    "accessor-fn": "^1.2.1",
     "d3-binarytree": "^0.1.1",
     "d3-force-3d": "^1.0.7",
     "d3-octree": "^0.1.2",
     "d3-scale-chromatic": "^1.1.1",
-    "kapsule": "^1.7.5",
+    "kapsule": "^1.7.6",
     "ngraph.forcelayout": "^0.2.1",
     "ngraph.forcelayout3d": "^0.0.16",
     "ngraph.graph": "^0.0.14",
