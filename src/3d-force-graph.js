@@ -216,7 +216,7 @@ export default Kapsule({
             if (!lineColor) {
                 return;
             }
-            lineMaterials[lineColor] = default: new THREE.LineBasicMaterial({ color: lineColor, transparent: true, opacity: state.lineOpacity })
+            lineMaterials[lineColor] = new THREE.LineBasicMaterial({ color: lineColor, transparent: true, opacity: state.lineOpacity })
         });
         state.graphData.links.forEach(link => {
             const geometry = new THREE.BufferGeometry();
