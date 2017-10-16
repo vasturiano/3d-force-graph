@@ -6,16 +6,10 @@ import postCssNested from 'postcss-nested';
 import babel from 'rollup-plugin-babel';
 
 export default {
-    entry: 'src/index.js',
-    dest: 'dist/3d-force-graph.js',
-    format: 'umd',
-    moduleName: 'ForceGraph3D',
+    input: 'src/index.js',
     plugins: [
         commonJs(),
-        nodeResolve({
-            jsnext: true,
-            main: true
-        }),
+        nodeResolve(),
         postCss({
             plugins: [
                 postCssSimpleVars(),
@@ -29,5 +23,17 @@ export default {
             plugins: ["external-helpers"],
             babelrc: false
         })
+    ],
+    output: [
+        {
+            format: 'umd',
+            name: 'ForceGraph3D',
+            file: 'dist/3d-force-graph.js',
+            sourcemap: true
+        },
+        {
+            format: 'es',
+            file: 'dist/3d-force-graph.mjs'
+        }
     ]
 };

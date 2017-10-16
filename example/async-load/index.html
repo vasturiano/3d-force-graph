@@ -1,0 +1,17 @@
+<head>
+    <style> body { margin: 0; } </style>
+
+    <script src="//unpkg.com/3d-force-graph"></script>
+</head>
+
+<body>
+    <div id="3d-graph"></div>
+
+    <script>
+        const Graph = ForceGraph3D()
+            (document.getElementById('3d-graph'))
+                .jsonUrl('./miserables.json')
+                .nameField('id')
+                .autoColorBy('group');
+    </script>
+</body>
