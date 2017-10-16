@@ -209,11 +209,19 @@ export default Kapsule({
 
             state.graphScene.add(node.__sphere = sphere);
         });
-
-        const lineMaterial = new THREE.LineBasicMaterial({ color: 0xf0f0f0, transparent: true, opacity: state.lineOpacity });
+        
+        const lineColors = [...new Set(state.graphData.links.map(link => link.color))];
+        let lineMaterials = { default: new THREE.LineBasicMaterial({ color: 0xf0f0f0, transparent: true, opacity: state.lineOpacity }) };
+        lineColors.forEach(lineColor => {
+            if (!lineColor) {
+                return;
+            }
+            lineMaterials[lineColor] = default: new THREE.LineBasicMaterial({ color: lineColor, transparent: true, opacity: state.lineOpacity })
+        });
         state.graphData.links.forEach(link => {
             const geometry = new THREE.BufferGeometry();
             geometry.addAttribute('position', new THREE.BufferAttribute(new Float32Array(2 * 3), 3));
+            const lineMaterial = link.color ? lineMaterials[link.color] : lineMaterials['default'];
             const line = new THREE.Line(geometry, lineMaterial);
 
             line.renderOrder = 10; // Prevent visual glitches of dark lines on top of spheres by rendering them last
