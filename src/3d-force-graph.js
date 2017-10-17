@@ -4,7 +4,6 @@ import * as THREE from 'three';
 import trackballControls from 'three-trackballcontrols';
 import qwest from 'qwest';
 import accessorFn from 'accessor-fn';
-import { schemePaired } from 'd3-scale-chromatic';
 
 import * as d3 from 'd3-force-3d';
 import graph from 'ngraph.graph';
@@ -13,6 +12,7 @@ import forcelayout3d from 'ngraph.forcelayout3d';
 const ngraph = { graph, forcelayout, forcelayout3d };
 
 import Kapsule from 'kapsule';
+import { autoColorNodes, colorStr2Hex } from './color-utils';
 
 //
 
@@ -43,6 +43,7 @@ export default Kapsule({
         colorField: { default: 'color' },
         linkSourceField: { default: 'source' },
         linkTargetField: { default: 'target' },
+        linkColorField: { default: 'color' },
         forceEngine: { default: 'd3' }, // d3 or ngraph
         warmupTicks: { default: 0 }, // how many times to tick the force engine at init before starting to render
         cooldownTicks: { default: Infinity },
@@ -174,8 +175,10 @@ export default Kapsule({
             });
         }
 
-        // Auto add color to uncolored nodes
-        autoColorNodes(state.graphData.nodes, state.autoColorBy, state.colorField);
+        if (state.autoColorBy !== null) {
+            // Auto add color to uncolored nodes
+            autoColorNodes(state.graphData.nodes, accessorFn(state.autoColorBy), state.colorField);
+        }
 
         // parse links
         state.graphData.links.forEach(link => {
@@ -197,9 +200,13 @@ export default Kapsule({
                 sphereGeometries[val] = new THREE.SphereGeometry(Math.cbrt(val) * state.nodeRelSize, state.nodeResolution, state.nodeResolution);
             }
 
-            const color = colorAccessor(node) || 0xffffaa;
+            const color = colorAccessor(node);
             if (!sphereMaterials.hasOwnProperty(color)) {
-                sphereMaterials[color] = new THREE.MeshLambertMaterial({ color, transparent: true, opacity: 0.75 });
+                sphereMaterials[color] = new THREE.MeshLambertMaterial({
+                    color: colorStr2Hex(color || '#ffffaa'),
+                    transparent: true,
+                    opacity: 0.75
+                });
             }
 
             const sphere = new THREE.Mesh(sphereGeometries[val], sphereMaterials[color]);
@@ -209,19 +216,22 @@ export default Kapsule({
 
             state.graphScene.add(node.__sphere = sphere);
         });
-        
-        const lineColors = [...new Set(state.graphData.links.map(link => link.color))];
-        let lineMaterials = { default: new THREE.LineBasicMaterial({ color: 0xf0f0f0, transparent: true, opacity: state.lineOpacity }) };
-        lineColors.forEach(lineColor => {
-            if (!lineColor) {
-                return;
-            }
-            lineMaterials[lineColor] = new THREE.LineBasicMaterial({ color: lineColor, transparent: true, opacity: state.lineOpacity })
-        });
+
+        const linkColorAccessor = accessorFn(state.linkColorField);
+        let lineMaterials = {}; // indexed by color
         state.graphData.links.forEach(link => {
+            const color = linkColorAccessor(link);
+            if (!lineMaterials.hasOwnProperty(color)) {
+                lineMaterials[color] = new THREE.LineBasicMaterial({
+                    color: colorStr2Hex(color || '#f0f0f0'),
+                    transparent: true,
+                    opacity: state.lineOpacity
+                });
+            }
+
             const geometry = new THREE.BufferGeometry();
             geometry.addAttribute('position', new THREE.BufferAttribute(new Float32Array(2 * 3), 3));
-            const lineMaterial = link.color ? lineMaterials[link.color] : lineMaterials['default'];
+            const lineMaterial = lineMaterials[color];
             const line = new THREE.Line(geometry, lineMaterial);
 
             line.renderOrder = 10; // Prevent visual glitches of dark lines on top of spheres by rendering them last
@@ -316,24 +326,5 @@ export default Kapsule({
                 line.geometry.computeBoundingSphere();
             });
         }
-
-        function autoColorNodes(nodes, colorBy, colorField) {
-            if (!colorBy || typeof colorField !== 'string') return;
-
-            const colorByAccessor = accessorFn(colorBy);
-
-            const colors = schemePaired; // Paired color set from color brewer
-
-            const uncoloredNodes = nodes.filter(node => !node[colorField]),
-                nodeGroups = {};
-
-            uncoloredNodes.forEach(node => { nodeGroups[colorByAccessor(node)] = null });
-            Object.keys(nodeGroups).forEach((group, idx) => { nodeGroups[group] = idx });
-
-            uncoloredNodes.forEach(node => {
-                node[colorField] = parseInt(colors[nodeGroups[colorByAccessor(node)] % colors.length].slice(1), 16);
-            });
-        }
     }
 });
-
