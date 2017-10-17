@@ -53,6 +53,7 @@ myGraph(<myDOMElement>)
 | <b>onNodeClick</b>(<i>fn</i>) | Callback function for node clicks. The node object is included as single argument `onNodeClick(node)`. | - |
 | <b>linkSourceField</b>([<i>str</i>]) | Link object accessor attribute referring to id of source node. | 'source' |
 | <b>linkTargetField</b>([<i>str</i>]) | Link object accessor attribute referring to id of target node. | 'target' |
+| <b>linkColorField</b>([<i>str</i> or <i>fn</i>]) | Link object accessor function or attribute for line color. | 'color' |
 | <b>forceEngine</b>([<i>str</i>]) | Getter/setter for which force-simulation engine to use ([*d3*](https://github.com/vasturiano/d3-force-3d) or [*ngraph*](https://github.com/anvaka/ngraph.forcelayout)). | 'd3' |
 | <b>warmupTicks</b>([<i>int</i>]) | Getter/setter for number of layout engine cycles to dry-run at ignition before starting to render. | 0 |
 | <b>cooldownTicks</b>([<i>int</i>]) | Getter/setter for how many build-in frames to render before stopping and freezing the layout engine. | Infinity |
