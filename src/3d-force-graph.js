@@ -252,7 +252,7 @@ export default Kapsule({
             // D3-force
             (layout = state.d3ForceLayout)
                 .stop()
-                .alpha(1)// re-heat the simulation
+                .alpha(state.cooldownTicks <= 0 || state.cooldownTime <= 0 ? 0 : 1)// re-heat the simulation
                 .numDimensions(state.numDimensions)
                 .nodes(state.graphData.nodes)
                 .force('link')
