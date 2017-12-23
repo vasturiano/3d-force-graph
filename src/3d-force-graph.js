@@ -44,6 +44,7 @@ export default Kapsule({
         linkSourceField: { default: 'source' },
         linkTargetField: { default: 'target' },
         linkColorField: { default: 'color' },
+        backgroundColor: { default: '#000011' },
         forceEngine: { default: 'd3' }, // d3 or ngraph
         warmupTicks: { default: 0 }, // how many times to tick the force engine at init before starting to render
         cooldownTicks: { default: Infinity },
@@ -114,13 +115,12 @@ export default Kapsule({
         domNode.appendChild(state.renderer.domElement);
 
         // Setup scene
-        const scene = new THREE.Scene();
-        scene.background = new THREE.Color(0x000011);
-        scene.add(state.graphScene = new THREE.Group());
+        state.mainScene = new THREE.Scene();
+        state.mainScene.add(state.graphScene = new THREE.Group());
 
         // Add lights
-        scene.add(new THREE.AmbientLight(0xbbbbbb));
-        scene.add(new THREE.DirectionalLight(0xffffff, 0.6));
+        state.mainScene.add(new THREE.AmbientLight(0xbbbbbb));
+        state.mainScene.add(new THREE.DirectionalLight(0xffffff, 0.6));
 
         // Setup camera
         state.camera = new THREE.PerspectiveCamera();
@@ -150,13 +150,15 @@ export default Kapsule({
 
             // Frame cycle
             tbControls.update();
-            state.renderer.render(scene, state.camera);
+            state.renderer.render(state.mainScene, state.camera);
             requestAnimationFrame(animate);
         })();
     },
 
     update: function updateFn(state) {
         resizeCanvas();
+
+        state.mainScene.background = new THREE.Color(colorStr2Hex(state.backgroundColor));
 
         state.onFrame = null; // Pause simulation
         state.infoElem.textContent = 'Loading...';
@@ -188,6 +190,8 @@ export default Kapsule({
 
         // Add WebGL objects
         while (state.graphScene.children.length) { state.graphScene.remove(state.graphScene.children[0]) } // Clear the place
+
+        state.graphScene.background = new THREE.Color(0x889011);
 
         const nameAccessor = accessorFn(state.nameField);
         const valAccessor = accessorFn(state.valField);
