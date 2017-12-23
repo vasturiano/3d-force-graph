@@ -33,18 +33,18 @@
     "prepublish": "npm run build && npm run minify && npm run build-module"
   },
   "dependencies": {
-    "accessor-fn": "^1.2.1",
-    "d3-binarytree": "^0.1.1",
+    "accessor-fn": "^1.2.2",
+    "d3-binarytree": "^0.1.2",
     "d3-force-3d": "^1.0.7",
     "d3-octree": "^0.1.2",
     "d3-scale-chromatic": "^1.1.1",
-    "kapsule": "^1.7.6",
+    "kapsule": "^1.7.8",
     "ngraph.forcelayout": "^0.2.1",
     "ngraph.forcelayout3d": "^0.0.16",
     "ngraph.graph": "^0.0.14",
     "qwest": "^4.5.0",
-    "three": "^0.87.1",
-    "three-trackballcontrols": "^0.0.6",
+    "three": "^0.89.0",
+    "three-trackballcontrols": "^0.0.7",
     "tinycolor2": "^1.4.1"
   },
   "devDependencies": {
@@ -53,14 +53,14 @@
     "babel-plugin-transform-class-properties": "^6.24.1",
     "babel-plugin-transform-object-rest-spread": "^6.26.0",
     "babel-preset-env": "^1.6.1",
-    "postcss-nested": "^2.1.2",
+    "postcss-nested": "^3.0.0",
     "postcss-simple-vars": "^4.1.0",
-    "rollup": "^0.50.0",
-    "rollup-plugin-babel": "^3.0.2",
-    "rollup-plugin-commonjs": "^8.2.4",
+    "rollup": "^0.53.0",
+    "rollup-plugin-babel": "^3.0.3",
+    "rollup-plugin-commonjs": "^8.2.6",
     "rollup-plugin-node-resolve": "^3.0.0",
     "rollup-plugin-postcss": "^0.5.5",
     "rollup-watch": "^4.3.1",
-    "uglify-js": "^3.1.5"
+    "uglify-js": "^3.2.2"
   }
 }
