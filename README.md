@@ -50,7 +50,6 @@ myGraph(<myDOMElement>)
 | <b>valField</b>([<i>num</i>, <i>str</i> or <i>fn</i>]) | Node object accessor function, attribute or a numeric constant for the node numeric value (affects sphere volume). | `val` |
 | <b>nameField</b>([<i>str</i> or <i>fn</i>]) | Node object accessor function or attribute for name (shown in label). | `name` |
 | <b>colorField</b>([<i>str</i> or <i>fn</i>]) | Node object accessor function or attribute for node color (affects sphere color). | `color` |
-| <b>onNodeClick</b>(<i>fn</i>) | Callback function for node clicks. The node object is included as single argument `onNodeClick(node)`. | - |
 | <b>linkSourceField</b>([<i>str</i>]) | Link object accessor attribute referring to id of source node. | `source` |
 | <b>linkTargetField</b>([<i>str</i>]) | Link object accessor attribute referring to id of target node. | `target` |
 | <b>linkColorField</b>([<i>str</i> or <i>fn</i>]) | Link object accessor function or attribute for line color. | `color` |
@@ -59,6 +58,8 @@ myGraph(<myDOMElement>)
 | <b>warmupTicks</b>([<i>int</i>]) | Getter/setter for number of layout engine cycles to dry-run at ignition before starting to render. | 0 |
 | <b>cooldownTicks</b>([<i>int</i>]) | Getter/setter for how many build-in frames to render before stopping and freezing the layout engine. | Infinity |
 | <b>cooldownTime</b>([<i>num</i>]) | Getter/setter for how long (ms) to render for before stopping and freezing the layout engine. | 15000 |
+| <b>onNodeClick</b>(<i>fn</i>) | Callback function for node clicks. The node object is included as single argument `onNodeClick(node)`. | - |
+| <b>onNodeHover</b>(<i>fn</i>) | Callback function for node mouse over events. The node object (or `null` if there's no node under the mouse line of sight) is included as single argument `onNodeHover(node)`. | - |
 | <b>resetProps() | Reset all component properties to their default value. ||
 
 ### Input JSON syntax

@@ -35,6 +35,7 @@ export default Kapsule({
         nodeRelSize: { default: 4 }, // volume per val unit
         nodeResolution: { default: 8 }, // how many slice segments in the sphere's circumference
         onNodeClick: {},
+        onNodeHover: { default: () => {} },
         lineOpacity: { default: 0.2 },
         autoColorBy: {},
         idField: { default: 'id' },
@@ -142,11 +143,18 @@ export default Kapsule({
         (function animate() { // IIFE
             if(state.onFrame) state.onFrame();
 
-            // Update tooltip
+            // Update tooltip and trigger onHover events
             raycaster.setFromCamera(mousePos, state.camera);
             const intersects = raycaster.intersectObjects(state.graphScene.children)
-                .filter(o => o.object.name); // Check only objects with labels
-            toolTipElem.textContent = intersects.length ? intersects[0].object.name : '';
+                .filter(o => o.object.type === 'Mesh'); // Check only node objects
+
+            const topObject = intersects.length ? intersects[0].object : null;
+            toolTipElem.textContent = topObject ? topObject.name : '';
+            const hoverNode = topObject ? topObject.__data : null;
+            if (state.hoverNode !== hoverNode) {
+                state.hoverNode = hoverNode;
+                state.onNodeHover(hoverNode);
+            }
 
             // Frame cycle
             tbControls.update();
