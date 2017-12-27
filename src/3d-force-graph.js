@@ -31,7 +31,20 @@ export default Kapsule({
             },
             onChange(_, state) { state.onFrame = null; } // Pause simulation
         },
-        numDimensions: { default: 3 },
+        numDimensions: {
+            default: 3,
+            onChange(numDim, state) {
+                if (numDim < 3) { eraseDimension(state.graphData.nodes, 'z'); }
+                if (numDim < 2) { eraseDimension(state.graphData.nodes, 'y'); }
+
+                function eraseDimension(nodes, dim) {
+                    nodes.forEach(d => {
+                        delete d[dim];       // position
+                        delete d[`v${dim}`]; // velocity
+                    });
+                }
+            }
+        },
         nodeRelSize: { default: 4 }, // volume per val unit
         nodeResolution: { default: 8 }, // how many slice segments in the sphere's circumference
         onNodeClick: {},
