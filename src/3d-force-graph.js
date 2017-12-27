@@ -292,7 +292,7 @@ export default Kapsule({
             layout.graph = graph; // Attach graph reference to layout
         }
 
-        for (let i=0; i<state.warmupTicks; i++) { layout[isD3Sim?'tick':'step'](); } // Initial ticks before starting to render
+        for (let i=0; i<state.warmupTicks; i++) { console.log('tick initial'); layout[isD3Sim?'tick':'step'](); } // Initial ticks before starting to render
 
         let cntTicks = 0;
         const startTickTime = new Date();
@@ -310,11 +310,11 @@ export default Kapsule({
         }
 
         function layoutTick() {
-            if (cntTicks++ > state.cooldownTicks || (new Date()) - startTickTime > state.cooldownTime) {
+            if (++cntTicks > state.cooldownTicks || (new Date()) - startTickTime > state.cooldownTime) {
                 state.onFrame = null; // Stop ticking graph
+            } else {
+                layout[isD3Sim ? 'tick' : 'step'](); // Tick it
             }
-
-            layout[isD3Sim?'tick':'step'](); // Tick it
 
             // Update nodes position
             state.graphData.nodes.forEach(node => {
