@@ -53,6 +53,7 @@ export default Kapsule({
         autoColorBy: {},
         idField: { default: 'id' },
         valField: { default: 'val' },
+        shapeField: { default: 'shape' },
         nameField: { default: 'name' },
         colorField: { default: 'color' },
         linkSourceField: { default: 'source' },
@@ -232,13 +233,20 @@ export default Kapsule({
 
         const nameAccessor = accessorFn(state.nameField);
         const valAccessor = accessorFn(state.valField);
+        const shapeAccessor = accessorFn(state.shapeField);
         const colorAccessor = accessorFn(state.colorField);
         let sphereGeometries = {}; // indexed by node value
+        let boxGeometries = {}; // indexed by node value
         let sphereMaterials = {}; // indexed by color
         state.graphData.nodes.forEach(node => {
             const val = valAccessor(node) || 1;
             if (!sphereGeometries.hasOwnProperty(val)) {
                 sphereGeometries[val] = new THREE.SphereGeometry(Math.cbrt(val) * state.nodeRelSize, state.nodeResolution, state.nodeResolution);
+            }
+
+			const val2 = valAccessor(node) || 1;
+            if (!boxGeometries.hasOwnProperty(val2)) {
+                boxGeometries[val2] = new THREE.BoxGeometry(Math.cbrt(val) * state.nodeRelSize , state.nodeResolution, state.nodeResolution);
             }
 
             const color = colorAccessor(node);
@@ -250,12 +258,22 @@ export default Kapsule({
                 });
             }
 
-            const sphere = new THREE.Mesh(sphereGeometries[val], sphereMaterials[color]);
+            var shape = shapeAccessor(node) || "sphere"; // Get shape, default to sphere.
 
-            sphere.name = nameAccessor(node); // Add label
-            sphere.__data = node; // Attach node data
-
-            state.graphScene.add(node.__sphere = sphere);
+            if(shape == "box"){
+            	const box = new THREE.Mesh(boxGeometries[val2], sphereMaterials[color]);
+				box.name = nameAccessor(node); // Add label
+				box.__data = node; // Attach node data
+				state.graphScene.add(node.__sphere = box);
+			}else{
+				const sphere = new THREE.Mesh(sphereGeometries[val], sphereMaterials[color]);
+				sphere.name = nameAccessor(node); // Add label
+				sphere.__data = node; // Attach node data
+				state.graphScene.add(node.__sphere = sphere);
+			}
+            
+            
+            
         });
 
         const linkColorAccessor = accessorFn(state.linkColorField);
