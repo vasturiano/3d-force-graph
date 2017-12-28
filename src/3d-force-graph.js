@@ -61,6 +61,7 @@ export default Kapsule({
         backgroundColor: { default: '#000011' },
         forceEngine: { default: 'd3' }, // d3 or ngraph
         d3AlphaDecay: { default: 0.0228 },
+        d3VelocityDecay: { default: 0.4 },
         warmupTicks: { default: 0 }, // how many times to tick the force engine at init before starting to render
         cooldownTicks: { default: Infinity },
         cooldownTime: { default: 15000 } // ms
@@ -283,6 +284,7 @@ export default Kapsule({
                 .stop()
                 .alpha(1)// re-heat the simulation
                 .alphaDecay(state.d3AlphaDecay)
+                .velocityDecay(state.d3VelocityDecay)
                 .numDimensions(state.numDimensions)
                 .nodes(state.graphData.nodes)
                 .force('link')
