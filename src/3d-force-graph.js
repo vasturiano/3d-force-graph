@@ -60,6 +60,7 @@ export default Kapsule({
         linkColorField: { default: 'color' },
         backgroundColor: { default: '#000011' },
         forceEngine: { default: 'd3' }, // d3 or ngraph
+        d3AlphaDecay: { default: 0.0228 },
         warmupTicks: { default: 0 }, // how many times to tick the force engine at init before starting to render
         cooldownTicks: { default: Infinity },
         cooldownTime: { default: 15000 } // ms
@@ -144,11 +145,14 @@ export default Kapsule({
         const tbControls = new trackballControls(state.camera, state.renderer.domElement);
 
         // Add D3 force-directed layout
-        this.d3ForceLayout = state.d3ForceLayout = d3.forceSimulation()
+        state.d3ForceLayout = d3.forceSimulation()
             .force('link', d3.forceLink())
             .force('charge', d3.forceManyBody())
             .force('center', d3.forceCenter())
             .stop();
+
+        // Expose d3 forces for external manipulation
+        this.d3Force = state.d3ForceLayout.force;
 
         //
 
@@ -278,6 +282,7 @@ export default Kapsule({
             (layout = state.d3ForceLayout)
                 .stop()
                 .alpha(1)// re-heat the simulation
+                .alphaDecay(state.d3AlphaDecay)
                 .numDimensions(state.numDimensions)
                 .nodes(state.graphData.nodes)
                 .force('link')
