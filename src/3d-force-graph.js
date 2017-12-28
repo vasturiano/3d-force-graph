@@ -67,6 +67,20 @@ export default Kapsule({
         cooldownTime: { default: 15000 } // ms
     },
 
+    methods: {
+        // Expose d3 forces for external manipulation
+        d3Force: function(state, forceName, forceFn) {
+            if (!state.initialised) {
+                return null; // d3 force simulation object doesn't exist yet
+            }
+            if (forceFn === undefined) {
+                return state.d3ForceLayout.force(forceName); // Force getter
+            }
+            state.d3ForceLayout.force(forceName, forceFn); // Force setter
+            return this;
+        }
+    },
+
     init: function(domNode, state) {
         // Wipe DOM
         domNode.innerHTML = '';
@@ -151,9 +165,6 @@ export default Kapsule({
             .force('charge', d3.forceManyBody())
             .force('center', d3.forceCenter())
             .stop();
-
-        // Expose d3 forces for external manipulation
-        this.d3Force = state.d3ForceLayout.force;
 
         //
 
