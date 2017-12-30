@@ -55,6 +55,7 @@ export default Kapsule({
         valField: { default: 'val' },
         nameField: { default: 'name' },
         colorField: { default: 'color' },
+        nodeThreeObject: {},
         linkSourceField: { default: 'source' },
         linkTargetField: { default: 'target' },
         linkColorField: { default: 'color' },
@@ -175,7 +176,7 @@ export default Kapsule({
             // Update tooltip and trigger onHover events
             raycaster.setFromCamera(mousePos, state.camera);
             const intersects = raycaster.intersectObjects(state.graphScene.children)
-                .filter(o => o.object.type === 'Mesh'); // Check only node objects
+                .filter(o => o.object.__graphObjType === 'node'); // Check only node objects
 
             const topObject = intersects.length ? intersects[0].object : null;
             toolTipElem.textContent = topObject ? topObject.name : '';
@@ -230,36 +231,45 @@ export default Kapsule({
 
         state.graphScene.background = new THREE.Color(0x889011);
 
-        const nameAccessor = accessorFn(state.nameField);
+        const customNodeObjectAccessor = accessorFn(state.nodeThreeObject);
+        const nodeNameAccessor = accessorFn(state.nameField);
         const valAccessor = accessorFn(state.valField);
         const colorAccessor = accessorFn(state.colorField);
-        let sphereGeometries = {}; // indexed by node value
-        let sphereMaterials = {}; // indexed by color
+        const sphereGeometries = {}; // indexed by node value
+        const sphereMaterials = {}; // indexed by color
         state.graphData.nodes.forEach(node => {
-            const val = valAccessor(node) || 1;
-            if (!sphereGeometries.hasOwnProperty(val)) {
-                sphereGeometries[val] = new THREE.SphereGeometry(Math.cbrt(val) * state.nodeRelSize, state.nodeResolution, state.nodeResolution);
+            const customObj = customNodeObjectAccessor(node);
+
+            let obj;
+            if (customObj) {
+                obj = customObj.clone();
+            } else { // Default object (sphere mesh)
+                const val = valAccessor(node) || 1;
+                if (!sphereGeometries.hasOwnProperty(val)) {
+                    sphereGeometries[val] = new THREE.SphereGeometry(Math.cbrt(val) * state.nodeRelSize, state.nodeResolution, state.nodeResolution);
+                }
+
+                const color = colorAccessor(node);
+                if (!sphereMaterials.hasOwnProperty(color)) {
+                    sphereMaterials[color] = new THREE.MeshLambertMaterial({
+                        color: colorStr2Hex(color || '#ffffaa'),
+                        transparent: true,
+                        opacity: 0.75
+                    });
+                }
+
+                obj = new THREE.Mesh(sphereGeometries[val], sphereMaterials[color]);
             }
 
-            const color = colorAccessor(node);
-            if (!sphereMaterials.hasOwnProperty(color)) {
-                sphereMaterials[color] = new THREE.MeshLambertMaterial({
-                    color: colorStr2Hex(color || '#ffffaa'),
-                    transparent: true,
-                    opacity: 0.75
-                });
-            }
+            obj.name = nodeNameAccessor(node); // Add label
+            obj.__graphObjType = 'node'; // Add object type
+            obj.__data = node; // Attach node data
 
-            const sphere = new THREE.Mesh(sphereGeometries[val], sphereMaterials[color]);
-
-            sphere.name = nameAccessor(node); // Add label
-            sphere.__data = node; // Attach node data
-
-            state.graphScene.add(node.__sphere = sphere);
+            state.graphScene.add(node.__threeObj = obj);
         });
 
         const linkColorAccessor = accessorFn(state.linkColorField);
-        let lineMaterials = {}; // indexed by color
+        const lineMaterials = {}; // indexed by color
         state.graphData.links.forEach(link => {
             const color = linkColorAccessor(link);
             if (!lineMaterials.hasOwnProperty(color)) {
@@ -275,9 +285,11 @@ export default Kapsule({
             const lineMaterial = lineMaterials[color];
             const line = new THREE.Line(geometry, lineMaterial);
 
-            line.renderOrder = 10; // Prevent visual glitches of dark lines on top of spheres by rendering them last
+            line.renderOrder = 10; // Prevent visual glitches of dark lines on top of nodes by rendering them last
 
-            state.graphScene.add(link.__line = line);
+            line.__graphObjType = 'link'; // Add object type
+
+            state.graphScene.add(link.__lineObj = line);
         });
 
         if (state.camera.position.x === 0 && state.camera.position.y === 0) {
@@ -336,19 +348,19 @@ export default Kapsule({
 
             // Update nodes position
             state.graphData.nodes.forEach(node => {
-                const sphere = node.__sphere;
-                if (!sphere) return;
+                const obj = node.__threeObj;
+                if (!obj) return;
 
                 const pos = isD3Sim ? node : layout.getNodePosition(node[state.idField]);
 
-                sphere.position.x = pos.x;
-                sphere.position.y = pos.y || 0;
-                sphere.position.z = pos.z || 0;
+                obj.position.x = pos.x;
+                obj.position.y = pos.y || 0;
+                obj.position.z = pos.z || 0;
             });
 
             // Update links position
             state.graphData.links.forEach(link => {
-                const line = link.__line;
+                const line = link.__lineObj;
                 if (!line) return;
 
                 const pos = isD3Sim

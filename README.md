@@ -50,6 +50,7 @@ myGraph(<myDOMElement>)
 | <b>valField</b>([<i>num</i>, <i>str</i> or <i>fn</i>]) | Node object accessor function, attribute or a numeric constant for the node numeric value (affects sphere volume). | `val` |
 | <b>nameField</b>([<i>str</i> or <i>fn</i>]) | Node object accessor function or attribute for name (shown in label). | `name` |
 | <b>colorField</b>([<i>str</i> or <i>fn</i>]) | Node object accessor function or attribute for node color (affects sphere color). | `color` |
+| <b>nodeThreeObject</b>([<i>Object3d</i>, <i>str</i> or <i>fn</i>]) | Node object accessor function or attribute for generating a custom 3d object to render as graph nodes. Should return an instance of [ThreeJS Object3d](https://threejs.org/docs/index.html#api/core/Object3D). If a <i>falsy</i> value is returned, the default 3d object type will be used instead for that node.  | *default node object is a sphere, sized according to `val` and styled according to `color`.* |
 | <b>linkSourceField</b>([<i>str</i>]) | Link object accessor attribute referring to id of source node. | `source` |
 | <b>linkTargetField</b>([<i>str</i>]) | Link object accessor attribute referring to id of target node. | `target` |
 | <b>linkColorField</b>([<i>str</i> or <i>fn</i>]) | Link object accessor function or attribute for line color. | `color` |
