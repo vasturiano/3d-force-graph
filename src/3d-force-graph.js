@@ -237,17 +237,32 @@ export default Kapsule({
         const colorAccessor = accessorFn(state.colorField);
         let sphereGeometries = {}; // indexed by node value
         let boxGeometries = {}; // indexed by node value
+        let coneGeometries = {}; // indexed by node value
+        let dimondGeometries = {}; // indexed by node value
         let sphereMaterials = {}; // indexed by color
         state.graphData.nodes.forEach(node => {
             const val = valAccessor(node) || 1;
-            if (!sphereGeometries.hasOwnProperty(val)) {
-                sphereGeometries[val] = new THREE.SphereGeometry(Math.cbrt(val) * state.nodeRelSize, state.nodeResolution, state.nodeResolution);
-            }
-
-			const val2 = valAccessor(node) || 1;
-            if (!boxGeometries.hasOwnProperty(val2)) {
-                boxGeometries[val2] = new THREE.BoxGeometry(Math.cbrt(val) * state.nodeRelSize , state.nodeResolution, state.nodeResolution);
-            }
+            
+            var shape = shapeAccessor(node) || "sphere"; // Get shape, default to sphere.
+            
+            if(shape == "box"){
+            	if (!boxGeometries.hasOwnProperty(val)) {
+					boxGeometries[val] = new THREE.BoxGeometry(Math.cbrt(val) * state.nodeRelSize , state.nodeResolution, state.nodeResolution);
+				}
+			}else if(shape == "cone"){
+            	if (!coneGeometries.hasOwnProperty(val)) {
+					coneGeometries[val] = new THREE.ConeGeometry(Math.cbrt(val) * state.nodeRelSize , state.nodeResolution, state.nodeResolution);
+				}
+			}else if(shape == "diamond"){
+            	if (!dimondGeometries.hasOwnProperty(val)) {
+					dimondGeometries[val] = new THREE.OctahedronGeometry(Math.cbrt(val) * state.nodeRelSize, 0);
+				}
+			}else{
+				if (!sphereGeometries.hasOwnProperty(val)) {
+					sphereGeometries[val] = new THREE.SphereGeometry(Math.cbrt(val) * state.nodeRelSize, state.nodeResolution, state.nodeResolution);
+				}
+			}
+            
 
             const color = colorAccessor(node);
             if (!sphereMaterials.hasOwnProperty(color)) {
@@ -258,13 +273,24 @@ export default Kapsule({
                 });
             }
 
-            var shape = shapeAccessor(node) || "sphere"; // Get shape, default to sphere.
+            
+            
 
             if(shape == "box"){
-            	const box = new THREE.Mesh(boxGeometries[val2], sphereMaterials[color]);
+            	const box = new THREE.Mesh(boxGeometries[val], sphereMaterials[color]);
 				box.name = nameAccessor(node); // Add label
 				box.__data = node; // Attach node data
 				state.graphScene.add(node.__sphere = box);
+			}else if(shape == "cone"){
+            	const cone = new THREE.Mesh(coneGeometries[val], sphereMaterials[color]);
+				cone.name = nameAccessor(node); // Add label
+				cone.__data = node; // Attach node data
+				state.graphScene.add(node.__sphere = cone);
+			}else if(shape == "diamond"){
+            	const dimond = new THREE.Mesh(dimondGeometries[val], sphereMaterials[color]);
+				dimond.name = nameAccessor(node); // Add label
+				dimond.__data = node; // Attach node data
+				state.graphScene.add(node.__sphere = dimond);
 			}else{
 				const sphere = new THREE.Mesh(sphereGeometries[val], sphereMaterials[color]);
 				sphere.name = nameAccessor(node); // Add label
