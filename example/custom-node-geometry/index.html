@@ -1,44 +1,46 @@
 <head>
-    <style> body { margin: 0; } </style>
+  <style> body { margin: 0; } </style>
 
-    <script src="//unpkg.com/3d-force-graph"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/89/three.min.js"></script>
+  <script src="//unpkg.com/3d-force-graph"></script>
+  <!--<script src="../../dist/3d-force-graph.js"></script>-->
+
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/89/three.min.js"></script>
 </head>
 
 <body>
-    <div id="3d-graph"></div>
+  <div id="3d-graph"></div>
 
-    <script>
-        // Random tree
-        const N = 100;
-        const gData = {
-            nodes: [...Array(N).keys()].map(i => ({ id: i })),
-            links: [...Array(N).keys()]
-                .filter(id => id)
-                .map(id => ({
-                    source: id,
-                    target: Math.round(Math.random() * (id-1))
-                }))
-        };
+  <script>
+    // Random tree
+    const N = 100;
+    const gData = {
+      nodes: [...Array(N).keys()].map(i => ({ id: i })),
+      links: [...Array(N).keys()]
+        .filter(id => id)
+        .map(id => ({
+          source: id,
+          target: Math.round(Math.random() * (id-1))
+        }))
+    };
 
-        const Graph = ForceGraph3D()
-            (document.getElementById('3d-graph'))
-                .nodeThreeObject(({ id }) => new THREE.Mesh(
-                    [
-                        new THREE.BoxGeometry(Math.random() * 20, Math.random() * 20, Math.random() * 20),
-                        new THREE.ConeGeometry(Math.random() * 10, Math.random() * 20),
-                        new THREE.CylinderGeometry(Math.random() * 10, Math.random() * 10, Math.random() * 20),
-                        new THREE.DodecahedronGeometry(Math.random() * 10),
-                        new THREE.SphereGeometry(Math.random() * 10),
-                        new THREE.TorusGeometry(Math.random() * 10, Math.random() * 2),
-                        new THREE.TorusKnotGeometry(Math.random() * 10, Math.random() * 2)
-                    ][id%7],
-                    new THREE.MeshLambertMaterial({
-                        color: Math.round(Math.random() * Math.pow(2, 24)),
-                        transparent: true,
-                        opacity: 0.75
-                    })
-                ))
-                .graphData(gData);
-    </script>
+    const Graph = ForceGraph3D()
+      (document.getElementById('3d-graph'))
+        .nodeThreeObject(({ id }) => new THREE.Mesh(
+          [
+            new THREE.BoxGeometry(Math.random() * 20, Math.random() * 20, Math.random() * 20),
+            new THREE.ConeGeometry(Math.random() * 10, Math.random() * 20),
+            new THREE.CylinderGeometry(Math.random() * 10, Math.random() * 10, Math.random() * 20),
+            new THREE.DodecahedronGeometry(Math.random() * 10),
+            new THREE.SphereGeometry(Math.random() * 10),
+            new THREE.TorusGeometry(Math.random() * 10, Math.random() * 2),
+            new THREE.TorusKnotGeometry(Math.random() * 10, Math.random() * 2)
+          ][id%7],
+          new THREE.MeshLambertMaterial({
+            color: Math.round(Math.random() * Math.pow(2, 24)),
+            transparent: true,
+            opacity: 0.75
+          })
+        ))
+        .graphData(gData);
+  </script>
 </body>

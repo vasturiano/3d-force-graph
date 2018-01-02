@@ -1,51 +1,53 @@
 <head>
-    <style> body { margin: 0; } </style>
+  <style> body { margin: 0; } </style>
 
-    <script src="//unpkg.com/3d-force-graph"></script>
-    <script src="//unpkg.com/d3-octree"></script>
-    <script src="//unpkg.com/d3-force-3d"></script>
+  <script src="//unpkg.com/3d-force-graph"></script>
+  <!--<script src="../../dist/3d-force-graph.js"></script>-->
+
+  <script src="//unpkg.com/d3-octree"></script>
+  <script src="//unpkg.com/d3-force-3d"></script>
 </head>
 
 <body>
-    <div id="3d-graph"></div>
+  <div id="3d-graph"></div>
 
-    <script>
-        const N = 50;
-        const nodes = [...Array(N).keys()].map(() => ({
-            // Initial velocity in random direction
-            vx: Math.random(),
-            vy: Math.random(),
-            vz: Math.random()
-        }));
+  <script>
+    const N = 50;
+    const nodes = [...Array(N).keys()].map(() => ({
+      // Initial velocity in random direction
+      vx: Math.random(),
+      vy: Math.random(),
+      vz: Math.random()
+    }));
 
-        const Graph = ForceGraph3D()
-            (document.getElementById('3d-graph'));
+    const Graph = ForceGraph3D()
+      (document.getElementById('3d-graph'));
 
-        Graph.cooldownTime(Infinity)
-            .d3AlphaDecay(0)
-            .d3VelocityDecay(0)
+    Graph.cooldownTime(Infinity)
+      .d3AlphaDecay(0)
+      .d3VelocityDecay(0)
 
-            // Deactivate existing forces
-            .d3Force('center', null)
-            .d3Force('charge', null)
+      // Deactivate existing forces
+      .d3Force('center', null)
+      .d3Force('charge', null)
 
-            // Add collision and bounding box forces
-            .d3Force('collide', d3.forceCollide(Graph.nodeRelSize()))
-            .d3Force('box', () => {
-                const CUBE_HALF_SIDE = Graph.nodeRelSize() * N * 0.5;
-                const r = Graph.nodeRelSize();
+      // Add collision and bounding box forces
+      .d3Force('collide', d3.forceCollide(Graph.nodeRelSize()))
+      .d3Force('box', () => {
+        const CUBE_HALF_SIDE = Graph.nodeRelSize() * N * 0.5;
+        const r = Graph.nodeRelSize();
 
-                nodes.forEach(node => {
-                    const x = node.x || 0, y = node.y || 0, z = node.z || 0;
+        nodes.forEach(node => {
+          const x = node.x || 0, y = node.y || 0, z = node.z || 0;
 
-                    // bounce on box walls
-                    if (Math.abs(x) > CUBE_HALF_SIDE) { node.vx *= -1; }
-                    if (Math.abs(y) > CUBE_HALF_SIDE) { node.vy *= -1; }
-                    if (Math.abs(z) > CUBE_HALF_SIDE) { node.vz *= -1; }
-                });
-            })
+          // bounce on box walls
+          if (Math.abs(x) > CUBE_HALF_SIDE) { node.vx *= -1; }
+          if (Math.abs(y) > CUBE_HALF_SIDE) { node.vy *= -1; }
+          if (Math.abs(z) > CUBE_HALF_SIDE) { node.vz *= -1; }
+        });
+      })
 
-            // Add nodes
-            .graphData({ nodes, links: [] });
-    </script>
+      // Add nodes
+      .graphData({ nodes, links: [] });
+  </script>
 </body>

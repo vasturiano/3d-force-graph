@@ -1,17 +1,18 @@
 <head>
-    <style> body { margin: 0; } </style>
+  <style> body { margin: 0; } </style>
 
-    <script src="//unpkg.com/3d-force-graph"></script>
+  <script src="//unpkg.com/3d-force-graph"></script>
+  <!--<script src="../../dist/3d-force-graph.js"></script>-->
 </head>
 
 <body>
-    <div id="3d-graph"></div>
+  <div id="3d-graph"></div>
 
-    <script>
-        const Graph = ForceGraph3D()
-            (document.getElementById('3d-graph'))
-                .jsonUrl('./miserables.json')
-                .nameField('id')
-                .autoColorBy('group');
-    </script>
+  <script>
+    const Graph = ForceGraph3D()
+      (document.getElementById('3d-graph'))
+        .jsonUrl('./miserables.json')
+        .nodeLabel('id')
+        .autoColorBy('group');
+  </script>
 </body>
