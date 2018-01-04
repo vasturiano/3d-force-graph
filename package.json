@@ -36,7 +36,7 @@
     "accessor-fn": "^1.2.2",
     "kapsule": "^1.9.0",
     "three": "^0.89.0",
-    "three-forcegraph": "^1.2.1",
+    "three-forcegraph": "^1.2.3",
     "three-trackballcontrols": "^0.0.7",
     "tinycolor2": "^1.4.1"
   },
@@ -48,7 +48,7 @@
     "babel-preset-env": "^1.6.1",
     "postcss-nested": "^3.0.0",
     "postcss-simple-vars": "^4.1.0",
-    "rollup": "^0.53.2",
+    "rollup": "^0.53.3",
     "rollup-plugin-babel": "^3.0.3",
     "rollup-plugin-commonjs": "^8.2.6",
     "rollup-plugin-node-resolve": "^3.0.0",

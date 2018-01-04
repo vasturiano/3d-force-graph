@@ -1,13 +1,27 @@
 import {
-  WebGLRenderer as ThreeWebGLRenderer,
-  Scene as ThreeScene,
-  PerspectiveCamera as ThreePerspectiveCamera,
-  AmbientLight as ThreeAmbientLight,
-  DirectionalLight as ThreeDirectionalLight,
-  Raycaster as ThreeRaycaster,
-  Vector2 as ThreeVector2,
-  Color as ThreeColor
+  WebGLRenderer,
+  Scene,
+  PerspectiveCamera,
+  AmbientLight,
+  DirectionalLight,
+  Raycaster,
+  Vector2,
+  Color
 } from 'three';
+
+const three = window.THREE
+  ? window.THREE // Prefer consumption from global THREE, if exists
+  : {
+    WebGLRenderer,
+    Scene,
+    PerspectiveCamera,
+    AmbientLight,
+    DirectionalLight,
+    Raycaster,
+    Vector2,
+    Color
+  };
+
 import ThreeTrackballControls from 'three-trackballcontrols';
 import ThreeForceGraph from 'three-forcegraph';
 
@@ -60,7 +74,7 @@ export default Kapsule({
     height: { default: window.innerHeight },
     backgroundColor: {
       default: '#000011',
-      onChange(bckgColor, state) { state.scene.background = new ThreeColor(colorStr2Hex(bckgColor)); },
+      onChange(bckgColor, state) { state.scene.background = new three.Color(colorStr2Hex(bckgColor)); },
       triggerUpdate: false
     },
     nodeLabel: { default: 'name', triggerUpdate: false },
@@ -78,16 +92,16 @@ export default Kapsule({
     linkTargetField: 'linkTarget',
     linkColorField: 'linkColor',
     lineOpacity: 'linkOpacity'
-},
+  },
 
   methods: {
     ...linkedFGMethods
   },
 
   stateInit: () => ({
-    renderer: new ThreeWebGLRenderer(),
-    scene: new ThreeScene(),
-    camera: new ThreePerspectiveCamera(),
+    renderer: new three.WebGLRenderer(),
+    scene: new three.Scene(),
+    camera: new three.PerspectiveCamera(),
     forceGraph: new ThreeForceGraph()
   }),
 
@@ -123,8 +137,8 @@ export default Kapsule({
     domNode.appendChild(toolTipElem);
 
     // Capture mouse coords on move
-    const raycaster = new ThreeRaycaster();
-    const mousePos = new ThreeVector2();
+    const raycaster = new three.Raycaster();
+    const mousePos = new three.Vector2();
     mousePos.x = -2; // Initialize off canvas
     mousePos.y = -2;
     domNode.addEventListener("mousemove", ev => {
@@ -165,8 +179,8 @@ export default Kapsule({
 
     // Populate scene
     state.scene.add(state.forceGraph);
-    state.scene.add(new ThreeAmbientLight(0xbbbbbb));
-    state.scene.add(new ThreeDirectionalLight(0xffffff, 0.6));
+    state.scene.add(new three.AmbientLight(0xbbbbbb));
+    state.scene.add(new three.DirectionalLight(0xffffff, 0.6));
 
     //
 
