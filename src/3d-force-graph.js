@@ -78,6 +78,7 @@ export default Kapsule({
       onChange(bckgColor, state) { state.scene.background = new three.Color(colorStr2Hex(bckgColor)); },
       triggerUpdate: false
     },
+    showNavInfo: { default: true },
     nodeLabel: { default: 'name', triggerUpdate: false },
     linkLabel: { default: 'name', triggerUpdate: false },
     linkHoverPrecision: { default: 1, triggerUpdate: false },
@@ -117,10 +118,9 @@ export default Kapsule({
     domNode.innerHTML = '';
 
     // Add nav info section
-    let navInfo;
-    domNode.appendChild(navInfo = document.createElement('div'));
-    navInfo.className = 'graph-nav-info';
-    navInfo.textContent = "MOVE mouse & press LEFT/A: rotate, MIDDLE/S: zoom, RIGHT/D: pan";
+    domNode.appendChild(state.navInfo = document.createElement('div'));
+    state.navInfo.className = 'graph-nav-info';
+    state.navInfo.textContent = "MOVE mouse & press LEFT/A: rotate, MIDDLE/S: zoom, RIGHT/D: pan";
 
     // Add info space
     let infoElem;
@@ -242,6 +242,8 @@ export default Kapsule({
       state.camera.aspect = state.width/state.height;
       state.camera.updateProjectionMatrix();
     }
+
+    state.navInfo.style.display = state.showNavInfo ? null : 'none';
   }
 
 });

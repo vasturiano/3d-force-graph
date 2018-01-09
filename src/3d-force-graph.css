@@ -1,5 +1,4 @@
 .graph-nav-info {
-  position: absolute;
   bottom: 5px;
   width: 100%;
   text-align: center;
@@ -9,7 +8,6 @@
 }
 
 .graph-info-msg {
-  position: absolute;
   top: 50%;
   width: 100%;
   text-align: center;
@@ -19,7 +17,11 @@
 }
 
 .graph-tooltip {
-  position: absolute;
   color: lavender;
   font-size: 18px;
+}
+
+.graph-info-msg, .graph-nav-info, .graph-tooltip {
+  position: absolute;
+  font-family: Sans-serif;
 }
