@@ -79,8 +79,13 @@ export default Kapsule({
       triggerUpdate: false
     },
     nodeLabel: { default: 'name', triggerUpdate: false },
-    onNodeClick: { triggerUpdate: false },
+    linkLabel: { default: 'name', triggerUpdate: false },
+    linkHoverPrecision: { default: 1, triggerUpdate: false },
+    enablePointerInteraction: { default: true, onChange(_, state) { state.onHover = null; }, triggerUpdate: false },
+    onNodeClick: { default: () => {}, triggerUpdate: false },
     onNodeHover: { default: () => {}, triggerUpdate: false },
+    onLinkClick: { default: () => {}, triggerUpdate: false },
+    onLinkHover: { default: () => {}, triggerUpdate: false },
     ...linkedFGProps
   },
 
@@ -167,8 +172,8 @@ export default Kapsule({
 
     // Handle click events on nodes
     domNode.addEventListener("click", ev => {
-      if (state.onNodeClick && state.hoverNode) {
-        state.onNodeClick(state.hoverNode);
+      if (state.hoverObj) {
+        state[`on${state.hoverObj.__graphObjType === 'node' ? 'Node' : 'Link'}Click`](state.hoverObj.__data);
       }
     }, false);
 
@@ -188,19 +193,38 @@ export default Kapsule({
 
     // Kick-off renderer
     (function animate() { // IIFE
-      // Update tooltip and trigger onHover events
-      raycaster.setFromCamera(mousePos, state.camera);
-      const intersects = raycaster.intersectObjects(state.forceGraph.children)
-        .filter(o => o.object.__graphObjType === 'node'); // Check only node objects
+      if (state.enablePointerInteraction) {
+        // Update tooltip and trigger onHover events
+        raycaster.linePrecision = state.linkHoverPrecision;
 
-      const topObject = intersects.length ? intersects[0].object : null;
+        raycaster.setFromCamera(mousePos, state.camera);
+        const intersects = raycaster.intersectObjects(state.forceGraph.children)
+          .filter(o => ['node', 'link'].indexOf(o.object.__graphObjType) !== -1) // Check only node/link objects
+          .sort((a, b) => { // Prioritize nodes over links
+            const isNode = o => o.object.__graphObjType === 'node';
+            return isNode(b) - isNode(a);
+          });
 
-      const hoverNode = topObject ? topObject.__data : null;
-      if (state.hoverNode !== hoverNode) {
-        state.hoverNode = hoverNode;
-        state.onNodeHover(hoverNode);
+        const topObject = intersects.length ? intersects[0].object : null;
 
-        toolTipElem.textContent = hoverNode ? accessorFn(state.nodeLabel)(hoverNode) : '';
+        if (topObject !== state.hoverObj) {
+          const prevObjType = state.hoverObj ? state.hoverObj.__graphObjType : null;
+          const prevObjData = state.hoverObj ? state.hoverObj.__data : null;
+          const objType = topObject ? topObject.__graphObjType : null;
+          const objData = topObject ? topObject.__data : null;
+          if (prevObjType && prevObjType !== objType) {
+            // Hover out
+            state[`on${prevObjType === 'node' ? 'Node' : 'Link'}Hover`](null, prevObjData);
+          }
+          if (objType) {
+            // Hover in
+            state[`on${objType === 'node' ? 'Node' : 'Link'}Hover`](objData, prevObjType === objType ? prevObjData : null);
+          }
+
+          toolTipElem.textContent = topObject ? accessorFn(state[`${objType}Label`])(objData) : '';
+
+          state.hoverObj = topObject;
+        }
       }
 
       // Frame cycle
