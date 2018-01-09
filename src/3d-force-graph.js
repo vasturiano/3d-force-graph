@@ -111,6 +111,7 @@ export default Kapsule({
     renderer: new three.WebGLRenderer(),
     scene: new three.Scene(),
     camera: new three.PerspectiveCamera(),
+    lastSetCameraZ: 0,
     forceGraph: new ThreeForceGraph()
   }),
 
@@ -133,9 +134,9 @@ export default Kapsule({
       infoElem.textContent = '';
 
       // re-aim camera, if still in default position (not user modified)
-      if (state.camera.position.x === 0 && state.camera.position.y === 0) {
+      if (state.camera.position.x === 0 && state.camera.position.y === 0 && state.camera.position.z === state.lastSetCameraZ) {
         state.camera.lookAt(state.forceGraph.position);
-        state.camera.position.z = Math.cbrt(state.forceGraph.graphData().nodes.length) * CAMERA_DISTANCE2NODES_FACTOR;
+        state.lastSetCameraZ = state.camera.position.z = Math.cbrt(state.forceGraph.graphData().nodes.length) * CAMERA_DISTANCE2NODES_FACTOR;
       }
     });
 
