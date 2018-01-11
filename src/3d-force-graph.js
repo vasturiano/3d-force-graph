@@ -29,7 +29,6 @@ import accessorFn from 'accessor-fn';
 import Kapsule from 'kapsule';
 
 import linkKapsule from './kapsule-link.js';
-import colorStr2Hex from './color2hex.js';
 
 //
 
@@ -76,7 +75,7 @@ export default Kapsule({
     height: { default: window.innerHeight },
     backgroundColor: {
       default: '#000011',
-      onChange(bckgColor, state) { state.scene.background = new three.Color(colorStr2Hex(bckgColor)); },
+      onChange(bckgColor, state) { state.scene.background = new three.Color(bckgColor); },
       triggerUpdate: false
     },
     showNavInfo: { default: true },
