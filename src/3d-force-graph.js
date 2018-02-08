@@ -108,10 +108,25 @@ export default Kapsule({
   },
 
   methods: {
-    stopAnimation(state) {
+    cameraPosition: function(state, position) {
+      // Setter
+      if (position) {
+        const { x, y, z } = position;
+        if (x !== undefined) state.camera.position.x = x;
+        if (y !== undefined) state.camera.position.y = y;
+        if (z !== undefined) state.camera.position.z = z;
+        state.camera.lookAt(state.forceGraph.position);
+        return this;
+      }
+
+      // Getter
+      return state.camera.position;
+    },
+    stopAnimation: function(state) {
       if (state.animationFrameRequestId) {
         cancelAnimationFrame(state.animationFrameRequestId);
       }
+      return this;
     },
     ...linkedFGMethods
   },
