@@ -9,6 +9,8 @@ import {
   Color
 } from 'three';
 
+import tinycolor from 'tinycolor2';
+
 const three = window.THREE
   ? window.THREE // Prefer consumption from global THREE, if exists
   : {
@@ -75,7 +77,10 @@ export default Kapsule({
     height: { default: window.innerHeight },
     backgroundColor: {
       default: '#000011',
-      onChange(bckgColor, state) { state.scene.background = new three.Color(bckgColor); },
+      onChange(bckgColor, state) {
+        const alpha = tinycolor(bckgColor).getAlpha();
+        state.renderer.setClearColor(new three.Color(bckgColor), alpha);
+      },
       triggerUpdate: false
     },
     showNavInfo: { default: true },
@@ -112,7 +117,7 @@ export default Kapsule({
   },
 
   stateInit: () => ({
-    renderer: new three.WebGLRenderer(),
+    renderer: new three.WebGLRenderer({ alpha: true }),
     scene: new three.Scene(),
     camera: new three.PerspectiveCamera(),
     lastSetCameraZ: 0,

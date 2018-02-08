@@ -37,7 +37,8 @@
     "kapsule": "^1.9.0",
     "three": "^0.89.0",
     "three-forcegraph": "^1.4.1",
-    "three-trackballcontrols": "^0.0.7"
+    "three-trackballcontrols": "^0.0.7",
+    "tinycolor2": "^1.4.1"
   },
   "devDependencies": {
     "babel-core": "^6.26.0",
