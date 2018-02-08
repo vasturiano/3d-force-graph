@@ -103,6 +103,11 @@ export default Kapsule({
   },
 
   methods: {
+    stopAnimation(state) {
+      if (state.animationFrameRequestId) {
+        cancelAnimationFrame(state.animationFrameRequestId);
+      }
+    },
     ...linkedFGMethods
   },
 
@@ -232,7 +237,7 @@ export default Kapsule({
       state.forceGraph.tickFrame();
       tbControls.update();
       state.renderer.render(state.scene, state.camera);
-      requestAnimationFrame(animate);
+      state.animationFrameRequestId = requestAnimationFrame(animate);
     })();
   },
 
