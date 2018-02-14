@@ -57,6 +57,8 @@ const linkedFGProps = Object.assign(...[
   'linkColor',
   'linkAutoColorBy',
   'linkOpacity',
+  'linkWidth',
+  'linkResolution',
   'forceEngine',
   'd3AlphaDecay',
   'd3VelocityDecay',

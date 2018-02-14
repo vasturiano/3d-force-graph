@@ -36,7 +36,7 @@
     "accessor-fn": "^1.2.2",
     "kapsule": "^1.9.0",
     "three": "^0.89.0",
-    "three-forcegraph": "^1.4.1",
+    "three-forcegraph": "^1.5.0",
     "three-trackballcontrols": "^0.0.7",
     "tinycolor2": "^1.4.1"
   },
