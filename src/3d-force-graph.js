@@ -249,7 +249,7 @@ export default Kapsule({
             state[`on${objType === 'node' ? 'Node' : 'Link'}Hover`](objData, prevObjType === objType ? prevObjData : null);
           }
 
-          toolTipElem.textContent = topObject ? accessorFn(state[`${objType}Label`])(objData) : '';
+          toolTipElem.innerHTML = topObject ? accessorFn(state[`${objType}Label`])(objData) || '' : '';
 
           state.hoverObj = topObject;
         }
