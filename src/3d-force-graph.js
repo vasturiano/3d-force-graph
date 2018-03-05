@@ -191,8 +191,8 @@ export default Kapsule({
       mousePos.y = -(relPos.y / state.height) * 2 + 1;
 
       // Move tooltip
-      toolTipElem.style.top = (relPos.y - 40) + 'px';
-      toolTipElem.style.left = (relPos.x - 20) + 'px';
+      toolTipElem.style.top = `${relPos.y}px`;
+      toolTipElem.style.left = `${relPos.x}px`;
 
       function getOffset(el) {
         const rect = el.getBoundingClientRect(),

@@ -19,6 +19,7 @@
 .graph-tooltip {
   color: lavender;
   font-size: 18px;
+  transform: translate(-50%, 25px);
 }
 
 .graph-info-msg, .graph-nav-info, .graph-tooltip {
