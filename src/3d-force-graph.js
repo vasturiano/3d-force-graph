@@ -62,6 +62,7 @@ const linkedFGProps = Object.assign(...[
   'linkDirectionalParticles',
   'linkDirectionalParticleSpeed',
   'linkDirectionalParticleWidth',
+  'linkDirectionalParticleColor',
   'linkDirectionalParticleResolution',
   'forceEngine',
   'd3AlphaDecay',
