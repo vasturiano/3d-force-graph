@@ -6,6 +6,7 @@ import {
   DirectionalLight,
   Raycaster,
   Vector2,
+  Vector3,
   Color
 } from 'three';
 
@@ -21,6 +22,7 @@ const three = window.THREE
     DirectionalLight,
     Raycaster,
     Vector2,
+    Vector3,
     Color
   };
 
@@ -115,14 +117,18 @@ export default Kapsule({
   },
 
   methods: {
-    cameraPosition: function(state, position) {
+    cameraPosition: function(state, position, lookAt) {
       // Setter
       if (position) {
         const { x, y, z } = position;
         if (x !== undefined) state.camera.position.x = x;
         if (y !== undefined) state.camera.position.y = y;
         if (z !== undefined) state.camera.position.z = z;
-        state.camera.lookAt(state.forceGraph.position);
+
+        state.tbControls.target = lookAt
+          ? new three.Vector3(lookAt.x, lookAt.y, lookAt.z)
+          : state.forceGraph.position;
+
         return this;
       }
 
@@ -212,7 +218,7 @@ export default Kapsule({
 
     // Setup renderer, camera and controls
     domNode.appendChild(state.renderer.domElement);
-    const tbControls = new ThreeTrackballControls(state.camera, state.renderer.domElement);
+    state.tbControls = new ThreeTrackballControls(state.camera, state.renderer.domElement);
 
     state.renderer.setSize(state.width, state.height);
     state.camera.far = 20000;
@@ -262,7 +268,7 @@ export default Kapsule({
 
       // Frame cycle
       state.forceGraph.tickFrame();
-      tbControls.update();
+      state.tbControls.update();
       state.renderer.render(state.scene, state.camera);
       state.animationFrameRequestId = requestAnimationFrame(animate);
     })();
