@@ -9,12 +9,17 @@
   <div id="3d-graph"></div>
 
   <script>
+    const elem = document.getElementById('3d-graph');
+
     const Graph = ForceGraph3D()
-      (document.getElementById('3d-graph'))
+      (elem)
         .jsonUrl('../datasets/miserables.json')
         .nodeLabel('id')
         .nodeAutoColorBy('group')
-        .linkDirectionalParticles("value")
-        .linkDirectionalParticleSpeed(d => d.value * 0.001);
+        .onNodeHover(node => elem.style.cursor = node ? 'pointer' : 'default')
+        .onNodeClick(node => {
+          // Aim at node from outside it
+          Graph.cameraPosition({ x: node.x + 40, y: node.y + 40, z: node.z + 40 }, node);
+        });
   </script>
 </body>
