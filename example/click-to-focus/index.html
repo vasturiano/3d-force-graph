@@ -16,7 +16,7 @@
         .jsonUrl('../datasets/miserables.json')
         .nodeLabel('id')
         .nodeAutoColorBy('group')
-        .onNodeHover(node => elem.style.cursor = node ? 'pointer' : 'default')
+        .onNodeHover(node => elem.style.cursor = node ? 'pointer' : null)
         .onNodeClick(node => {
           // Aim at node from outside it
           Graph.cameraPosition({ x: node.x + 40, y: node.y + 40, z: node.z + 40 }, node);
