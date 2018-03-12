@@ -27,6 +27,7 @@ const three = window.THREE
   };
 
 import ThreeTrackballControls from 'three-trackballcontrols';
+import ThreeDragControls from 'three-dragcontrols';
 import ThreeForceGraph from 'three-forcegraph';
 
 import accessorFn from 'accessor-fn';
@@ -97,6 +98,7 @@ export default Kapsule({
     linkLabel: { default: 'name', triggerUpdate: false },
     linkHoverPrecision: { default: 1, triggerUpdate: false },
     enablePointerInteraction: { default: true, onChange(_, state) { state.hoverObj = null; }, triggerUpdate: false },
+    enableNodeDrag: { default: true, triggerUpdate: false },
     onNodeClick: { default: () => {}, triggerUpdate: false },
     onNodeHover: { default: () => {}, triggerUpdate: false },
     onLinkClick: { default: () => {}, triggerUpdate: false },
@@ -175,6 +177,58 @@ export default Kapsule({
         state.camera.lookAt(state.forceGraph.position);
         state.lastSetCameraZ = state.camera.position.z = Math.cbrt(state.forceGraph.graphData().nodes.length) * CAMERA_DISTANCE2NODES_FACTOR;
       }
+
+      // Setup node drag interaction
+      if (state.enableNodeDrag && state.enablePointerInteraction && state.forceEngine === 'd3') { // Can't access node positions programatically in ngraph
+        const dragControls = new ThreeDragControls(
+          state.forceGraph.graphData().nodes.map(node => node.__threeObj),
+          state.camera,
+          state.renderer.domElement
+        );
+
+        dragControls.addEventListener('dragstart', function (event) {
+          state.tbControls.enabled = false; // Disable trackball controls while dragging
+
+          const node = event.object.__data;
+          node.__initialFixedPos = {fx: node.fx, fy: node.fy, fz: node.fz};
+
+          // keep engine running at low intensity throughout drag
+          state.forceGraph.d3AlphaTarget(0.3);
+        });
+
+        dragControls.addEventListener('drag', function (event) {
+          state.ignoreOneClick = true; // Don't click the node if it's being dragged
+
+          const node = event.object.__data;
+
+          // Move fx/fy/fz of nodes based on object new position
+          ['x', 'y', 'z'].forEach(c => node[`f${c}`] = event.object.position[c]);
+
+          // prevent freeze while dragging
+          state.forceGraph.resetCountdown();
+        });
+
+        dragControls.addEventListener('dragend', function (event) {
+          const node = event.object.__data;
+          const initPos = node.__initialFixedPos;
+
+          if (initPos) {
+            ['x', 'y', 'z'].forEach(c => {
+              const fc = `f${c}`;
+              if (initPos[fc] === undefined) {
+                node[fc] = undefined
+              }
+            });
+            delete(node.__initialFixedPos);
+          }
+
+          state.forceGraph
+            .d3AlphaTarget(0)   // release engine low intensity
+            .resetCountdown();  // let the engine readjust after releasing fixed nodes
+
+          state.tbControls.enabled = true; // Re-enable trackball controls
+        });
+      }
     });
 
     // Setup tooltip
@@ -211,6 +265,12 @@ export default Kapsule({
 
     // Handle click events on nodes
     domNode.addEventListener("click", ev => {
+      if (state.ignoreOneClick) {
+        // f.e. because of dragend event
+        state.ignoreOneClick = false;
+        return;
+      }
+
       if (state.hoverObj) {
         state[`on${state.hoverObj.__graphObjType === 'node' ? 'Node' : 'Link'}Click`](state.hoverObj.__data);
       }
@@ -219,6 +279,8 @@ export default Kapsule({
     // Setup renderer, camera and controls
     domNode.appendChild(state.renderer.domElement);
     state.tbControls = new ThreeTrackballControls(state.camera, state.renderer.domElement);
+    state.tbControls.minDistance = 0.1;
+    state.tbControls.maxDistance = 20000;
 
     state.renderer.setSize(state.width, state.height);
     state.camera.far = 20000;
