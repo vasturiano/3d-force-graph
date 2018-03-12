@@ -192,6 +192,9 @@ export default Kapsule({
           const node = event.object.__data;
           node.__initialFixedPos = {fx: node.fx, fy: node.fy, fz: node.fz};
 
+          // lock node
+          ['x', 'y', 'z'].forEach(c => node[`f${c}`] = node[c]);
+
           // keep engine running at low intensity throughout drag
           state.forceGraph.d3AlphaTarget(0.3);
 
