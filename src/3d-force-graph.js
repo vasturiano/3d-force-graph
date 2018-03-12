@@ -194,6 +194,9 @@ export default Kapsule({
 
           // keep engine running at low intensity throughout drag
           state.forceGraph.d3AlphaTarget(0.3);
+
+          // drag cursor
+          state.renderer.domElement.classList.add('grabbable');
         });
 
         dragControls.addEventListener('drag', function (event) {
@@ -227,6 +230,9 @@ export default Kapsule({
             .resetCountdown();  // let the engine readjust after releasing fixed nodes
 
           state.tbControls.enabled = true; // Re-enable trackball controls
+
+          // clear cursor
+          state.renderer.domElement.classList.remove('grabbable');
         });
       }
     });
@@ -326,6 +332,9 @@ export default Kapsule({
 
           state.hoverObj = topObject;
         }
+
+        // reset canvas cursor (override dragControls cursor)
+        state.renderer.domElement.style.cursor = null;
       }
 
       // Frame cycle
