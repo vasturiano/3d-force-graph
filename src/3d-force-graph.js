@@ -201,8 +201,8 @@ export default Kapsule({
 
           const node = event.object.__data;
 
-          // Move fx/fy/fz of nodes based on object new position
-          ['x', 'y', 'z'].forEach(c => node[`f${c}`] = event.object.position[c]);
+          // Move fx/fy/fz (and x/y/z) of nodes based on object new position
+          ['x', 'y', 'z'].forEach(c => node[`f${c}`] = node[c] = event.object.position[c]);
 
           // prevent freeze while dragging
           state.forceGraph.resetCountdown();
