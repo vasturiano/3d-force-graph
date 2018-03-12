@@ -18,8 +18,5 @@
       .nodeLabel(node => `${node.user}: ${node.description}`)
       .onNodeHover(node => elem.style.cursor = node ? 'pointer' : null)
       .onNodeClick(node => window.open(`https://bl.ocks.org/${node.user}/${node.id}`, '_blank'));
-
-    // Spread nodes a little wider
-    Graph.d3Force('charge').strength(-80);
   </script>
 </body>

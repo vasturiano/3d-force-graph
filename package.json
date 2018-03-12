@@ -37,7 +37,7 @@
     "kapsule": "^1.9.0",
     "three": "^0.90.0",
     "three-dragcontrols": "^0.88.1",
-    "three-forcegraph": "^1.9.1",
+    "three-forcegraph": "^1.9.2",
     "three-trackballcontrols": "^0.0.7",
     "tinycolor2": "^1.4.1"
   },
