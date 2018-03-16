@@ -158,14 +158,18 @@ export default Kapsule({
     // Wipe DOM
     domNode.innerHTML = '';
 
+    // Add relative container
+    domNode.appendChild(state.container = document.createElement('div'));
+    state.container.style.position = 'relative';
+
     // Add nav info section
-    domNode.appendChild(state.navInfo = document.createElement('div'));
+    state.container.appendChild(state.navInfo = document.createElement('div'));
     state.navInfo.className = 'graph-nav-info';
     state.navInfo.textContent = "MOVE mouse & press LEFT/A: rotate, MIDDLE/S: zoom, RIGHT/D: pan";
 
     // Add info space
     let infoElem;
-    domNode.appendChild(infoElem = document.createElement('div'));
+    state.container.appendChild(infoElem = document.createElement('div'));
     infoElem.className = 'graph-info-msg';
     infoElem.textContent = '';
     state.forceGraph.onLoading(() => { infoElem.textContent = 'Loading...' });
@@ -243,16 +247,16 @@ export default Kapsule({
     // Setup tooltip
     const toolTipElem = document.createElement('div');
     toolTipElem.classList.add('graph-tooltip');
-    domNode.appendChild(toolTipElem);
+    state.container.appendChild(toolTipElem);
 
     // Capture mouse coords on move
     const raycaster = new three.Raycaster();
     const mousePos = new three.Vector2();
     mousePos.x = -2; // Initialize off canvas
     mousePos.y = -2;
-    domNode.addEventListener("mousemove", ev => {
+    state.container.addEventListener("mousemove", ev => {
       // update the mouse pos
-      const offset = getOffset(domNode),
+      const offset = getOffset(state.container),
         relPos = {
           x: ev.pageX - offset.left,
           y: ev.pageY - offset.top
@@ -273,7 +277,7 @@ export default Kapsule({
     }, false);
 
     // Handle click events on nodes
-    domNode.addEventListener("click", ev => {
+    state.container.addEventListener("click", ev => {
       if (state.ignoreOneClick) {
         // f.e. because of dragend event
         state.ignoreOneClick = false;
@@ -286,7 +290,7 @@ export default Kapsule({
     }, false);
 
     // Setup renderer, camera and controls
-    domNode.appendChild(state.renderer.domElement);
+    state.container.appendChild(state.renderer.domElement);
     state.tbControls = new ThreeTrackballControls(state.camera, state.renderer.domElement);
     state.tbControls.minDistance = 0.1;
     state.tbControls.maxDistance = 20000;
@@ -351,6 +355,8 @@ export default Kapsule({
   update: function updateFn(state) {
     // resize canvas
     if (state.width && state.height) {
+      state.container.style.width = state.width;
+      state.container.style.height = state.height;
       state.renderer.setSize(state.width, state.height);
       state.camera.aspect = state.width/state.height;
       state.camera.updateProjectionMatrix();
