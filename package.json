@@ -36,8 +36,8 @@
     "accessor-fn": "^1.2.2",
     "kapsule": "^1.9.0",
     "three": "^0.91.0",
-    "three-dragcontrols": "^0.88.1",
-    "three-forcegraph": "^1.9.3",
+    "three-dragcontrols": "^0.88.2",
+    "three-forcegraph": "^1.9.4",
     "three-trackballcontrols": "^0.0.7",
     "tinycolor2": "^1.4.1"
   },
@@ -49,12 +49,12 @@
     "babel-preset-env": "^1.6.1",
     "postcss-nested": "^3.0.0",
     "postcss-simple-vars": "^4.1.0",
-    "rollup": "^0.57.0",
+    "rollup": "^0.57.1",
     "rollup-plugin-babel": "^3.0.3",
     "rollup-plugin-commonjs": "^9.1.0",
-    "rollup-plugin-node-resolve": "^3.2.0",
-    "rollup-plugin-postcss": "^1.3.4",
+    "rollup-plugin-node-resolve": "^3.3.0",
+    "rollup-plugin-postcss": "^1.4.0",
     "rollup-watch": "^4.3.1",
-    "uglify-js": "^3.3.15"
+    "uglify-js": "^3.3.16"
   }
 }
