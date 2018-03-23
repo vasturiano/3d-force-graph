@@ -24,6 +24,8 @@ Check out the examples:
 
 See also the [VR version](https://github.com/vasturiano/3d-force-graph-vr) and the [2D canvas version](https://github.com/vasturiano/force-graph).
 
+And check out the [React bindings](https://github.com/vasturiano/react-force-graph).
+
 ## Quick start
 
 ```
