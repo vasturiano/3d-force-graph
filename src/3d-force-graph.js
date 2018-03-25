@@ -176,16 +176,19 @@ export default Kapsule({
     state.forceGraph.onFinishLoading(() => {
       infoElem.textContent = '';
 
+      // sync graph data structures
+      state.graphData = state.forceGraph.graphData();
+
       // re-aim camera, if still in default position (not user modified)
       if (state.camera.position.x === 0 && state.camera.position.y === 0 && state.camera.position.z === state.lastSetCameraZ) {
         state.camera.lookAt(state.forceGraph.position);
-        state.lastSetCameraZ = state.camera.position.z = Math.cbrt(state.forceGraph.graphData().nodes.length) * CAMERA_DISTANCE2NODES_FACTOR;
+        state.lastSetCameraZ = state.camera.position.z = Math.cbrt(state.graphData.nodes.length) * CAMERA_DISTANCE2NODES_FACTOR;
       }
 
       // Setup node drag interaction
       if (state.enableNodeDrag && state.enablePointerInteraction && state.forceEngine === 'd3') { // Can't access node positions programatically in ngraph
         const dragControls = new ThreeDragControls(
-          state.forceGraph.graphData().nodes.map(node => node.__threeObj),
+          state.graphData.nodes.map(node => node.__threeObj),
           state.camera,
           state.renderer.domElement
         );
