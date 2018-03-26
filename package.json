@@ -26,7 +26,7 @@
     "url": "https://github.com/vasturiano/3d-force-graph/issues"
   },
   "scripts": {
-    "build": "rm -rf dist && mkdir dist && rollup -c",
+    "build": "rimraf dist && rollup -c",
     "watch": "rollup -c -w",
     "minify": "uglifyjs dist/3d-force-graph.js -o dist/3d-force-graph.min.js -c -m --comments '/Version/'",
     "build-module": "rollup -c rollup.config.module.js",
@@ -49,6 +49,7 @@
     "babel-preset-env": "^1.6.1",
     "postcss-nested": "^3.0.0",
     "postcss-simple-vars": "^4.1.0",
+    "rimraf": "^2.6.2",
     "rollup": "^0.57.1",
     "rollup-plugin-babel": "^3.0.3",
     "rollup-plugin-commonjs": "^9.1.0",
