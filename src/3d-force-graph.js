@@ -121,7 +121,7 @@ export default Kapsule({
   methods: {
     cameraPosition: function(state, position, lookAt) {
       // Setter
-      if (position) {
+      if (position && state.tbControls) {
         const { x, y, z } = position;
         if (x !== undefined) state.camera.position.x = x;
         if (y !== undefined) state.camera.position.y = y;
