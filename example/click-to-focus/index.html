@@ -19,7 +19,9 @@
         .onNodeHover(node => elem.style.cursor = node ? 'pointer' : null)
         .onNodeClick(node => {
           // Aim at node from outside it
-          Graph.cameraPosition({ x: node.x + 40, y: node.y + 40, z: node.z + 40 }, node);
+          const distance = 40;
+          const distRatio = 1 + distance/Math.hypot(node.x, node.y, node.z);
+          Graph.cameraPosition({ x: node.x * distRatio, y: node.y * distRatio, z: node.z * distRatio }, node);
         });
   </script>
 </body>
