@@ -315,7 +315,8 @@ export default Kapsule({
         raycaster.linePrecision = state.linkHoverPrecision;
 
         raycaster.setFromCamera(mousePos, state.camera);
-        const intersects = raycaster.intersectObjects(state.forceGraph.children)
+        const checkObjectDescendants = !!state.nodeThreeObject;
+        const intersects = raycaster.intersectObjects(state.forceGraph.children, checkObjectDescendants)
           .filter(o => ['node', 'link'].indexOf(o.object.__graphObjType) !== -1) // Check only node/link objects
           .sort((a, b) => { // Prioritize nodes over links
             const isNode = o => o.object.__graphObjType === 'node';
