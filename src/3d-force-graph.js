@@ -315,15 +315,21 @@ export default Kapsule({
         raycaster.linePrecision = state.linkHoverPrecision;
 
         raycaster.setFromCamera(mousePos, state.camera);
-        const checkObjectDescendants = !!state.nodeThreeObject;
-        const intersects = raycaster.intersectObjects(state.forceGraph.children, checkObjectDescendants)
-          .filter(o => ['node', 'link'].indexOf(o.object.__graphObjType) !== -1) // Check only node/link objects
+        const recurseObjTree = !!state.nodeThreeObject; // Only need to recurse if there's custom node objects
+        const intersects = raycaster.intersectObjects(state.forceGraph.children, recurseObjTree)
+          .map(({ object }) => {
+            let obj = object;
+            // recurse up object chain until finding the graph object
+            while(recurseObjTree && obj && !obj.hasOwnProperty('__graphObjType')) { obj = obj.parent; }
+            return obj;
+          })
+          .filter(o => o && ['node', 'link'].indexOf(o.__graphObjType) !== -1) // Check only node/link objects
           .sort((a, b) => { // Prioritize nodes over links
-            const isNode = o => o.object.__graphObjType === 'node';
+            const isNode = o => o.__graphObjType === 'node';
             return isNode(b) - isNode(a);
           });
 
-        const topObject = intersects.length ? intersects[0].object : null;
+        const topObject = intersects.length ? intersects[0] : null;
 
         if (topObject !== state.hoverObj) {
           const prevObjType = state.hoverObj ? state.hoverObj.__graphObjType : null;
