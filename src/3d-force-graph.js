@@ -129,7 +129,7 @@ export default Kapsule({
 
         state.tbControls.target = lookAt
           ? new three.Vector3(lookAt.x, lookAt.y, lookAt.z)
-          : state.forceGraph.position;
+          : state.forceGraph.position.clone();
 
         return this;
       }
