@@ -121,7 +121,7 @@ export default Kapsule({
   methods: {
     cameraPosition: function(state, position, lookAt) {
       // Setter
-      if (position && state.tbControls) {
+      if (position && state.initialised) {
         const { x, y, z } = position;
         if (x !== undefined) state.camera.position.x = x;
         if (y !== undefined) state.camera.position.y = y;
@@ -135,7 +135,14 @@ export default Kapsule({
       }
 
       // Getter
-      return state.camera.position;
+      const curLookAt = (new three.Vector3(0, 0, -1000))
+        .applyQuaternion(state.camera.quaternion)
+        .add(state.camera.position);
+
+      return Object.assign({},
+        state.camera.position,
+        { lookAt: Object.assign({}, curLookAt) }
+      );
     },
     stopAnimation: function(state) {
       if (state.animationFrameRequestId) {
