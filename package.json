@@ -38,8 +38,7 @@
     "three": "^0.91.0",
     "three-dragcontrols": "^0.88.2",
     "three-forcegraph": "^1.9.4",
-    "three-trackballcontrols": "^0.0.7",
-    "tinycolor2": "^1.4.1"
+    "three-render-objects": "^0.1.6"
   },
   "devDependencies": {
     "babel-core": "^6.26.0",
