@@ -34,10 +34,10 @@
   },
   "dependencies": {
     "accessor-fn": "^1.2.2",
-    "kapsule": "^1.9.0",
+    "kapsule": "^1.9.1",
     "three": "^0.91.0",
     "three-dragcontrols": "^0.88.2",
-    "three-forcegraph": "^1.9.4",
+    "three-forcegraph": "^1.9.5",
     "three-render-objects": "^0.2.1"
   },
   "devDependencies": {
@@ -53,8 +53,8 @@
     "rollup-plugin-babel": "^3.0.3",
     "rollup-plugin-commonjs": "^9.1.0",
     "rollup-plugin-node-resolve": "^3.3.0",
-    "rollup-plugin-postcss": "^1.4.0",
+    "rollup-plugin-postcss": "^1.5.1",
     "rollup-watch": "^4.3.1",
-    "uglify-js": "^3.3.16"
+    "uglify-js": "^3.3.18"
   }
 }
