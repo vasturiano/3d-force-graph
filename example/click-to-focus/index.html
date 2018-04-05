@@ -1,8 +1,6 @@
 <head>
   <style> body { margin: 0; } </style>
 
-  <script src="//cdnjs.cloudflare.com/ajax/libs/gsap/1.20.3/TweenLite.min.js"></script>
-
   <script src="//unpkg.com/3d-force-graph"></script>
   <!--<script src="../../dist/3d-force-graph.js"></script>-->
 </head>
@@ -23,16 +21,11 @@
           // Aim at node from outside it
           const distance = 40;
           const distRatio = 1 + distance/Math.hypot(node.x, node.y, node.z);
-          const finalPos = { x: node.x * distRatio, y: node.y * distRatio, z: node.z * distRatio };
-          const finalLookAt = node; // has x,y,z attributes
-
-          const { lookAt, ...pos } = Graph.cameraPosition(); // current camera position / lookAt
-
-          TweenLite.to(lookAt, 1, finalLookAt); // Face node in 1s
-
-          TweenLite.to(pos, 3, Object.assign({
-            onUpdate: () => Graph.cameraPosition(pos, lookAt)
-          }, finalPos));
+          Graph.cameraPosition(
+            { x: node.x * distRatio, y: node.y * distRatio, z: node.z * distRatio }, // new position
+            node, // lookAt
+            2000  // ms
+          );
         });
   </script>
 </body>
