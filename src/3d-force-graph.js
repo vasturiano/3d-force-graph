@@ -1,16 +1,8 @@
-import {
-  AmbientLight,
-  DirectionalLight,
-  Vector3
-} from 'three';
+import { AmbientLight, DirectionalLight } from 'three';
 
 const three = window.THREE
   ? window.THREE // Prefer consumption from global THREE, if exists
-  : {
-    AmbientLight,
-    DirectionalLight,
-    Vector3
-  };
+  : { AmbientLight, DirectionalLight };
 
 import ThreeDragControls from 'three-dragcontrols';
 import ThreeForceGraph from 'three-forcegraph';
@@ -73,6 +65,9 @@ const linkedRenderObjsProps = Object.assign(...[
   'showNavInfo',
   'enablePointerInteraction'
 ].map(p => ({ [p]: bindRenderObjs.linkProp(p)})));
+const linkedRenderObjsMethods = Object.assign(...[
+  'cameraPosition'
+].map(p => ({ [p]: bindRenderObjs.linkMethod(p)})));
 
 //
 
@@ -104,41 +99,14 @@ export default Kapsule({
   },
 
   methods: {
-    cameraPosition: function(state, position, lookAt) {
-      const camera = state.renderObjs.camera();
-      const tbControls = state.renderObjs.tbControls();
-
-      // Setter
-      if (position && state.initialised) {
-        const { x, y, z } = position;
-        if (x !== undefined) camera.position.x = x;
-        if (y !== undefined) camera.position.y = y;
-        if (z !== undefined) camera.position.z = z;
-
-        tbControls.target = lookAt
-          ? new three.Vector3(lookAt.x, lookAt.y, lookAt.z)
-          : state.forceGraph.position.clone();
-
-        return this;
-      }
-
-      // Getter
-      const curLookAt = (new three.Vector3(0, 0, -1000))
-        .applyQuaternion(camera.quaternion)
-        .add(camera.position);
-
-      return Object.assign({},
-        camera.position,
-        { lookAt: Object.assign({}, curLookAt) }
-      );
-    },
     stopAnimation: function(state) {
       if (state.animationFrameRequestId) {
         cancelAnimationFrame(state.animationFrameRequestId);
       }
       return this;
     },
-    ...linkedFGMethods
+    ...linkedFGMethods,
+    ...linkedRenderObjsMethods
   },
 
   stateInit: () => ({
