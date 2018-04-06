@@ -230,13 +230,19 @@ export default Kapsule({
         state.forceGraph
       ])
       .hoverOrderComparator((a, b) => {
+        // Prioritize graph objects
+        const aObj = getGraphObj(a);
+        if (!aObj) return 1;
+        const bObj = getGraphObj(b);
+        if (!bObj) return -1;
+
         // Prioritize nodes over links
-        const isNode = o => getGraphObj(o).__graphObjType === 'node';
-        return isNode(b) - isNode(a);
+        const isNode = o => o.__graphObjType === 'node';
+        return isNode(bObj) - isNode(aObj);
       })
       .tooltipContent(obj => {
         const graphObj = getGraphObj(obj);
-        return accessorFn(state[`${graphObj.__graphObjType}Label`])(graphObj.__data) || '';
+        return graphObj ? accessorFn(state[`${graphObj.__graphObjType}Label`])(graphObj.__data) || '' : '';
       })
       .onHover(obj => {
         // Update tooltip and trigger onHover events
