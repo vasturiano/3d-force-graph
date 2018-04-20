@@ -105,6 +105,7 @@ export default Kapsule({
       }
       return this;
     },
+    scene: state => state.renderObjs.scene(), // Expose scene
     ...linkedFGMethods,
     ...linkedRenderObjsMethods
   },
