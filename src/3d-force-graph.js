@@ -40,6 +40,8 @@ const linkedFGProps = Object.assign(...[
   'linkOpacity',
   'linkWidth',
   'linkResolution',
+  'linkCurvature',
+  'linkCurveRotation',
   'linkMaterial',
   'linkDirectionalParticles',
   'linkDirectionalParticleSpeed',
