@@ -109,6 +109,7 @@ export default Kapsule({
       return this;
     },
     scene: state => state.renderObjs.scene(), // Expose scene
+    camera: state => state.renderObjs.camera(), // Expose camera
     ...linkedFGMethods,
     ...linkedRenderObjsMethods
   },
