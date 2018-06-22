@@ -37,7 +37,7 @@
     "kapsule": "^1.9.1",
     "three": "^0.92.0",
     "three-dragcontrols": "^0.88.2",
-    "three-forcegraph": "^1.12.3",
+    "three-forcegraph": "^1.13.0",
     "three-render-objects": "^1.0.5"
   },
   "devDependencies": {
