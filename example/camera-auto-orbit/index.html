@@ -26,6 +26,8 @@
     const Graph = ForceGraph3D()
       (document.getElementById('3d-graph'))
         .enableNodeDrag(false)
+        .enableNavigationControls(false)
+        .showNavInfo(false)
         .cameraPosition({ z: distance })
         .graphData(gData);
 
