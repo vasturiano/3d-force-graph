@@ -148,6 +148,7 @@ export default Kapsule({
     const camera = state.renderObjs.camera();
     const renderer = state.renderObjs.renderer();
     const tbControls = state.renderObjs.tbControls();
+    tbControls.enabled = !!state.enableNavigationControls;
     state.lastSetCameraZ = camera.position.z;
 
     // Add info space
