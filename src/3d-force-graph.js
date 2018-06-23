@@ -84,7 +84,7 @@ export default Kapsule({
     nodeLabel: { default: 'name', triggerUpdate: false },
     linkLabel: { default: 'name', triggerUpdate: false },
     linkHoverPrecision: { default: 1, onChange: (p, state) => state.renderObjs.lineHoverPrecision(p), triggerUpdate: false },
-    enableTrackballControls: {
+    enableNavigationControls: {
       default: true,
       onChange(enable, state) {
         const tbControls = state.renderObjs.tbControls();
@@ -224,7 +224,7 @@ export default Kapsule({
             .d3AlphaTarget(0)   // release engine low intensity
             .resetCountdown();  // let the engine readjust after releasing fixed nodes
 
-          if (state.enableTrackballControls) {
+          if (state.enableNavigationControls) {
             tbControls.enabled = true; // Re-enable trackball controls
           }
 
