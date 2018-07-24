@@ -97,6 +97,8 @@ export default Kapsule({
       triggerUpdate: false
     },
     enableNodeDrag: { default: true, triggerUpdate: false },
+    onNodeDrag: { default: () => {}, triggerUpdate: false },
+    onNodeDragEnd: { default: () => {}, triggerUpdate: false },
     onNodeClick: { default: () => {}, triggerUpdate: false },
     onNodeHover: { default: () => {}, triggerUpdate: false },
     onLinkClick: { default: () => {}, triggerUpdate: false },
@@ -207,6 +209,8 @@ export default Kapsule({
 
           // prevent freeze while dragging
           state.forceGraph.resetCountdown();
+
+          state.onNodeDrag(node);
         });
 
         dragControls.addEventListener('dragend', function (event) {
@@ -221,6 +225,8 @@ export default Kapsule({
               }
             });
             delete(node.__initialFixedPos);
+
+            state.onNodeDragEnd(node);
           }
 
           state.forceGraph
