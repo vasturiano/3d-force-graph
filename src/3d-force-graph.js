@@ -128,6 +128,8 @@ export default Kapsule({
     },
     scene: state => state.renderObjs.scene(), // Expose scene
     camera: state => state.renderObjs.camera(), // Expose camera
+    renderer: state => state.renderObjs.renderer(), // Expose renderer
+    tbControls: state => state.renderObjs.tbControls(), // Expose tbControls
     ...linkedFGMethods,
     ...linkedRenderObjsMethods
   },
