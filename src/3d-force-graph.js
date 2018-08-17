@@ -131,6 +131,14 @@ export default Kapsule({
     camera: state => state.renderObjs.camera(), // Expose camera
     renderer: state => state.renderObjs.renderer(), // Expose renderer
     tbControls: state => state.renderObjs.tbControls(), // Expose tbControls
+    handleResize: function(state) {
+      state.renderObjs.height(state.container.getClientRects()[0].height);
+      state.renderObjs.width(state.container.getClientRects()[0].width);
+
+      state.tbControls.handleResize();
+
+      return this;
+    },
     ...linkedFGMethods,
     ...linkedRenderObjsMethods
   },
