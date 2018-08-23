@@ -141,7 +141,8 @@ export default Kapsule({
 
   stateInit: () => ({
     forceGraph: new ThreeForceGraph(),
-    renderObjs: ThreeRenderObjects()
+    renderObjs: ThreeRenderObjects(),
+    animate: () => {}
   }),
 
   init: function(domNode, state) {
