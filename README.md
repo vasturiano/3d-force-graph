@@ -26,6 +26,8 @@ Check out the examples:
 * [Node collision detection](https://vasturiano.github.io/3d-force-graph/example/collision-detection/) ([source](https://github.com/vasturiano/3d-force-graph/blob/master/example/collision-detection/index.html))
 * [Add external objects to scene](https://vasturiano.github.io/3d-force-graph/example/scene/) ([source](https://github.com/vasturiano/3d-force-graph/blob/master/example/scene/index.html))
 
+* [Stop / Resume animation](https://vasturiano.github.io/3d-force-graph/example/stop-resume/) ([source](https://github.com/vasturiano/3d-force-graph/blob/master/example/stop-resume/index.html))
+
 See also the [VR version](https://github.com/vasturiano/3d-force-graph-vr) and the [2D canvas version](https://github.com/vasturiano/force-graph).
 
 And check out the [React bindings](https://github.com/vasturiano/react-force-graph).
@@ -108,6 +110,7 @@ myGraph(<myDOMElement>)
 | Method | Description | Default |
 | --- | --- | :--: |
 | <b>stopAnimation</b>() | Stops the rendering cycle of the component, effectively freezing the current view and canceling all future user interaction. This method can be used to save performance in circumstances when a static image is sufficient. | |
+| <b>startAnimation</b>() | Starts the rendering cycle of the component, effectively unfreezing the current view and enabling all future user interaction. This method can be used to save performance together with `stopAnimation` method. | |
 | <b>cameraPosition</b>([<i>{x,y,z}</i>], [<i>lookAt</i>], [<i>ms</i>]) | Getter/setter for the camera position, in terms of `x`, `y`, `z` coordinates. Each of the coordinates is optional, allowing for motion in just some dimensions. The optional second argument can be used to define the direction that the camera should aim at, in terms of an `{x,y,z}` point in the 3D space. The 3rd optional argument defines the duration of the transition (in ms) to animate the camera motion. A value of 0 (default) moves the camera immediately to the final position. | By default the camera will face the center of the graph at a `z` distance proportional to the amount of nodes in the system. |
 | <b>scene</b>() | Access the internal ThreeJS [Scene](https://threejs.org/docs/#api/scenes/Scene). Can be used to extend the current scene with additional objects not related to 3d-force-graph. | |
 | <b>camera</b>() | Access the internal ThreeJS [Camera](https://threejs.org/docs/#api/cameras/PerspectiveCamera). | |

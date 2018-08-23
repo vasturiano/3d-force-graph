@@ -127,6 +127,10 @@ export default Kapsule({
       }
       return this;
     },
+    startAnimation: function(state) {
+      state.animate();
+      return this;
+    },
     scene: state => state.renderObjs.scene(), // Expose scene
     camera: state => state.renderObjs.camera(), // Expose camera
     renderer: state => state.renderObjs.renderer(), // Expose renderer
@@ -313,9 +317,8 @@ export default Kapsule({
       });
 
     //
-
     // Kick-off renderer
-    (function animate() { // IIFE
+    (state.animate = function animate() { // IIFE
       if (state.enablePointerInteraction) {
         // reset canvas cursor (override dragControls cursor)
         renderer.domElement.style.cursor = null;
