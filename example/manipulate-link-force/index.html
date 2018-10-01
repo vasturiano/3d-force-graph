@@ -10,13 +10,6 @@
   <div id="3d-graph"></div>
 
   <script>
-    // Define Settings
-    var Settings = function() {
-      this.redDistance = 20;
-      this.greenDistance = 20;
-    };
-
-
     // Create Random tree
     const N = 20;
     const gData = {
@@ -37,26 +30,28 @@
         .linkOpacity(1)
         .graphData(gData);
 
-    var linkForce = graph
+    const linkForce = graph
       .d3Force('link')
-      .distance(link => link.color ? settings.redDistance : settings.greenDistance)
+      .distance(link => link.color ? settings.redDistance : settings.greenDistance);
     
     //Define GUI
-    var settings = new Settings;
-    var gui = new dat.GUI();
+    const Settings = function() {
+      this.redDistance = 20;
+      this.greenDistance = 20;
+    };
 
-    var controllerOne = gui.add(settings, 'redDistance', 0, 100);
-    var controllerTwo = gui.add(settings, 'greenDistance', 0, 100);
+    const settings = new Settings();
+    const gui = new dat.GUI();
 
-    controllerOne.onChange(function(value) {
-      linkForce.distance(link => link.color ? settings.redDistance : settings.greenDistance)
-      graph.numDimensions(3)
-    });
+    const controllerOne = gui.add(settings, 'redDistance', 0, 100);
+    const controllerTwo = gui.add(settings, 'greenDistance', 0, 100);
 
-    controllerTwo.onChange(function(value) {
-      linkForce.distance(link => link.color ? settings.redDistance : settings.greenDistance)
-      graph.numDimensions(3)
-    });
-    
+    controllerOne.onChange(updateLinkDistance);
+    controllerTwo.onChange(updateLinkDistance);
+
+    function updateLinkDistance() {
+      linkForce.distance(link => link.color ? settings.redDistance : settings.greenDistance);
+      graph.numDimensions(3); // Re-heat simulation
+    }
   </script>
 </body>
