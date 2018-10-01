@@ -1,0 +1,62 @@
+<head>
+  <style> body { margin: 0; } </style>
+
+  <script src="//unpkg.com/dat.gui"></script>
+  <script src="//unpkg.com/3d-force-graph"></script>
+  <!-- <script src="../../dist/3d-force-graph.js"></script> -->
+</head>
+
+<body>
+  <div id="3d-graph"></div>
+
+  <script>
+    // Define Settings
+    var Settings = function() {
+      this.redDistance = 20;
+      this.greenDistance = 20;
+    };
+
+
+    // Create Random tree
+    const N = 20;
+    const gData = {
+      nodes: [...Array(N).keys()].map(i => ({ id: i })),
+      links: [...Array(N).keys()]
+        .filter(id => id)
+        .map(id => ({
+          source: id,
+          target: Math.round(Math.random() * (id-1)),
+          color: id % 2
+        }))
+    };
+
+    const graph = ForceGraph3D()
+      (document.getElementById('3d-graph'))
+        .nodeLabel(node => node.id)
+        .linkColor(link => link.color ? 'red' : 'green' )
+        .linkOpacity(1)
+        .graphData(gData);
+
+    var linkForce = graph
+      .d3Force('link')
+      .distance(link => link.color ? settings.redDistance : settings.greenDistance)
+    
+    //Define GUI
+    var settings = new Settings;
+    var gui = new dat.GUI();
+
+    var controllerOne = gui.add(settings, 'redDistance', 0, 100);
+    var controllerTwo = gui.add(settings, 'greenDistance', 0, 100);
+
+    controllerOne.onChange(function(value) {
+      linkForce.distance(link => link.color ? settings.redDistance : settings.greenDistance)
+      graph.numDimensions(3)
+    });
+
+    controllerTwo.onChange(function(value) {
+      linkForce.distance(link => link.color ? settings.redDistance : settings.greenDistance)
+      graph.numDimensions(3)
+    });
+    
+  </script>
+</body>
