@@ -307,8 +307,9 @@ export default Kapsule({
         }
 
         const graphObj = getGraphObj(obj);
-        if (graphObj) {
-          state[`on${graphObj.__graphObjType === 'node' ? 'Node' : 'Link'}Click`](graphObj.__data);
+        const objType = graphObj.__graphObjType;
+        if (graphObj && objType) {
+          state[`on${objType === 'node' ? 'Node' : 'Link'}Click`](graphObj.__data);
         }
       });
 
