@@ -249,8 +249,8 @@ export default Kapsule({
     // config renderObjs
     const getGraphObj = object => {
       let obj = object;
-      // recurse up object chain until finding the graph object (only if using custom nodes)
-      while (state.nodeThreeObject && obj && !obj.hasOwnProperty('__graphObjType')) {
+      // recurse up object chain until finding the graph object
+      while (obj && !obj.hasOwnProperty('__graphObjType')) {
         obj = obj.parent;
       }
       return obj;
