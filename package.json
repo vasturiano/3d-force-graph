@@ -37,8 +37,8 @@
     "kapsule": "^1.9.2",
     "three": "^0.97.0",
     "three-dragcontrols": "^0.88.2",
-    "three-forcegraph": "^1.15.1",
-    "three-render-objects": "^1.2.2"
+    "three-forcegraph": "^1.15.2",
+    "three-render-objects": "^1.2.4"
   },
   "devDependencies": {
     "@babel/core": "^7.1.2",
