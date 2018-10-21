@@ -90,9 +90,9 @@ export default Kapsule({
     enableNavigationControls: {
       default: true,
       onChange(enable, state) {
-        const tbControls = state.renderObjs.tbControls();
-        if (tbControls) {
-          tbControls.enabled = enable;
+        const controls = state.renderObjs.controls();
+        if (controls) {
+          controls.enabled = enable;
         }
       },
       triggerUpdate: false
@@ -130,14 +130,15 @@ export default Kapsule({
     scene: state => state.renderObjs.scene(), // Expose scene
     camera: state => state.renderObjs.camera(), // Expose camera
     renderer: state => state.renderObjs.renderer(), // Expose renderer
-    tbControls: state => state.renderObjs.tbControls(), // Expose tbControls
+    controls: state => state.renderObjs.controls(), // Expose controls
+    tbControls: state => state.renderObjs.tbControls(), // To be deprecated
     ...linkedFGMethods,
     ...linkedRenderObjsMethods
   },
 
-  stateInit: () => ({
+  stateInit: ({ controlType }) => ({
     forceGraph: new ThreeForceGraph(),
-    renderObjs: ThreeRenderObjects()
+    renderObjs: ThreeRenderObjects({ controlType })
   }),
 
   init: function(domNode, state) {
@@ -154,8 +155,8 @@ export default Kapsule({
     state.renderObjs(roDomNode);
     const camera = state.renderObjs.camera();
     const renderer = state.renderObjs.renderer();
-    const tbControls = state.renderObjs.tbControls();
-    tbControls.enabled = !!state.enableNavigationControls;
+    const controls = state.renderObjs.controls();
+    controls.enabled = !!state.enableNavigationControls;
     state.lastSetCameraZ = camera.position.z;
 
     // Add info space
@@ -187,7 +188,7 @@ export default Kapsule({
         );
 
         dragControls.addEventListener('dragstart', function (event) {
-          tbControls.enabled = false; // Disable trackball controls while dragging
+          controls.enabled = false; // Disable controls while dragging
 
           const node = event.object.__data;
           node.__initialFixedPos = {fx: node.fx, fy: node.fy, fz: node.fz};
@@ -237,7 +238,7 @@ export default Kapsule({
             .resetCountdown();  // let the engine readjust after releasing fixed nodes
 
           if (state.enableNavigationControls) {
-            tbControls.enabled = true; // Re-enable trackball controls
+            controls.enabled = true; // Re-enable controls
           }
 
           // clear cursor

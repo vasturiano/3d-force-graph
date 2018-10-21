@@ -1,0 +1,18 @@
+<head>
+  <style> body { margin: 0; } </style>
+
+  <script src="//unpkg.com/3d-force-graph"></script>
+  <!--<script src="../../dist/3d-force-graph.js"></script>-->
+</head>
+
+<body>
+<div id="3d-graph"></div>
+
+<script>
+  const Graph = ForceGraph3D({ controlType: 'fly' })
+  (document.getElementById('3d-graph'))
+    .jsonUrl('../datasets/miserables.json')
+    .nodeLabel('id')
+    .nodeAutoColorBy('group');
+</script>
+</body>

@@ -34,11 +34,11 @@
   },
   "dependencies": {
     "accessor-fn": "^1.2.2",
-    "kapsule": "^1.9.1",
-    "three": "^0.94.0",
+    "kapsule": "^1.9.2",
+    "three": "^0.97.0",
     "three-dragcontrols": "^0.88.2",
     "three-forcegraph": "^1.15.1",
-    "three-render-objects": "^1.0.6"
+    "three-render-objects": "^1.2.2"
   },
   "devDependencies": {
     "babel-core": "^6.26.3",
@@ -46,15 +46,15 @@
     "babel-plugin-transform-class-properties": "^6.24.1",
     "babel-plugin-transform-object-rest-spread": "^6.26.0",
     "babel-preset-env": "^1.7.0",
-    "postcss-nested": "^3.0.0",
-    "postcss-simple-vars": "^4.1.0",
+    "postcss-nested": "^4.1.0",
+    "postcss-simple-vars": "^5.0.1",
     "rimraf": "^2.6.2",
-    "rollup": "^0.63.4",
+    "rollup": "^0.66.6",
     "rollup-plugin-babel": "^3.0.7",
-    "rollup-plugin-commonjs": "^9.1.4",
-    "rollup-plugin-node-resolve": "^3.3.0",
+    "rollup-plugin-commonjs": "^9.2.0",
+    "rollup-plugin-node-resolve": "^3.4.0",
     "rollup-plugin-postcss": "^1.6.2",
     "rollup-watch": "^4.3.1",
-    "uglify-js": "^3.4.6"
+    "uglify-js": "^3.4.9"
   }
 }

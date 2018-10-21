@@ -19,6 +19,8 @@ Check out the examples:
 * [Auto-colored nodes/links](https://vasturiano.github.io/3d-force-graph/example/auto-colored/) ([source](https://github.com/vasturiano/3d-force-graph/blob/master/example/auto-colored/index.html))
 * [Text as nodes](https://vasturiano.github.io/3d-force-graph/example/text-nodes/) ([source](https://github.com/vasturiano/3d-force-graph/blob/master/example/text-nodes/index.html))
 * [Custom node geometries](https://vasturiano.github.io/3d-force-graph/example/custom-node-geometry/) ([source](https://github.com/vasturiano/3d-force-graph/blob/master/example/custom-node-geometry/index.html))
+* [Orbit controls](https://vasturiano.github.io/3d-force-graph/example/controls-orbit/) ([source](https://github.com/vasturiano/3d-force-graph/blob/master/example/controls-orbit/index.html))
+* [Fly controls](https://vasturiano.github.io/3d-force-graph/example/controls-fly/) ([source](https://github.com/vasturiano/3d-force-graph/blob/master/example/controls-fly/index.html))
 * [Camera automatic orbitting](https://vasturiano.github.io/3d-force-graph/example/camera-auto-orbit/) ([source](https://github.com/vasturiano/3d-force-graph/blob/master/example/camera-auto-orbit/index.html))
 * [Click to focus on node](https://vasturiano.github.io/3d-force-graph/example/click-to-focus/) ([source](https://github.com/vasturiano/3d-force-graph/blob/master/example/click-to-focus/index.html))
 * [Highlight nodes/links](https://vasturiano.github.io/3d-force-graph/example/highlight/) ([source](https://github.com/vasturiano/3d-force-graph/blob/master/example/highlight/index.html))
@@ -52,6 +54,15 @@ myGraph(<myDOMElement>)
 ```
 
 ## API reference
+
+### Initialisation
+```
+ForceGraph3d({ configOptions })(<domElement>)
+```
+
+| Config options | Description | Default |
+| --- | --- | :--: |
+| <b>controlType: <i>str</i> | Which type of control to use to control the camera. Choice between [trackball](https://threejs.org/examples/misc_controls_trackball.html) and [orbit](https://threejs.org/examples/#misc_controls_orbit). | `trackball` |
 
 ### Data input
 | Method | Description | Default |
