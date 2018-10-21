@@ -1,10 +1,9 @@
 {
   "presets": [
-    ["env", { "modules": false }]
+    ["@babel/preset-env", { "modules": false }]
   ],
   "plugins": [
-    "external-helpers",
-    "transform-object-rest-spread",
-    "transform-class-properties"
+    "@babel/plugin-proposal-object-rest-spread",
+    "@babel/plugin-proposal-class-properties"
   ]
 }

@@ -30,7 +30,7 @@
     "watch": "rollup -c -w",
     "minify": "uglifyjs dist/3d-force-graph.js -o dist/3d-force-graph.min.js -c -m --comments '/Version/'",
     "build-module": "rollup -c rollup.config.module.js",
-    "prepublish": "npm run build && npm run minify && npm run build-module"
+    "prepublishOnly": "npm run build && npm run minify && npm run build-module"
   },
   "dependencies": {
     "accessor-fn": "^1.2.2",
@@ -41,16 +41,15 @@
     "three-render-objects": "^1.2.2"
   },
   "devDependencies": {
-    "babel-core": "^6.26.3",
-    "babel-plugin-external-helpers": "^6.22.0",
-    "babel-plugin-transform-class-properties": "^6.24.1",
-    "babel-plugin-transform-object-rest-spread": "^6.26.0",
-    "babel-preset-env": "^1.7.0",
+    "@babel/core": "^7.1.2",
+    "@babel/plugin-proposal-class-properties": "^7.1.0",
+    "@babel/plugin-proposal-object-rest-spread": "^7.0.0",
+    "@babel/preset-env": "^7.1.0",
     "postcss-nested": "^4.1.0",
     "postcss-simple-vars": "^5.0.1",
     "rimraf": "^2.6.2",
     "rollup": "^0.66.6",
-    "rollup-plugin-babel": "^3.0.7",
+    "rollup-plugin-babel": "^4.0.3",
     "rollup-plugin-commonjs": "^9.2.0",
     "rollup-plugin-node-resolve": "^3.4.0",
     "rollup-plugin-postcss": "^1.6.2",
