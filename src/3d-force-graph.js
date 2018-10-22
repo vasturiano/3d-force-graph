@@ -25,6 +25,8 @@ const linkedFGProps = Object.assign(...[
   'jsonUrl',
   'graphData',
   'numDimensions',
+  'dagMode',
+  'dagLevelDistance',
   'nodeRelSize',
   'nodeId',
   'nodeVal',
