@@ -1,0 +1,69 @@
+<head>
+  <style> body { margin: 0; } </style>
+
+  <!-- <script src="//unpkg.com/3d-force-graph"></script> -->
+  <script src="../../dist/3d-force-graph.js"></script>
+</head>
+
+<body>
+  <button id="animation" style="display: inline-block; margin: 20px; height: 30px; width: 200px;">
+    Pause Animation
+  </button>
+  <button id="rotation" style="display: inline-block; margin: 20px; height: 30px; width: 200px;">
+    Pause Rotation
+  </button>
+
+  <div id="3d-graph"></div>
+
+  <script>
+    // Random tree
+    const N = 300;
+    const gData = {
+      nodes: [...Array(N).keys()].map(i => ({ id: i })),
+      links: [...Array(N).keys()]
+        .filter(id => id)
+        .map(id => ({
+          source: id,
+          target: Math.round(Math.random() * (id-1))
+        }))
+    };
+    const distance = 1000;
+
+    let isRotationActive = true;
+    const Graph = ForceGraph3D()
+      (document.getElementById('3d-graph'))
+        .enableNodeDrag(false)
+        .enableNavigationControls(false)
+        .showNavInfo(false)
+        .cameraPosition({ z: distance })
+        .graphData(gData);
+    // camera orbit
+    let angle = 0;
+    setInterval(() => {
+      if (isRotationActive) {
+        Graph.cameraPosition({
+          x: distance * Math.sin(angle),
+          z: distance * Math.cos(angle)
+        });
+        angle += Math.PI / 300;
+      }
+    }, 10);
+
+    document.getElementById("rotation").addEventListener("click", function (event) {
+      isRotationActive = !isRotationActive;
+      event.target.innerHTML = (isRotationActive ? "Pause" : "Resume") + " Animation";
+    });
+
+    let isAnimationActive = true;
+    document.getElementById("animation").addEventListener("click", function (event) {
+      if (isAnimationActive) {
+        Graph.pauseAnimation();
+      } else {
+        Graph.resumeAnimation();
+      }
+      isAnimationActive = !isAnimationActive;
+      event.target.innerHTML = (isAnimationActive ? "Pause" : "Resume") + " Rotation";
+    });
+
+  </script>
+</body>

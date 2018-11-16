@@ -123,12 +123,21 @@ export default Kapsule({
   },
 
   methods: {
-    stopAnimation: function(state) {
-      if (state.animationFrameRequestId) {
+    pauseAnimation: function(state) {
+      if (state.animationFrameRequestId !== null) {
         cancelAnimationFrame(state.animationFrameRequestId);
+        state.animationFrameRequestId = null;
       }
       return this;
     },
+
+    resumeAnimation: function(state) {
+      if (state.animationFrameRequestId === null) {
+        state.startAnimation();
+      }
+      return this;
+    },
+
     scene: state => state.renderObjs.scene(), // Expose scene
     camera: state => state.renderObjs.camera(), // Expose camera
     renderer: state => state.renderObjs.renderer(), // Expose renderer
@@ -140,7 +149,8 @@ export default Kapsule({
 
   stateInit: ({ controlType }) => ({
     forceGraph: new ThreeForceGraph(),
-    renderObjs: ThreeRenderObjects({ controlType })
+    renderObjs: ThreeRenderObjects({ controlType }),
+    startAnimation: null
   }),
 
   init: function(domNode, state) {
@@ -318,7 +328,7 @@ export default Kapsule({
     //
 
     // Kick-off renderer
-    (function animate() { // IIFE
+    (state.startAnimation = function animationCycle() { // IIFE
       if (state.enablePointerInteraction) {
         // reset canvas cursor (override dragControls cursor)
         renderer.domElement.style.cursor = null;
@@ -327,7 +337,8 @@ export default Kapsule({
       // Frame cycle
       state.forceGraph.tickFrame();
       state.renderObjs.tick();
-      state.animationFrameRequestId = requestAnimationFrame(animate);
+      state.animationFrameRequestId = requestAnimationFrame(animationCycle);
     })();
+
   }
 });
