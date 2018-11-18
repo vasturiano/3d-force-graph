@@ -119,7 +119,8 @@ export default Kapsule({
     linkSourceField: 'linkSource',
     linkTargetField: 'linkTarget',
     linkColorField: 'linkColor',
-    lineOpacity: 'linkOpacity'
+    lineOpacity: 'linkOpacity',
+    stopAnimation: 'pauseAnimation'
   },
 
   methods: {
