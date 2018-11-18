@@ -119,15 +119,35 @@ export default Kapsule({
     linkSourceField: 'linkSource',
     linkTargetField: 'linkTarget',
     linkColorField: 'linkColor',
-    lineOpacity: 'linkOpacity'
+    lineOpacity: 'linkOpacity',
+    stopAnimation: 'pauseAnimation'
   },
 
   methods: {
-    stopAnimation: function(state) {
-      if (state.animationFrameRequestId) {
+    pauseAnimation: function(state) {
+      if (state.animationFrameRequestId !== null) {
         cancelAnimationFrame(state.animationFrameRequestId);
+        state.animationFrameRequestId = null;
       }
       return this;
+    },
+
+    resumeAnimation: function(state) {
+      if (state.animationFrameRequestId === null) {
+        this._animationCycle();
+      }
+      return this;
+    },
+    _animationCycle(state) {
+      if (state.enablePointerInteraction) {
+        // reset canvas cursor (override dragControls cursor)
+        this.renderer().domElement.style.cursor = null;
+      }
+
+      // Frame cycle
+      state.forceGraph.tickFrame();
+      state.renderObjs.tick();
+      state.animationFrameRequestId = requestAnimationFrame(this._animationCycle);
     },
     scene: state => state.renderObjs.scene(), // Expose scene
     camera: state => state.renderObjs.camera(), // Expose camera
@@ -318,16 +338,6 @@ export default Kapsule({
     //
 
     // Kick-off renderer
-    (function animate() { // IIFE
-      if (state.enablePointerInteraction) {
-        // reset canvas cursor (override dragControls cursor)
-        renderer.domElement.style.cursor = null;
-      }
-
-      // Frame cycle
-      state.forceGraph.tickFrame();
-      state.renderObjs.tick();
-      state.animationFrameRequestId = requestAnimationFrame(animate);
-    })();
+    this._animationCycle();
   }
 });

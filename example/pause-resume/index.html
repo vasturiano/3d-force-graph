@@ -1,0 +1,67 @@
+<head>
+  <style> body { margin: 0; } </style>
+
+   <script src="//unpkg.com/3d-force-graph"></script>
+  <!--<script src="../../dist/3d-force-graph.js"></script>-->
+</head>
+
+<body>
+  <div id="3d-graph"></div>
+
+  <div style="position: absolute; top: 5px; right: 5px;">
+    <button id="animationToggle" style="margin: 8px; height: 25px; width: 150px;">
+      Pause Animation
+    </button>
+    <button id="rotationToggle" style="margin: 8px; height: 25px; width: 150px;">
+      Pause Rotation
+    </button>
+  </div>
+
+  <script>
+    // Random tree
+    const N = 300;
+    const gData = {
+      nodes: [...Array(N).keys()].map(i => ({ id: i })),
+      links: [...Array(N).keys()]
+        .filter(id => id)
+        .map(id => ({
+          source: id,
+          target: Math.round(Math.random() * (id-1))
+        }))
+    };
+    const distance = 1000;
+
+    let isRotationActive = true;
+    const Graph = ForceGraph3D()
+      (document.getElementById('3d-graph'))
+        .enableNodeDrag(false)
+        .enableNavigationControls(false)
+        .showNavInfo(false)
+        .cameraPosition({ z: distance })
+        .graphData(gData);
+    // camera orbit
+    let angle = 0;
+    setInterval(() => {
+      if (isRotationActive) {
+        Graph.cameraPosition({
+          x: distance * Math.sin(angle),
+          z: distance * Math.cos(angle)
+        });
+        angle += Math.PI / 300;
+      }
+    }, 10);
+
+    document.getElementById('rotationToggle').addEventListener('click', event => {
+      isRotationActive = !isRotationActive;
+      event.target.innerHTML = `${(isRotationActive ? 'Pause' : 'Resume')} Rotation`;
+    });
+
+    let isAnimationActive = true;
+    document.getElementById('animationToggle').addEventListener('click', event => {
+      isAnimationActive ? Graph.stopAnimation() : Graph.resumeAnimation();
+
+      isAnimationActive = !isAnimationActive;
+      event.target.innerHTML = `${(isAnimationActive ? 'Pause' : 'Resume')} Animation`;
+    });
+  </script>
+</body>
