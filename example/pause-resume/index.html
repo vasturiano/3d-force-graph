@@ -1,19 +1,21 @@
 <head>
   <style> body { margin: 0; } </style>
 
-  <!-- <script src="//unpkg.com/3d-force-graph"></script> -->
-  <script src="../../dist/3d-force-graph.js"></script>
+   <script src="//unpkg.com/3d-force-graph"></script>
+  <!--<script src="../../dist/3d-force-graph.js"></script>-->
 </head>
 
 <body>
-  <button id="animation" style="display: inline-block; margin: 20px; height: 30px; width: 200px;">
-    Pause Animation
-  </button>
-  <button id="rotation" style="display: inline-block; margin: 20px; height: 30px; width: 200px;">
-    Pause Rotation
-  </button>
-
   <div id="3d-graph"></div>
+
+  <div style="position: absolute; top: 5px; right: 5px;">
+    <button id="animationToggle" style="margin: 8px; height: 25px; width: 150px;">
+      Pause Animation
+    </button>
+    <button id="rotationToggle" style="margin: 8px; height: 25px; width: 150px;">
+      Pause Rotation
+    </button>
+  </div>
 
   <script>
     // Random tree
@@ -49,21 +51,17 @@
       }
     }, 10);
 
-    document.getElementById("rotation").addEventListener("click", function (event) {
+    document.getElementById('rotationToggle').addEventListener('click', event => {
       isRotationActive = !isRotationActive;
-      event.target.innerHTML = (isRotationActive ? "Pause" : "Resume") + " Animation";
+      event.target.innerHTML = `${(isRotationActive ? 'Pause' : 'Resume')} Rotation`;
     });
 
     let isAnimationActive = true;
-    document.getElementById("animation").addEventListener("click", function (event) {
-      if (isAnimationActive) {
-        Graph.pauseAnimation();
-      } else {
-        Graph.resumeAnimation();
-      }
-      isAnimationActive = !isAnimationActive;
-      event.target.innerHTML = (isAnimationActive ? "Pause" : "Resume") + " Rotation";
-    });
+    document.getElementById('animationToggle').addEventListener('click', event => {
+      isAnimationActive ? Graph.stopAnimation() : Graph.resumeAnimation();
 
+      isAnimationActive = !isAnimationActive;
+      event.target.innerHTML = `${(isAnimationActive ? 'Pause' : 'Resume')} Animation`;
+    });
   </script>
 </body>
