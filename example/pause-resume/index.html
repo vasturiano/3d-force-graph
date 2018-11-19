@@ -58,7 +58,7 @@
 
     let isAnimationActive = true;
     document.getElementById('animationToggle').addEventListener('click', event => {
-      isAnimationActive ? Graph.stopAnimation() : Graph.resumeAnimation();
+      isAnimationActive ? Graph.pauseAnimation() : Graph.resumeAnimation();
 
       isAnimationActive = !isAnimationActive;
       event.target.innerHTML = `${(isAnimationActive ? 'Pause' : 'Resume')} Animation`;
