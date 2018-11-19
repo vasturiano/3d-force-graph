@@ -3300,16 +3300,15 @@ three-orbit-controls@^82.1.0:
   resolved "https://registry.yarnpkg.com/three-orbit-controls/-/three-orbit-controls-82.1.0.tgz#11a7f33d0a20ecec98f098b37780f6537374fab4"
   integrity sha1-EafzPQog7OyY8Jizd4D2U3N0+rQ=
 
-three-render-objects@^1.2.6:
-  version "1.2.6"
-  resolved "https://registry.yarnpkg.com/three-render-objects/-/three-render-objects-1.2.6.tgz#6eb8c93ea41a26b4707c1eaa4c5501e6e5a55485"
-  integrity sha512-iKx46xOsvUPr5nDAWuUkKd9qShZVQPMOElkFlxcyt38OWLFkcW3Y0ohg6hl8FUDlPYYgaRTNOrWWUTF8tRUUpQ==
+three-render-objects@^1.2.7:
+  version "1.2.7"
+  resolved "https://registry.yarnpkg.com/three-render-objects/-/three-render-objects-1.2.7.tgz#39bc7655205a71d7a991145b6b287e5c514f5d0d"
+  integrity sha512-kTTd7tI+OIDDkkJW1rZAj7hbWRz2VPq8+xqcBoaGqZ1+UvozFupdXd83giypONB+ium8FvaRLqrEitDLoQHVvg==
   dependencies:
     "@tweenjs/tween.js" "^17.2.0"
     accessor-fn "^1.2.2"
     kapsule "^1.9.2"
     polished "^2.3.0"
-    three "^0.97.0"
     three-fly-controls "^1.1.0"
     three-orbit-controls "^82.1.0"
     three-trackballcontrols "^0.0.7"
@@ -3323,11 +3322,6 @@ three@^0.97.0:
   version "0.97.0"
   resolved "https://registry.yarnpkg.com/three/-/three-0.97.0.tgz#76141e1b0ace14246fe9198a458fefddc98a4e30"
   integrity sha512-ctZF79O1R2aMIDnz9cV5GUIONyFnYvfQKg4+EAwEVaEr1mgy99rglstH6hhRdIThu3SOa4Ns5da/Ee5fTbWc9A==
-
-three@^0.98.0:
-  version "0.98.0"
-  resolved "https://registry.yarnpkg.com/three/-/three-0.98.0.tgz#11d4e3cca4b5d099c7de0ea5afa153b5d20cda84"
-  integrity sha512-fihjYVjCmQbI03zt1+YCl/m+UrZCcDHFNLexgqBOIdPwnO6PYkQaYUsIbqtvNNse+BiMeu+pQWzZn9/NSnIv6A==
 
 tinycolor2@^1.4.1:
   version "1.4.1"
