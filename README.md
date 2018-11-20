@@ -126,7 +126,7 @@ ForceGraph3d({ configOptions })(<domElement>)
 | <b>scene</b>() | Access the internal ThreeJS [Scene](https://threejs.org/docs/#api/scenes/Scene). Can be used to extend the current scene with additional objects not related to 3d-force-graph. | |
 | <b>camera</b>() | Access the internal ThreeJS [Camera](https://threejs.org/docs/#api/cameras/PerspectiveCamera). | |
 | <b>renderer</b>() | Access the internal ThreeJS [WebGL renderer](https://threejs.org/docs/#api/renderers/WebGLRenderer). ||
-| <b>tbControls</b>() | Access the internal ThreeJS [Trackball Controls](https://threejs.org/examples/misc_controls_trackball.html). ||
+| <b>controls</b>() | Access the internal ThreeJS controls object. ||
 
 ### Force engine configuration
 | Method | Description | Default |
