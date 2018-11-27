@@ -1,0 +1,73 @@
+<head>
+  <style> body { margin: 0; } </style>
+
+  <script src="//unpkg.com/d3-dsv"></script>
+  <script src="//unpkg.com/dat.gui"></script>
+  <script src="//unpkg.com/d3-octree"></script>
+  <script src="//unpkg.com/d3-force-3d"></script>
+
+  <script src="//unpkg.com/3d-force-graph"></script>
+  <!--<script src="../../dist/3d-force-graph.js"></script>-->
+</head>
+
+<body>
+  <div id="graph"></div>
+
+  <script>
+    // controls
+    const controls = { 'DAG Orientation': 'td'};
+    const gui = new dat.GUI();
+    gui.add(controls, 'DAG Orientation', ['td', 'bu', 'lr', 'rl', 'zout', 'zin', 'radialout', 'radialin', null])
+      .onChange(orientation => graph && graph.dagMode(orientation));
+
+    // graph config
+    const NODE_REL_SIZE = 1;
+    const graph = ForceGraph3D()
+      .dagMode('td')
+      .dagLevelDistance(200)
+      .backgroundColor('#101020')
+      .linkColor(() => 'rgba(255,255,255,0.2)')
+      .nodeRelSize(NODE_REL_SIZE)
+      .nodeId('path')
+      .nodeVal('size')
+      .nodeLabel('path')
+      .nodeAutoColorBy('module')
+      .nodeOpacity(0.9)
+      .linkDirectionalParticles(2)
+      .linkDirectionalParticleWidth(0.8)
+      .linkDirectionalParticleSpeed(0.006)
+      .d3Force('collision', d3.forceCollide(node => Math.cbrt(node.size) * NODE_REL_SIZE))
+      .d3VelocityDecay(0.3);
+
+    fetch('../datasets/d3-dependencies.csv')
+      .then(r => r.text())
+      .then(d3.csvParse)
+      .then(data => {
+        const nodes = [], links = [];
+        data.forEach(({ size, path }) => {
+          const levels = path.split('/'),
+            level = levels.length - 1,
+            module = level > 0 ? levels[1] : null,
+            leaf = levels.pop(),
+            parent = levels.join('/');
+
+          const node = {
+            path,
+            leaf,
+            module,
+            size: +size || 20,
+            level
+          };
+
+          nodes.push(node);
+
+          if (parent) {
+            links.push({source: parent, target: path, targetNode: node});
+          }
+        });
+
+        graph(document.getElementById('graph'))
+          .graphData({ nodes, links });
+      });
+  </script>
+</body>

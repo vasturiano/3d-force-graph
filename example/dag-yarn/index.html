@@ -1,0 +1,71 @@
+<head>
+  <style> body { margin: 0; } </style>
+
+  <script src="//bundle.run/@yarnpkg/lockfile"></script>
+  <script src="//unpkg.com/dat.gui"></script>
+  <script src="//unpkg.com/d3-octree"></script>
+  <script src="//unpkg.com/d3-force-3d"></script>
+  <script src="//unpkg.com/three"></script>
+  <script src="//unpkg.com/three-spritetext"></script>
+
+  <script src="//unpkg.com/3d-force-graph"></script>
+  <!--<script src="../../dist/3d-force-graph.js"></script>-->
+</head>
+
+<body>
+  <div id="graph"></div>
+
+  <script>
+    // controls
+    const controls = { 'DAG Orientation': 'lr'};
+    const gui = new dat.GUI();
+    gui.add(controls, 'DAG Orientation', ['lr', 'td', 'zout', 'radialout', null])
+      .onChange(orientation => graph && graph.dagMode(orientation));
+
+    // graph config
+    const graph = ForceGraph3D()
+      .backgroundColor('#101020')
+      .linkColor(() => 'rgba(255, 255, 255, 0.2)')
+      .dagMode('lr')
+      .dagLevelDistance(180)
+      .nodeId('package')
+      .linkCurvature(0.07)
+      .nodeThreeObject(node => {
+        const sprite = new SpriteText(node.package);
+        sprite.color = 'lightsteelblue';
+        sprite.textHeight = 8;
+        return sprite;
+      })
+      .d3Force('collide', d3.forceCollide(13))
+      .d3AlphaDecay(0.02)
+      .d3VelocityDecay(0.3);
+
+    fetch('../../yarn.lock')
+      .then(r => r.text())
+      .then(text => {
+        const yarnlock = _yarnpkg_lockfile.parse(text);
+        if (yarnlock.type !== 'success') throw new Error('invalid yarn.lock');
+        return yarnlock.object;
+      })
+      .then(yarnlock => {
+        const nodes = [];
+        const links = [];
+
+        Object.entries(yarnlock).forEach(([package, details]) => {
+          nodes.push({
+            package,
+            version: details.version
+          });
+
+          if (details.dependencies) {
+            Object.entries(details.dependencies).forEach(([dep, version]) => {
+              links.push({source: package, target: `${dep}@${version}`});
+            });
+          }
+        });
+
+        graph(document.getElementById('graph'))
+          .graphData({ nodes, links });
+      });
+  </script>
+</body>
