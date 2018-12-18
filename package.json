@@ -32,6 +32,11 @@
     "build-module": "rollup -c rollup.config.module.js",
     "prepare": "npm run build && npm run minify && npm run build-module"
   },
+  "files": [
+    "src/**/*",
+    "dist/**/*",
+    "example/**/*"
+  ],
   "dependencies": {
     "accessor-fn": "^1.2.2",
     "kapsule": "^1.9.2",
