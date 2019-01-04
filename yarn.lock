@@ -2524,7 +2524,7 @@ pify@^3.0.0:
   resolved "https://registry.yarnpkg.com/pify/-/pify-3.0.0.tgz#e5a4acd2c101fdf3d9a4d07f0dbc4db49dd28176"
   integrity sha1-5aSs0sEB/fPZpNB/DbxNtJ3SgXY=
 
-polished@^2.3.0:
+polished@^2.3.1:
   version "2.3.1"
   resolved "https://registry.yarnpkg.com/polished/-/polished-2.3.1.tgz#557ea07e5bcb1b9c7d71935a01d0315831234d48"
   integrity sha512-0mGyvVrHVRN92wfohriBWmMF4JLEnGgpZbpwPrNDhpB8NrX6lYI8GGWXEfrmrF+ZXg52Jkwd+D0rxViOvXM9RQ==
@@ -3516,15 +3516,15 @@ three-orbit-controls@^82.1.0:
   resolved "https://registry.yarnpkg.com/three-orbit-controls/-/three-orbit-controls-82.1.0.tgz#11a7f33d0a20ecec98f098b37780f6537374fab4"
   integrity sha1-EafzPQog7OyY8Jizd4D2U3N0+rQ=
 
-three-render-objects@^1.3.1:
-  version "1.3.1"
-  resolved "https://registry.yarnpkg.com/three-render-objects/-/three-render-objects-1.3.1.tgz#7b52104b9b25683b19dd66594bb886744bc558e5"
-  integrity sha512-n/zj6BSBNRn72hnPwCNeuV3+izvGhgLSi96AzOKwisca8A2y2XEibJB4cAcC2gjzx3Lqh385tFGRUHLBKjNK3g==
+three-render-objects@^1.3.2:
+  version "1.3.2"
+  resolved "https://registry.yarnpkg.com/three-render-objects/-/three-render-objects-1.3.2.tgz#338813282319749c878132ef4f90549c1c451e3a"
+  integrity sha512-BBCSTBXC9hmID+BtzR0byqMqYKBgq7Cu2Qmk5i5Y0UeuDl1dulckcLMrqIOGdEYqbdOVev/y2/xXcmhC/wmZig==
   dependencies:
     "@tweenjs/tween.js" "^17.2.0"
     accessor-fn "^1.2.2"
     kapsule "^1.9.2"
-    polished "^2.3.0"
+    polished "^2.3.1"
     three-fly-controls "^1.1.0"
     three-orbit-controls "^82.1.0"
     three-trackballcontrols "^0.0.7"
