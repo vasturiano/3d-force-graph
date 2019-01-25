@@ -20,6 +20,7 @@ Check out the examples:
 * [Text as nodes](https://vasturiano.github.io/3d-force-graph/example/text-nodes/) ([source](https://github.com/vasturiano/3d-force-graph/blob/master/example/text-nodes/index.html))
 * [Images as nodes](https://vasturiano.github.io/3d-force-graph/example/img-nodes/) ([source](https://github.com/vasturiano/3d-force-graph/blob/master/example/img-nodes/index.html))
 * [Custom node geometries](https://vasturiano.github.io/3d-force-graph/example/custom-node-geometry/) ([source](https://github.com/vasturiano/3d-force-graph/blob/master/example/custom-node-geometry/index.html))
+* [Text in Links](https://vasturiano.github.io/3d-force-graph/example/text-links/) ([source](https://github.com/vasturiano/3d-force-graph/blob/master/example/text-links/index.html))
 * [Orbit controls](https://vasturiano.github.io/3d-force-graph/example/controls-orbit/) ([source](https://github.com/vasturiano/3d-force-graph/blob/master/example/controls-orbit/index.html))
 * [Fly controls](https://vasturiano.github.io/3d-force-graph/example/controls-fly/) ([source](https://github.com/vasturiano/3d-force-graph/blob/master/example/controls-fly/index.html))
 * [Camera automatic orbitting](https://vasturiano.github.io/3d-force-graph/example/camera-auto-orbit/) ([source](https://github.com/vasturiano/3d-force-graph/blob/master/example/camera-auto-orbit/index.html))

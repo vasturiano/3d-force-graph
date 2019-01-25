@@ -1,0 +1,54 @@
+<head>
+  <style> body { margin: 0; } </style>
+
+  <script src="//unpkg.com/three"></script>
+  <script src="//unpkg.com/three-spritetext"></script>
+
+  <script src="//unpkg.com/3d-force-graph"></script>
+  <!--<script src="../../dist/3d-force-graph.js"></script>-->
+</head>
+
+<body>
+  <div id="3d-graph"></div>
+
+  <script>
+    const Graph = ForceGraph3D()
+      (document.getElementById('3d-graph'))
+        .jsonUrl('../datasets/miserables.json')
+        .nodeLabel('id')
+        .nodeAutoColorBy('group')
+        .linkThreeObject(link => {
+          // create line object
+          const lineObj = new THREE.Line(
+            new THREE.BufferGeometry(),
+            new THREE.MeshLambertMaterial({
+              color: '#f0f0f0',
+              transparent: true,
+              opacity: 0.2
+            })
+          );
+
+          // add text sprite as child
+          const sprite = new SpriteText(`${link.source} > ${link.target}`);
+          sprite.color = 'lightgrey';
+          sprite.textHeight = 1.5;
+          lineObj.add(sprite);
+
+          return lineObj;
+        })
+      .linkPositionUpdate((obj, { start, end }) => {
+        const middlePos = Object.assign(...['x', 'y', 'z'].map(c => ({
+          [c]: start[c] + (end[c] - start[c]) / 2 // calc middle point
+        })));
+
+        const textSprite = obj.children[0];
+
+        // Position link text
+        Object.assign(textSprite.position, middlePos);
+      });
+
+    // Spread nodes a little wider
+    Graph.d3Force('charge').strength(-150);
+
+  </script>
+</body>
