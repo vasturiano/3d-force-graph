@@ -46,6 +46,8 @@ const linkedFGProps = Object.assign(...[
   'linkCurvature',
   'linkCurveRotation',
   'linkMaterial',
+  'linkThreeObject',
+  'linkPositionUpdate',
   'linkDirectionalArrowLength',
   'linkDirectionalArrowColor',
   'linkDirectionalArrowRelPos',
