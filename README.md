@@ -154,11 +154,13 @@ ForceGraph3d({ configOptions })(<domElement>)
 ### Interaction
 | Method | Description | Default |
 | --- | --- | :--: |
-| <b>onNodeClick</b>(<i>fn</i>) | Callback function for node clicks. The node object is included as single argument `onNodeClick(node)`. | - |
+| <b>onNodeClick</b>(<i>fn</i>) | Callback function for node (left-button) clicks. The node object is included as single argument `onNodeClick(node)`. | - |
+| <b>onNodeRightClick</b>(<i>fn</i>) | Callback function for node right-clicks. The node object is included as single argument `onNodeRightClick(node)`. | - |
 | <b>onNodeHover</b>(<i>fn</i>) | Callback function for node mouse over events. The node object (or `null` if there's no node under the mouse line of sight) is included as the first argument, and the previous node object (or null) as second argument: `onNodeHover(node, prevNode)`. | - |
 | <b>onNodeDrag</b>(<i>fn</i>) | Callback function for node drag interactions. This function is invoked repeatedly while dragging a node, every time its position is updated. The node object is included as single argument `onNodeDrag(node)`. | - |
 | <b>onNodeDragEnd</b>(<i>fn</i>) | Callback function for the end of node drag interactions. This function is invoked when the node is released. The node object is included as single argument `onNodeDragEnd(node)`. | - |
-| <b>onLinkClick</b>(<i>fn</i>) | Callback function for link clicks. The link object is included as single argument `onLinkClick(link)`. | - |
+| <b>onLinkClick</b>(<i>fn</i>) | Callback function for link (left-button) clicks. The link object is included as single argument `onLinkClick(link)`. | - |
+| <b>onLinkRightClick</b>(<i>fn</i>) | Callback function for link right-clicks. The link object is included as single argument `onLinkRightClick(link)`. | - |
 | <b>onLinkHover</b>(<i>fn</i>) | Callback function for link mouse over events. The link object (or `null` if there's no link under the mouse line of sight) is included as the first argument, and the previous link object (or null) as second argument: `onLinkHover(link, prevLink)`. | - |
 | <b>linkHoverPrecision</b>([<i>int</i>]) | Whether to display the link label when gazing the link closely (low value) or from far away (high value). | 1 |
 | <b>enablePointerInteraction</b>([<i>boolean</i>]) | Getter/setter for whether to enable the mouse tracking events. This activates an internal tracker of the canvas mouse position and enables the functionality of object hover/click and tooltip labels, at the cost of performance. If you're looking for maximum gain in your graph performance it's recommended to switch off this property. | `true` |

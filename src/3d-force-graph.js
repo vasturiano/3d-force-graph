@@ -105,8 +105,10 @@ export default Kapsule({
     onNodeDrag: { default: () => {}, triggerUpdate: false },
     onNodeDragEnd: { default: () => {}, triggerUpdate: false },
     onNodeClick: { default: () => {}, triggerUpdate: false },
+    onNodeRightClick: { default: () => {}, triggerUpdate: false },
     onNodeHover: { default: () => {}, triggerUpdate: false },
     onLinkClick: { default: () => {}, triggerUpdate: false },
+    onLinkRightClick: { default: () => {}, triggerUpdate: false },
     onLinkHover: { default: () => {}, triggerUpdate: false },
     ...linkedFGProps,
     ...linkedRenderObjsProps
@@ -334,6 +336,13 @@ export default Kapsule({
         const graphObj = getGraphObj(obj);
         if (graphObj) {
           state[`on${graphObj.__graphObjType === 'node' ? 'Node' : 'Link'}Click`](graphObj.__data);
+        }
+      })
+      .onRightClick(obj => {
+        // Handle right-click events
+        const graphObj = getGraphObj(obj);
+        if (graphObj) {
+          state[`on${graphObj.__graphObjType === 'node' ? 'Node' : 'Link'}RightClick`](graphObj.__data);
         }
       });
 
