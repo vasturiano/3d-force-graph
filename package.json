@@ -43,7 +43,7 @@
     "three": "^0.100.0",
     "three-dragcontrols": "^0.88.2",
     "three-forcegraph": "^1.17.1",
-    "three-render-objects": "^1.4.0"
+    "three-render-objects": "^1.4.1"
   },
   "devDependencies": {
     "@babel/core": "^7.2.2",
