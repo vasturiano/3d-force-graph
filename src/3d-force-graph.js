@@ -158,6 +158,10 @@ export default Kapsule({
     renderer: state => state.renderObjs.renderer(), // Expose renderer
     controls: state => state.renderObjs.controls(), // Expose controls
     tbControls: state => state.renderObjs.tbControls(), // To be deprecated
+    _destructor: function() {
+      this.pauseAnimation();
+      this.graphData({ nodes: [], links: []});
+    },
     ...linkedFGMethods,
     ...linkedRenderObjsMethods
   },
