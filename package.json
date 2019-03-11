@@ -43,7 +43,7 @@
     "three": "^0.102.1",
     "three-dragcontrols": "^0.88.2",
     "three-forcegraph": "^1.17.1",
-    "three-render-objects": "^1.4.3"
+    "three-render-objects": "^1.4.4"
   },
   "devDependencies": {
     "@babel/core": "^7.3.4",
@@ -59,6 +59,6 @@
     "rollup-plugin-node-resolve": "^4.0.1",
     "rollup-plugin-postcss": "^2.0.3",
     "rollup-watch": "^4.3.1",
-    "terser": "^3.16.1"
+    "terser": "^3.17.0"
   }
 }
