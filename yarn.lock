@@ -3977,10 +3977,10 @@ three-orbit-controls@^82.1.0:
   resolved "https://registry.yarnpkg.com/three-orbit-controls/-/three-orbit-controls-82.1.0.tgz#11a7f33d0a20ecec98f098b37780f6537374fab4"
   integrity sha1-EafzPQog7OyY8Jizd4D2U3N0+rQ=
 
-three-render-objects@^1.4.4:
-  version "1.4.4"
-  resolved "https://registry.yarnpkg.com/three-render-objects/-/three-render-objects-1.4.4.tgz#c1d8a1fdc9bd46fb6234a1112c985c09f7eb34a9"
-  integrity sha512-Z5JeU2u2op1QvHpAe8CscI52DoEwztmC2A2zENgeKY0p5ACed6JMgks75HO1Xt/Fm1VsDfFnbEjEaWpquwNTOQ==
+three-render-objects@^1.4.5:
+  version "1.4.5"
+  resolved "https://registry.npmjs.org/three-render-objects/-/three-render-objects-1.4.5.tgz#f45445c46ceae569cf02bb485378631202a8733f"
+  integrity sha512-dHsLG1MDofFvFfSdvAqnl9qn7qhWhymEcbK/f4DvzlvrBvJdO3YdOhHj35xfmK7KMlcLsDc7k5B4+154msKYyQ==
   dependencies:
     "@tweenjs/tween.js" "^17.3.0"
     accessor-fn "^1.2.2"
