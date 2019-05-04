@@ -134,6 +134,7 @@ ForceGraph3d({ configOptions })(<domElement>)
 | <b>camera</b>() | Access the internal ThreeJS [Camera](https://threejs.org/docs/#api/cameras/PerspectiveCamera). | |
 | <b>renderer</b>() | Access the internal ThreeJS [WebGL renderer](https://threejs.org/docs/#api/renderers/WebGLRenderer). ||
 | <b>controls</b>() | Access the internal ThreeJS controls object. ||
+| <b>refresh</b>() | Redraws all the nodes/links and reheats the force simulation engine. |
 
 ### Force engine configuration
 | Method | Description | Default |

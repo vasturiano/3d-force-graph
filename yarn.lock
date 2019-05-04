@@ -740,10 +740,15 @@
   resolved "https://registry.yarnpkg.com/@types/estree/-/estree-0.0.39.tgz#e177e699ee1b8c22d23174caaa7422644389509f"
   integrity sha512-EYNwp3bU+98cpU4lAWYYL7Zz+2gryWH1qbdDTidVd6hkiR6weksdbMadyXKXNPEkQFhXM+hVO9ZygomHXp+AIw==
 
-"@types/node@*", "@types/node@^11.13.5":
+"@types/node@*":
   version "11.13.8"
   resolved "https://registry.yarnpkg.com/@types/node/-/node-11.13.8.tgz#e5d71173c95533be9842b2c798978f095f912aab"
   integrity sha512-szA3x/3miL90ZJxUCzx9haNbK5/zmPieGraZEe4WI+3srN0eGLiT22NXeMHmyhNEopn+IrxqMc7wdVwvPl8meg==
+
+"@types/node@^11.13.9":
+  version "11.13.10"
+  resolved "https://registry.yarnpkg.com/@types/node/-/node-11.13.10.tgz#4df59e5966b56f512bac98898bcbee5067411f0f"
+  integrity sha512-leUNzbFTMX94TWaIKz8N15Chu55F9QSH+INKayQr5xpkasBQBRF3qQXfo3/dOnMU/dEIit+Y/SU8HyOjq++GwA==
 
 "@types/q@^1.5.1":
   version "1.5.1"
@@ -2360,13 +2365,6 @@ kapsule@^1.10.0:
   dependencies:
     debounce "^1.1.0"
 
-kapsule@^1.9.2:
-  version "1.9.2"
-  resolved "https://registry.yarnpkg.com/kapsule/-/kapsule-1.9.2.tgz#424df7b6ace3633cfbc8a8210a2ba6d52e49c055"
-  integrity sha512-xuKhDyydMiDI7A9saP6H2lmXNHZyYulEXs70JcMO/S+vYud1Aq8t+kUyKC98olQIiekGGcozwDWjgaU36ux9kg==
-  dependencies:
-    debounce "^1.1.0"
-
 kind-of@^3.0.2, kind-of@^3.0.3, kind-of@^3.2.0:
   version "3.2.2"
   resolved "https://registry.yarnpkg.com/kind-of/-/kind-of-3.2.2.tgz#31ea21a734bab9bbb0f32466d893aea51e4a3c64"
@@ -3713,13 +3711,13 @@ rollup-watch@^4.3.1:
     require-relative "0.8.7"
     rollup-pluginutils "^2.0.1"
 
-rollup@^1.10.1:
-  version "1.10.1"
-  resolved "https://registry.yarnpkg.com/rollup/-/rollup-1.10.1.tgz#aeb763bbe98f707dc6496708db88372fa66687e7"
-  integrity sha512-pW353tmBE7QP622ITkGxtqF0d5gSRCVPD9xqM+fcPjudeZfoXMFW2sCzsTe2TU/zU1xamIjiS9xuFCPVT9fESw==
+rollup@^1.11.2:
+  version "1.11.2"
+  resolved "https://registry.yarnpkg.com/rollup/-/rollup-1.11.2.tgz#bc5169a85592a45ef3bc4c0ee94e1f931a7fa4b5"
+  integrity sha512-H5sS7GZ/Rn0t119Et8mw0QXtg5HTOI/1FL57EKHk5oduRmGaraOf3KcEt6j+dXJ9tXxWQkG+/FBjPS4dzxo6EA==
   dependencies:
     "@types/estree" "0.0.39"
-    "@types/node" "^11.13.5"
+    "@types/node" "^11.13.9"
     acorn "^6.1.1"
 
 safe-buffer@^5.1.2, safe-buffer@~5.1.0, safe-buffer@~5.1.1:
@@ -4047,15 +4045,15 @@ three-fly-controls@^1.1.0:
   resolved "https://registry.yarnpkg.com/three-fly-controls/-/three-fly-controls-1.1.0.tgz#8ea796da94ac017f5ea44ec015b1db5e19a42bd0"
   integrity sha1-jqeW2pSsAX9epE7AFbHbXhmkK9A=
 
-three-forcegraph@^1.17.2:
-  version "1.17.2"
-  resolved "https://registry.yarnpkg.com/three-forcegraph/-/three-forcegraph-1.17.2.tgz#f1288bf2030befa527e19abc4554326245b8cf49"
-  integrity sha512-1OLMX7YnpTy5M403skWF415jJZ2N7hXh08znXRxoQ58awDYzP+SUQoJMpcF9Pijv218IS+W0Ki0GuRGPQgDVkw==
+three-forcegraph@^1.18.0:
+  version "1.18.0"
+  resolved "https://registry.yarnpkg.com/three-forcegraph/-/three-forcegraph-1.18.0.tgz#c9d9b8d43a416f575e34ff0889d86bbf1b28b479"
+  integrity sha512-SOiqyjzBWU4mxiEhK41stHMWlpiou0H2VOveF1kLzU8p43LkRdIsiPV6NZNTe3RIr2ZAOIXeGZ5cEz7G1MLpNg==
   dependencies:
     accessor-fn "^1.2.2"
     d3-force-3d "^2.0.1"
     d3-scale-chromatic "^1.3.3"
-    kapsule "^1.9.2"
+    kapsule "^1.10.0"
     ngraph.forcelayout "^0.5.0"
     ngraph.forcelayout3d "^0.0.16"
     ngraph.graph "^0.0.18"

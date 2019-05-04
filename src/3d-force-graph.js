@@ -67,6 +67,7 @@ const linkedFGProps = Object.assign(...[
   'onEngineStop'
 ].map(p => ({ [p]: bindFG.linkProp(p)})));
 const linkedFGMethods = Object.assign(...[
+  'refresh',
   'd3Force'
 ].map(p => ({ [p]: bindFG.linkMethod(p)})));
 
