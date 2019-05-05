@@ -3711,10 +3711,10 @@ rollup-watch@^4.3.1:
     require-relative "0.8.7"
     rollup-pluginutils "^2.0.1"
 
-rollup@^1.11.2:
-  version "1.11.2"
-  resolved "https://registry.yarnpkg.com/rollup/-/rollup-1.11.2.tgz#bc5169a85592a45ef3bc4c0ee94e1f931a7fa4b5"
-  integrity sha512-H5sS7GZ/Rn0t119Et8mw0QXtg5HTOI/1FL57EKHk5oduRmGaraOf3KcEt6j+dXJ9tXxWQkG+/FBjPS4dzxo6EA==
+rollup@^1.11.3:
+  version "1.11.3"
+  resolved "https://registry.yarnpkg.com/rollup/-/rollup-1.11.3.tgz#6f436db2a2d6b63f808bf60ad01a177643dedb81"
+  integrity sha512-81MR7alHcFKxgWzGfG7jSdv+JQxSOIOD/Fa3iNUmpzbd7p+V19e1l9uffqT8/7YAHgGOzmoPGN3Fx3L2ptOf5g==
   dependencies:
     "@types/estree" "0.0.39"
     "@types/node" "^11.13.9"
@@ -4045,10 +4045,10 @@ three-fly-controls@^1.1.0:
   resolved "https://registry.yarnpkg.com/three-fly-controls/-/three-fly-controls-1.1.0.tgz#8ea796da94ac017f5ea44ec015b1db5e19a42bd0"
   integrity sha1-jqeW2pSsAX9epE7AFbHbXhmkK9A=
 
-three-forcegraph@^1.18.0:
-  version "1.18.0"
-  resolved "https://registry.yarnpkg.com/three-forcegraph/-/three-forcegraph-1.18.0.tgz#c9d9b8d43a416f575e34ff0889d86bbf1b28b479"
-  integrity sha512-SOiqyjzBWU4mxiEhK41stHMWlpiou0H2VOveF1kLzU8p43LkRdIsiPV6NZNTe3RIr2ZAOIXeGZ5cEz7G1MLpNg==
+three-forcegraph@^1.18.1:
+  version "1.18.1"
+  resolved "https://registry.yarnpkg.com/three-forcegraph/-/three-forcegraph-1.18.1.tgz#469e57b43762b5c6b54b22e64d59314b24543c23"
+  integrity sha512-GEBzvFeCCimTQvQ+VlE06ayHZb9u03ub2BJyGKp94qGOk6/ZwG1GCS7aojG/llM4q1++PJJ1a0wkKemFykTUjQ==
   dependencies:
     accessor-fn "^1.2.2"
     d3-force-3d "^2.0.1"
