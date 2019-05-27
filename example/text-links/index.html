@@ -17,35 +17,22 @@
         .jsonUrl('../datasets/miserables.json')
         .nodeLabel('id')
         .nodeAutoColorBy('group')
+        .linkThreeObjectExtend(true)
         .linkThreeObject(link => {
-          // create line object
-          const lineObj = new THREE.Line(
-            new THREE.BufferGeometry(),
-            new THREE.MeshLambertMaterial({
-              color: '#f0f0f0',
-              transparent: true,
-              opacity: 0.2
-            })
-          );
-
-          // add text sprite as child
+          // extend link with text sprite
           const sprite = new SpriteText(`${link.source} > ${link.target}`);
           sprite.color = 'lightgrey';
           sprite.textHeight = 1.5;
-          lineObj.add(sprite);
-
-          return lineObj;
+          return sprite;
         })
-      .linkPositionUpdate((obj, { start, end }) => {
-        const middlePos = Object.assign(...['x', 'y', 'z'].map(c => ({
-          [c]: start[c] + (end[c] - start[c]) / 2 // calc middle point
-        })));
+        .linkPositionUpdate((sprite, { start, end }) => {
+          const middlePos = Object.assign(...['x', 'y', 'z'].map(c => ({
+            [c]: start[c] + (end[c] - start[c]) / 2 // calc middle point
+          })));
 
-        const textSprite = obj.children[0];
-
-        // Position link text
-        Object.assign(textSprite.position, middlePos);
-      });
+          // Position sprite
+          Object.assign(sprite.position, middlePos);
+        });
 
     // Spread nodes a little wider
     Graph.d3Force('charge').strength(-150);
