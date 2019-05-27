@@ -3859,10 +3859,10 @@ three-fly-controls@^1.1.0:
   resolved "https://registry.yarnpkg.com/three-fly-controls/-/three-fly-controls-1.1.0.tgz#8ea796da94ac017f5ea44ec015b1db5e19a42bd0"
   integrity sha1-jqeW2pSsAX9epE7AFbHbXhmkK9A=
 
-three-forcegraph@^1.20.1:
-  version "1.20.1"
-  resolved "https://registry.yarnpkg.com/three-forcegraph/-/three-forcegraph-1.20.1.tgz#e725f6995300a19b633378a9681524280889350d"
-  integrity sha512-I88h712MBvu3m6oVAiL3ghwKC0lTRDuA6jk9KWSbSbijCUcpPo/ac8wHP6oeGwoz28opdAZZGX+puAYWPQ+xVg==
+three-forcegraph@^1.21.0:
+  version "1.21.0"
+  resolved "https://registry.yarnpkg.com/three-forcegraph/-/three-forcegraph-1.21.0.tgz#c39cd691bdf6c32cfda1671b0efa5859c7d1f4cc"
+  integrity sha512-KdQTyNYDsITw08hAil3h8wF5GbqHO1aNJUE2FQlUdIpaOPvJfu/K/aVKRJBsPR5lbXm1QA8JjgmSAKdaYOgO+w==
   dependencies:
     accessor-fn "^1.2.2"
     d3-force-3d "^2.0.1"
