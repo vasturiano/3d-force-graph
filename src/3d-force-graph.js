@@ -117,19 +117,6 @@ export default Kapsule({
     ...linkedRenderObjsProps
   },
 
-  aliases: { // Prop names supported for backwards compatibility
-    nameField: 'nodeLabel',
-    idField: 'nodeId',
-    valField: 'nodeVal',
-    colorField: 'nodeColor',
-    autoColorBy: 'nodeAutoColorBy',
-    linkSourceField: 'linkSource',
-    linkTargetField: 'linkTarget',
-    linkColorField: 'linkColor',
-    lineOpacity: 'linkOpacity',
-    stopAnimation: 'pauseAnimation'
-  },
-
   methods: {
     pauseAnimation: function(state) {
       if (state.animationFrameRequestId !== null) {
