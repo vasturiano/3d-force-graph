@@ -33,17 +33,16 @@
     "prepare": "npm run build && npm run minify && npm run build-module"
   },
   "files": [
-    "src/**/*",
     "dist/**/*",
     "example/**/*"
   ],
   "dependencies": {
     "accessor-fn": "^1.2.2",
     "kapsule": "^1.10.0",
-    "three": "^0.104.0",
+    "three": "^0.105.1",
     "three-dragcontrols": "^0.88.2",
     "three-forcegraph": "^1.21.0",
-    "three-render-objects": "^1.4.5"
+    "three-render-objects": "^1.5.0"
   },
   "devDependencies": {
     "@babel/core": "^7.4.5",
@@ -53,12 +52,11 @@
     "postcss-nested": "^4.1.2",
     "postcss-simple-vars": "^5.0.2",
     "rimraf": "^2.6.3",
-    "rollup": "^1.12.3",
+    "rollup": "^1.13.1",
     "rollup-plugin-babel": "^4.3.2",
     "rollup-plugin-commonjs": "^10.0.0",
-    "rollup-plugin-node-resolve": "^5.0.0",
+    "rollup-plugin-node-resolve": "^5.0.1",
     "rollup-plugin-postcss": "^2.0.3",
-    "rollup-watch": "^4.3.1",
     "terser": "^4.0.0"
   }
 }
