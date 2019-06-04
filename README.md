@@ -71,6 +71,7 @@ ForceGraph3d({ configOptions })(<domElement>)
 | <b>rendererConfig</b>: <i>object</i> | Configuration parameters to pass to the [ThreeJS WebGLRenderer](https://threejs.org/docs/#api/en/renderers/WebGLRenderer) constructor. | `{ antialias: true, alpha: true }` |
 
 ### Data input
+
 | Method | Description | Default |
 | --- | --- | :--: |
 | <b>graphData</b>([<i>data</i>]) | Getter/setter for graph data structure (see below for syntax details). Can also be used to apply [incremental updates](https://bl.ocks.org/vasturiano/2f602ea6c51c664c29ec56cbe2d6a5f6). | `{ nodes: [], links: [] }` |
@@ -80,6 +81,7 @@ ForceGraph3d({ configOptions })(<domElement>)
 | <b>linkTarget</b>([<i>str</i>]) | Link object accessor attribute referring to id of target node. | `target` |
 
 ### Container layout
+
 | Method | Description | Default |
 | --- | --- | :--: |
 | <b>width</b>([<i>px</i>]) | Getter/setter for the canvas width. | *&lt;window width&gt;* |
@@ -88,6 +90,7 @@ ForceGraph3d({ configOptions })(<domElement>)
 | <b>showNavInfo</b>([<i>boolean</i>]) | Getter/setter for whether to show the navigation controls footer info. | `true` |
 
 ### Node styling
+
 | Method | Description | Default |
 | --- | --- | :--: |
 | <b>nodeRelSize</b>([<i>num</i>]) | Getter/setter for the ratio of node sphere volume (cubic px) per value unit. | 4 |
@@ -101,6 +104,7 @@ ForceGraph3d({ configOptions })(<domElement>)
 | <b>nodeThreeObjectExtend</b>([<i>bool</i>, <i>str</i> or <i>fn</i>]) | Node object accessor function, attribute or a boolean value for whether to replace the default node when using a custom `nodeThreeObject` (`false`) or to extend it (`true`).  | `false` |
 
 ### Link styling
+
 | Method | Description | Default |
 | --- | --- | :--: |
 | <b>linkLabel</b>([<i>str</i> or <i>fn</i>]) | Link object accessor function or attribute for name (shown in label). Supports plain text or HTML content. Note that this method uses `innerHTML` internally, so make sure to pre-sanitize any user-input content to prevent XSS vulnerabilities. | `name` |
@@ -127,6 +131,7 @@ ForceGraph3d({ configOptions })(<domElement>)
 | <b>linkDirectionalParticleResolution</b>([<i>num</i>]) | Getter/setter for the geometric resolution of each directional particle, expressed in how many slice segments to divide the circumference. Higher values yield smoother particles. | 4 |
 
 ### Render control
+
 | Method | Description | Default |
 | --- | --- | :--: |
 | <b>pauseAnimation</b>() | Pauses the rendering cycle of the component, effectively freezing the current view and cancelling all user interaction. This method can be used to save performance in circumstances when a static image is sufficient. | |
@@ -139,6 +144,7 @@ ForceGraph3d({ configOptions })(<domElement>)
 | <b>refresh</b>() | Redraws all the nodes/links and reheats the force simulation engine. |
 
 ### Force engine configuration
+
 | Method | Description | Default |
 | --- | --- | :--: |
 | <b>forceEngine</b>([<i>str</i>]) | Getter/setter for which force-simulation engine to use ([*d3*](https://github.com/vasturiano/d3-force-3d) or [*ngraph*](https://github.com/anvaka/ngraph.forcelayout)). | `d3` |
@@ -155,6 +161,7 @@ ForceGraph3d({ configOptions })(<domElement>)
 | <b>onEngineStop</b>(<i>fn</i>) | Callback function invoked when the simulation engine stops and the layout is frozen. | - |
 
 ### Interaction
+
 | Method | Description | Default |
 | --- | --- | :--: |
 | <b>onNodeClick</b>(<i>fn</i>) | Callback function for node (left-button) clicks. The node object is included as single argument `onNodeClick(node)`. | - |
