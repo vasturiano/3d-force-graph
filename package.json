@@ -39,9 +39,9 @@
   "dependencies": {
     "accessor-fn": "^1.2.2",
     "kapsule": "^1.10.0",
-    "three": "^0.105.1",
+    "three": "^0.105.2",
     "three-dragcontrols": "^0.88.2",
-    "three-forcegraph": "^1.21.0",
+    "three-forcegraph": "^1.21.1",
     "three-render-objects": "^1.5.1"
   },
   "devDependencies": {
