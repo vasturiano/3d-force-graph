@@ -194,7 +194,7 @@ export default Kapsule({
       state.graphData = state.forceGraph.graphData();
 
       // re-aim camera, if still in default position (not user modified)
-      if (camera.position.x === 0 && camera.position.y === 0 && camera.position.z === state.lastSetCameraZ) {
+      if (camera.position.x === 0 && camera.position.y === 0 && camera.position.z === state.lastSetCameraZ && state.graphData.nodes.length) {
         camera.lookAt(state.forceGraph.position);
         state.lastSetCameraZ = camera.position.z = Math.cbrt(state.graphData.nodes.length) * CAMERA_DISTANCE2NODES_FACTOR;
       }
