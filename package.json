@@ -22,6 +22,7 @@
     "name": "Vasco Asturiano",
     "url": "http://bl.ocks.org/vasturiano"
   },
+  "license": "MIT",
   "bugs": {
     "url": "https://github.com/vasturiano/3d-force-graph/issues"
   },
