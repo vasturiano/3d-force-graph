@@ -765,10 +765,10 @@
   resolved "https://registry.yarnpkg.com/@types/node/-/node-11.13.8.tgz#e5d71173c95533be9842b2c798978f095f912aab"
   integrity sha512-szA3x/3miL90ZJxUCzx9haNbK5/zmPieGraZEe4WI+3srN0eGLiT22NXeMHmyhNEopn+IrxqMc7wdVwvPl8meg==
 
-"@types/node@^12.0.7":
-  version "12.0.7"
-  resolved "https://registry.yarnpkg.com/@types/node/-/node-12.0.7.tgz#4f2563bad652b2acb1722d7e7aae2b0ff62d192c"
-  integrity sha512-1YKeT4JitGgE4SOzyB9eMwO0nGVNkNEsm9qlIt1Lqm/tG2QEiSMTD4kS3aO6L+w5SClLVxALmIBESK6Mk5wX0A==
+"@types/node@^12.0.8":
+  version "12.0.8"
+  resolved "https://registry.yarnpkg.com/@types/node/-/node-12.0.8.tgz#551466be11b2adc3f3d47156758f610bd9f6b1d8"
+  integrity sha512-b8bbUOTwzIY3V5vDTY1fIJ+ePKDUBqt2hC2woVGotdQQhG/2Sh62HOKHrT7ab+VerXAcPyAiTEipPu/FsreUtg==
 
 "@types/q@^1.5.1":
   version "1.5.1"
@@ -1328,6 +1328,11 @@ csso@^3.5.1:
   dependencies:
     css-tree "1.0.0-alpha.29"
 
+"d3-array@^1.2.0 || 2":
+  version "2.2.0"
+  resolved "https://registry.yarnpkg.com/d3-array/-/d3-array-2.2.0.tgz#a9e966b8f8d78f0888d98db1fb840fc8da8ac5c7"
+  integrity sha512-eE0QmSh6xToqM3sxHiJYg/QFdNn52ZEgmFE8A8abU8GsHvsIOolqH8B70/8+VGAKm5MlwaExhqR3DLIjOJMLPA==
+
 d3-binarytree@~0.1:
   version "0.1.4"
   resolved "https://registry.yarnpkg.com/d3-binarytree/-/d3-binarytree-0.1.4.tgz#fa322096af6975b6bdf589eb7881aa54815f1a63"
@@ -1354,6 +1359,11 @@ d3-force-3d@^2.0.1:
     d3-quadtree "1"
     d3-timer "1"
 
+d3-format@1:
+  version "1.3.2"
+  resolved "https://registry.yarnpkg.com/d3-format/-/d3-format-1.3.2.tgz#6a96b5e31bcb98122a30863f7d92365c00603562"
+  integrity sha512-Z18Dprj96ExragQ0DeGi+SYPQ7pPfRMtUXtsg/ChVIKNBCzjO8XYJvRTC1usblx52lqge56V5ect+frYTQc8WQ==
+
 d3-interpolate@1:
   version "1.3.2"
   resolved "https://registry.yarnpkg.com/d3-interpolate/-/d3-interpolate-1.3.2.tgz#417d3ebdeb4bc4efcc8fd4361c55e4040211fd68"
@@ -1379,12 +1389,35 @@ d3-scale-chromatic@^1.3.3:
     d3-color "1"
     d3-interpolate "1"
 
+d3-scale@^3.0.0:
+  version "3.0.0"
+  resolved "https://registry.yarnpkg.com/d3-scale/-/d3-scale-3.0.0.tgz#ddede1278ac3ea2bf3666de6ca625e20bed9b6c9"
+  integrity sha512-ktic5HBFlAZj2CN8CCl/p/JyY8bMQluN7+fA6ICE6yyoMOnSQAZ1Bb8/5LcNpNKMBMJge+5Vv4pWJhARYlQYFw==
+  dependencies:
+    d3-array "^1.2.0 || 2"
+    d3-format "1"
+    d3-interpolate "1"
+    d3-time "1"
+    d3-time-format "2"
+
+d3-time-format@2:
+  version "2.1.3"
+  resolved "https://registry.yarnpkg.com/d3-time-format/-/d3-time-format-2.1.3.tgz#ae06f8e0126a9d60d6364eac5b1533ae1bac826b"
+  integrity sha512-6k0a2rZryzGm5Ihx+aFMuO1GgelgIz+7HhB4PH4OEndD5q2zGn1mDfRdNrulspOfR6JXkb2sThhDK41CSK85QA==
+  dependencies:
+    d3-time "1"
+
+d3-time@1:
+  version "1.0.11"
+  resolved "https://registry.yarnpkg.com/d3-time/-/d3-time-1.0.11.tgz#1d831a3e25cd189eb256c17770a666368762bbce"
+  integrity sha512-Z3wpvhPLW4vEScGeIMUckDW7+3hWKOQfAWg/U7PlWBnQmeKQ00gCUsTtWSYulrKNA7ta8hJ+xXc6MHrMuITwEw==
+
 d3-timer@1:
   version "1.0.9"
   resolved "https://registry.yarnpkg.com/d3-timer/-/d3-timer-1.0.9.tgz#f7bb8c0d597d792ff7131e1c24a36dd471a471ba"
   integrity sha512-rT34J5HnQUHhcLvhSB9GjCkN0Ddd5Y8nCwDBG2u6wQEeYxT/Lf51fTFFkldeib/sE/J0clIe0pnCfs6g/lRbyg==
 
-debounce@^1.1.0:
+debounce@^1.1.0, debounce@^1.2.0:
   version "1.2.0"
   resolved "https://registry.yarnpkg.com/debounce/-/debounce-1.2.0.tgz#44a540abc0ea9943018dc0eaa95cce87f65cd131"
   integrity sha512-mYtLl1xfZLi1m4RtQYlZgJUNQjl4ZxVnHzIR8nLLgi4q1YT8o/WM+MK/f8yfcc9s5Ir5zRaPZyZU6xs1Syoocg==
@@ -2122,12 +2155,12 @@ json5@^2.1.0:
   dependencies:
     minimist "^1.2.0"
 
-kapsule@^1.10.0:
-  version "1.10.0"
-  resolved "https://registry.yarnpkg.com/kapsule/-/kapsule-1.10.0.tgz#0fe7fd8a98cc3c556912519dce464b4085e9a93f"
-  integrity sha512-RDOVErU2oELzAY3rHNW5NuSx9WTitlQ+jT/kjivJFJ242DwdZU/zlRbJhxWD/QqC4xuyDorG2xmTarqYLTxTKw==
+kapsule@^1.10.0, kapsule@^1.10.1:
+  version "1.10.1"
+  resolved "https://registry.yarnpkg.com/kapsule/-/kapsule-1.10.1.tgz#8a5442899b5f0835bfc9ce3f331c2e0df653cc07"
+  integrity sha512-Cprn3DhiFMBviPupeh6AGZzvdskJ4aLCEUwGu8/FBKVy++vwwvsVDS4Q5Bm2q+zwrLCC9eaacMAkQ1BvkbAi3A==
   dependencies:
-    debounce "^1.1.0"
+    debounce "^1.2.0"
 
 kind-of@^3.0.2, kind-of@^3.0.3, kind-of@^3.2.0:
   version "3.2.2"
@@ -2321,15 +2354,20 @@ ngraph.events@0.0.3:
   resolved "https://registry.yarnpkg.com/ngraph.events/-/ngraph.events-0.0.3.tgz#38f55316f3d207ad631ff94f6622ca8f2c0e87d0"
   integrity sha1-OPVTFvPSB61jH/lPZiLKjywOh9A=
 
-ngraph.events@0.0.4:
-  version "0.0.4"
-  resolved "https://registry.yarnpkg.com/ngraph.events/-/ngraph.events-0.0.4.tgz#72cb364488dd0fd7f057458449f6a3b17a722d9a"
-  integrity sha1-css2RIjdD9fwV0WESfajsXpyLZo=
+ngraph.events@^1.0.0:
+  version "1.0.0"
+  resolved "https://registry.yarnpkg.com/ngraph.events/-/ngraph.events-1.0.0.tgz#260b638f1d8b1394a10ce1dda9e5d9d9c85001b1"
+  integrity sha512-Z7wyywdw8IKjOW0bDiOG4FUqX5fwqW7SDMO1huemDXho7Qy1b02RoBkPS43KLIZU2wrW2orju99k8wIr+xXvVA==
 
 ngraph.expose@0.0.0:
   version "0.0.0"
   resolved "https://registry.yarnpkg.com/ngraph.expose/-/ngraph.expose-0.0.0.tgz#746c34903a3848c45d033b14bc64619ea85fe5aa"
   integrity sha1-dGw0kDo4SMRdAzsUvGRhnqhf5ao=
+
+ngraph.expose@^1.0.0:
+  version "1.0.0"
+  resolved "https://registry.yarnpkg.com/ngraph.expose/-/ngraph.expose-1.0.0.tgz#c7ec904e4f47bf82b5bda3333e7386fc88164ba3"
+  integrity sha512-xQXBvaN8cuNucgHuOK1aOWb6q6Yn5QcTWzI1XR5+SBPYuJhIDeO3Z8pm7/WdM1dS+ys4mofA5D0MpTDIxP+d5A==
 
 ngraph.forcelayout3d@^0.0.16:
   version "0.0.16"
@@ -2351,13 +2389,13 @@ ngraph.forcelayout@0.0.22:
     ngraph.events "0.0.3"
     ngraph.physics.simulator "0.0.12"
 
-ngraph.forcelayout@^0.5.0:
-  version "0.5.0"
-  resolved "https://registry.yarnpkg.com/ngraph.forcelayout/-/ngraph.forcelayout-0.5.0.tgz#51511c3e1db45d3d5436da75dfb1d6af097916f5"
-  integrity sha1-UVEcPh20XT1UNtp137HWrwl5FvU=
+ngraph.forcelayout@^1.0.0:
+  version "1.0.0"
+  resolved "https://registry.yarnpkg.com/ngraph.forcelayout/-/ngraph.forcelayout-1.0.0.tgz#137746bfb25804527af66192f5d38eb262843e31"
+  integrity sha512-ozILhbe/hZSWIWEdtUb5fOJg0MlRSaBfbea9stjgQ13JVjl9PfO0Px7qj6JdJTGT6p/Q1o9fGLz81iYKH/yjuw==
   dependencies:
-    ngraph.events "0.0.4"
-    ngraph.physics.simulator "^0.3.0"
+    ngraph.events "^1.0.0"
+    ngraph.physics.simulator "^1.0.0"
 
 ngraph.graph@^18.0.0:
   version "18.0.0"
@@ -2371,10 +2409,20 @@ ngraph.merge@0.0.1:
   resolved "https://registry.yarnpkg.com/ngraph.merge/-/ngraph.merge-0.0.1.tgz#e4e80ce37581a3c96b17d545e3a43c85434b9025"
   integrity sha1-5OgM43WBo8lrF9VF46Q8hUNLkCU=
 
+ngraph.merge@^1.0.0:
+  version "1.0.0"
+  resolved "https://registry.yarnpkg.com/ngraph.merge/-/ngraph.merge-1.0.0.tgz#d763cdfa48b1bbd4270ea246f06c9c8ff5d3477c"
+  integrity sha512-5J8YjGITUJeapsomtTALYsw7rFveYkM+lBj3QiYZ79EymQcuri65Nw3knQtFxQBU1r5iOaVRXrSwMENUPK62Vg==
+
 ngraph.physics.primitives@0.0.7:
   version "0.0.7"
   resolved "https://registry.yarnpkg.com/ngraph.physics.primitives/-/ngraph.physics.primitives-0.0.7.tgz#5dc9e179ba1f92e6dec774b01cd68914120b795b"
   integrity sha1-Xcnhebofkubex3SwHNaJFBILeVs=
+
+ngraph.physics.primitives@^1.0.0:
+  version "1.0.0"
+  resolved "https://registry.yarnpkg.com/ngraph.physics.primitives/-/ngraph.physics.primitives-1.0.0.tgz#492b1bea5babe03ad057cbc0d5508eaba5c1a3f7"
+  integrity sha512-zdxzy76L6PxlWLjeXsvNGgzGaQt8mo7IPSzZseQBIXC2AV7UAdcfSnnE1e+ECihjlqkUdsvgKk+ne3GxU2diHg==
 
 ngraph.physics.simulator@0.0.12:
   version "0.0.12"
@@ -2388,17 +2436,17 @@ ngraph.physics.simulator@0.0.12:
     ngraph.quadtreebh "0.0.3"
     ngraph.random "0.0.1"
 
-ngraph.physics.simulator@^0.3.0:
-  version "0.3.0"
-  resolved "https://registry.yarnpkg.com/ngraph.physics.simulator/-/ngraph.physics.simulator-0.3.0.tgz#7ca6fc3e3617c73e1080572eaa8e04dbb77e0102"
-  integrity sha1-fKb8PjYXxz4QgFcuqo4E27d+AQI=
+ngraph.physics.simulator@^1.0.0:
+  version "1.0.0"
+  resolved "https://registry.yarnpkg.com/ngraph.physics.simulator/-/ngraph.physics.simulator-1.0.0.tgz#4695d2511eca2441d1e3519aa05f36ef6abecd4e"
+  integrity sha512-9fpWWIWMKNW9iG/qaLZx5kwEeCER9OPgR2n/M6/VwnrLhTytBNaZ7pmX7/X7+1V/tbFJfZXVoE+7EAH+inCaIg==
   dependencies:
-    ngraph.events "0.0.3"
-    ngraph.expose "0.0.0"
-    ngraph.merge "0.0.1"
-    ngraph.physics.primitives "0.0.7"
-    ngraph.quadtreebh "0.0.4"
-    ngraph.random "0.0.1"
+    ngraph.events "^1.0.0"
+    ngraph.expose "^1.0.0"
+    ngraph.merge "^1.0.0"
+    ngraph.physics.primitives "^1.0.0"
+    ngraph.quadtreebh "^1.0.0"
+    ngraph.random "^1.0.0"
 
 ngraph.quadtreebh3d@0.0.3:
   version "0.0.3"
@@ -2414,17 +2462,22 @@ ngraph.quadtreebh@0.0.3:
   dependencies:
     ngraph.random "0.0.1"
 
-ngraph.quadtreebh@0.0.4:
-  version "0.0.4"
-  resolved "https://registry.yarnpkg.com/ngraph.quadtreebh/-/ngraph.quadtreebh-0.0.4.tgz#c700d44e6e4af07b6d05001ba3987ff5e2dcd62c"
-  integrity sha1-xwDUTm5K8HttBQAbo5h/9eLc1iw=
+ngraph.quadtreebh@^1.0.0:
+  version "1.0.0"
+  resolved "https://registry.yarnpkg.com/ngraph.quadtreebh/-/ngraph.quadtreebh-1.0.0.tgz#ea248e09705016261c9def9f8825c81e6499cabb"
+  integrity sha512-cXc1JOIBu0flCPiIRintjs0G6LDhNmuVjDffq8PQQMP/i1324oQXdhbvlxjBepXjgfB/VIdVvwgfHjSs31A3Ig==
   dependencies:
-    ngraph.random "0.0.1"
+    ngraph.random "^1.0.0"
 
 ngraph.random@0.0.1:
   version "0.0.1"
   resolved "https://registry.yarnpkg.com/ngraph.random/-/ngraph.random-0.0.1.tgz#c008e2ebbfdffaf17ed10e4bbc913e567166bcf8"
   integrity sha1-wAji67/f+vF+0Q5LvJE+VnFmvPg=
+
+ngraph.random@^1.0.0:
+  version "1.0.0"
+  resolved "https://registry.yarnpkg.com/ngraph.random/-/ngraph.random-1.0.0.tgz#dc6de528726c8f502de5242f43222c896d5dd543"
+  integrity sha512-deLYx/kdrchInjD+S7IMCtLAyixWRXC3En9TI0KL2JbWIb8Z9SFv8UfSOLQppMBswy08aiYkoaucfLA7d8Ffcg==
 
 node-releases@^1.1.19:
   version "1.1.21"
@@ -3169,10 +3222,10 @@ rollup-plugin-commonjs@^10.0.0:
     resolve "^1.10.1"
     rollup-pluginutils "^2.7.0"
 
-rollup-plugin-node-resolve@^5.0.1:
-  version "5.0.1"
-  resolved "https://registry.yarnpkg.com/rollup-plugin-node-resolve/-/rollup-plugin-node-resolve-5.0.1.tgz#4619eafdf2ecb4e8ed24177ba47d7f11f027d38b"
-  integrity sha512-9s3dTu44SKQZM/Pwll42GpqXgT+WdvO0Ga01lF8cwZqJGqRUATtD+GrP3uIzZdpnbPonEJbVasfFt80VGPQqKw==
+rollup-plugin-node-resolve@^5.0.3:
+  version "5.0.3"
+  resolved "https://registry.yarnpkg.com/rollup-plugin-node-resolve/-/rollup-plugin-node-resolve-5.0.3.tgz#5e90fbd04a33fa1e4e1ed6d9b54afbe45af944f1"
+  integrity sha512-Mhhmf0x493xgUPEsRELnU1VM+4+WO82knWkAbZ0d2DvZQZJMbhzyQK/hqtpVscoRru1EqlK3TM1kK9ro469wPw==
   dependencies:
     "@types/resolve" "0.0.8"
     builtin-modules "^3.1.0"
@@ -3223,13 +3276,13 @@ rollup-pluginutils@^2.8.0:
   dependencies:
     estree-walker "^0.6.1"
 
-rollup@^1.14.5:
-  version "1.14.5"
-  resolved "https://registry.yarnpkg.com/rollup/-/rollup-1.14.5.tgz#a0eb9197f311396870df2ad591277ccd37e7bc79"
-  integrity sha512-XKegaT6NhrKuBvFQCeLfDJ7bNpfnWIMQfLx9+Qe34rrKaVOtNGVIf5vyIKuwS4JlF2l/nA7RvEsItXqyF0ZFZg==
+rollup@^1.15.6:
+  version "1.15.6"
+  resolved "https://registry.yarnpkg.com/rollup/-/rollup-1.15.6.tgz#caf0ed28d2d78e3a59c1398e5a3695fb600a0ef0"
+  integrity sha512-s3Vn3QJQ5YVFfIG4nXoG9VdL1I37IZsft+4ZyeBhxE0df1kCFz9e+4bEAbR4mKH3pvBO9e9xjdxWPhhIp0r9ow==
   dependencies:
     "@types/estree" "0.0.39"
-    "@types/node" "^12.0.7"
+    "@types/node" "^12.0.8"
     acorn "^6.1.1"
 
 safe-buffer@~5.1.1:
@@ -3476,16 +3529,17 @@ three-fly-controls@^1.1.0:
   resolved "https://registry.yarnpkg.com/three-fly-controls/-/three-fly-controls-1.1.0.tgz#8ea796da94ac017f5ea44ec015b1db5e19a42bd0"
   integrity sha1-jqeW2pSsAX9epE7AFbHbXhmkK9A=
 
-three-forcegraph@^1.21.1:
-  version "1.21.1"
-  resolved "https://registry.yarnpkg.com/three-forcegraph/-/three-forcegraph-1.21.1.tgz#c525e7364d1700c94762c09c96ed6dee14827297"
-  integrity sha512-8Kpbm4hogCemxx61wVOROwCVwssWEHTGShy4L7BRBcrE9r2o3KKoZ7Y6wav2PbNynEKVhMCDxSyySItz8Ik+DA==
+three-forcegraph@^1.21.5:
+  version "1.21.5"
+  resolved "https://registry.yarnpkg.com/three-forcegraph/-/three-forcegraph-1.21.5.tgz#0e5be42db4652adf2b137f361119fcdc0c1acb17"
+  integrity sha512-j4TkVYHXjhB9wL+Um8yBoyMcXecgtRTL/zJqttP6GmgJ+scZHM9atIDTbJE6s376L9qqFLlE5+x+HWxhDEx55w==
   dependencies:
     accessor-fn "^1.2.2"
     d3-force-3d "^2.0.1"
+    d3-scale "^3.0.0"
     d3-scale-chromatic "^1.3.3"
-    kapsule "^1.10.0"
-    ngraph.forcelayout "^0.5.0"
+    kapsule "^1.10.1"
+    ngraph.forcelayout "^1.0.0"
     ngraph.forcelayout3d "^0.0.16"
     ngraph.graph "^18.0.0"
     tinycolor2 "^1.4.1"
@@ -3495,10 +3549,10 @@ three-orbit-controls@^82.1.0:
   resolved "https://registry.yarnpkg.com/three-orbit-controls/-/three-orbit-controls-82.1.0.tgz#11a7f33d0a20ecec98f098b37780f6537374fab4"
   integrity sha1-EafzPQog7OyY8Jizd4D2U3N0+rQ=
 
-three-render-objects@^1.5.2:
-  version "1.5.2"
-  resolved "https://registry.yarnpkg.com/three-render-objects/-/three-render-objects-1.5.2.tgz#113207869f8a9570690665c77218de401d0b9d6b"
-  integrity sha512-9nD1+SvpG3zfR5U374PAyiFjHF0JrtE65EcIext28/q9g3jhomAxYfXXTA+wSw+8wmM2WjbeTShECOWmKWiohQ==
+three-render-objects@^1.5.4:
+  version "1.5.4"
+  resolved "https://registry.yarnpkg.com/three-render-objects/-/three-render-objects-1.5.4.tgz#aa99e9c2daf471f05dcac5ec2408a509c1fcc70e"
+  integrity sha512-u0qnJoa0CwkekIDqDt72ikLxvP+MsKv5Q2PgALBA1yP6HYa0b4EXcBlS9iKpORZBX1fs/mPZDhKBPTL4BSEe9A==
   dependencies:
     "@tweenjs/tween.js" "^17.4.0"
     accessor-fn "^1.2.2"
