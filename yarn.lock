@@ -1417,7 +1417,7 @@ d3-timer@1:
   resolved "https://registry.yarnpkg.com/d3-timer/-/d3-timer-1.0.9.tgz#f7bb8c0d597d792ff7131e1c24a36dd471a471ba"
   integrity sha512-rT34J5HnQUHhcLvhSB9GjCkN0Ddd5Y8nCwDBG2u6wQEeYxT/Lf51fTFFkldeib/sE/J0clIe0pnCfs6g/lRbyg==
 
-debounce@^1.1.0, debounce@^1.2.0:
+debounce@^1.2.0:
   version "1.2.0"
   resolved "https://registry.yarnpkg.com/debounce/-/debounce-1.2.0.tgz#44a540abc0ea9943018dc0eaa95cce87f65cd131"
   integrity sha512-mYtLl1xfZLi1m4RtQYlZgJUNQjl4ZxVnHzIR8nLLgi4q1YT8o/WM+MK/f8yfcc9s5Ir5zRaPZyZU6xs1Syoocg==
@@ -3529,10 +3529,10 @@ three-fly-controls@^1.1.0:
   resolved "https://registry.yarnpkg.com/three-fly-controls/-/three-fly-controls-1.1.0.tgz#8ea796da94ac017f5ea44ec015b1db5e19a42bd0"
   integrity sha1-jqeW2pSsAX9epE7AFbHbXhmkK9A=
 
-three-forcegraph@^1.21.5:
-  version "1.21.5"
-  resolved "https://registry.yarnpkg.com/three-forcegraph/-/three-forcegraph-1.21.5.tgz#0e5be42db4652adf2b137f361119fcdc0c1acb17"
-  integrity sha512-j4TkVYHXjhB9wL+Um8yBoyMcXecgtRTL/zJqttP6GmgJ+scZHM9atIDTbJE6s376L9qqFLlE5+x+HWxhDEx55w==
+three-forcegraph@^1.22.1:
+  version "1.22.1"
+  resolved "https://registry.yarnpkg.com/three-forcegraph/-/three-forcegraph-1.22.1.tgz#70c3849b00ec8bcb6e72937c5d936081dfbb39c4"
+  integrity sha512-qowDZxzDPuAHhQrgGvXQmWAJxhQ/VUubBZbxUbScdrszdPK2G6IgUAw64nuRJuCyK/sZj8p07Et3z6dq7IWP+A==
   dependencies:
     accessor-fn "^1.2.2"
     d3-force-3d "^2.0.1"
