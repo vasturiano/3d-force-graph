@@ -34,6 +34,7 @@ const linkedFGProps = Object.assign(...[
   'nodeColor',
   'nodeAutoColorBy',
   'nodeOpacity',
+  'nodeVisibility',
   'nodeThreeObject',
   'nodeThreeObjectExtend',
   'linkSource',
