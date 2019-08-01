@@ -36,8 +36,10 @@
       .linkDirectionalParticles(2)
       .linkDirectionalParticleWidth(0.8)
       .linkDirectionalParticleSpeed(0.006)
-      .d3Force('collision', d3.forceCollide(node => Math.cbrt(node.size) * NODE_REL_SIZE))
-      .d3VelocityDecay(0.3);
+      .d3Force('collision', d3.forceCollide(node => Math.cbrt(node.size) * NODE_REL_SIZE));
+
+    // Decrease repel intensity
+    graph.d3Force('charge').strength(-15);
 
     fetch('../datasets/d3-dependencies.csv')
       .then(r => r.text())
