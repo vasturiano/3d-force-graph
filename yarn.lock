@@ -1249,7 +1249,7 @@ csso@^3.5.1:
   dependencies:
     css-tree "1.0.0-alpha.29"
 
-"d3-array@^1.2.0 || 2":
+"d3-array@1.2.0 - 2":
   version "2.2.0"
   resolved "https://registry.yarnpkg.com/d3-array/-/d3-array-2.2.0.tgz#a9e966b8f8d78f0888d98db1fb840fc8da8ac5c7"
   integrity sha512-eE0QmSh6xToqM3sxHiJYg/QFdNn52ZEgmFE8A8abU8GsHvsIOolqH8B70/8+VGAKm5MlwaExhqR3DLIjOJMLPA==
@@ -1269,10 +1269,10 @@ d3-dispatch@1:
   resolved "https://registry.yarnpkg.com/d3-dispatch/-/d3-dispatch-1.0.5.tgz#e25c10a186517cd6c82dd19ea018f07e01e39015"
   integrity sha512-vwKx+lAqB1UuCeklr6Jh1bvC4SZgbSqbkGBLClItFBIYH4vqDJCA7qfoy14lXmJdnBOdxndAMxjCbImJYW7e6g==
 
-d3-force-3d@^2.0.1:
-  version "2.0.1"
-  resolved "https://registry.yarnpkg.com/d3-force-3d/-/d3-force-3d-2.0.1.tgz#bf01a4361ed63f06b539ecc40e609988ff83f2e4"
-  integrity sha512-xRrmxNfVsy509qp6gwp3Bk1EDhbuFXmhajI1Egv/dZtwDj0t1tmdrp8w7nLqN1KPrOJKzMNTOhYT20W5CAjKeA==
+d3-force-3d@^2.0.2:
+  version "2.0.2"
+  resolved "https://registry.yarnpkg.com/d3-force-3d/-/d3-force-3d-2.0.2.tgz#9735cf8fe3fa80b542fc7406938cff1cbfc9f7ce"
+  integrity sha512-9vYWw5xZbq/cIwE2fRH/JUwxuNDT49Cyz0SUqD6wZFyk4679sLVcpLxCDoGC/BJGv8HHHlHprWLjMBfZLZ0dMA==
   dependencies:
     d3-binarytree "~0.1"
     d3-dispatch "1"
@@ -1310,12 +1310,12 @@ d3-scale-chromatic@^1.3.3:
     d3-color "1"
     d3-interpolate "1"
 
-d3-scale@^3.0.0:
-  version "3.0.0"
-  resolved "https://registry.yarnpkg.com/d3-scale/-/d3-scale-3.0.0.tgz#ddede1278ac3ea2bf3666de6ca625e20bed9b6c9"
-  integrity sha512-ktic5HBFlAZj2CN8CCl/p/JyY8bMQluN7+fA6ICE6yyoMOnSQAZ1Bb8/5LcNpNKMBMJge+5Vv4pWJhARYlQYFw==
+d3-scale@^3.0.1:
+  version "3.0.1"
+  resolved "https://registry.yarnpkg.com/d3-scale/-/d3-scale-3.0.1.tgz#f7b5e7046ad83b35399639455bf5218a3cc1d1bc"
+  integrity sha512-f+OsXyd0claf6ufjI52zBHyOnm6mmfFvYiGUU8UB2VumZpqCcxds5iWN1rcOACIHgw9MntTFLXmi4LBRmY4DwQ==
   dependencies:
-    d3-array "^1.2.0 || 2"
+    d3-array "1.2.0 - 2"
     d3-format "1"
     d3-interpolate "1"
     d3-time "1"
@@ -2804,14 +2804,14 @@ three-fly-controls@^1.1.0:
   resolved "https://registry.yarnpkg.com/three-fly-controls/-/three-fly-controls-1.1.0.tgz#8ea796da94ac017f5ea44ec015b1db5e19a42bd0"
   integrity sha1-jqeW2pSsAX9epE7AFbHbXhmkK9A=
 
-three-forcegraph@^1.23.0:
-  version "1.23.0"
-  resolved "https://registry.yarnpkg.com/three-forcegraph/-/three-forcegraph-1.23.0.tgz#fac7e3c03d696c937bc5073f621cb5e904d5c708"
-  integrity sha512-9s0fms7S7CC6u65RD9ZhfyTfsXjkAaQXFlowmVlEVD80SNMHgf+kqcTcp4CW293KET8QyJZyNy1gtovCXPl3zA==
+three-forcegraph@^1.24.0:
+  version "1.24.0"
+  resolved "https://registry.yarnpkg.com/three-forcegraph/-/three-forcegraph-1.24.0.tgz#1a6da5966a479a9ee5bc6d0a59e6c17af2ed8e9f"
+  integrity sha512-JxTf4746cvN+JAtoeiCm5SA8xvLRUjmRsbMsOaabu5zRNqUszSXvDzLNojeqAyrA0FiMFTD9xVjDlaKr5I1UHg==
   dependencies:
     accessor-fn "^1.2.2"
-    d3-force-3d "^2.0.1"
-    d3-scale "^3.0.0"
+    d3-force-3d "^2.0.2"
+    d3-scale "^3.0.1"
     d3-scale-chromatic "^1.3.3"
     kapsule "^1.10.1"
     ngraph.forcelayout "^1.0.0"
@@ -2842,10 +2842,10 @@ three-trackballcontrols@^0.0.8:
   resolved "https://registry.yarnpkg.com/three-trackballcontrols/-/three-trackballcontrols-0.0.8.tgz#4af85312d211387e451023f9bef576094993a118"
   integrity sha512-9my4rB/ILaJw8E6khOcC6d8F8kEe6BvRtCer9bFJGZOh9txy4BqzwPrG7d8YCKK9MfcyTUoLsB5LKIsbtsZRTg==
 
-three@^0.106.2:
-  version "0.106.2"
-  resolved "https://registry.yarnpkg.com/three/-/three-0.106.2.tgz#6752d304c470e4df230944ecd45325e7bf79e1f8"
-  integrity sha512-4Tlx43uoxnIaZFW2Bzkd1rXsatvVHEWAZJy8LuE+s6Q8c66ogNnhfq1bHiBKPAnXP230LD11H/ScIZc2LZMviA==
+three@^0.107.0:
+  version "0.107.0"
+  resolved "https://registry.yarnpkg.com/three/-/three-0.107.0.tgz#0c862c348d61bd3f22058e01f5e771c1294315a1"
+  integrity sha512-vqbKJRLBEviPVa7poEzXocobicwxzsctr5mnymA7n8fEzcVS49rYP0RrwqZ98JqujRoruK+/YzcchNpRP+kXsQ==
 
 timsort@^0.3.0:
   version "0.3.0"
