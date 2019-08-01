@@ -15,7 +15,7 @@ import linkKapsule from './kapsule-link.js';
 
 //
 
-const CAMERA_DISTANCE2NODES_FACTOR = 150;
+const CAMERA_DISTANCE2NODES_FACTOR = 200;
 
 //
 
