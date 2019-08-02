@@ -802,10 +802,10 @@
   resolved "https://registry.yarnpkg.com/@types/node/-/node-11.13.8.tgz#e5d71173c95533be9842b2c798978f095f912aab"
   integrity sha512-szA3x/3miL90ZJxUCzx9haNbK5/zmPieGraZEe4WI+3srN0eGLiT22NXeMHmyhNEopn+IrxqMc7wdVwvPl8meg==
 
-"@types/node@^12.6.2":
-  version "12.6.8"
-  resolved "https://registry.yarnpkg.com/@types/node/-/node-12.6.8.tgz#e469b4bf9d1c9832aee4907ba8a051494357c12c"
-  integrity sha512-aX+gFgA5GHcDi89KG5keey2zf0WfZk/HAQotEamsK2kbey+8yGKcson0hbK8E+v0NArlCJQCqMP161YhV6ZXLg==
+"@types/node@^12.6.3":
+  version "12.6.9"
+  resolved "https://registry.yarnpkg.com/@types/node/-/node-12.6.9.tgz#ffeee23afdc19ab16e979338e7b536fdebbbaeaf"
+  integrity sha512-+YB9FtyxXGyD54p8rXwWaN1EWEyar5L58GlGWgtH2I9rGmLGBQcw63+0jw+ujqVavNuO47S1ByAjm9zdHMnskw==
 
 "@types/q@^1.5.1":
   version "1.5.1"
@@ -1269,10 +1269,10 @@ d3-dispatch@1:
   resolved "https://registry.yarnpkg.com/d3-dispatch/-/d3-dispatch-1.0.5.tgz#e25c10a186517cd6c82dd19ea018f07e01e39015"
   integrity sha512-vwKx+lAqB1UuCeklr6Jh1bvC4SZgbSqbkGBLClItFBIYH4vqDJCA7qfoy14lXmJdnBOdxndAMxjCbImJYW7e6g==
 
-d3-force-3d@^2.0.2:
-  version "2.0.2"
-  resolved "https://registry.yarnpkg.com/d3-force-3d/-/d3-force-3d-2.0.2.tgz#9735cf8fe3fa80b542fc7406938cff1cbfc9f7ce"
-  integrity sha512-9vYWw5xZbq/cIwE2fRH/JUwxuNDT49Cyz0SUqD6wZFyk4679sLVcpLxCDoGC/BJGv8HHHlHprWLjMBfZLZ0dMA==
+d3-force-3d@^2.0.3:
+  version "2.0.3"
+  resolved "https://registry.yarnpkg.com/d3-force-3d/-/d3-force-3d-2.0.3.tgz#57b36aaa9ce2cf61a5f9618df4da919b0f36cb54"
+  integrity sha512-+xmyXTxrV2sOIqouOPQQMLEdZTi04eMB28vOymw53E9xM/cS7aefXAfKK/B14B2DqmQYkwl6Vym/abV04+vfCw==
   dependencies:
     d3-binarytree "~0.1"
     d3-dispatch "1"
@@ -2639,13 +2639,13 @@ rollup-pluginutils@^2.0.1, rollup-pluginutils@^2.8.1:
   dependencies:
     estree-walker "^0.6.1"
 
-rollup@^1.17.0:
-  version "1.17.0"
-  resolved "https://registry.yarnpkg.com/rollup/-/rollup-1.17.0.tgz#47ee8b04514544fc93b39bae06271244c8db7dfa"
-  integrity sha512-k/j1m0NIsI4SYgCJR4MWPstGJOWfJyd6gycKoMhyoKPVXxm+L49XtbUwZyFsrSU2YXsOkM4u1ll9CS/ZgJBUpw==
+rollup@^1.18.0:
+  version "1.18.0"
+  resolved "https://registry.yarnpkg.com/rollup/-/rollup-1.18.0.tgz#98ea36472523ed712e20c0e996fd051882f787e6"
+  integrity sha512-MBAWr6ectF948gW/bs/yfi0jW7DzwI8n0tEYG/ZMQutmK+blF/Oazyhg3oPqtScCGV8bzCtL9KzlzPtTriEOJA==
   dependencies:
     "@types/estree" "0.0.39"
-    "@types/node" "^12.6.2"
+    "@types/node" "^12.6.3"
     acorn "^6.2.0"
 
 safe-buffer@~5.1.1:
@@ -2804,13 +2804,13 @@ three-fly-controls@^1.1.0:
   resolved "https://registry.yarnpkg.com/three-fly-controls/-/three-fly-controls-1.1.0.tgz#8ea796da94ac017f5ea44ec015b1db5e19a42bd0"
   integrity sha1-jqeW2pSsAX9epE7AFbHbXhmkK9A=
 
-three-forcegraph@^1.24.0:
-  version "1.24.0"
-  resolved "https://registry.yarnpkg.com/three-forcegraph/-/three-forcegraph-1.24.0.tgz#1a6da5966a479a9ee5bc6d0a59e6c17af2ed8e9f"
-  integrity sha512-JxTf4746cvN+JAtoeiCm5SA8xvLRUjmRsbMsOaabu5zRNqUszSXvDzLNojeqAyrA0FiMFTD9xVjDlaKr5I1UHg==
+three-forcegraph@^1.25.0:
+  version "1.25.0"
+  resolved "https://registry.yarnpkg.com/three-forcegraph/-/three-forcegraph-1.25.0.tgz#413141ff7fe1cad6dc4e21c0dc297bc383289c7d"
+  integrity sha512-hobYko7eppUbn/9HEs5M0OZq23dvTABKRRn8UEeW5SbOz/kgn5tu8raGPHMKl8ZZfaoyFPIoMsN4Cd3Hk+siEg==
   dependencies:
     accessor-fn "^1.2.2"
-    d3-force-3d "^2.0.2"
+    d3-force-3d "^2.0.3"
     d3-scale "^3.0.1"
     d3-scale-chromatic "^1.3.3"
     kapsule "^1.10.1"
