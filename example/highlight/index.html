@@ -37,7 +37,7 @@
 
           highlightNodes = node ? [node] : [];
 
-          updateGeometries();
+          updateHighlight();
         })
         .onLinkHover(link => {
           // no state change
@@ -46,11 +46,15 @@
           highlightLink = link;
           highlightNodes = link ? [link.source, link.target] : [];
 
-          updateGeometries();
+          updateHighlight();
         });
 
-    function updateGeometries() {
-      Graph.nodeRelSize(4); // trigger update of 3d objects in scene
+    function updateHighlight() {
+      // trigger update of highlighted objects in scene
+      Graph
+        .nodeColor(Graph.nodeColor())
+        .linkWidth(Graph.linkWidth())
+        .linkDirectionalParticles(Graph.linkDirectionalParticles());
     }
   </script>
 </body>
