@@ -71,7 +71,8 @@ const linkedFGProps = Object.assign(...[
 ].map(p => ({ [p]: bindFG.linkProp(p)})));
 const linkedFGMethods = Object.assign(...[
   'refresh',
-  'd3Force'
+  'd3Force',
+  'd3ReheatSimulation'
 ].map(p => ({ [p]: bindFG.linkMethod(p)})));
 
 // Expose config from renderObjs
@@ -187,86 +188,105 @@ export default Kapsule({
     infoElem.textContent = '';
 
     // config forcegraph
-    state.forceGraph.onLoading(() => { infoElem.textContent = 'Loading...' });
-    state.forceGraph.onFinishLoading(() => {
-      infoElem.textContent = '';
+    state.forceGraph
+      .onLoading(() => { infoElem.textContent = 'Loading...' })
+      .onFinishLoading(() => { infoElem.textContent = '' })
+      .onUpdate(() => {
+        // sync graph data structures
+        state.graphData = state.forceGraph.graphData();
 
-      // sync graph data structures
-      state.graphData = state.forceGraph.graphData();
-
-      // re-aim camera, if still in default position (not user modified)
-      if (camera.position.x === 0 && camera.position.y === 0 && camera.position.z === state.lastSetCameraZ && state.graphData.nodes.length) {
-        camera.lookAt(state.forceGraph.position);
-        state.lastSetCameraZ = camera.position.z = Math.cbrt(state.graphData.nodes.length) * CAMERA_DISTANCE2NODES_FACTOR;
-      }
-
-      // Setup node drag interaction
-      if (state.enableNodeDrag && state.enablePointerInteraction && state.forceEngine === 'd3') { // Can't access node positions programatically in ngraph
-        const dragControls = new ThreeDragControls(
-          state.graphData.nodes.map(node => node.__threeObj),
-          camera,
-          renderer.domElement
-        );
-
-        dragControls.addEventListener('dragstart', function (event) {
-          controls.enabled = false; // Disable controls while dragging
-
-          const node = event.object.__data;
-          node.__initialFixedPos = {fx: node.fx, fy: node.fy, fz: node.fz};
-
-          // lock node
-          ['x', 'y', 'z'].forEach(c => node[`f${c}`] = node[c]);
-
-          // keep engine running at low intensity throughout drag
-          state.forceGraph.d3AlphaTarget(0.3);
-
-          // drag cursor
-          renderer.domElement.classList.add('grabbable');
-        });
-
-        dragControls.addEventListener('drag', function (event) {
-          state.ignoreOneClick = true; // Don't click the node if it's being dragged
-
-          const node = event.object.__data;
-
-          // Move fx/fy/fz (and x/y/z) of nodes based on object new position
-          ['x', 'y', 'z'].forEach(c => node[`f${c}`] = node[c] = event.object.position[c]);
-
-          // prevent freeze while dragging
-          state.forceGraph.resetCountdown();
-
-          state.onNodeDrag(node);
-        });
-
-        dragControls.addEventListener('dragend', function (event) {
-          const node = event.object.__data;
-          const initPos = node.__initialFixedPos;
-
-          if (initPos) {
-            ['x', 'y', 'z'].forEach(c => {
-              const fc = `f${c}`;
-              if (initPos[fc] === undefined) {
-                node[fc] = undefined
-              }
-            });
-            delete(node.__initialFixedPos);
-
-            state.onNodeDragEnd(node);
+        // re-aim camera, if still in default position (not user modified)
+        if (camera.position.x === 0 && camera.position.y === 0 && camera.position.z === state.lastSetCameraZ && state.graphData.nodes.length) {
+          camera.lookAt(state.forceGraph.position);
+          state.lastSetCameraZ = camera.position.z = Math.cbrt(state.graphData.nodes.length) * CAMERA_DISTANCE2NODES_FACTOR;
+        }
+      })
+      .onFinishUpdate(() => {
+        // Setup node drag interaction
+        if (state._dragControls) {
+          const curNodeDrag = state.graphData.nodes.find(node => node.__initialFixedPos); // detect if there's a node being dragged
+          if (curNodeDrag) {
+            curNodeDrag.__disposeControlsAfterDrag = true; // postpone previous controls disposal until drag ends
+          } else {
+            state._dragControls.dispose(); // cancel previous drag controls
           }
 
-          state.forceGraph
-            .d3AlphaTarget(0)   // release engine low intensity
-            .resetCountdown();  // let the engine readjust after releasing fixed nodes
+          state._dragControls = undefined;
+        }
 
-          if (state.enableNavigationControls) {
-            controls.enabled = true; // Re-enable controls
-          }
+        if (state.enableNodeDrag && state.enablePointerInteraction && state.forceEngine === 'd3') { // Can't access node positions programatically in ngraph
+          const dragControls = state._dragControls = new ThreeDragControls(
+            state.graphData.nodes.map(node => node.__threeObj),
+            camera,
+            renderer.domElement
+          );
 
-          // clear cursor
-          renderer.domElement.classList.remove('grabbable');
-        });
-      }
-    });
+          dragControls.addEventListener('dragstart', function (event) {
+            controls.enabled = false; // Disable controls while dragging
+
+            const node = event.object.__data;
+            !node.__initialFixedPos && (node.__initialFixedPos = {fx: node.fx, fy: node.fy, fz: node.fz});
+
+            // lock node
+            ['x', 'y', 'z'].forEach(c => node[`f${c}`] = node[c]);
+
+            // keep engine running at low intensity throughout drag
+            state.forceGraph.d3AlphaTarget(0.3);
+
+            // drag cursor
+            renderer.domElement.classList.add('grabbable');
+          });
+
+          dragControls.addEventListener('drag', function (event) {
+            state.ignoreOneClick = true; // Don't click the node if it's being dragged
+
+            const node = event.object.__data;
+
+            // Move fx/fy/fz (and x/y/z) of nodes based on object new position
+            ['x', 'y', 'z'].forEach(c => node[`f${c}`] = node[c] = event.object.position[c]);
+
+            // prevent freeze while dragging
+            state.forceGraph.resetCountdown();
+
+            state.onNodeDrag(node);
+          });
+
+          dragControls.addEventListener('dragend', function (event) {
+            const node = event.object.__data;
+
+            // dispose previous controls if needed
+            if (node.__disposeControlsAfterDrag) {
+              dragControls.dispose();
+              delete(node.__disposeControlsAfterDrag);
+            }
+
+            const initPos = node.__initialFixedPos;
+
+            if (initPos) {
+              ['x', 'y', 'z'].forEach(c => {
+                const fc = `f${c}`;
+                if (initPos[fc] === undefined) {
+                  delete(node[fc])
+                }
+              });
+              delete(node.__initialFixedPos);
+
+              state.onNodeDragEnd(node);
+            }
+
+            state.forceGraph
+              .d3AlphaTarget(0)   // release engine low intensity
+              .resetCountdown();  // let the engine readjust after releasing fixed nodes
+
+            if (state.enableNavigationControls) {
+              controls.enabled = true; // Re-enable controls
+            }
+
+            // clear cursor
+            renderer.domElement.classList.remove('grabbable');
+          });
+        }
+      });
 
     // config renderObjs
     const getGraphObj = object => {
