@@ -204,7 +204,7 @@ export default Kapsule({
       .onFinishUpdate(() => {
         // Setup node drag interaction
         if (state._dragControls) {
-          const curNodeDrag = state.graphData.nodes.find(node => node.__initialFixedPos); // detect if there's a node being dragged
+          const curNodeDrag = state.graphData.nodes.find(node => node.__initialFixedPos && !node.__disposeControlsAfterDrag); // detect if there's a node being dragged using the existing drag controls
           if (curNodeDrag) {
             curNodeDrag.__disposeControlsAfterDrag = true; // postpone previous controls disposal until drag ends
           } else {
