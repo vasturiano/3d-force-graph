@@ -35,7 +35,10 @@
       (document.getElementById('3d-graph'))
       .linkDirectionalParticleColor(() => 'red')
       .linkDirectionalParticleWidth(4)
+      .linkHoverPrecision(10)
       .graphData(gData);
+
+    Graph.onLinkClick(Graph.emitParticle); // emit particles on link click
 
     document.getElementById('emit-particles-btn').addEventListener('click', () => {
       [...Array(10).keys()].forEach(() => {
