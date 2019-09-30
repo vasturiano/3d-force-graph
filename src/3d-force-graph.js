@@ -72,7 +72,8 @@ const linkedFGProps = Object.assign(...[
 const linkedFGMethods = Object.assign(...[
   'refresh',
   'd3Force',
-  'd3ReheatSimulation'
+  'd3ReheatSimulation',
+  'emitParticle'
 ].map(p => ({ [p]: bindFG.linkMethod(p)})));
 
 // Expose config from renderObjs

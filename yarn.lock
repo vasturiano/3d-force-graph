@@ -669,12 +669,12 @@
   resolved "https://registry.yarnpkg.com/@tweenjs/tween.js/-/tween.js-18.3.1.tgz#8b15f551be164ff6ba88014d355674e0d0d7a574"
   integrity sha512-gNtBVVz01LFC0Xq9mYRvk1bi3v9E4BS3MGBa/MqGWwLVpIiVMUpeRA+edTVES2qgZe0rN82f/7vdmvWBAkobkw==
 
-"@types/estree@0.0.39":
+"@types/estree@*", "@types/estree@0.0.39":
   version "0.0.39"
   resolved "https://registry.yarnpkg.com/@types/estree/-/estree-0.0.39.tgz#e177e699ee1b8c22d23174caaa7422644389509f"
   integrity sha512-EYNwp3bU+98cpU4lAWYYL7Zz+2gryWH1qbdDTidVd6hkiR6weksdbMadyXKXNPEkQFhXM+hVO9ZygomHXp+AIw==
 
-"@types/node@*", "@types/node@^12.7.5":
+"@types/node@*":
   version "12.7.5"
   resolved "https://registry.yarnpkg.com/@types/node/-/node-12.7.5.tgz#e19436e7f8e9b4601005d73673b6dc4784ffcc2f"
   integrity sha512-9fq4jZVhPNW8r+UYKnxF1e2HkDWOWKM5bC2/7c9wPV835I0aOrVbS/Hw/pWPk2uKrNXQqg9Z959Kz+IYDd5p3w==
@@ -696,10 +696,10 @@ accessor-fn@^1.2.2:
   resolved "https://registry.yarnpkg.com/accessor-fn/-/accessor-fn-1.2.2.tgz#dd52c271465388b29764ab79f2222dedd11e49b2"
   integrity sha1-3VLCcUZTiLKXZKt58iIt7dEeSbI=
 
-acorn@^7.0.0:
-  version "7.0.0"
-  resolved "https://registry.yarnpkg.com/acorn/-/acorn-7.0.0.tgz#26b8d1cd9a9b700350b71c0905546f64d1284e7a"
-  integrity sha512-PaF/MduxijYYt7unVGRuds1vBC9bFxbNf+VWqhOClfdgy7RlVkQqt610ig1/yxTgsDIfW1cWDel5EBbOy3jdtQ==
+acorn@^7.1.0:
+  version "7.1.0"
+  resolved "https://registry.yarnpkg.com/acorn/-/acorn-7.1.0.tgz#949d36f2c292535da602283586c2477c57eb2d6c"
+  integrity sha512-kL5CuoXA/dgxlBbVrflsflzQ3PAas7RYZB52NOm/6839iVYJgKMJ3cQJD+t2i5+qFa8h3MDpEOJiS64E8JLnSQ==
 
 alphanum-sort@^1.0.0:
   version "1.0.2"
@@ -2441,14 +2441,14 @@ rollup-pluginutils@^2.0.1, rollup-pluginutils@^2.8.1:
   dependencies:
     estree-walker "^0.6.1"
 
-rollup@^1.21.4:
-  version "1.21.4"
-  resolved "https://registry.yarnpkg.com/rollup/-/rollup-1.21.4.tgz#00a41a30f90095db890301b226cbe2918e4cf54d"
-  integrity sha512-Pl512XVCmVzgcBz5h/3Li4oTaoDcmpuFZ+kdhS/wLreALz//WuDAMfomD3QEYl84NkDu6Z6wV9twlcREb4qQsw==
+rollup@^1.22.0:
+  version "1.22.0"
+  resolved "https://registry.yarnpkg.com/rollup/-/rollup-1.22.0.tgz#a5b2672c0eebe9f2b6454220f785dbc09b64b4bc"
+  integrity sha512-x4l4ZrV/Mr/x/jvFTmwROdEAhbZjx16yDRTVSKWh/i4oJDuW2dVEbECT853mybYCz7BAitU8ElGlhx7dNjw3qQ==
   dependencies:
-    "@types/estree" "0.0.39"
-    "@types/node" "^12.7.5"
-    acorn "^7.0.0"
+    "@types/estree" "*"
+    "@types/node" "*"
+    acorn "^7.1.0"
 
 safe-buffer@~5.1.1:
   version "5.1.2"
@@ -2582,10 +2582,10 @@ svgo@^1.0.0:
     unquote "~1.1.1"
     util.promisify "~1.0.0"
 
-terser@^4.3.2:
-  version "4.3.2"
-  resolved "https://registry.yarnpkg.com/terser/-/terser-4.3.2.tgz#ed830de484b0103652799063e605618e80f97f93"
-  integrity sha512-obxk4x19Zlzj9zY4QeXj9iPCb5W8YGn4v3pn4/fHj0Nw8+R7N02Kvwvz9VpOItCZZD8RC+vnYCDL0gP6FAJ7Xg==
+terser@^4.3.4:
+  version "4.3.4"
+  resolved "https://registry.yarnpkg.com/terser/-/terser-4.3.4.tgz#ad91bade95619e3434685d69efa621a5af5f877d"
+  integrity sha512-Kcrn3RiW8NtHBP0ssOAzwa2MsIRQ8lJWiBG/K7JgqPlomA3mtb2DEmp4/hrUA+Jujx+WZ02zqd7GYD+QRBB/2Q==
   dependencies:
     commander "^2.20.0"
     source-map "~0.6.1"
@@ -2601,10 +2601,10 @@ three-fly-controls@^1.1.0:
   resolved "https://registry.yarnpkg.com/three-fly-controls/-/three-fly-controls-1.1.0.tgz#8ea796da94ac017f5ea44ec015b1db5e19a42bd0"
   integrity sha1-jqeW2pSsAX9epE7AFbHbXhmkK9A=
 
-three-forcegraph@^1.28.0:
-  version "1.28.0"
-  resolved "https://registry.yarnpkg.com/three-forcegraph/-/three-forcegraph-1.28.0.tgz#fd59cfca431aa5df62bf7ba0e7f16cd551e21a79"
-  integrity sha512-KFJLS6REaQWfO96GcHUbekNpGFP2dplinqlHnRZSet1WDwI7nLSpDK9u7maYKgrhB+/BkE1+mL8R+/tJ03QDSQ==
+three-forcegraph@^1.29.0:
+  version "1.29.0"
+  resolved "https://registry.yarnpkg.com/three-forcegraph/-/three-forcegraph-1.29.0.tgz#e36565440e2cb89ba1f176b57a45e44701a981a6"
+  integrity sha512-eh5+0RqJKqnH6E50a2emgRKznQK5BVhOHRIBlz69rVPtxxGGG01C/YgskgH3zy96vIARioFSbZ29FpAKGf3GOg==
   dependencies:
     accessor-fn "^1.2.2"
     d3-force-3d "^2.0.3"
@@ -2622,10 +2622,10 @@ three-orbit-controls@^82.1.0:
   resolved "https://registry.yarnpkg.com/three-orbit-controls/-/three-orbit-controls-82.1.0.tgz#11a7f33d0a20ecec98f098b37780f6537374fab4"
   integrity sha1-EafzPQog7OyY8Jizd4D2U3N0+rQ=
 
-three-render-objects@^1.6.0:
-  version "1.6.0"
-  resolved "https://registry.yarnpkg.com/three-render-objects/-/three-render-objects-1.6.0.tgz#1d7557230496ed2b2f46ae34fad9fdffbd19b869"
-  integrity sha512-ykQ6CmiK0mngpFRCWuC/KU3GzepwJPX+u5Dx4s61rvQ98GM55a6QTAwlWALSaHQBzdXfFL13CvHlpsfpycSUog==
+three-render-objects@^1.7.0:
+  version "1.7.0"
+  resolved "https://registry.yarnpkg.com/three-render-objects/-/three-render-objects-1.7.0.tgz#9e959c1bd09bccd63ca66feb0cfbdfacbaa172a8"
+  integrity sha512-MvAweDc5DKIVIBQ410irWhN80ExR0x8lSoEGDR+5MyrZ+Ez3vh260C6dXcJm2I7dQiD/30XPQQrwRSNKta7fNA==
   dependencies:
     "@tweenjs/tween.js" "^18.3.1"
     accessor-fn "^1.2.2"

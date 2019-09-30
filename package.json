@@ -42,8 +42,8 @@
     "kapsule": "^1.12.1",
     "three": "^0.108.0",
     "three-dragcontrols": "^0.88.2",
-    "three-forcegraph": "^1.28.0",
-    "three-render-objects": "^1.6.0"
+    "three-forcegraph": "^1.29.0",
+    "three-render-objects": "^1.7.0"
   },
   "devDependencies": {
     "@babel/core": "^7.6.2",
@@ -53,11 +53,11 @@
     "postcss-nested": "^4.1.2",
     "postcss-simple-vars": "^5.0.2",
     "rimraf": "^3.0.0",
-    "rollup": "^1.21.4",
+    "rollup": "^1.22.0",
     "rollup-plugin-babel": "^4.3.3",
     "rollup-plugin-commonjs": "^10.1.0",
     "rollup-plugin-node-resolve": "^5.2.0",
     "rollup-plugin-postcss": "^2.0.3",
-    "terser": "^4.3.2"
+    "terser": "^4.3.4"
   }
 }

@@ -1,0 +1,47 @@
+<head>
+  <style>
+    body { margin: 0; }
+
+    #emit-particles-btn {
+      position: absolute;
+      top: 10px;
+      right: 10px;
+      font-size: 13px;
+    }
+  </style>
+
+  <script src="//unpkg.com/3d-force-graph"></script>
+  <!--<script src="../../dist/3d-force-graph.js"></script>-->
+</head>
+
+<body>
+  <div id="3d-graph"></div>
+  <button id="emit-particles-btn">Emit 10 Random Particles</button>
+
+  <script>
+    // Random tree
+    const N = 50;
+    const gData = {
+      nodes: [...Array(N).keys()].map(i => ({ id: i })),
+      links: [...Array(N).keys()]
+    .filter(id => id)
+      .map(id => ({
+        source: id,
+        target: Math.round(Math.random() * (id-1))
+      }))
+    };
+
+    const Graph = ForceGraph3D()
+      (document.getElementById('3d-graph'))
+      .linkDirectionalParticleColor(() => 'red')
+      .linkDirectionalParticleWidth(4)
+      .graphData(gData);
+
+    document.getElementById('emit-particles-btn').addEventListener('click', () => {
+      [...Array(10).keys()].forEach(() => {
+        const link = gData.links[Math.floor(Math.random() * gData.links.length)];
+        Graph.emitParticle(link);
+      });
+    });
+  </script>
+</body>
