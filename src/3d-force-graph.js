@@ -116,6 +116,8 @@ export default Kapsule({
     onLinkClick: { default: () => {}, triggerUpdate: false },
     onLinkRightClick: { default: () => {}, triggerUpdate: false },
     onLinkHover: { default: () => {}, triggerUpdate: false },
+    onBackgroundClick: { default: () => {}, triggerUpdate: false },
+    onBackgroundRightClick: { default: () => {}, triggerUpdate: false },
     ...linkedFGProps,
     ...linkedRenderObjsProps
   },
@@ -352,6 +354,8 @@ export default Kapsule({
         const graphObj = getGraphObj(obj);
         if (graphObj) {
           state[`on${graphObj.__graphObjType === 'node' ? 'Node' : 'Link'}Click`](graphObj.__data);
+        } else {
+          state.onBackgroundClick();
         }
       })
       .onRightClick(obj => {
@@ -359,6 +363,8 @@ export default Kapsule({
         const graphObj = getGraphObj(obj);
         if (graphObj) {
           state[`on${graphObj.__graphObjType === 'node' ? 'Node' : 'Link'}RightClick`](graphObj.__data);
+        } else {
+          state.onBackgroundRightClick();
         }
       });
 
