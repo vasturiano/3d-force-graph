@@ -27,7 +27,7 @@
       nodesById[link.source].childLinks.push(link);
     });
 
-    const pruneExpandableTree = ({ nodes, links }) => {
+    const getPrunedTree = () => {
       const visibleNodes = [];
       const visibleLinks = [];
 
@@ -38,7 +38,7 @@
         node.childLinks
           .map(link => ((typeof link.target) === 'object') ? link.target : nodesById[link.target]) // get child node
           .forEach(traverseTree);
-      }
+      };
 
       traverseTree(nodesById[0]);
 
@@ -47,10 +47,10 @@
 
     const Graph = ForceGraph3D()
       (document.getElementById('3d-graph'))
-        .graphData(pruneExpandableTree(gData))
+        .graphData(getPrunedTree())
         .onNodeClick(node => {
           node.collapsed = !node.collapsed; // toggle collapse state
-          Graph.graphData(pruneExpandableTree(gData));
+          Graph.graphData(getPrunedTree());
         })
         .linkDirectionalParticles(2)
         .nodeColor(node => !node.childLinks.length ? 'green' : node.collapsed ? 'red' : 'yellow');
