@@ -45,14 +45,15 @@
       return { nodes: visibleNodes, links: visibleLinks };
     };
 
-    const Graph = ForceGraph3D()
-      (document.getElementById('3d-graph'))
-        .graphData(getPrunedTree())
-        .onNodeClick(node => {
-          node.collapsed = !node.collapsed; // toggle collapse state
-          Graph.graphData(getPrunedTree());
-        })
-        .linkDirectionalParticles(2)
-        .nodeColor(node => !node.childLinks.length ? 'green' : node.collapsed ? 'red' : 'yellow');
+    const elem = document.getElementById('3d-graph');
+    const Graph = ForceGraph3D()(elem)
+      .graphData(getPrunedTree())
+      .linkDirectionalParticles(2)
+      .nodeColor(node => !node.childLinks.length ? 'green' : node.collapsed ? 'red' : 'yellow')
+      .onNodeHover(node => elem.style.cursor = node && node.childLinks.length ? 'pointer' : null)
+      .onNodeClick(node => {
+        node.collapsed = !node.collapsed; // toggle collapse state
+        Graph.graphData(getPrunedTree());
+      });
   </script>
 </body>
