@@ -33,16 +33,14 @@
       const visibleNodes = [];
       const visibleLinks = [];
 
-      const traverseTree = node => {
+      (function traverseTree(node = nodesById[rootId]) {
         visibleNodes.push(node);
         if (node.collapsed) return;
         visibleLinks.push(...node.childLinks);
         node.childLinks
           .map(link => ((typeof link.target) === 'object') ? link.target : nodesById[link.target]) // get child node
           .forEach(traverseTree);
-      };
-
-      traverseTree(nodesById[rootId]);
+      })(); // IIFE
 
       return { nodes: visibleNodes, links: visibleLinks };
     };
