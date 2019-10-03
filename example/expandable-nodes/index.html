@@ -1,0 +1,58 @@
+<head>
+  <style> body { margin: 0; } </style>
+
+  <script src="//unpkg.com/3d-force-graph"></script>
+  <!--<script src="../../dist/3d-force-graph.js"></script>-->
+</head>
+
+<body>
+  <div id="3d-graph"></div>
+
+  <script>
+    // Random tree
+    const N = 300;
+    const gData = {
+      nodes: [...Array(N).keys()].map(i => ({ id: i, collapsed: i !== 0, childLinks: [] })),
+      links: [...Array(N).keys()]
+        .filter(id => id)
+        .map(id => ({
+          source: Math.round(Math.random() * (id - 1)),
+          target: id
+        }))
+    };
+
+    // link parent/children
+    const nodesById = Object.fromEntries(gData.nodes.map(node => [node.id, node]));
+    gData.links.forEach(link => {
+      nodesById[link.source].childLinks.push(link);
+    });
+
+    const pruneExpandableTree = ({ nodes, links }) => {
+      const visibleNodes = [];
+      const visibleLinks = [];
+
+      const traverseTree = node => {
+        visibleNodes.push(node);
+        if (node.collapsed) return;
+        visibleLinks.push(...node.childLinks);
+        node.childLinks
+          .map(link => ((typeof link.target) === 'object') ? link.target : nodesById[link.target]) // get child node
+          .forEach(traverseTree);
+      }
+
+      traverseTree(nodesById[0]);
+
+      return { nodes: visibleNodes, links: visibleLinks };
+    };
+
+    const Graph = ForceGraph3D()
+      (document.getElementById('3d-graph'))
+        .graphData(pruneExpandableTree(gData))
+        .onNodeClick(node => {
+          node.collapsed = !node.collapsed; // toggle collapse state
+          Graph.graphData(pruneExpandableTree(gData));
+        })
+        .linkDirectionalParticles(2)
+        .nodeColor(node => !node.childLinks.length ? 'green' : node.collapsed ? 'red' : 'yellow');
+  </script>
+</body>
