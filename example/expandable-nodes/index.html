@@ -9,10 +9,12 @@
   <div id="3d-graph"></div>
 
   <script>
+    const rootId = 0;
+
     // Random tree
     const N = 300;
     const gData = {
-      nodes: [...Array(N).keys()].map(i => ({ id: i, collapsed: i !== 0, childLinks: [] })),
+      nodes: [...Array(N).keys()].map(i => ({ id: i, collapsed: i !== rootId, childLinks: [] })),
       links: [...Array(N).keys()]
         .filter(id => id)
         .map(id => ({
@@ -40,7 +42,7 @@
           .forEach(traverseTree);
       };
 
-      traverseTree(nodesById[0]);
+      traverseTree(nodesById[rootId]);
 
       return { nodes: visibleNodes, links: visibleLinks };
     };
