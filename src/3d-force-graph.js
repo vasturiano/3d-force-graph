@@ -233,9 +233,6 @@ export default Kapsule({
             // lock node
             ['x', 'y', 'z'].forEach(c => node[`f${c}`] = node[c]);
 
-            // keep engine running at low intensity throughout drag
-            state.forceGraph.d3AlphaTarget(0.3);
-
             // drag cursor
             renderer.domElement.classList.add('grabbable');
           });
@@ -248,8 +245,9 @@ export default Kapsule({
             // Move fx/fy/fz (and x/y/z) of nodes based on object new position
             ['x', 'y', 'z'].forEach(c => node[`f${c}`] = node[c] = event.object.position[c]);
 
-            // prevent freeze while dragging
-            state.forceGraph.resetCountdown();
+            state.forceGraph
+              .d3AlphaTarget(0.3) // keep engine running at low intensity throughout drag
+              .resetCountdown();  // prevent freeze while dragging
 
             state.onNodeDrag(node);
           });
