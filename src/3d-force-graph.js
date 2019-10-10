@@ -219,7 +219,7 @@ export default Kapsule({
 
         if (state.enableNodeDrag && state.enablePointerInteraction && state.forceEngine === 'd3') { // Can't access node positions programatically in ngraph
           const dragControls = state._dragControls = new ThreeDragControls(
-            state.graphData.nodes.map(node => node.__threeObj),
+            state.graphData.nodes.map(node => node.__threeObj).filter(obj => obj),
             camera,
             renderer.domElement
           );
