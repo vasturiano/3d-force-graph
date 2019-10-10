@@ -249,6 +249,7 @@ export default Kapsule({
               .d3AlphaTarget(0.3) // keep engine running at low intensity throughout drag
               .resetCountdown();  // prevent freeze while dragging
 
+            node.__dragged = true;
             state.onNodeDrag(node);
           });
 
@@ -272,7 +273,10 @@ export default Kapsule({
               });
               delete(node.__initialFixedPos);
 
-              state.onNodeDragEnd(node);
+              if (node.__dragged) {
+                delete(node.__dragged);
+                state.onNodeDragEnd(node);
+              }
             }
 
             state.forceGraph
