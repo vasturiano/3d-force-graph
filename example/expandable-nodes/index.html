@@ -52,8 +52,10 @@
       .nodeColor(node => !node.childLinks.length ? 'green' : node.collapsed ? 'red' : 'yellow')
       .onNodeHover(node => elem.style.cursor = node && node.childLinks.length ? 'pointer' : null)
       .onNodeClick(node => {
-        node.collapsed = !node.collapsed; // toggle collapse state
-        Graph.graphData(getPrunedTree());
+        if (node.childLinks.length) {
+          node.collapsed = !node.collapsed; // toggle collapse state
+          Graph.graphData(getPrunedTree());
+        }
       });
   </script>
 </body>
