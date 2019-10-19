@@ -6,7 +6,7 @@ const three = window.THREE
 
 import ThreeDragControls from 'three-dragcontrols';
 import ThreeForceGraph from 'three-forcegraph';
-import ThreeRenderObjects from '../../three-render-objects/dist/three-render-objects';
+import ThreeRenderObjects from 'three-render-objects';
 
 import accessorFn from 'accessor-fn';
 import Kapsule from 'kapsule';
@@ -360,7 +360,7 @@ export default Kapsule({
           state.onBackgroundClick();
         }
       })
-      .onRightClick((obj, ev) => {
+      .onRightClick((obj,ev) => {
         // Handle right-click events
         const graphObj = getGraphObj(obj);
         if (graphObj) {
