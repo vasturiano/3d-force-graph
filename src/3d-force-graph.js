@@ -360,7 +360,7 @@ export default Kapsule({
           state.onBackgroundClick();
         }
       })
-      .onRightClick((obj,ev) => {
+      .onRightClick((obj, ev) => {
         // Handle right-click events
         const graphObj = getGraphObj(obj);
         if (graphObj) {
