@@ -6,7 +6,7 @@ const three = window.THREE
 
 import ThreeDragControls from 'three-dragcontrols';
 import ThreeForceGraph from 'three-forcegraph';
-import ThreeRenderObjects from 'three-render-objects';
+import ThreeRenderObjects from '../../three-render-objects/dist/three-render-objects';
 
 import accessorFn from 'accessor-fn';
 import Kapsule from 'kapsule';
@@ -345,7 +345,7 @@ export default Kapsule({
           state.hoverObj = hoverObj;
         }
       })
-      .onClick(obj => {
+      .onClick((obj, ev) => {
         // Handle click events on objects
         if (state.ignoreOneClick) {
           // f.e. because of dragend event
@@ -355,16 +355,16 @@ export default Kapsule({
 
         const graphObj = getGraphObj(obj);
         if (graphObj) {
-          state[`on${graphObj.__graphObjType === 'node' ? 'Node' : 'Link'}Click`](graphObj.__data);
+          state[`on${graphObj.__graphObjType === 'node' ? 'Node' : 'Link'}Click`](graphObj.__data, ev);
         } else {
           state.onBackgroundClick();
         }
       })
-      .onRightClick(obj => {
+      .onRightClick((obj, ev) => {
         // Handle right-click events
         const graphObj = getGraphObj(obj);
         if (graphObj) {
-          state[`on${graphObj.__graphObjType === 'node' ? 'Node' : 'Link'}RightClick`](graphObj.__data);
+          state[`on${graphObj.__graphObjType === 'node' ? 'Node' : 'Link'}RightClick`](graphObj.__data, ev);
         } else {
           state.onBackgroundRightClick();
         }
