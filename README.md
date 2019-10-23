@@ -172,16 +172,16 @@ ForceGraph3d({ configOptions })(<domElement>)
 
 | Method | Description | Default |
 | --- | --- | :--: |
-| <b>onNodeClick</b>(<i>fn</i>) | Callback function for node (left-button) clicks. The node object is included as single argument `onNodeClick(node)`. | - |
-| <b>onNodeRightClick</b>(<i>fn</i>) | Callback function for node right-clicks. The node object is included as single argument `onNodeRightClick(node)`. | - |
+| <b>onNodeClick</b>(<i>fn</i>) | Callback function for node (left-button) clicks. The node object and the event object are included as arguments `onNodeClick(node, event)`. | - |
+| <b>onNodeRightClick</b>(<i>fn</i>) | Callback function for node right-clicks. The node object and the event object are included as arguments `onNodeRightClick(node, event)`. | - |
 | <b>onNodeHover</b>(<i>fn</i>) | Callback function for node mouse over events. The node object (or `null` if there's no node under the mouse line of sight) is included as the first argument, and the previous node object (or null) as second argument: `onNodeHover(node, prevNode)`. | - |
-| <b>onNodeDrag</b>(<i>fn</i>) | Callback function for node drag interactions. This function is invoked repeatedly while dragging a node, every time its position is updated. The node object is included as single argument `onNodeDrag(node)`. | - |
-| <b>onNodeDragEnd</b>(<i>fn</i>) | Callback function for the end of node drag interactions. This function is invoked when the node is released. The node object is included as single argument `onNodeDragEnd(node)`. | - |
-| <b>onLinkClick</b>(<i>fn</i>) | Callback function for link (left-button) clicks. The link object is included as single argument `onLinkClick(link)`. | - |
-| <b>onLinkRightClick</b>(<i>fn</i>) | Callback function for link right-clicks. The link object is included as single argument `onLinkRightClick(link)`. | - |
+| <b>onNodeDrag</b>(<i>fn</i>) | Callback function for node drag interactions. This function is invoked repeatedly while dragging a node, every time its position is updated. The node object and the event object are included as arguments `onNodeDrag(node, event)`. | - |
+| <b>onNodeDragEnd</b>(<i>fn</i>) | Callback function for the end of node drag interactions. This function is invoked when the node is released. The node object and the event object are included as arguments `onNodeDragEnd(node, event)`. | - |
+| <b>onLinkClick</b>(<i>fn</i>) | Callback function for link (left-button) clicks. The link object and the event object are included as arguments `onLinkClick(link, event)`. | - |
+| <b>onLinkRightClick</b>(<i>fn</i>) | Callback function for link right-clicks. The link object and the event object are included as arguments `onLinkRightClick(link, event)`. | - |
 | <b>onLinkHover</b>(<i>fn</i>) | Callback function for link mouse over events. The link object (or `null` if there's no link under the mouse line of sight) is included as the first argument, and the previous link object (or null) as second argument: `onLinkHover(link, prevLink)`. | - |
-| <b>onBackgroundClick</b>(<i>fn</i>) | Callback function for click events on the empty space between the nodes and links. | - |
-| <b>onBackgroundRightClick</b>(<i>fn</i>) | Callback function for right-click events on the empty space between the nodes and links. | - |
+| <b>onBackgroundClick</b>(<i>fn</i>) | Callback function for click events on the empty space between the nodes and links. The event object is included as single argument `onBackgroundClick(event)`. | - |
+| <b>onBackgroundRightClick</b>(<i>fn</i>) | Callback function for right-click events on the empty space between the nodes and links. The event object is included as single argument `onBackgroundRightClick(event)`. | - |
 | <b>linkHoverPrecision</b>([<i>int</i>]) | Whether to display the link label when gazing the link closely (low value) or from far away (high value). | 1 |
 | <b>enablePointerInteraction</b>([<i>boolean</i>]) | Getter/setter for whether to enable the mouse tracking events. This activates an internal tracker of the canvas mouse position and enables the functionality of object hover/click and tooltip labels, at the cost of performance. If you're looking for maximum gain in your graph performance it's recommended to switch off this property. | `true` |
 | <b>enableNodeDrag</b>([<i>boolean</i>]) | Getter/setter for whether to enable the user interaction to drag nodes by click-dragging. Only supported on the `d3` force engine. If enabled, every time a node is dragged the simulation is re-heated so the other nodes react to the changes. Only applicable if enablePointerInteraction is `true` and using the `d3` force engine. | `true` |

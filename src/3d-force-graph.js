@@ -250,7 +250,7 @@ export default Kapsule({
               .resetCountdown();  // prevent freeze while dragging
 
             node.__dragged = true;
-            state.onNodeDrag(node);
+            state.onNodeDrag(node, event);
           });
 
           dragControls.addEventListener('dragend', function (event) {
@@ -275,7 +275,7 @@ export default Kapsule({
 
               if (node.__dragged) {
                 delete(node.__dragged);
-                state.onNodeDragEnd(node);
+                state.onNodeDragEnd(node, event);
               }
             }
 
@@ -345,7 +345,7 @@ export default Kapsule({
           state.hoverObj = hoverObj;
         }
       })
-      .onClick(obj => {
+      .onClick((obj, ev) => {
         // Handle click events on objects
         if (state.ignoreOneClick) {
           // f.e. because of dragend event
@@ -355,18 +355,18 @@ export default Kapsule({
 
         const graphObj = getGraphObj(obj);
         if (graphObj) {
-          state[`on${graphObj.__graphObjType === 'node' ? 'Node' : 'Link'}Click`](graphObj.__data);
+          state[`on${graphObj.__graphObjType === 'node' ? 'Node' : 'Link'}Click`](graphObj.__data, ev);
         } else {
-          state.onBackgroundClick();
+          state.onBackgroundClick(ev);
         }
       })
-      .onRightClick(obj => {
+      .onRightClick((obj, ev) => {
         // Handle right-click events
         const graphObj = getGraphObj(obj);
         if (graphObj) {
-          state[`on${graphObj.__graphObjType === 'node' ? 'Node' : 'Link'}RightClick`](graphObj.__data);
+          state[`on${graphObj.__graphObjType === 'node' ? 'Node' : 'Link'}RightClick`](graphObj.__data, ev);
         } else {
-          state.onBackgroundRightClick();
+          state.onBackgroundRightClick(ev);
         }
       });
 
