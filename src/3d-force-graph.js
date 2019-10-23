@@ -250,7 +250,7 @@ export default Kapsule({
               .resetCountdown();  // prevent freeze while dragging
 
             node.__dragged = true;
-            state.onNodeDrag(node, event);
+            state.onNodeDrag(node);
           });
 
           dragControls.addEventListener('dragend', function (event) {
@@ -275,7 +275,7 @@ export default Kapsule({
 
               if (node.__dragged) {
                 delete(node.__dragged);
-                state.onNodeDragEnd(node, event);
+                state.onNodeDragEnd(node);
               }
             }
 
