@@ -357,7 +357,7 @@ export default Kapsule({
         if (graphObj) {
           state[`on${graphObj.__graphObjType === 'node' ? 'Node' : 'Link'}Click`](graphObj.__data, ev);
         } else {
-          state.onBackgroundClick();
+          state.onBackgroundClick(ev);
         }
       })
       .onRightClick((obj, ev) => {
@@ -366,7 +366,7 @@ export default Kapsule({
         if (graphObj) {
           state[`on${graphObj.__graphObjType === 'node' ? 'Node' : 'Link'}RightClick`](graphObj.__data, ev);
         } else {
-          state.onBackgroundRightClick();
+          state.onBackgroundRightClick(ev);
         }
       });
 
