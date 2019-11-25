@@ -40,7 +40,7 @@ Check out the examples:
 * [Add external objects to scene](https://vasturiano.github.io/3d-force-graph/example/scene/) ([source](https://github.com/vasturiano/3d-force-graph/blob/master/example/scene/index.html))
 * [Pause / Resume animation](https://vasturiano.github.io/3d-force-graph/example/pause-resume/) ([source](https://github.com/vasturiano/3d-force-graph/blob/master/example/pause-resume/index.html))
 
-See also the [VR version](https://github.com/vasturiano/3d-force-graph-vr) and the [2D canvas version](https://github.com/vasturiano/force-graph).
+See also the [2D canvas version](https://github.com/vasturiano/force-graph), [VR version](https://github.com/vasturiano/3d-force-graph-vr) and [AR version](https://github.com/vasturiano/3d-force-graph-ar).
 
 And check out the [React bindings](https://github.com/vasturiano/react-force-graph).
 
