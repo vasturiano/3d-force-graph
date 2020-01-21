@@ -188,6 +188,12 @@ ForceGraph3d({ configOptions })(<domElement>)
 | <b>enableNodeDrag</b>([<i>boolean</i>]) | Getter/setter for whether to enable the user interaction to drag nodes by click-dragging. Only supported on the `d3` force engine. If enabled, every time a node is dragged the simulation is re-heated so the other nodes react to the changes. Only applicable if enablePointerInteraction is `true` and using the `d3` force engine. | `true` |
 | <b>enableNavigationControls</b>([<i>boolean</i>]) | Getter/setter for whether to enable the trackball navigation controls used to move the camera using mouse interactions (rotate/zoom/pan). | `true` |
 
+###  Utility
+
+| Method | Description |
+| --- | --- |
+| <b>graph2ScreenCoords</b>(<i>x</i>, <i>y</i>, <i>z</i>) | Utility method to translate node coordinates to the viewport domain. Given a set of `x`,`y`,`z` graph coordinates, returns the current equivalent `{x, y}` in viewport coordinates. |
+
 ### Input JSON syntax
 ```
 {

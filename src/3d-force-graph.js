@@ -1,8 +1,8 @@
-import { AmbientLight, DirectionalLight } from 'three';
+import { AmbientLight, DirectionalLight, Vector3 } from 'three';
 
 const three = window.THREE
   ? window.THREE // Prefer consumption from global THREE, if exists
-  : { AmbientLight, DirectionalLight };
+  : { AmbientLight, DirectionalLight, Vector3 };
 
 import ThreeDragControls from 'three-dragcontrols';
 import ThreeForceGraph from 'three-forcegraph';
@@ -123,6 +123,14 @@ export default Kapsule({
   },
 
   methods: {
+    graph2ScreenCoords: function(state, x, y, z) {
+      const vec = new three.Vector3(x, y, z);
+      vec.project(this.camera()); // project to the camera plane
+      return { // align relative pos to canvas dimensions
+        x: (vec.x + 1) * state.width / 2,
+        y: -(vec.y - 1) * state.height / 2,
+      };
+    },
     pauseAnimation: function(state) {
       if (state.animationFrameRequestId !== null) {
         cancelAnimationFrame(state.animationFrameRequestId);
