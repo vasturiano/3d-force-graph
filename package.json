@@ -1,6 +1,6 @@
 {
   "name": "3d-force-graph",
-  "version": "1.56.6",
+  "version": "1.57.0",
   "description": "UI component for a 3D force-directed graph using ThreeJS and d3-force-3d layout engine",
   "unpkg": "dist/3d-force-graph.min.js",
   "main": "dist/3d-force-graph.common.js",
@@ -43,21 +43,21 @@
     "three": "^0.111.0",
     "three-dragcontrols": "^0.88.2",
     "three-forcegraph": "^1.29.5",
-    "three-render-objects": "^1.9.0"
+    "three-render-objects": "^1.12.1"
   },
   "devDependencies": {
-    "@babel/core": "^7.7.5",
+    "@babel/core": "^7.7.7",
     "@babel/plugin-proposal-class-properties": "^7.7.4",
-    "@babel/plugin-proposal-object-rest-spread": "^7.7.4",
-    "@babel/preset-env": "^7.7.6",
+    "@babel/plugin-proposal-object-rest-spread": "^7.7.7",
+    "@babel/preset-env": "^7.7.7",
     "postcss-nested": "^4.2.1",
     "postcss-simple-vars": "^5.0.2",
     "rimraf": "^3.0.0",
-    "rollup": "^1.27.12",
+    "rollup": "^1.28.0",
     "rollup-plugin-babel": "^4.3.3",
     "rollup-plugin-commonjs": "^10.1.0",
     "rollup-plugin-node-resolve": "^5.2.0",
     "rollup-plugin-postcss": "^2.0.3",
-    "terser": "^4.4.2"
+    "terser": "^4.6.1"
   }
 }
