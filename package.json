@@ -40,24 +40,24 @@
   "dependencies": {
     "accessor-fn": "^1.2.2",
     "kapsule": "^1.12.1",
-    "three": "^0.112.1",
+    "three": "^0.113.2",
     "three-dragcontrols": "^0.88.2",
     "three-forcegraph": "^1.29.5",
-    "three-render-objects": "^1.12.1"
+    "three-render-objects": "^1.12.2"
   },
   "devDependencies": {
-    "@babel/core": "^7.8.3",
+    "@babel/core": "^7.8.4",
     "@babel/plugin-proposal-class-properties": "^7.8.3",
     "@babel/plugin-proposal-object-rest-spread": "^7.8.3",
-    "@babel/preset-env": "^7.8.3",
+    "@babel/preset-env": "^7.8.4",
     "postcss-nested": "^4.2.1",
     "postcss-simple-vars": "^5.0.2",
-    "rimraf": "^3.0.0",
-    "rollup": "^1.29.1",
+    "rimraf": "^3.0.1",
+    "rollup": "^1.31.0",
     "rollup-plugin-babel": "^4.3.3",
     "rollup-plugin-commonjs": "^10.1.0",
     "rollup-plugin-node-resolve": "^5.2.0",
-    "rollup-plugin-postcss": "^2.0.3",
+    "rollup-plugin-postcss": "^2.0.6",
     "terser": "^4.6.3"
   }
 }
