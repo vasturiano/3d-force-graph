@@ -238,6 +238,7 @@ export default Kapsule({
 
             const node = event.object.__data;
             !node.__initialFixedPos && (node.__initialFixedPos = {fx: node.fx, fy: node.fy, fz: node.fz});
+            !node.__initialPos && (node.__initialPos = {x: node.x, y: node.y, z: node.z});
 
             // lock node
             ['x', 'y', 'z'].forEach(c => node[`f${c}`] = node[c]);
@@ -250,16 +251,17 @@ export default Kapsule({
             state.ignoreOneClick = true; // Don't click the node if it's being dragged
 
             const node = event.object.__data;
-
+            const newPos = event.object.position;
+            const transform = {x: newPos.x - node.x, y: newPos.y - node.y, z: newPos.z - node.z}
             // Move fx/fy/fz (and x/y/z) of nodes based on object new position
-            ['x', 'y', 'z'].forEach(c => node[`f${c}`] = node[c] = event.object.position[c]);
+            ['x', 'y', 'z'].forEach(c => node[`f${c}`] = node[c] = newPos[c]);
 
             state.forceGraph
               .d3AlphaTarget(0.3) // keep engine running at low intensity throughout drag
               .resetCountdown();  // prevent freeze while dragging
 
             node.__dragged = true;
-            state.onNodeDrag(node);
+            state.onNodeDrag(node, transform);
           });
 
           dragControls.addEventListener('dragend', function (event) {
@@ -271,20 +273,21 @@ export default Kapsule({
               delete(node.__disposeControlsAfterDrag);
             }
 
-            const initPos = node.__initialFixedPos;
-
-            if (initPos) {
+            const initFixedPos = node.__initialFixedPos;
+            const initPos = node.__initialPos;
+            const transform = {x: initPos.x - node.x, y: initPos.y - node.y, z: initPos.z - node.z}
+            if (initFixedPos) {
               ['x', 'y', 'z'].forEach(c => {
                 const fc = `f${c}`;
-                if (initPos[fc] === undefined) {
+                if (initFixedPos[fc] === undefined) {
                   delete(node[fc])
                 }
               });
               delete(node.__initialFixedPos);
-
+              delete(node.__initialPos);
               if (node.__dragged) {
                 delete(node.__dragged);
-                state.onNodeDragEnd(node);
+                state.onNodeDragEnd(node, transform);
               }
             }
 
