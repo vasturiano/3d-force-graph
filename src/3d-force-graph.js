@@ -252,7 +252,7 @@ export default Kapsule({
 
             const node = event.object.__data;
             const newPos = event.object.position;
-            const transform = {x: newPos.x - node.x, y: newPos.y - node.y, z: newPos.z - node.z}
+            const translate = {x: newPos.x - node.x, y: newPos.y - node.y, z: newPos.z - node.z};
             // Move fx/fy/fz (and x/y/z) of nodes based on object new position
             ['x', 'y', 'z'].forEach(c => node[`f${c}`] = node[c] = newPos[c]);
 
@@ -261,7 +261,7 @@ export default Kapsule({
               .resetCountdown();  // prevent freeze while dragging
 
             node.__dragged = true;
-            state.onNodeDrag(node, transform);
+            state.onNodeDrag(node, translate);
           });
 
           dragControls.addEventListener('dragend', function (event) {
@@ -275,7 +275,7 @@ export default Kapsule({
 
             const initFixedPos = node.__initialFixedPos;
             const initPos = node.__initialPos;
-            const transform = {x: initPos.x - node.x, y: initPos.y - node.y, z: initPos.z - node.z}
+            const translate = {x: initPos.x - node.x, y: initPos.y - node.y, z: initPos.z - node.z};
             if (initFixedPos) {
               ['x', 'y', 'z'].forEach(c => {
                 const fc = `f${c}`;
@@ -287,7 +287,7 @@ export default Kapsule({
               delete(node.__initialPos);
               if (node.__dragged) {
                 delete(node.__dragged);
-                state.onNodeDragEnd(node, transform);
+                state.onNodeDragEnd(node, translate);
               }
             }
 
