@@ -45,21 +45,21 @@
     "three": "^0.114.0",
     "three-dragcontrols": "^0.88.2",
     "three-forcegraph": "^1.30.0",
-    "three-render-objects": "^1.12.2"
+    "three-render-objects": "^1.12.3"
   },
   "devDependencies": {
     "@babel/core": "^7.8.7",
     "@babel/plugin-proposal-class-properties": "^7.8.3",
     "@babel/plugin-proposal-object-rest-spread": "^7.8.3",
     "@babel/preset-env": "^7.8.7",
+    "@rollup/plugin-commonjs": "^11.0.2",
+    "@rollup/plugin-node-resolve": "^7.1.1",
     "postcss-nested": "^4.2.1",
     "postcss-simple-vars": "^5.0.2",
     "rimraf": "^3.0.2",
-    "rollup": "^1.32.0",
-    "rollup-plugin-babel": "^4.3.3",
-    "rollup-plugin-commonjs": "^10.1.0",
-    "rollup-plugin-node-resolve": "^5.2.0",
-    "rollup-plugin-postcss": "^2.2.0",
+    "rollup": "^2.0.4",
+    "rollup-plugin-babel": "^4.4.0",
+    "rollup-plugin-postcss": "^2.4.1",
     "terser": "^4.6.6"
   }
 }

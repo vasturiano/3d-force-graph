@@ -1,5 +1,5 @@
-import resolve from 'rollup-plugin-node-resolve';
-import commonJs from 'rollup-plugin-commonjs';
+import resolve from '@rollup/plugin-node-resolve';
+import commonJs from '@rollup/plugin-commonjs';
 import postCss from 'rollup-plugin-postcss';
 import postCssSimpleVars from 'postcss-simple-vars';
 import postCssNested from 'postcss-nested';
