@@ -41,10 +41,10 @@
   ],
   "dependencies": {
     "accessor-fn": "^1.2.2",
-    "kapsule": "^1.12.1",
+    "kapsule": "^1.12.2",
     "three": "^0.114.0",
     "three-dragcontrols": "^0.88.2",
-    "three-forcegraph": "^1.30.0",
+    "three-forcegraph": "^1.31.0",
     "three-render-objects": "^1.12.3"
   },
   "devDependencies": {
@@ -57,7 +57,7 @@
     "postcss-nested": "^4.2.1",
     "postcss-simple-vars": "^5.0.2",
     "rimraf": "^3.0.2",
-    "rollup": "^2.0.4",
+    "rollup": "^2.0.6",
     "rollup-plugin-babel": "^4.4.0",
     "rollup-plugin-postcss": "^2.4.1",
     "terser": "^4.6.6"
