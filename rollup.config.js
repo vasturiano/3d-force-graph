@@ -8,22 +8,24 @@ import { terser } from "rollup-plugin-terser";
 import dts from 'rollup-plugin-dts';
 import { name, homepage, version, dependencies } from './package.json';
 
+const umdConf = {
+  format: 'umd',
+  name: 'ForceGraph3D',
+  banner: `// Version ${version} ${name} - ${homepage}`
+};
+
 export default [
   { // UMD
     input: 'src/index.js',
     output: [
       {
-        format: 'umd',
-        name: 'ForceGraph3D',
+        ...umdConf,
         file: `dist/${name}.js`,
-        sourcemap: true,
-        banner: `// Version ${version} ${name} - ${homepage}`
+        sourcemap: true
       },
       { // minify
-        format: 'umd',
-        name: 'ForceGraph3D',
+        ...umdConf,
         file: `dist/${name}.min.js`,
-        banner: `// Version ${version} ${name} - ${homepage}`,
         plugins: [terser({
           output: { comments: '/Version/' }
         })]
