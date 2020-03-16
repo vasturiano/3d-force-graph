@@ -793,10 +793,10 @@
   dependencies:
     "@types/node" "*"
 
-accessor-fn@^1.2.2:
-  version "1.2.2"
-  resolved "https://registry.yarnpkg.com/accessor-fn/-/accessor-fn-1.2.2.tgz#dd52c271465388b29764ab79f2222dedd11e49b2"
-  integrity sha1-3VLCcUZTiLKXZKt58iIt7dEeSbI=
+accessor-fn@^1.2.2, accessor-fn@^1.2.3:
+  version "1.2.3"
+  resolved "https://registry.yarnpkg.com/accessor-fn/-/accessor-fn-1.2.3.tgz#9688ff8ee166a0f8eff2c62733e6e5d2127559e9"
+  integrity sha512-lxRL35pP3IiYTXBIeO3SM62SdmXxm6Oc56BbQhNTUa/yEGHmib/SrJYO39y991vUg1jpA1WfvTBTXaB/iruMrw==
 
 alphanum-sort@^1.0.0:
   version "1.0.2"
@@ -1246,11 +1246,11 @@ d3-timer@^1.0.10:
   integrity sha512-B1JDm0XDaQC+uvo4DT79H0XmBskgS3l6Ve+1SBCfxgmtIb1AVrPIoqd+nPSv+loMX8szQ0sVUhGngL7D5QPiXw==
 
 data-joint@^1.2.1:
-  version "1.2.1"
-  resolved "https://registry.yarnpkg.com/data-joint/-/data-joint-1.2.1.tgz#b624ff28bf71388c5a40cc03fdef4d27b12e6bf3"
-  integrity sha512-b+PfObWOlt+R/FHd0zADUOyQw1NNGzlTe/e5YhiWtdSF+ytMMIYO/DI2FLYmZZohlvXDdD/ECF3x68YZHi+dTQ==
+  version "1.2.2"
+  resolved "https://registry.yarnpkg.com/data-joint/-/data-joint-1.2.2.tgz#ce60fe290155cc0a50dd90a4c78d6edff4c5357e"
+  integrity sha512-mIZJT/EsCkJ5wgeIVsSr8qBM7pQKsV3BZDTOQQcgLbGyfNQ+PMH4KpMX3/lYknHSpOV0Bn2NEOKtZsa7EFwJaw==
   dependencies:
-    index-array-by "^1.2.6"
+    index-array-by "^1.2.9"
 
 debounce@^1.2.0:
   version "1.2.0"
@@ -1502,7 +1502,7 @@ import-from@^2.1.0:
   dependencies:
     resolve-from "^3.0.0"
 
-index-array-by@^1.2.6:
+index-array-by@^1.2.9:
   version "1.2.9"
   resolved "https://registry.yarnpkg.com/index-array-by/-/index-array-by-1.2.9.tgz#31e7b098dfc2a971216684c58f97e4f1ef3a1076"
   integrity sha512-AaaAEqXelYBp2Lj0E7f3I1mU2jt+4gKYkpmTaXZKS5wJbqdzRZ9C9lDnTITRCysKcQVOfEWlhbEz6VJ8O85vdQ==
@@ -1659,7 +1659,7 @@ json5@^2.1.0:
   dependencies:
     minimist "^1.2.0"
 
-kapsule@^1.12.1, kapsule@^1.12.2:
+kapsule@^1.12.2:
   version "1.12.2"
   resolved "https://registry.yarnpkg.com/kapsule/-/kapsule-1.12.2.tgz#c93d3bc122cd9856eee0c583233322181bdaa273"
   integrity sha512-uL7KUEcR2l6kHn2+Ogmym4SxaT5kwzGvV63YM6AB7IL6ZZ7/UeLxQAseD/azAhnMLww1LqqB2PWNom5ioEbhxg==
@@ -2605,10 +2605,10 @@ three-dragcontrols@^0.88.2:
   resolved "https://registry.yarnpkg.com/three-dragcontrols/-/three-dragcontrols-0.88.2.tgz#e4b292657b8afffd00e573401da777dfd5dd5cd5"
   integrity sha512-Qqhbo7+K5TAeqlYlUiI0EBp14uI9nbgoLANas3p4v4kz3h5HmOlComV9UhLI2x3BtdCdcHSuiyDL7sTrtP772w==
 
-three-fly-controls@^1.1.0:
-  version "1.1.0"
-  resolved "https://registry.yarnpkg.com/three-fly-controls/-/three-fly-controls-1.1.0.tgz#8ea796da94ac017f5ea44ec015b1db5e19a42bd0"
-  integrity sha1-jqeW2pSsAX9epE7AFbHbXhmkK9A=
+three-fly-controls@^2.0.0:
+  version "2.0.0"
+  resolved "https://registry.yarnpkg.com/three-fly-controls/-/three-fly-controls-2.0.0.tgz#fc2e4d38a786ef3b1a035a03c39de075f8d4263d"
+  integrity sha512-0Ef+gtqprBBo8/7CRB0r4rLM02Y7GjUBeQ36D1G63nRQGXgBrh1H/yMUWRDz5586Z0bdzg+STUhiv8kSmPD58w==
 
 three-forcegraph@^1.31.0:
   version "1.31.0"
@@ -2631,16 +2631,16 @@ three-orbit-controls@^82.1.0:
   resolved "https://registry.yarnpkg.com/three-orbit-controls/-/three-orbit-controls-82.1.0.tgz#11a7f33d0a20ecec98f098b37780f6537374fab4"
   integrity sha1-EafzPQog7OyY8Jizd4D2U3N0+rQ=
 
-three-render-objects@^1.12.3:
-  version "1.12.3"
-  resolved "https://registry.yarnpkg.com/three-render-objects/-/three-render-objects-1.12.3.tgz#a8636bb9aa04569cf023a36bbd1c8e5685470067"
-  integrity sha512-JI9hkz2Q8da6uL9vNEzWEWdyb9pV1CTaTOtbrysvc8DF7xe3XjE/MEtV5BawKfWrBgwpRXHIVEOCRXj5K/jHQQ==
+three-render-objects@^1.12.6:
+  version "1.12.6"
+  resolved "https://registry.yarnpkg.com/three-render-objects/-/three-render-objects-1.12.6.tgz#1216f838bdf7990c3a6d17a9e17a200a28c96033"
+  integrity sha512-6pDKwOlzBA92hJ1Gm70j4CqxbQsnrEZAapkkhaOpd382mUm4anyiqaJPfHzYFMFrDCMgLENU2OPsaHUQSa3yEA==
   dependencies:
     "@tweenjs/tween.js" "^18.5.0"
-    accessor-fn "^1.2.2"
-    kapsule "^1.12.1"
+    accessor-fn "^1.2.3"
+    kapsule "^1.12.2"
     polished "^3.4.4"
-    three-fly-controls "^1.1.0"
+    three-fly-controls "^2.0.0"
     three-orbit-controls "^82.1.0"
     three-trackballcontrols "^0.0.8"
 
