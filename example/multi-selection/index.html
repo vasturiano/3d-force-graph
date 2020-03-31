@@ -10,7 +10,7 @@
 
   <script>
     // Random tree
-    const N = 80;
+    const N = 40;
     const gData = {
       nodes: [...Array(N).keys()].map(i => ({ id: i })),
       links: [...Array(N).keys()]
@@ -26,6 +26,7 @@
     const Graph = ForceGraph3D()
       (document.getElementById('3d-graph'))
         .graphData(gData)
+        .nodeRelSize(9)
         .nodeColor(node => selectedNodes.has(node) ? 'yellow' : 'grey')
         .onNodeClick((node, event) => {
           if (event.ctrlKey || event.shiftKey || event.altKey) { // multi-selection
