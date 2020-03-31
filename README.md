@@ -31,6 +31,7 @@ Check out the examples:
 * [Click to expand/collapse nodes](https://vasturiano.github.io/3d-force-graph/example/expandable-nodes/) ([source](https://github.com/vasturiano/3d-force-graph/blob/master/example/expandable-nodes/index.html))
 * [Fix nodes after dragging](https://vasturiano.github.io/3d-force-graph/example/fix-dragged-nodes/) ([source](https://github.com/vasturiano/3d-force-graph/blob/master/example/fix-dragged-nodes/index.html))
 * [Highlight nodes/links](https://vasturiano.github.io/3d-force-graph/example/highlight/) ([source](https://github.com/vasturiano/3d-force-graph/blob/master/example/highlight/index.html))
+* [Multiple Node Selection](https://vasturiano.github.io/3d-force-graph/example/multi-selection/) ([source](https://github.com/vasturiano/3d-force-graph/blob/master/example/multi-selection/index.html))
 * [Dynamic data changes](https://vasturiano.github.io/3d-force-graph/example/dynamic/) ([source](https://github.com/vasturiano/3d-force-graph/blob/master/example/dynamic/index.html))
 * [Node collision detection](https://vasturiano.github.io/3d-force-graph/example/collision-detection/) ([source](https://github.com/vasturiano/3d-force-graph/blob/master/example/collision-detection/index.html))
 * [Manipulate link force distance](https://vasturiano.github.io/3d-force-graph/example/manipulate-link-force/) ([source](https://github.com/vasturiano/3d-force-graph/blob/master/example/manipulate-link-force/index.html))
