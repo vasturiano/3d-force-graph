@@ -1,0 +1,77 @@
+<head>
+  <link rel="stylesheet" href="./style.css" />
+
+  <!-- <script src="//unpkg.com/3d-force-graph"></script> -->
+  <script src="../../dist/3d-force-graph.js"></script>
+</head>
+
+<body>
+  <div id="3d-graph"></div>
+
+  <div id="left-indicators">
+    <div id="alpha-label" class="indicator">
+      <span id="alpha">Alpha:</span>
+      <span id="alpha-value"></span>
+    </div>
+
+    <div id="engine-running" class="indicator">
+      Engine running!
+    </div>
+  </div>
+
+  <div id="right-buttons">
+    <button id="reset" class="button">Reset</button>
+
+    <input type="number" class="button" id="alpha-input" step="0.0001" max="0.999" min="0.000000000001" value="0.0001"></input>
+  </div>
+
+  <script>
+    let lastId = 0;
+
+    // Random tree
+    function generateData() {
+      const N = Math.floor(Math.random() * 500) + 200;
+
+      const data = {
+        nodes: [...Array(N).keys()].map((i) => ({ id: lastId + i })),
+        links: [...Array(N).keys()]
+          .filter((i) => i)
+          .map((i) => lastId + i)
+          .map((id) => {
+            return {
+              source: id,
+              target: Math.floor(Math.random() * ((id - 1) - lastId)) + lastId,
+            }
+          }),
+      }
+
+      lastId += data.nodes.length + 1;
+
+      return data;
+    };
+
+    const Graph = ForceGraph3D()(document.getElementById("3d-graph"))
+      .graphData(generateData())
+      .cooldownAlpha(document.getElementById('alpha-input').value)
+      .onEngineTick(() => updateLabel())
+      .onEngineStop(() => stopEngine());
+
+    document.getElementById('reset').addEventListener('click', () => {
+      document.getElementById("engine-running").classList.remove("stop");
+      document.getElementById("engine-running").innerText = "Engine running!";
+      Graph.cooldownAlpha(document.getElementById('alpha-input').value)
+      Graph.graphData(generateData());
+    });
+
+    function updateLabel() {
+      document.getElementById(
+        "alpha-value"
+      ).innerText = Graph.alpha().toString();
+    }
+
+    function stopEngine() {
+      document.getElementById("engine-running").classList.add("stop");
+      document.getElementById("engine-running").innerText = "Engine stopped!";
+    }
+  </script>
+</body>

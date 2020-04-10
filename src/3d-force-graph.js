@@ -66,6 +66,7 @@ const linkedFGProps = Object.assign(...[
   'warmupTicks',
   'cooldownTicks',
   'cooldownTime',
+  'cooldownAlpha',
   'onEngineTick',
   'onEngineStop'
 ].map(p => ({ [p]: bindFG.linkProp(p)})));
@@ -73,7 +74,8 @@ const linkedFGMethods = Object.assign(...[
   'refresh',
   'd3Force',
   'd3ReheatSimulation',
-  'emitParticle'
+  'emitParticle',
+  'alpha'
 ].map(p => ({ [p]: bindFG.linkMethod(p)})));
 
 // Expose config from renderObjs
