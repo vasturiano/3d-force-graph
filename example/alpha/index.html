@@ -7,17 +7,6 @@
 <body>
   <div id="3d-graph"></div>
 
-  <div id="left-indicators">
-    <div id="alpha-label" class="indicator">
-      <span id="alpha">Alpha:</span>
-      <span id="alpha-value"></span>
-    </div>
-
-    <div id="engine-running" class="indicator">
-      Engine running!
-    </div>
-  </div>
-
   <div id="right-buttons">
     <button id="reset" class="button">Reset</button>
 
@@ -29,7 +18,7 @@
 
     // Random tree
     function generateData() {
-      const N = Math.floor(Math.random() * 500) + 200;
+      const N = 300;
 
       const data = {
         nodes: [...Array(N).keys()].map((i) => ({ id: lastId + i })),
@@ -52,26 +41,11 @@
     const Graph = ForceGraph3D()(document.getElementById("3d-graph"))
       .graphData(generateData())
       .cooldownTime(Infinity)
-      .d3AlphaMin(document.getElementById('alpha-input').value)
-      .onEngineTick(() => updateLabel())
-      .onEngineStop(() => stopEngine());
+      .d3AlphaMin(document.getElementById('alpha-input').value);
 
     document.getElementById('reset').addEventListener('click', () => {
-      document.getElementById("engine-running").classList.remove("stop");
-      document.getElementById("engine-running").innerText = "Engine running!";
       Graph.d3AlphaMin(document.getElementById('alpha-input').value)
       Graph.graphData(generateData());
     });
-
-    function updateLabel() {
-      document.getElementById(
-        "alpha-value"
-      ).innerText = Graph.d3Alpha().toString();
-    }
-
-    function stopEngine() {
-      document.getElementById("engine-running").classList.add("stop");
-      document.getElementById("engine-running").innerText = "Engine stopped!";
-    }
   </script>
 </body>
