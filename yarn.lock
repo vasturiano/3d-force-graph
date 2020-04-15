@@ -1848,7 +1848,7 @@ ngraph.forcelayout@^1.0.0:
     ngraph.events "^1.0.0"
     ngraph.physics.simulator "^1.0.0"
 
-ngraph.graph@^19.0.4:
+ngraph.graph@^19.1.0:
   version "19.1.0"
   resolved "https://registry.yarnpkg.com/ngraph.graph/-/ngraph.graph-19.1.0.tgz#88910ed53f6b4bc374f1b67296f4f81aab814e24"
   integrity sha512-9cws84qfPkrYa7BaBtT+KgZfLXrd6pNL9Gl5Do+MBO/0Hm6rOM7qK78MZaO1uEoIK6p2pgUs6lu29zn/6tP59w==
@@ -2738,10 +2738,10 @@ three-fly-controls@^2.0.0:
   resolved "https://registry.yarnpkg.com/three-fly-controls/-/three-fly-controls-2.0.0.tgz#fc2e4d38a786ef3b1a035a03c39de075f8d4263d"
   integrity sha512-0Ef+gtqprBBo8/7CRB0r4rLM02Y7GjUBeQ36D1G63nRQGXgBrh1H/yMUWRDz5586Z0bdzg+STUhiv8kSmPD58w==
 
-three-forcegraph@^1.31.4:
-  version "1.31.4"
-  resolved "https://registry.yarnpkg.com/three-forcegraph/-/three-forcegraph-1.31.4.tgz#91305611650504d9edd878b930f10c4145b7220d"
-  integrity sha512-ue5zLajv2Z8fbhAl5hkaXazM2p17SOArAXRUpEzei1fVihpBq3tj7Ld1HBkQ9prM95R4Y7QbaFQRQsBfjMP7ow==
+three-forcegraph@^1.32.0:
+  version "1.32.0"
+  resolved "https://registry.yarnpkg.com/three-forcegraph/-/three-forcegraph-1.32.0.tgz#26900dfa82fed37174de0f2c18cb55b09c346677"
+  integrity sha512-qptGSCHWYAFDcT4SzsWrtf9/woGsF/g472QvAYwjwQB3BESIDzN4bAkCm1zxwiB2eYkpp+eR1ACruwZ1dyActw==
   dependencies:
     accessor-fn "^1.3.0"
     d3-force-3d "^2.1.0"
@@ -2751,7 +2751,7 @@ three-forcegraph@^1.31.4:
     kapsule "^1.13.3"
     ngraph.forcelayout "^1.0.0"
     ngraph.forcelayout3d "^1.0.0"
-    ngraph.graph "^19.0.4"
+    ngraph.graph "^19.1.0"
     tinycolor2 "^1.4.1"
 
 three-orbit-controls@^82.1.0:
