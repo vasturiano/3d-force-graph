@@ -63,6 +63,7 @@ const linkedFGProps = Object.assign(...[
   'forceEngine',
   'd3AlphaDecay',
   'd3VelocityDecay',
+  'd3AlphaMin',
   'warmupTicks',
   'cooldownTicks',
   'cooldownTime',
