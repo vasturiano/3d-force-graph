@@ -21,30 +21,57 @@
         }))
     };
 
-    let highlightNodes = [];
-    let highlightLink = null;
+    // cross-link node objects
+    gData.links.forEach(link => {
+      const a = gData.nodes[link.source];
+      const b = gData.nodes[link.target];
+      !a.neighbors && (a.neighbors = []);
+      !b.neighbors && (b.neighbors = []);
+      a.neighbors.push(b);
+      b.neighbors.push(a);
+
+      !a.links && (a.links = []);
+      !b.links && (b.links = []);
+      a.links.push(link);
+      b.links.push(link);
+    });
+
+    const highlightNodes = new Set();
+    const highlightLinks = new Set();
+    let hoverNode = null;
 
     const Graph = ForceGraph3D()
       (document.getElementById('3d-graph'))
         .graphData(gData)
-        .nodeColor(node => highlightNodes.indexOf(node) === -1 ? 'rgba(0,255,255,0.6)' : 'rgb(255,0,0,1)')
-        .linkWidth(link => link === highlightLink ? 4 : 1)
-        .linkDirectionalParticles(link => link === highlightLink ? 4 : 0)
+        .nodeColor(node => highlightNodes.has(node) ? node === hoverNode ? 'rgb(255,0,0,1)' : 'rgba(255,160,0,0.8)' : 'rgba(0,255,255,0.6)')
+        .linkWidth(link => highlightLinks.has(link) ? 4 : 1)
+        .linkDirectionalParticles(link => highlightLinks.has(link) ? 4 : 0)
         .linkDirectionalParticleWidth(4)
         .onNodeHover(node => {
           // no state change
-          if ((!node && !highlightNodes.length) || (highlightNodes.length === 1 && highlightNodes[0] === node)) return;
+          if ((!node && !highlightNodes.size) || (node && hoverNode === node)) return;
 
-          highlightNodes = node ? [node] : [];
+          highlightNodes.clear();
+          highlightLinks.clear();
+          if (node) {
+            highlightNodes.add(node);
+            node.neighbors.forEach(neighbor => highlightNodes.add(neighbor));
+            node.links.forEach(link => highlightLinks.add(link));
+          }
+
+          hoverNode = node || null;
 
           updateHighlight();
         })
         .onLinkHover(link => {
-          // no state change
-          if (highlightLink === link) return;
+          highlightNodes.clear();
+          highlightLinks.clear();
 
-          highlightLink = link;
-          highlightNodes = link ? [link.source, link.target] : [];
+          if (link) {
+            highlightLinks.add(link);
+            highlightNodes.add(link.source);
+            highlightNodes.add(link.target);
+          }
 
           updateHighlight();
         });
