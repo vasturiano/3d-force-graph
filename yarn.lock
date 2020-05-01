@@ -2853,10 +2853,10 @@ three-dragcontrols@^0.88.2:
   resolved "https://registry.yarnpkg.com/three-dragcontrols/-/three-dragcontrols-0.88.2.tgz#e4b292657b8afffd00e573401da777dfd5dd5cd5"
   integrity sha512-Qqhbo7+K5TAeqlYlUiI0EBp14uI9nbgoLANas3p4v4kz3h5HmOlComV9UhLI2x3BtdCdcHSuiyDL7sTrtP772w==
 
-three-forcegraph@^1.32.1:
-  version "1.32.1"
-  resolved "https://registry.yarnpkg.com/three-forcegraph/-/three-forcegraph-1.32.1.tgz#87b8b2caff9a65982619a8420d73f193834f2715"
-  integrity sha512-NThI0+Q9KZmtX7W1LE1hqOC+pqGSRKTUzbmUIt6px1GxZohMUkEZU86cZzuSz8SVbUvtpimL6ZgjLTyGrjSE3A==
+three-forcegraph@^1.32.3:
+  version "1.32.3"
+  resolved "https://registry.yarnpkg.com/three-forcegraph/-/three-forcegraph-1.32.3.tgz#e4143b77f28b343e382dfeb9987a86c8fed7b96b"
+  integrity sha512-bwiRTIqAMLD7zpaZFIdDvAqErJgO2EIMtdi89xgB9iJ+7/uHJ2+/4GhJhRNK9KXcQw1NP7hiGzQtXgUwgqzz1w==
   dependencies:
     accessor-fn "^1.3.0"
     d3-force-3d "^2.1.0"
@@ -2879,10 +2879,10 @@ three-render-objects@^1.13.4:
     kapsule "^1.13.3"
     polished "^3.5.2"
 
-three@^0.115.0:
-  version "0.115.0"
-  resolved "https://registry.yarnpkg.com/three/-/three-0.115.0.tgz#540d800c381b9da2334c024f0fbe4d23f84eb05e"
-  integrity sha512-mAV2Ky3RdcbdSbR9capI+tKLvRldWYxd4151PZTT/o7+U2jh9Is3a4KmnYwzyUAhB2ZA3pXSgCd2DOY4Tj5kow==
+three@^0.116.0:
+  version "0.116.0"
+  resolved "https://registry.yarnpkg.com/three/-/three-0.116.0.tgz#282b21c00feb09d0303a579ae86c649ebd6a06c6"
+  integrity sha512-6KTGp6mfs0hGgY+2/UtAfxa1w4vNxNSPp6Sdu7DjnCzQZwWX6Q1hL5awyM3zPWDaPEsuRRNt2jIZPp/kwsPgjg==
 
 timsort@^0.3.0:
   version "0.3.0"
