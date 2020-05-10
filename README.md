@@ -39,6 +39,7 @@ Check out the examples:
 * [Force-directed tree (DAG mode)](https://vasturiano.github.io/3d-force-graph/example/tree/) ([source](https://github.com/vasturiano/3d-force-graph/blob/master/example/tree/index.html))
 * [yarn.lock dependency graph (DAG mode)](https://vasturiano.github.io/3d-force-graph/example/dag-yarn/) ([source](https://github.com/vasturiano/3d-force-graph/blob/master/example/dag-yarn/index.html))
 * [Add external objects to scene](https://vasturiano.github.io/3d-force-graph/example/scene/) ([source](https://github.com/vasturiano/3d-force-graph/blob/master/example/scene/index.html))
+* [Bloom Post-Processing Effect](https://vasturiano.github.io/3d-force-graph/example/bloom-effect/) ([source](https://github.com/vasturiano/3d-force-graph/blob/master/example/bloom-effect/index.html))
 * [Pause / Resume animation](https://vasturiano.github.io/3d-force-graph/example/pause-resume/) ([source](https://github.com/vasturiano/3d-force-graph/blob/master/example/pause-resume/index.html))
 
 See also the [2D canvas version](https://github.com/vasturiano/force-graph), [VR version](https://github.com/vasturiano/3d-force-graph-vr) and [AR version](https://github.com/vasturiano/3d-force-graph-ar).
