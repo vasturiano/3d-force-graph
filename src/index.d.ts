@@ -1,10 +1,6 @@
 import { Scene, Camera, WebGLRenderer, WebGLRendererParameters } from 'three';
+import { EffectComposer } from 'three/examples/jsm/postprocessing/EffectComposer.js';
 import { ThreeForceGraphGeneric } from 'three-forcegraph';
-
-interface EffectComposer {
-  // simplified version of
-  render(): void;
-}
 
 export interface ConfigOptions {
   controlType?: 'trackball' | 'orbit' | 'fly'
@@ -66,7 +62,6 @@ export interface ForceGraph3DGenericInstance<ChainableInstance>
   cameraPosition(): Coords;
   cameraPosition(position: Partial<Coords>, lookAt?: Coords, transitionMs?: number): ChainableInstance;
   postProcessingComposer(): EffectComposer;
-  postProcessingComposer(composer: EffectComposer): ChainableInstance;
   scene(): Scene;
   camera(): Camera;
   renderer(): WebGLRenderer;
