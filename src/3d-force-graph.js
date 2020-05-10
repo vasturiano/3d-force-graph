@@ -84,11 +84,11 @@ const linkedRenderObjsProps = Object.assign(...[
   'height',
   'backgroundColor',
   'showNavInfo',
-  'enablePointerInteraction',
-  'postProcessingComposer'
+  'enablePointerInteraction'
 ].map(p => ({ [p]: bindRenderObjs.linkProp(p)})));
 const linkedRenderObjsMethods = Object.assign(...[
-  'cameraPosition'
+  'cameraPosition',
+  'postProcessingComposer'
 ].map(p => ({ [p]: bindRenderObjs.linkMethod(p)})));
 
 //
