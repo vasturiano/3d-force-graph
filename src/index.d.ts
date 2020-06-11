@@ -61,7 +61,7 @@ export interface ForceGraph3DGenericInstance<ChainableInstance>
   resumeAnimation(): ChainableInstance;
   cameraPosition(): Coords;
   cameraPosition(position: Partial<Coords>, lookAt?: Coords, transitionMs?: number): ChainableInstance;
-  zoomToFit(durationMs?: number, padding?: number): ChainableInstance;
+  zoomToFit(durationMs?: number, padding?: number, nodeFilter?: (node: object) => boolean): ChainableInstance;
   postProcessingComposer(): EffectComposer;
   scene(): Scene;
   camera(): Camera;

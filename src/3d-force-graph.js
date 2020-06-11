@@ -89,7 +89,6 @@ const linkedRenderObjsProps = Object.assign(...[
 ].map(p => ({ [p]: bindRenderObjs.linkProp(p)})));
 const linkedRenderObjsMethods = Object.assign(...[
   'cameraPosition',
-  'zoomToFit',
   'postProcessingComposer'
 ].map(p => ({ [p]: bindRenderObjs.linkMethod(p)})));
 
@@ -127,6 +126,14 @@ export default Kapsule({
   },
 
   methods: {
+    zoomToFit: function(state, transitionDuration, padding, ...bboxArgs) {
+      state.renderObjs.fitToBbox(
+        state.forceGraph.getGraphBbox(...bboxArgs),
+        transitionDuration,
+        padding
+      );
+      return this;
+    },
     graph2ScreenCoords: function(state, x, y, z) {
       const vec = new three.Vector3(x, y, z);
       vec.project(this.camera()); // project to the camera plane
