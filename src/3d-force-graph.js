@@ -64,6 +64,7 @@ const linkedFGProps = Object.assign(...[
   'd3AlphaDecay',
   'd3VelocityDecay',
   'd3AlphaMin',
+  'ngraphPhysics',
   'warmupTicks',
   'cooldownTicks',
   'cooldownTime',
