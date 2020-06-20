@@ -88,10 +88,15 @@ const linkedRenderObjsProps = Object.assign(...[
   'showNavInfo',
   'enablePointerInteraction'
 ].map(p => ({ [p]: bindRenderObjs.linkProp(p)})));
-const linkedRenderObjsMethods = Object.assign(...[
-  'cameraPosition',
-  'postProcessingComposer'
-].map(p => ({ [p]: bindRenderObjs.linkMethod(p)})));
+const linkedRenderObjsMethods = Object.assign(
+  ...[
+    'cameraPosition',
+    'postProcessingComposer'
+  ].map(p => ({ [p]: bindRenderObjs.linkMethod(p)})),
+  {
+    graph2ScreenCoords: bindRenderObjs.linkMethod('getScreenCoords')
+  }
+);
 
 //
 
@@ -134,14 +139,6 @@ export default Kapsule({
         padding
       );
       return this;
-    },
-    graph2ScreenCoords: function(state, x, y, z) {
-      const vec = new three.Vector3(x, y, z);
-      vec.project(this.camera()); // project to the camera plane
-      return { // align relative pos to canvas dimensions
-        x: (vec.x + 1) * state.width / 2,
-        y: -(vec.y - 1) * state.height / 2,
-      };
     },
     pauseAnimation: function(state) {
       if (state.animationFrameRequestId !== null) {
