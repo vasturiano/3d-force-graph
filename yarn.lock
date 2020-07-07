@@ -2817,10 +2817,10 @@ three-dragcontrols@^0.88.2:
   resolved "https://registry.yarnpkg.com/three-dragcontrols/-/three-dragcontrols-0.88.2.tgz#e4b292657b8afffd00e573401da777dfd5dd5cd5"
   integrity sha512-Qqhbo7+K5TAeqlYlUiI0EBp14uI9nbgoLANas3p4v4kz3h5HmOlComV9UhLI2x3BtdCdcHSuiyDL7sTrtP772w==
 
-three-forcegraph@^1.36.0:
-  version "1.36.0"
-  resolved "https://registry.yarnpkg.com/three-forcegraph/-/three-forcegraph-1.36.0.tgz#4f97a5cca9a6ee4712a50ba5e345fd0fbfb4e910"
-  integrity sha512-a+2fsZVHIAHaYeCWkDxpOwMCEWOmvJ+Yd9zbc2Op6QS3rnxpWIoZst2kWeNqwUpRn0qrFZ8nUaazE92P+ciUgw==
+three-forcegraph@^1.36.1:
+  version "1.36.1"
+  resolved "https://registry.yarnpkg.com/three-forcegraph/-/three-forcegraph-1.36.1.tgz#820af9cace6582ddd3923a81aea06e13df0bd72a"
+  integrity sha512-ZrmF9Xf3LKnWVrNin0zAap07r7WsxOobacSZsl36+03gkME7aYsnQViLhEorhaVmtQ62MG+I7jn++n9H8JqS4w==
   dependencies:
     accessor-fn "^1.3.0"
     d3-array "^2.4.0"
