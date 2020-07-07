@@ -27,6 +27,8 @@ const linkedFGProps = Object.assign(...[
   'numDimensions',
   'dagMode',
   'dagLevelDistance',
+  'dagNodeFilter',
+  'onDagError',
   'nodeRelSize',
   'nodeId',
   'nodeVal',
