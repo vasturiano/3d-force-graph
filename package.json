@@ -42,7 +42,7 @@
     "three": "^0.118.3",
     "three-dragcontrols": "^0.88.2",
     "three-forcegraph": "^1.36.1",
-    "three-render-objects": "^1.18.0"
+    "three-render-objects": "^1.19.0"
   },
   "devDependencies": {
     "@babel/core": "^7.10.4",
@@ -54,7 +54,7 @@
     "postcss-nested": "^4.2.2",
     "postcss-simple-vars": "^5.0.2",
     "rimraf": "^3.0.2",
-    "rollup": "^2.20.0",
+    "rollup": "^2.21.0",
     "rollup-plugin-babel": "^4.4.0",
     "rollup-plugin-dts": "^1.4.7",
     "rollup-plugin-postcss": "^3.1.2",
