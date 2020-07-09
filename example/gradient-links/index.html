@@ -1,0 +1,55 @@
+<head>
+  <style> body { margin: 0; } </style>
+
+  <script src="//unpkg.com/three"></script>
+  <script src="//unpkg.com/d3"></script>
+
+  <script src="//unpkg.com/3d-force-graph"></script>
+  <!--<script src="../../dist/3d-force-graph.js"></script>-->
+</head>
+
+<body>
+  <div id="3d-graph"></div>
+
+  <script>
+    // Random tree
+    const N = 25;
+    const gData = {
+      nodes: [...Array(N).keys()].map(i => ({ id: i })),
+      links: [...Array(N).keys()]
+        .filter(id => id)
+        .map(id => ({
+          source: id,
+          target: Math.round(Math.random() * (id-1))
+        }))
+    };
+
+    const nodeColorScale = d3.scaleOrdinal(d3.schemeRdYlGn[4]);
+
+    const Graph = ForceGraph3D()
+      (document.getElementById('3d-graph'))
+        .nodeColor(node => nodeColorScale(node.id))
+        .linkThreeObject(link => {
+          // 2 (nodes) x 3 (r+g+b) bytes between [0, 1]
+          // For example:
+          // new Float32Array([
+          //   1, 0, 0,  // source node: red
+          //   0, 1, 0   // target node: green
+          // ]);
+          const colors = new Float32Array([].concat(
+            ...[link.source, link.target]
+              .map(nodeColorScale)
+              .map(d3.color)
+              .map(({ r, g, b }) => [r, g, b].map(v => v / 255)
+            )));
+
+          const material = new THREE.LineBasicMaterial({ vertexColors: THREE.VertexColors });
+          const geometry = new THREE.BufferGeometry();
+          geometry.setAttribute('position', new THREE.BufferAttribute(new Float32Array(2 * 3), 3));
+          geometry.setAttribute('color', new THREE.BufferAttribute(colors, 3));
+
+          return new THREE.Line(geometry, material);
+        })
+        .graphData(gData);
+  </script>
+</body>
