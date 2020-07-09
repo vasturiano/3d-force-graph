@@ -258,8 +258,6 @@ export default Kapsule({
           });
 
           dragControls.addEventListener('drag', function (event) {
-            state.ignoreOneClick = true; // Don't click the node if it's being dragged
-
             const node = event.object.__data;
             const newPos = event.object.position;
             const translate = {x: newPos.x - node.x, y: newPos.y - node.y, z: newPos.z - node.z};
@@ -346,6 +344,7 @@ export default Kapsule({
         const graphObj = getGraphObj(obj);
         return graphObj ? accessorFn(state[`${graphObj.__graphObjType}Label`])(graphObj.__data) || '' : '';
       })
+      .hoverDuringDrag(false)
       .onHover(obj => {
         // Update tooltip and trigger onHover events
         const hoverObj = getGraphObj(obj);
@@ -367,14 +366,8 @@ export default Kapsule({
           state.hoverObj = hoverObj;
         }
       })
+      .clickAfterDrag(false)
       .onClick((obj, ev) => {
-        // Handle click events on objects
-        if (state.ignoreOneClick) {
-          // f.e. because of dragend event
-          state.ignoreOneClick = false;
-          return;
-        }
-
         const graphObj = getGraphObj(obj);
         if (graphObj) {
           state[`on${graphObj.__graphObjType === 'node' ? 'Node' : 'Link'}Click`](graphObj.__data, ev);
