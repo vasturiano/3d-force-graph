@@ -2831,10 +2831,10 @@ three-forcegraph@^1.36.1:
     ngraph.graph "^19.1.0"
     tinycolor2 "^1.4.1"
 
-three-render-objects@^1.24.2:
-  version "1.24.2"
-  resolved "https://registry.yarnpkg.com/three-render-objects/-/three-render-objects-1.24.2.tgz#c68220979a67388adb222e81198e9c078335d775"
-  integrity sha512-sZdwcwrSn5QC6xpB3rivNUDaqt21n1QbGW3bCI4Gtd5xfRbw8KO0E05YzA5FPFgGBr5tglepZTPFQVEaK9lTNg==
+three-render-objects@^1.24.3:
+  version "1.24.3"
+  resolved "https://registry.yarnpkg.com/three-render-objects/-/three-render-objects-1.24.3.tgz#b84b5d196d67c409d09f4a5e9b73f355a3b988cc"
+  integrity sha512-+NCdiRloIwDu/iW1602VE7YXgfLmzxpSWDzm/rIaTGrtlErfWIZ+YxCLneWUkW6V6ALkCcg4Y+mDfpIfPCs0MQ==
   dependencies:
     "@tweenjs/tween.js" "^18.6.0"
     accessor-fn "^1.3.0"
