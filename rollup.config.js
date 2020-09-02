@@ -55,7 +55,10 @@ export default [
         file: `dist/${name}.module.js`
       }
     ],
-    external: Object.keys(dependencies),
+    external: [
+      ...Object.keys(dependencies || {}),
+      'three/examples/jsm/controls/DragControls.js'
+    ],
     plugins: [
       postCss({
         plugins: [
