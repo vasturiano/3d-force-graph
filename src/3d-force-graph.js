@@ -4,7 +4,8 @@ const three = window.THREE
   ? window.THREE // Prefer consumption from global THREE, if exists
   : { AmbientLight, DirectionalLight, Vector3 };
 
-import ThreeDragControls from 'three-dragcontrols';
+import { DragControls as ThreeDragControls } from 'three/examples/jsm/controls/DragControls.js';
+
 import ThreeForceGraph from 'three-forcegraph';
 import ThreeRenderObjects from 'three-render-objects';
 
