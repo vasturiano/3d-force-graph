@@ -247,7 +247,11 @@ export default Kapsule({
           dragControls.addEventListener('dragstart', function (event) {
             controls.enabled = false; // Disable controls while dragging
 
-            const node = event.object.__data;
+            // track drag object movement
+            event.object.__initialPos = event.object.position.clone();
+            event.object.__prevPos = event.object.position.clone();
+
+            const node = getGraphObj(event.object).__data;
             !node.__initialFixedPos && (node.__initialFixedPos = {fx: node.fx, fy: node.fy, fz: node.fz});
             !node.__initialPos && (node.__initialPos = {x: node.x, y: node.y, z: node.z});
 
@@ -259,8 +263,21 @@ export default Kapsule({
           });
 
           dragControls.addEventListener('drag', function (event) {
-            const node = event.object.__data;
-            const newPos = event.object.position;
+            const nodeObj = getGraphObj(event.object);
+
+            if (!event.object.hasOwnProperty('__graphObjType')) {
+              // If dragging a child of the node, update the node object instead
+              const initPos = event.object.__initialPos;
+              const prevPos = event.object.__prevPos;
+              const newPos = event.object.position;
+
+              nodeObj.position.add(newPos.clone().sub(prevPos)); // translate node object by the motion delta
+              prevPos.copy(newPos);
+              newPos.copy(initPos); // reset child back to its initial position
+            }
+
+            const node = nodeObj.__data;
+            const newPos = nodeObj.position;
             const translate = {x: newPos.x - node.x, y: newPos.y - node.y, z: newPos.z - node.z};
             // Move fx/fy/fz (and x/y/z) of nodes based on object new position
             ['x', 'y', 'z'].forEach(c => node[`f${c}`] = node[c] = newPos[c]);
@@ -274,7 +291,10 @@ export default Kapsule({
           });
 
           dragControls.addEventListener('dragend', function (event) {
-            const node = event.object.__data;
+            delete(event.object.__initialPos); // remove tracking attributes
+            delete(event.object.__prevPos);
+
+            const node = getGraphObj(event.object).__data;
 
             // dispose previous controls if needed
             if (node.__disposeControlsAfterDrag) {
@@ -315,15 +335,6 @@ export default Kapsule({
       });
 
     // config renderObjs
-    const getGraphObj = object => {
-      let obj = object;
-      // recurse up object chain until finding the graph object
-      while (obj && !obj.hasOwnProperty('__graphObjType')) {
-        obj = obj.parent;
-      }
-      return obj;
-    };
-
     state.renderObjs
       .objects([ // Populate scene
         new three.AmbientLight(0xbbbbbb),
@@ -392,3 +403,14 @@ export default Kapsule({
     this._animationCycle();
   }
 });
+
+//
+
+function getGraphObj(object) {
+  let obj = object;
+  // recurse up object chain until finding the graph object
+  while (obj && !obj.hasOwnProperty('__graphObjType')) {
+    obj = obj.parent;
+  }
+  return obj;
+}
