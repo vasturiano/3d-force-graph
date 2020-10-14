@@ -27,11 +27,13 @@
       .backgroundColor('#101020')
       .linkColor(() => 'rgba(255, 255, 255, 0.2)')
       .dagMode('lr')
+      .onDagError(() => false)
       .dagLevelDistance(180)
       .nodeId('package')
       .linkCurvature(0.07)
       .nodeThreeObject(node => {
         const sprite = new SpriteText(node.package);
+        sprite.material.depthWrite = false;
         sprite.color = 'lightsteelblue';
         sprite.textHeight = 8;
         return sprite;
