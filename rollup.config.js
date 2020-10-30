@@ -2,8 +2,6 @@ import resolve from '@rollup/plugin-node-resolve';
 import commonJs from '@rollup/plugin-commonjs';
 import babel from '@rollup/plugin-babel';
 import postCss from 'rollup-plugin-postcss';
-import postCssSimpleVars from 'postcss-simple-vars';
-import postCssNested from 'postcss-nested';
 import { terser } from "rollup-plugin-terser";
 import dts from 'rollup-plugin-dts';
 import { name, homepage, version, dependencies } from './package.json';
@@ -32,12 +30,7 @@ export default [
       }
     ],
     plugins: [
-      postCss({
-        plugins: [
-          postCssSimpleVars(),
-          postCssNested()
-        ]
-      }),
+      postCss({ plugins: [] }),
       babel({ exclude: 'node_modules/**' }),
       resolve(),
       commonJs()
@@ -60,12 +53,7 @@ export default [
       'three/examples/jsm/controls/DragControls.js'
     ],
     plugins: [
-      postCss({
-        plugins: [
-          postCssSimpleVars(),
-          postCssNested()
-        ]
-      }),
+      postCss({ plugins: [] }),
       babel()
     ]
   },
