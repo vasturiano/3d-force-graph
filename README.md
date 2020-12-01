@@ -9,7 +9,7 @@
      <a href="https://vasturiano.github.io/3d-force-graph/example/large-graph/"><img width="80%" src="http://gist.github.com/vasturiano/02affe306ce445e423f992faeea13521/raw/preview.png"></a>
 </p>
 
-A web component to represent a graph data structure in a 3-dimensional space using a force-directed iterative layout.
+A web component to represent a graph data structure in a 3-dimensional space using a [force-directed](https://en.wikipedia.org/wiki/Force-directed_graph_drawing) iterative layout.
 Uses [ThreeJS](https://github.com/mrdoob/three.js/)/WebGL for 3D rendering and either [d3-force-3d](https://github.com/vasturiano/d3-force-3d) or [ngraph](https://github.com/anvaka/ngraph.forcelayout3d) for the underlying physics engine.
 
 Check out the examples:
