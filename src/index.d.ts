@@ -1,10 +1,11 @@
-import { Scene, Camera, WebGLRenderer, WebGLRendererParameters } from 'three';
+import { Scene, Camera, WebGLRenderer, WebGLRendererParameters, Renderer } from 'three';
 import { EffectComposer } from 'three/examples/jsm/postprocessing/EffectComposer.js';
 import { ThreeForceGraphGeneric } from 'three-forcegraph';
 
 export interface ConfigOptions {
   controlType?: 'trackball' | 'orbit' | 'fly'
-  rendererConfig?: WebGLRendererParameters
+  rendererConfig?: WebGLRendererParameters,
+  extraRenderers?: Renderer[]
 }
 
 type Accessor<In, Out> = Out | string | ((obj: In) => Out);
