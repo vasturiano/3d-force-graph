@@ -22,6 +22,7 @@ Check out the examples:
 * [Auto-colored nodes/links](https://vasturiano.github.io/3d-force-graph/example/auto-colored/) ([source](https://github.com/vasturiano/3d-force-graph/blob/master/example/auto-colored/index.html))
 * [Text as nodes](https://vasturiano.github.io/3d-force-graph/example/text-nodes/) ([source](https://github.com/vasturiano/3d-force-graph/blob/master/example/text-nodes/index.html))
 * [Images as nodes](https://vasturiano.github.io/3d-force-graph/example/img-nodes/) ([source](https://github.com/vasturiano/3d-force-graph/blob/master/example/img-nodes/index.html))
+* [HTML in nodes](https://vasturiano.github.io/3d-force-graph/example/html-nodes/) ([source](https://github.com/vasturiano/3d-force-graph/blob/master/example/html-nodes/index.html))
 * [Custom node geometries](https://vasturiano.github.io/3d-force-graph/example/custom-node-geometry/) ([source](https://github.com/vasturiano/3d-force-graph/blob/master/example/custom-node-geometry/index.html))
 * [Gradient Links](https://vasturiano.github.io/3d-force-graph/example/gradient-links/) ([source](https://github.com/vasturiano/3d-force-graph/blob/master/example/gradient-links/index.html))
 * [Text in Links](https://vasturiano.github.io/3d-force-graph/example/text-links/) ([source](https://github.com/vasturiano/3d-force-graph/blob/master/example/text-links/index.html))
