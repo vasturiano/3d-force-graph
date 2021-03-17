@@ -97,7 +97,8 @@ const linkedRenderObjsMethods = Object.assign(
     'postProcessingComposer'
   ].map(p => ({ [p]: bindRenderObjs.linkMethod(p)})),
   {
-    graph2ScreenCoords: bindRenderObjs.linkMethod('getScreenCoords')
+    graph2ScreenCoords: bindRenderObjs.linkMethod('getScreenCoords'),
+    screen2GraphCoords: bindRenderObjs.linkMethod('getSceneCoords')
   }
 );
 

@@ -41,7 +41,7 @@
     "kapsule": "^1.13.3",
     "three": "^0.126.1",
     "three-forcegraph": "^1.37.2",
-    "three-render-objects": "^1.25.1"
+    "three-render-objects": "^1.26.0"
   },
   "devDependencies": {
     "@babel/core": "^7.13.10",

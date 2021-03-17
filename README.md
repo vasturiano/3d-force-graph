@@ -206,6 +206,7 @@ ForceGraph3d({ configOptions })(<domElement>)
 | --- | --- |
 | <b>getGraphBbox</b>([<i>nodeFilterFn</i>]) | Returns the current bounding box of the nodes in the graph, formatted as `{ x: [<num>, <num>], y: [<num>, <num>], z: [<num>, <num>] }`. If no nodes are found, returns `null`. Accepts an optional argument to define a custom node filter: `node => <boolean>`, which should return a truthy value if the node is to be included. This can be useful to calculate the bounding box of a portion of the graph. ||
 | <b>graph2ScreenCoords</b>(<i>x</i>, <i>y</i>, <i>z</i>) | Utility method to translate node coordinates to the viewport domain. Given a set of `x`,`y`,`z` graph coordinates, returns the current equivalent `{x, y}` in viewport coordinates. |
+| <b>screen2GraphCoords</b>(<i>x</i>, <i>y</i>, <i>distance</i>) | Utility method to translate viewport distance coordinates to the graph domain. Given a set of `x`,`y` viewport coordinates and distance from the camera, returns the current equivalent `{x, y, z}` in graph coordinates. |
 
 ### Input JSON syntax
 ```

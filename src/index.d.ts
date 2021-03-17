@@ -71,6 +71,7 @@ export interface ForceGraph3DGenericInstance<ChainableInstance>
 
   // Utility
   graph2ScreenCoords(x: number, y: number, z: number): Coords;
+  screen2GraphCoords(screenX: number, screenY: number, distance: number): Coords;
 }
 
 export type ForceGraph3DInstance = ForceGraph3DGenericInstance<ForceGraph3DInstance>;
