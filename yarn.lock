@@ -1341,10 +1341,10 @@ d3-array@^2.12.0, d3-array@^2.3.0:
   dependencies:
     internmap "^1.0.0"
 
-d3-binarytree@^0.1.8:
-  version "0.1.8"
-  resolved "https://registry.yarnpkg.com/d3-binarytree/-/d3-binarytree-0.1.8.tgz#dc8d37e7dd4a43c0e78dd99bbc4c295b935696df"
-  integrity sha512-+N2TjL9CAGMkjwlnsx/wUiHJtAnik6S63AfvWS6RYkraD60ixgI4S7q3sMR5ugLMXWckWhZfvUpZQzwAzkm/lA==
+d3-binarytree@^0.2.0:
+  version "0.2.0"
+  resolved "https://registry.yarnpkg.com/d3-binarytree/-/d3-binarytree-0.2.0.tgz#10601b89fc966b22ee2bd1a8e9ee4d847dfd0014"
+  integrity sha512-Z4khfbrBgtbv0M2QSQBaIajxiT6hwkxGt0AoDnTXCWDyyH+Okqy2UU3sXzV01zL5lC75dFAMJ0ftxSKTCr28VA==
 
 "d3-color@1 - 2":
   version "2.0.0"
@@ -1356,14 +1356,14 @@ d3-dispatch@^2.0.0:
   resolved "https://registry.yarnpkg.com/d3-dispatch/-/d3-dispatch-2.0.0.tgz#8a18e16f76dd3fcaef42163c97b926aa9b55e7cf"
   integrity sha512-S/m2VsXI7gAti2pBoLClFFTMOO1HTtT0j99AuXLoGFKO6deHDdnv6ZGTxSTTUTgO1zVcv82fCOtDjYK4EECmWA==
 
-d3-force-3d@^2.3.0:
-  version "2.3.0"
-  resolved "https://registry.yarnpkg.com/d3-force-3d/-/d3-force-3d-2.3.0.tgz#8452f5ab73bec175e652bfa280f525e81dff6b6e"
-  integrity sha512-DPAq8AZ62j04+NtUbMFR/5V6LoPOSid332KwebSxmpWfDpBAe+wHEamVzPBLdrZV5oW4il+xeQWxLy8J+vBAhA==
+d3-force-3d@^2.3.1:
+  version "2.3.1"
+  resolved "https://registry.yarnpkg.com/d3-force-3d/-/d3-force-3d-2.3.1.tgz#2a44f2b4bedb89a6444607e7c25b08b277454caa"
+  integrity sha512-nhKxuMwidispM869sUz1imnUCXpWmaKbJbcVlOavKHQwP4tXWwJ4lBZCCXRwf60SGxH+MIBm2+jZHoHZJMpwxA==
   dependencies:
-    d3-binarytree "^0.1.8"
+    d3-binarytree "^0.2.0"
     d3-dispatch "^2.0.0"
-    d3-octree "^0.1.8"
+    d3-octree "^0.2.0"
     d3-quadtree "^2.0.0"
     d3-timer "^2.0.0"
 
@@ -1379,10 +1379,10 @@ d3-force-3d@^2.3.0:
   dependencies:
     d3-color "1 - 2"
 
-d3-octree@^0.1.8:
-  version "0.1.8"
-  resolved "https://registry.yarnpkg.com/d3-octree/-/d3-octree-0.1.8.tgz#a7b16d0432b9551ad2b1145f2c25b5461fd991cf"
-  integrity sha512-DCN9v/itq78qhZVbhOE/y7tLUQUHMtdKUg5N9aUDusgN5ANbNvGJFD1C6yjY8KeEoB8ONHzwN8xEoHb9Ww9joQ==
+d3-octree@^0.2.0:
+  version "0.2.0"
+  resolved "https://registry.yarnpkg.com/d3-octree/-/d3-octree-0.2.0.tgz#d3b3e578733cd0bbb7b6a15f80b0d7b38ab2e54c"
+  integrity sha512-yPoIxKr4xvZNyKK2bkJybafrNKtBVERbGTUVBovyWxWDQaWnJfWO4ai1jnyBrCeMzpVm/OTAJw2V+EJ9HCuLbQ==
 
 d3-quadtree@^2.0.0:
   version "2.0.0"
@@ -2866,14 +2866,14 @@ terser@^5.0.0:
     source-map "~0.7.2"
     source-map-support "~0.5.19"
 
-three-forcegraph@^1.37.1:
-  version "1.37.1"
-  resolved "https://registry.yarnpkg.com/three-forcegraph/-/three-forcegraph-1.37.1.tgz#6a2c9bd4f758586c4af662a7dd7a62121849545c"
-  integrity sha512-ebAWTR684GHDuI+MaNGx0XbFnklYwy7a+qBtuq/zAULwuphbNi7w7ciNrK+0nV6kBiYA8+mpEs7qWKtzBtGaqg==
+three-forcegraph@^1.37.2:
+  version "1.37.2"
+  resolved "https://registry.yarnpkg.com/three-forcegraph/-/three-forcegraph-1.37.2.tgz#c363ef0c677d46ce3e0c43c5b97ec20de1ad2949"
+  integrity sha512-noW69V1+ELMNbd0xBihiHVw7/Y+lcxZ8Erv48ArNjzild8t1R2PtFnAdi7DUVX8K+aIioImHWZ9cRcYan8Kt2g==
   dependencies:
     accessor-fn "^1.3.0"
     d3-array "^2.12.0"
-    d3-force-3d "^2.3.0"
+    d3-force-3d "^2.3.1"
     d3-scale "^3.2.3"
     d3-scale-chromatic "^2.0.0"
     data-joint "^1.2.3"
