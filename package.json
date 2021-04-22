@@ -40,7 +40,7 @@
     "accessor-fn": "^1.3.0",
     "kapsule": "^1.13.3",
     "three": "^0.127.0",
-    "three-forcegraph": "^1.37.4",
+    "three-forcegraph": "^1.37.5",
     "three-render-objects": "^1.26.0"
   },
   "devDependencies": {
