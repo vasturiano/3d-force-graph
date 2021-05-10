@@ -50,6 +50,20 @@
 
           return new THREE.Line(geometry, material);
         })
+        .linkPositionUpdate((line, { start, end }) => {
+          const startR = Graph.nodeRelSize();
+          const endR = Graph.nodeRelSize();
+          const lineLen = Math.sqrt(['x', 'y', 'z'].map(dim => Math.pow((end[dim] || 0) - (start[dim] || 0), 2)).reduce((acc, v) => acc + v, 0));
+
+          const linePos = line.geometry.getAttribute('position');
+
+          // calculate coordinate on the node's surface instead of center
+          linePos.set([startR / lineLen, 1 - endR / lineLen].map(t =>
+            ['x', 'y', 'z'].map(dim => start[dim] + (end[dim] - start[dim]) * t)
+          ).flat());
+          linePos.needsUpdate = true;
+          return true;
+        })
         .graphData(gData);
   </script>
 </body>
