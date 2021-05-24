@@ -41,20 +41,20 @@
     "kapsule": "^1.13.4",
     "three": "^0.128.0",
     "three-forcegraph": "^1.37.5",
-    "three-render-objects": "^1.26.2"
+    "three-render-objects": "^1.26.3"
   },
   "devDependencies": {
-    "@babel/core": "^7.14.2",
+    "@babel/core": "^7.14.3",
     "@babel/plugin-proposal-class-properties": "^7.13.0",
     "@babel/plugin-proposal-object-rest-spread": "^7.14.2",
     "@babel/preset-env": "^7.14.2",
     "@rollup/plugin-babel": "^5.3.0",
     "@rollup/plugin-commonjs": "^19.0.0",
     "@rollup/plugin-node-resolve": "^13.0.0",
-    "postcss": "^8.2.15",
+    "postcss": "^8.3.0",
     "rimraf": "^3.0.2",
-    "rollup": "^2.47.0",
-    "rollup-plugin-dts": "^3.0.1",
+    "rollup": "^2.49.0",
+    "rollup-plugin-dts": "^3.0.2",
     "rollup-plugin-postcss": "^4.0.0",
     "rollup-plugin-terser": "^7.0.2",
     "typescript": "^4.2.4"
