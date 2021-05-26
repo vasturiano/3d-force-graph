@@ -9,14 +9,18 @@
   font-family: Sans-serif;
 }
 
-.grabbable {
+.scene-container .clickable {
+  cursor: pointer;
+}
+
+.scene-container .grabbable {
   cursor: move;
   cursor: grab;
   cursor: -moz-grab;
   cursor: -webkit-grab;
 }
 
-.grabbable:active {
+.scene-container .grabbable:active {
   cursor: grabbing;
   cursor: -moz-grabbing;
   cursor: -webkit-grabbing;

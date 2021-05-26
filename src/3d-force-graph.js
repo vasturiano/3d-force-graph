@@ -123,14 +123,14 @@ export default Kapsule({
     enableNodeDrag: { default: true, triggerUpdate: false },
     onNodeDrag: { default: () => {}, triggerUpdate: false },
     onNodeDragEnd: { default: () => {}, triggerUpdate: false },
-    onNodeClick: { default: () => {}, triggerUpdate: false },
-    onNodeRightClick: { default: () => {}, triggerUpdate: false },
-    onNodeHover: { default: () => {}, triggerUpdate: false },
-    onLinkClick: { default: () => {}, triggerUpdate: false },
-    onLinkRightClick: { default: () => {}, triggerUpdate: false },
-    onLinkHover: { default: () => {}, triggerUpdate: false },
-    onBackgroundClick: { default: () => {}, triggerUpdate: false },
-    onBackgroundRightClick: { default: () => {}, triggerUpdate: false },
+    onNodeClick: { triggerUpdate: false },
+    onNodeRightClick: { triggerUpdate: false },
+    onNodeHover: { triggerUpdate: false },
+    onLinkClick: { triggerUpdate: false },
+    onLinkRightClick: { triggerUpdate: false },
+    onLinkHover: { triggerUpdate: false },
+    onBackgroundClick: { triggerUpdate: false },
+    onBackgroundRightClick: { triggerUpdate: false },
     ...linkedFGProps,
     ...linkedRenderObjsProps
   },
@@ -373,12 +373,19 @@ export default Kapsule({
           const objData = hoverObj ? hoverObj.__data : null;
           if (prevObjType && prevObjType !== objType) {
             // Hover out
-            state[`on${prevObjType === 'node' ? 'Node' : 'Link'}Hover`](null, prevObjData);
+            const fn = state[`on${prevObjType === 'node' ? 'Node' : 'Link'}Hover`];
+            fn && fn(null, prevObjData);
           }
           if (objType) {
             // Hover in
-            state[`on${objType === 'node' ? 'Node' : 'Link'}Hover`](objData, prevObjType === objType ? prevObjData : null);
+            const fn = state[`on${objType === 'node' ? 'Node' : 'Link'}Hover`];
+            fn && fn(objData, prevObjType === objType ? prevObjData : null);
           }
+
+          // set pointer if hovered object is clickable
+          renderer.domElement.classList[
+            ((obj && state[`on${objType === 'node' ? 'Node' : 'Link'}Click`]) || (!obj && state.onBackgroundClick)) ? 'add' : 'remove'
+          ]('clickable');
 
           state.hoverObj = hoverObj;
         }
@@ -387,18 +394,20 @@ export default Kapsule({
       .onClick((obj, ev) => {
         const graphObj = getGraphObj(obj);
         if (graphObj) {
-          state[`on${graphObj.__graphObjType === 'node' ? 'Node' : 'Link'}Click`](graphObj.__data, ev);
+          const fn = state[`on${graphObj.__graphObjType === 'node' ? 'Node' : 'Link'}Click`];
+          fn && fn(graphObj.__data, ev);
         } else {
-          state.onBackgroundClick(ev);
+          state.onBackgroundClick && state.onBackgroundClick(ev);
         }
       })
       .onRightClick((obj, ev) => {
         // Handle right-click events
         const graphObj = getGraphObj(obj);
         if (graphObj) {
-          state[`on${graphObj.__graphObjType === 'node' ? 'Node' : 'Link'}RightClick`](graphObj.__data, ev);
+          const fn = state[`on${graphObj.__graphObjType === 'node' ? 'Node' : 'Link'}RightClick`];
+          fn && fn(graphObj.__data, ev);
         } else {
-          state.onBackgroundRightClick(ev);
+          state.onBackgroundRightClick && state.onBackgroundRightClick(ev);
         }
       });
 

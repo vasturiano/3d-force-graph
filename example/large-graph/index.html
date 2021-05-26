@@ -2,7 +2,7 @@
   <style> body { margin: 0; } </style>
 
   <script src="//unpkg.com/3d-force-graph"></script>
-  <!--<script src="../../dist/3d-force-graph.js"></script>-->
+<!--  <script src="../../dist/3d-force-graph.js"></script>-->
 </head>
 
 <body>
@@ -16,7 +16,6 @@
       .jsonUrl('../datasets/blocks.json')
       .nodeAutoColorBy('user')
       .nodeLabel(node => `${node.user}: ${node.description}`)
-      .onNodeHover(node => elem.style.cursor = node ? 'pointer' : null)
       .onNodeClick(node => window.open(`https://bl.ocks.org/${node.user}/${node.id}`, '_blank'));
   </script>
 </body>

@@ -18,7 +18,6 @@
 
     const Graph = ForceGraph3D()(elem)
         .enableNodeDrag(false)
-        .onNodeHover(node => elem.style.cursor = node ? 'pointer' : null)
         .onNodeClick(removeNode)
         .graphData(initData);
 
