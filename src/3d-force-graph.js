@@ -384,7 +384,7 @@ export default Kapsule({
 
           // set pointer if hovered object is clickable
           renderer.domElement.classList[
-            ((obj && state[`on${objType === 'node' ? 'Node' : 'Link'}Click`]) || (!obj && state.onBackgroundClick)) ? 'add' : 'remove'
+            ((hoverObj && state[`on${objType === 'node' ? 'Node' : 'Link'}Click`]) || (!hoverObj && state.onBackgroundClick)) ? 'add' : 'remove'
           ]('clickable');
 
           state.hoverObj = hoverObj;
