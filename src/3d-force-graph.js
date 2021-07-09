@@ -329,7 +329,7 @@ export default Kapsule({
               controls.enabled = true; // Re-enable controls
               controls.domElement && controls.domElement.ownerDocument && controls.domElement.ownerDocument.dispatchEvent(
                 // simulate mouseup to ensure the controls don't take over after dragend
-                new PointerEvent('pointerup', { pointerType: 'mouse' })
+                new PointerEvent('pointerup', { pointerType: 'touch' })
               );
             }
 
