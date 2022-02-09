@@ -12,7 +12,12 @@
 A web component to represent a graph data structure in a 3-dimensional space using a [force-directed](https://en.wikipedia.org/wiki/Force-directed_graph_drawing) iterative layout.
 Uses [ThreeJS](https://github.com/mrdoob/three.js/)/WebGL for 3D rendering and either [d3-force-3d](https://github.com/vasturiano/d3-force-3d) or [ngraph](https://github.com/anvaka/ngraph.forcelayout3d) for the underlying physics engine.
 
-Check out the examples:
+See also the [2D canvas version](https://github.com/vasturiano/force-graph), [VR version](https://github.com/vasturiano/3d-force-graph-vr) and [AR version](https://github.com/vasturiano/3d-force-graph-ar).
+
+And check out the [React bindings](https://github.com/vasturiano/react-force-graph).
+
+## Examples
+
 * [Basic](https://vasturiano.github.io/3d-force-graph/example/basic/) ([source](https://github.com/vasturiano/3d-force-graph/blob/master/example/basic/index.html))
 * [Asynchronous load](https://vasturiano.github.io/3d-force-graph/example/async-load/) ([source](https://github.com/vasturiano/3d-force-graph/blob/master/example/async-load/index.html))
 * [Larger graph (~4k elements)](https://vasturiano.github.io/3d-force-graph/example/large-graph/) ([source](https://github.com/vasturiano/3d-force-graph/blob/master/example/large-graph/index.html))
@@ -44,10 +49,6 @@ Check out the examples:
 * [Add external objects to scene](https://vasturiano.github.io/3d-force-graph/example/scene/) ([source](https://github.com/vasturiano/3d-force-graph/blob/master/example/scene/index.html))
 * [Bloom Post-Processing Effect](https://vasturiano.github.io/3d-force-graph/example/bloom-effect/) ([source](https://github.com/vasturiano/3d-force-graph/blob/master/example/bloom-effect/index.html))
 * [Pause / Resume animation](https://vasturiano.github.io/3d-force-graph/example/pause-resume/) ([source](https://github.com/vasturiano/3d-force-graph/blob/master/example/pause-resume/index.html))
-
-See also the [2D canvas version](https://github.com/vasturiano/force-graph), [VR version](https://github.com/vasturiano/3d-force-graph-vr) and [AR version](https://github.com/vasturiano/3d-force-graph-ar).
-
-And check out the [React bindings](https://github.com/vasturiano/react-force-graph).
 
 ## Quick start
 
