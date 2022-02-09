@@ -3,7 +3,7 @@
 
 [![NPM package][npm-img]][npm-url]
 [![Build Size][build-size-img]][build-size-url]
-[![Dependencies][dependencies-img]][dependencies-url]
+[![NPM Downloads][npm-downloads-img]][npm-downloads-url]
 
 <p align="center">
      <a href="https://vasturiano.github.io/3d-force-graph/example/large-graph/"><img width="80%" src="http://gist.github.com/vasturiano/02affe306ce445e423f992faeea13521/raw/preview.png"></a>
@@ -51,28 +51,28 @@ And check out the [React bindings](https://github.com/vasturiano/react-force-gra
 
 ## Quick start
 
-```
+```js
 import ForceGraph3D from '3d-force-graph';
 ```
 or
-```
-var ForceGraph3D = require('3d-force-graph');
+```js
+const ForceGraph3D = require('3d-force-graph');
 ```
 or even
-```
+```html
 <script src="//unpkg.com/3d-force-graph"></script>
 ```
 then
-```
-var myGraph = ForceGraph3D();
+```js
+const myGraph = ForceGraph3D();
 myGraph(<myDOMElement>)
-    .graphData(<myData>);
+  .graphData(<myData>);
 ```
 
 ## API reference
 
 ### Initialisation
-```
+```js
 ForceGraph3d({ configOptions })(<domElement>)
 ```
 
@@ -209,7 +209,7 @@ ForceGraph3d({ configOptions })(<domElement>)
 | <b>screen2GraphCoords</b>(<i>x</i>, <i>y</i>, <i>distance</i>) | Utility method to translate viewport distance coordinates to the graph domain. Given a pair of `x`,`y` screen coordinates and distance from the camera, returns the current equivalent `{x, y, z}` in the domain of graph node coordinates. |
 
 ### Input JSON syntax
-```
+```json
 {
     "nodes": [
         {
@@ -222,14 +222,14 @@ ForceGraph3d({ configOptions })(<domElement>)
           "name": "name2",
           "val": 10
         },
-        (...)
+        ...
     ],
     "links": [
         {
             "source": "id1",
             "target": "id2"
         },
-        (...)
+        ...
     ]
 }
 ```
@@ -238,9 +238,9 @@ ForceGraph3d({ configOptions })(<domElement>)
 
 [![paypal](https://www.paypalobjects.com/en_US/i/btn/btn_donate_SM.gif)](https://www.paypal.com/cgi-bin/webscr?cmd=_donations&business=L398E7PKP47E8&currency_code=USD&source=url) If this project has helped you and you'd like to contribute back, you can always [buy me a ☕](https://www.paypal.com/cgi-bin/webscr?cmd=_donations&business=L398E7PKP47E8&currency_code=USD&source=url)!
 
-[npm-img]: https://img.shields.io/npm/v/3d-force-graph.svg
+[npm-img]: https://img.shields.io/npm/v/3d-force-graph
 [npm-url]: https://npmjs.org/package/3d-force-graph
-[build-size-img]: https://img.shields.io/bundlephobia/minzip/3d-force-graph.svg
+[build-size-img]: https://img.shields.io/bundlephobia/minzip/3d-force-graph
 [build-size-url]: https://bundlephobia.com/result?p=3d-force-graph
-[dependencies-img]: https://img.shields.io/david/vasturiano/3d-force-graph.svg
-[dependencies-url]: https://david-dm.org/vasturiano/3d-force-graph
+[npm-downloads-img]: https://img.shields.io/npm/dt/3d-force-graph
+[npm-downloads-url]: https://www.npmtrends.com/3d-force-graph
