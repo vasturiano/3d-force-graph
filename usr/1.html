@@ -63,8 +63,8 @@
                 //Use GUI
                 const gui = new dat.GUI();
 
-                const guiResetCamera = { resetCamera: () => { console.log("cam reset") } };
-                gui.add(guiResetCamera, 'resetCamera');
+                const guiResetCamera = { resetCamera: () => Graph.cameraPosition({x:0, y:0, z:1000}) };
+                const resetController = gui.add(guiResetCamera, 'resetCamera').name("Reset Camera");
 
             }
             )
