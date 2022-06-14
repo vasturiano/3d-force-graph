@@ -1,0 +1,76 @@
+<head>
+    <style>
+        body {
+            margin: 0;
+        }
+    </style>
+    <script src="//unpkg.com/three"></script>
+    <script src="//unpkg.com/3d-force-graph"></script>
+    <script src="//unpkg.com/dat.gui"></script>
+    <!-- <script src="SBOM.js"></script> -->
+    <!--<script src="../../dist/3d-force-graph.js"></script>-->
+</head>
+
+<body>
+    <div id="3d-graph"></div>
+
+    <script>
+        // Stats / GUI
+        (function () { var script = document.createElement('script'); script.onload = function () { var stats = new Stats(); document.body.appendChild(stats.dom); requestAnimationFrame(function loop() { stats.update(); requestAnimationFrame(loop) }); }; script.src = '//mrdoob.github.io/stats.js/build/stats.min.js'; document.head.appendChild(script); })()
+
+
+
+        // Grgaph generation and visualization
+        fetch('SBOM.json')
+            .then(res => res.json())
+            .then(out => {
+
+
+
+                // Make graph data
+                sbom = out
+                const gData = {
+                    nodes: sbom.dependencies.map((module, i) => ({ id: module.ref, name: "" })),
+                    links: []
+                }
+
+                for (let module of sbom.dependencies) {
+                    if (!module.dependsOn) continue
+                    for (let j of module.dependsOn) {
+                        gData.links.push({ source: module.ref, target: j })
+                    }
+                }
+
+                // Create graph object
+                const Graph = ForceGraph3D()
+                    (document.getElementById('3d-graph'))
+                    .dagMode('rl')
+                    .dagLevelDistance(50)
+                    .graphData(gData)
+                    .nodeThreeObject(({ img }) => {
+
+                        const material = new THREE.MeshBasicMaterial({ color: 0xffffff })
+                        // const sphereGeo = new THREE.SphereBufferGeometry( 4, 9, 4 )
+                        const sphereGeo = new THREE.IcosahedronBufferGeometry(4, 0)
+                        const mesh = new THREE.Mesh(sphereGeo, material)
+                        return mesh
+
+                    })
+                    .nodeLabel(node => node.id)
+                    .linkOpacity(0.8);
+
+
+                //Use GUI
+                const gui = new dat.GUI();
+
+                const guiResetCamera = { resetCamera: () => { console.log("cam reset") } };
+                gui.add(guiResetCamera, 'resetCamera');
+
+            }
+            )
+            .catch(err => { throw err });
+
+
+
+    </script>
+</body>
