@@ -6,7 +6,9 @@
   "main": "dist/3d-force-graph.common.js",
   "module": "dist/3d-force-graph.module.js",
   "types": "dist/3d-force-graph.d.ts",
-  "sideEffects": false,
+  "sideEffects": [
+    "./src/*.css"
+  ],
   "repository": {
     "type": "git",
     "url": "git+https://github.com/vasturiano/3d-force-graph.git"
