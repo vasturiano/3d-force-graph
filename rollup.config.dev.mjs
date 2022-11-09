@@ -1,4 +1,4 @@
-import buildConfig from './rollup.config';
+import buildConfig from './rollup.config.mjs';
 
 // use first output of first config block for dev
 const config = Array.isArray(buildConfig) ? buildConfig[0] : buildConfig;
