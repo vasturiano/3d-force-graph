@@ -43,7 +43,7 @@
               .map(({ r, g, b }) => [r, g, b].map(v => v / 255)
             )));
 
-          const material = new THREE.LineBasicMaterial({ vertexColors: THREE.VertexColors });
+          const material = new THREE.LineBasicMaterial({ vertexColors: true });
           const geometry = new THREE.BufferGeometry();
           geometry.setAttribute('position', new THREE.BufferAttribute(new Float32Array(2 * 3), 3));
           geometry.setAttribute('color', new THREE.BufferAttribute(colors, 3));
