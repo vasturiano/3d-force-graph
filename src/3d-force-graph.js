@@ -116,6 +116,12 @@ export default Kapsule({
         const controls = state.renderObjs.controls();
         if (controls) {
           controls.enabled = enable;
+          if (controls.enabled === true) {
+            controls.domElement && controls.domElement.ownerDocument && controls.domElement.ownerDocument.dispatchEvent(
+              // simulate mouseup to ensure the controls don't take over after re-enabling 'enableNavigationControls'
+              new PointerEvent('pointerup', { pointerType: 'touch' })
+            );
+          }
         }
       },
       triggerUpdate: false
