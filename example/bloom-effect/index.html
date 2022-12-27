@@ -2,10 +2,6 @@
   <style> body { margin: 0; } </style>
 
   <script src="//unpkg.com/three"></script>
-  <script src="//unpkg.com/three/examples/js/postprocessing/Pass.js"></script>
-  <script src="//unpkg.com/three/examples/js/shaders/CopyShader.js"></script>
-  <script src="//unpkg.com/three/examples/js/shaders/LuminosityHighPassShader.js"></script>
-  <script src="//unpkg.com/three/examples/js/postprocessing/UnrealBloomPass.js"></script>
 
   <script src="//unpkg.com/3d-force-graph"></script>
 <!--  <script src="../../dist/3d-force-graph.js"></script>-->
@@ -14,14 +10,17 @@
 <body>
   <div id="3d-graph"></div>
 
-  <script>
+  <script type="importmap">{ "imports": { "three": "https://unpkg.com/three/build/three.module.js" }}</script>
+  <script type="module">
+    import { UnrealBloomPass } from '//unpkg.com/three/examples/jsm/postprocessing/UnrealBloomPass.js';
+
     const Graph = ForceGraph3D()
       (document.getElementById('3d-graph'))
         .jsonUrl('../datasets/miserables.json')
         .nodeLabel('id')
         .nodeAutoColorBy('group');
 
-    const bloomPass = new THREE.UnrealBloomPass();
+    const bloomPass = new UnrealBloomPass();
     bloomPass.strength = 3;
     bloomPass.radius = 1;
     bloomPass.threshold = 0.1;

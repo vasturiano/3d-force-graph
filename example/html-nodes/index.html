@@ -2,7 +2,6 @@
   <style> body { margin: 0; } </style>
 
   <script src="//unpkg.com/three"></script>
-  <script src="//unpkg.com/three/examples/js/renderers/CSS2DRenderer.js"></script>
 
   <script src="//unpkg.com/3d-force-graph"></script>
 <!--  <script src="../../dist/3d-force-graph.js"></script>-->
@@ -21,9 +20,12 @@
 <body>
   <div id="3d-graph"></div>
 
-  <script>
+  <script type="importmap">{ "imports": { "three": "https://unpkg.com/three/build/three.module.js" }}</script>
+  <script type="module">
+    import { CSS2DRenderer, CSS2DObject } from '//unpkg.com/three/examples/jsm/renderers/CSS2DRenderer.js';
+
     const Graph = ForceGraph3D({
-      extraRenderers: [new THREE.CSS2DRenderer()]
+      extraRenderers: [new CSS2DRenderer()]
     })
     (document.getElementById('3d-graph'))
       .jsonUrl('../datasets/miserables.json')
@@ -33,7 +35,7 @@
         nodeEl.textContent = node.id;
         nodeEl.style.color = node.color;
         nodeEl.className = 'node-label';
-        return new THREE.CSS2DObject(nodeEl);
+        return new CSS2DObject(nodeEl);
       })
       .nodeThreeObjectExtend(true)
     ;
