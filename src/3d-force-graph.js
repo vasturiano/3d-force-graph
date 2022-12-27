@@ -116,6 +116,8 @@ export default Kapsule({
         const controls = state.renderObjs.controls();
         if (controls) {
           controls.enabled = enable;
+          // trigger mouseup on re-enable to prevent sticky controls
+          enable && controls.domElement && controls.domElement.dispatchEvent(new PointerEvent('pointerup'));
         }
       },
       triggerUpdate: false
@@ -238,7 +240,7 @@ export default Kapsule({
           state._dragControls = undefined;
         }
 
-        if (state.enableNodeDrag && state.enablePointerInteraction && state.forceEngine === 'd3') { // Can't access node positions programatically in ngraph
+        if (state.enableNodeDrag && state.enablePointerInteraction && state.forceEngine === 'd3') { // Can't access node positions programmatically in ngraph
           const dragControls = state._dragControls = new ThreeDragControls(
             state.graphData.nodes.map(node => node.__threeObj).filter(obj => obj),
             camera,
