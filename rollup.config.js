@@ -38,17 +38,12 @@ export default [
       commonJs()
     ]
   },
-  { // commonJs and ES modules
+  { // ES module
     input: 'src/index.js',
     output: [
       {
-        format: 'cjs',
-        file: `dist/${name}.common.js`,
-        exports: 'auto'
-      },
-      {
         format: 'es',
-        file: `dist/${name}.module.js`
+        file: `dist/${name}.mjs`
       }
     ],
     external: [

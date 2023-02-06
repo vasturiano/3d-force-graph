@@ -55,15 +55,15 @@ And check out the [React bindings](https://github.com/vasturiano/react-force-gra
 ```js
 import ForceGraph3D from '3d-force-graph';
 ```
-or
-```js
-const ForceGraph3D = require('3d-force-graph');
-```
-or even
+
+or using a script tag
+
 ```html
 <script src="//unpkg.com/3d-force-graph"></script>
 ```
+
 then
+
 ```js
 const myGraph = ForceGraph3D();
 myGraph(<myDOMElement>)
