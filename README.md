@@ -56,7 +56,7 @@ And check out the [React bindings](https://github.com/vasturiano/react-force-gra
 import ForceGraph3D from '3d-force-graph';
 ```
 
-or using a script tag
+or using a *script* tag
 
 ```html
 <script src="//unpkg.com/3d-force-graph"></script>
