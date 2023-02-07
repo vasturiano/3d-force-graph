@@ -1023,9 +1023,9 @@
   integrity sha512-60BCwRFOZCQhDncwQdxxeOEEkbc5dIMccYLwbxsS4TUNeVECQ/pBJ0j09mrHOl/JJvpRPGwO9SvE4nR2Nb/a4Q==
 
 accessor-fn@1:
-  version "1.3.2"
-  resolved "https://registry.yarnpkg.com/accessor-fn/-/accessor-fn-1.3.2.tgz#66074d0127367e996197197822fae846ef0928e7"
-  integrity sha512-W4/Lj/gry8AHy+IC7Havr7fNbphHDzVAiZd5h10g8LRRz6ZKla3A1/lkFqoV1jh13R0eJLGWjDBlRGK36fcWiw==
+  version "1.4.0"
+  resolved "https://registry.yarnpkg.com/accessor-fn/-/accessor-fn-1.4.0.tgz#d60c083d9cb0809999f627dd99b9c63da390d0d9"
+  integrity sha512-B6Gv7axRkK/x5dA3dsc/AZMoTyW/spY6Ldm8IeSAZCM9Ci4SSa5siK/jc9n1XwMTBLU/qGxCAKAdiWesMqTxmA==
 
 acorn@^8.5.0:
   version "8.8.2"
@@ -1299,10 +1299,10 @@ csso@^4.2.0:
   dependencies:
     internmap "1 - 2"
 
-d3-binarytree@^0.2.0:
-  version "0.2.2"
-  resolved "https://registry.yarnpkg.com/d3-binarytree/-/d3-binarytree-0.2.2.tgz#2b3421a4ac41ddaf3ebd2584f96f8e68ecb7c444"
-  integrity sha512-TmgSEKWO4lSjX26Rk77hbTdiF3TQ1v5LqL+cmSz6/5RiSxmq6+e6qHE6X/KwrsIESekhEReH63X5yM8dvXaT7A==
+d3-binarytree@1:
+  version "1.0.1"
+  resolved "https://registry.yarnpkg.com/d3-binarytree/-/d3-binarytree-1.0.1.tgz#cec01bee2ed931693d4ffdc5ce309c807116019b"
+  integrity sha512-i2MVox85r113Hh/VCdw6Lb7X0aPEbcQN0d2/2PwVY8yrvokoazOFZsVRea8x84kHRFAEzWI6lo4JO053BcLM+g==
 
 "d3-color@1 - 3":
   version "3.1.0"
@@ -1315,13 +1315,13 @@ d3-binarytree@^0.2.0:
   integrity sha512-rzUyPU/S7rwUflMyLc1ETDeBj0NRuHKKAcvukozwhshr6g6c5d8zh4c2gQjY2bZ0dXeGLWc1PF174P2tVvKhfg==
 
 "d3-force-3d@2 - 3":
-  version "3.0.3"
-  resolved "https://registry.yarnpkg.com/d3-force-3d/-/d3-force-3d-3.0.3.tgz#ddd0b9120837ef3cd6ffdad668d99d1992483af2"
-  integrity sha512-8HGTbw6y35UYManGCPU4+b9/PGgnyjzRq80DRsp7zFsRl0leVz2pzwx18dwkPe4rDxTOEpM4BuWQ2krbVaGQQA==
+  version "3.0.4"
+  resolved "https://registry.yarnpkg.com/d3-force-3d/-/d3-force-3d-3.0.4.tgz#88e22435b9df72d26683d8cfe1e8a570010f42de"
+  integrity sha512-ahtbM9ZlyS9ARMmuGoKKWiFNhCHjc8Y8OrMrK5hYNKlI2H6YbTTSp51l21NM5uyLj1HruRoFq68SStAp/4qUrQ==
   dependencies:
-    d3-binarytree "^0.2.0"
+    d3-binarytree "1"
     d3-dispatch "1 - 3"
-    d3-octree "^0.2.0"
+    d3-octree "1"
     d3-quadtree "1 - 3"
     d3-timer "1 - 3"
 
@@ -1337,10 +1337,10 @@ d3-binarytree@^0.2.0:
   dependencies:
     d3-color "1 - 3"
 
-d3-octree@^0.2.0:
-  version "0.2.2"
-  resolved "https://registry.yarnpkg.com/d3-octree/-/d3-octree-0.2.2.tgz#24c513d809252d14fd3b0bf7eb5af321c30bd69b"
-  integrity sha512-ysk9uSPAhZVb0Gq4GXzghl/Yqxu80dHrq55I53qaIMdGB65+0UfO84sr4Fci2JHumcgh6H4WE0r8LwxPagkE+g==
+d3-octree@1:
+  version "1.0.1"
+  resolved "https://registry.yarnpkg.com/d3-octree/-/d3-octree-1.0.1.tgz#19ae4e0c122861f5e31f040eae1cef09a73997ac"
+  integrity sha512-nnYWE2lLzveIxeFotcuLXbft/6ZShI0ZO9F7XMY19tVAOLEzcUOcfNUCTTzDdfvNRLa7sDp4IT+YsvHrCcE9qA==
 
 "d3-quadtree@1 - 3":
   version "3.0.1"
@@ -1385,12 +1385,12 @@ d3-octree@^0.2.0:
   resolved "https://registry.yarnpkg.com/d3-timer/-/d3-timer-3.0.1.tgz#6284d2a2708285b1abb7e201eda4380af35e63b0"
   integrity sha512-ndfJ/JxxMd3nw31uyKoY2naivF+r29V+Lc0svZxe1JvvIRmi8hUsrMvdOwgS1o6uBHmiz91geQ0ylPP0aj1VUA==
 
-data-joint@^1.2:
-  version "1.2.6"
-  resolved "https://registry.yarnpkg.com/data-joint/-/data-joint-1.2.6.tgz#9c1e8844473894fbf04aea5e052a9027c2df9c8b"
-  integrity sha512-xuKyhQcD7vlO451VwKoK0RS8owh+iAZoQM2Up0ooTxrpLXh6XMUNPQW9vEOqv1+BT3c185FCLyWjUcCsEXC0/Q==
+data-joint@^1.3:
+  version "1.3.0"
+  resolved "https://registry.yarnpkg.com/data-joint/-/data-joint-1.3.0.tgz#5270de9ad21d8c6574d0e580f890c22cd0823b40"
+  integrity sha512-nsnTfKsxVvXy4ur3s6cea1ZtZ7A5hRlWojX10qDGelvRQuUtqiw6nMY0k5RmJb4PYubGWcqyU4tMxG1H6JHZKw==
   dependencies:
-    index-array-by "^1.3.3"
+    index-array-by "^1.4.0"
 
 debounce@^1.2.1:
   version "1.2.1"
@@ -1440,9 +1440,9 @@ domutils@^2.8.0:
     domhandler "^4.2.0"
 
 electron-to-chromium@^1.4.284:
-  version "1.4.286"
-  resolved "https://registry.yarnpkg.com/electron-to-chromium/-/electron-to-chromium-1.4.286.tgz#0e039de59135f44ab9a8ec9025e53a9135eba11f"
-  integrity sha512-Vp3CVhmYpgf4iXNKAucoQUDcCrBQX3XLBtwgFqP9BUXuucgvAV9zWp1kYU7LL9j4++s9O+12cb3wMtN4SJy6UQ==
+  version "1.4.288"
+  resolved "https://registry.yarnpkg.com/electron-to-chromium/-/electron-to-chromium-1.4.288.tgz#bbce00eb03c1819fe3d0d0d861374b76c53f7507"
+  integrity sha512-8s9aJf3YiokIrR+HOQzNOGmEHFXVUQzXM/JaViVvKdCkNUjS+lEa/uT7xw3nDVG/IgfxiIwUGkwJ6AR1pTpYsQ==
 
 entities@^2.0.0:
   version "2.2.0"
@@ -1563,10 +1563,10 @@ import-from@^3.0.0:
   dependencies:
     resolve-from "^5.0.0"
 
-index-array-by@^1.3.3:
-  version "1.3.3"
-  resolved "https://registry.yarnpkg.com/index-array-by/-/index-array-by-1.3.3.tgz#6881ae680a44af2c344db5e18eac6c5dc1ccea47"
-  integrity sha512-dpqV1sX+hx4s0RqAT97ypk9xzcAXJ0XK27p3bTgPy8bjbJAX6Kf7RU3pPXgmg9hhO7f5/WxO354v2f/A0/fz3Q==
+index-array-by@^1.4.0:
+  version "1.4.0"
+  resolved "https://registry.yarnpkg.com/index-array-by/-/index-array-by-1.4.0.tgz#d49d87206958b97108b095b565a609d80162c176"
+  integrity sha512-6+yiTT2vF2k7muG+khY+3T3OP+ot2d4qHUC7BtO3ZLtvs39/krVdWcPkk7M5AkzFbChv2gfYI92WOH7GrZ45UQ==
 
 inflight@^1.0.4:
   version "1.0.6"
@@ -1632,10 +1632,10 @@ json5@^2.2.2:
   resolved "https://registry.yarnpkg.com/json5/-/json5-2.2.3.tgz#78cd6f1a19bdc12b73db5ad0c61efd66c1e29283"
   integrity sha512-XmOWe7eyHYH14cLdVPoyg+GOH3rYX++KpzrylJwSW98t3Nk+U8XOl8FWKOgwtzdb8lXGf6zYwDUzeHMWfxasyg==
 
-kapsule@^1.13:
-  version "1.13.8"
-  resolved "https://registry.yarnpkg.com/kapsule/-/kapsule-1.13.8.tgz#1f43f8111b1b78d13e45daeff35dbef1e81114c2"
-  integrity sha512-Y1lLt1htHNofIM5kxS5OdEqDm7WFqHF4hm6DrrvNEKIJugfQrxDBycV41QI5FpnBGHqyBD99VpTB5ARnlufP6w==
+kapsule@^1.14:
+  version "1.14.0"
+  resolved "https://registry.yarnpkg.com/kapsule/-/kapsule-1.14.0.tgz#b82cede7aef160d2533bf729d37c35a1d8b2a6cf"
+  integrity sha512-Gz9Wt+doAn7OA9A/IDBrehlVOntsFt9EzHjYT+yvaDDEK0jdsWeq5JaXmbWvR4zVfygXoKKxSMmJonCpa+tiuw==
   dependencies:
     debounce "^1.2.1"
 
@@ -2308,29 +2308,29 @@ terser@^5.15.1:
     source-map-support "~0.5.20"
 
 three-forcegraph@^1.41:
-  version "1.41.1"
-  resolved "https://registry.yarnpkg.com/three-forcegraph/-/three-forcegraph-1.41.1.tgz#5b1de4470f7868a2d8ff018d2db1356061a803eb"
-  integrity sha512-piGaogBmZBLV4dENYdFA5l6KwDjoiJfzVvKU+kAQe7/TYreSwYONwSnRFemwje5nilOkdJmdw1qjriJbhDsOmw==
+  version "1.41.3"
+  resolved "https://registry.yarnpkg.com/three-forcegraph/-/three-forcegraph-1.41.3.tgz#26ebfa7243dcce619943d95681a750a7e2c7ec62"
+  integrity sha512-odVIkoHXACTd4c5rjMzooV8Il3YwaUbKDzLhVOYjKVlGQpRmufEgINqEvZUMlT3u3MnETqSOs2LfcIhq4VWTTA==
   dependencies:
     accessor-fn "1"
     d3-array "1 - 3"
     d3-force-3d "2 - 3"
     d3-scale "1 - 4"
     d3-scale-chromatic "1 - 3"
-    data-joint "^1.2"
-    kapsule "^1.13"
+    data-joint "^1.3"
+    kapsule "^1.14"
     ngraph.forcelayout "^3.3"
     ngraph.graph "^20.0"
-    tinycolor2 "^1.5"
+    tinycolor2 "^1.6"
 
-three-render-objects@^1.27:
-  version "1.27.8"
-  resolved "https://registry.yarnpkg.com/three-render-objects/-/three-render-objects-1.27.8.tgz#571302850d0c9be131d35ed5d9efe3aacfce0f52"
-  integrity sha512-ufnSu2AT1bPcg1NX91SS3hz6OxJcpNUGOjNtarCmzNmRkVlhc/PZJHcF4aPU6cy8X7R3bQfGRgUdh75kpAyTgg==
+three-render-objects@^1.28:
+  version "1.28.0"
+  resolved "https://registry.yarnpkg.com/three-render-objects/-/three-render-objects-1.28.0.tgz#3d69d5af659ba61e5f9dd7f90c9101979693fb9b"
+  integrity sha512-1IZJcToVdgg1RhvgeMhfSCmq4xV9y/nJ8dt0iOLFOh5F1cZBJr60WjCJuV4KLAh7wBa5ORngKwYUx5/zhD27mQ==
   dependencies:
     "@tweenjs/tween.js" "18"
     accessor-fn "1"
-    kapsule "^1.13"
+    kapsule "^1.14"
     polished "4"
 
 "three@>=0.118 <1":
@@ -2338,7 +2338,7 @@ three-render-objects@^1.27:
   resolved "https://registry.yarnpkg.com/three/-/three-0.149.0.tgz#a9cf78b17d02f063ffe6dfca1e300eff2eab2927"
   integrity sha512-tohpUxPDht0qExRLDTM8sjRLc5d9STURNrdnK3w9A+V4pxaTBfKWWT/IqtiLfg23Vfc3Z+ImNfvRw1/0CtxrkQ==
 
-tinycolor2@^1.5:
+tinycolor2@^1.6:
   version "1.6.0"
   resolved "https://registry.yarnpkg.com/tinycolor2/-/tinycolor2-1.6.0.tgz#f98007460169b0263b97072c5ae92484ce02d09e"
   integrity sha512-XPaBkWQJdsf3pLKJV9p4qN/S+fm2Oj8AIPo1BTUhg5oxkvm9+SVEGFdhyOz7tTdUTfvxMiAs4sp6/eZO2Ew+pw==
