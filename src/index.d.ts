@@ -14,7 +14,7 @@ type ObjAccessor<T> = Accessor<object, T>;
 type Coords = { x: number; y: number; z: number; };
 
 // don't surface these internal props from inner ThreeForceGraph
-type ExcludedInnerProps = 'onLoading' | 'onFinishLoading' | 'onUpdate' | 'onFinishUpdate' | 'tickFrame' | 'd3AlphaTarget';
+type ExcludedInnerProps = 'onLoading' | 'onFinishLoading' | 'onUpdate' | 'onFinishUpdate' | 'tickFrame' | 'd3AlphaTarget' | 'resetCountdown';
 
 export interface ForceGraph3DGenericInstance<ChainableInstance>
     extends Omit<ThreeForceGraphGeneric<ChainableInstance>, ExcludedInnerProps> {
