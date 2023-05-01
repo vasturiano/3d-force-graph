@@ -344,7 +344,7 @@ export default Kapsule({
     // config renderObjs
     state.renderObjs
       .objects([ // Populate scene
-        new three.AmbientLight(0xbbbbbb),
+        new three.AmbientLight(0xcccccc),
         new three.DirectionalLight(0xffffff, 0.6),
         state.forceGraph
       ])
