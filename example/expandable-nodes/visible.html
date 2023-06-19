@@ -1,0 +1,70 @@
+<head>
+    <style>
+      body {
+        margin: 0;
+      }
+    </style>
+  
+    <script src="//unpkg.com/3d-force-graph"></script>
+    <!--  <script src="../../dist/3d-force-graph.js"></script>-->
+  
+    <style>
+      .clickable {
+        cursor: unset !important
+      }
+    </style>
+  </head>
+  
+  <body>
+    <div id="3d-graph"></div>
+  
+    <script>
+  
+      // Random tree
+      const N = 300;
+      const gData = {
+        nodes: [...Array(N).keys()].map(i => ({ id: i, expand: true, visible: true, childLinks: [] })),
+        links: [...Array(N).keys()]
+          .filter(id => id)
+          .map(id => ({
+            source: Math.round(Math.random() * (id - 1)),
+            target: id,
+            visible: true
+          }))
+      };
+  
+      // link parent/children
+      const nodesById = Object.fromEntries(gData.nodes.map(node => [node.id, node]));
+      gData.links.forEach(link => {
+        nodesById[link.source].childLinks.push(link);
+      });
+  
+      function update_visible(snode) {
+        var visible = snode.expand;
+  
+        function traverseTree(node, svisible) {
+          node.visible = svisible;//!node.visible;
+          node.childLinks.forEach(link => link.visible = svisible)
+          node.childLinks
+            .map(link => ((typeof link.target) === 'object') ? link.target : nodesById[link.target]) // get child node
+            .forEach(node => traverseTree(node, svisible));
+        }
+        traverseTree(snode, visible);
+  
+      }
+  
+      const elem = document.getElementById('3d-graph');
+      const Graph = ForceGraph3D()(elem)
+        .graphData(gData)
+        .linkDirectionalParticles(2)
+        .nodeColor(node => !node.childLinks.length ? 'green' : node.collapsed ? 'red' : 'yellow')
+        .onNodeHover(node => elem.style.cursor = node && node.childLinks.length ? 'pointer' : null)
+        .onNodeClick(node => {
+          node.expand = !node.expand;
+          update_visible(node);
+          node.visible = true;
+          Graph.nodeVisibility(node => node.visible)
+            .linkVisibility(link => link.source.visible && link.target.visible)
+        });
+    </script>
+  </body>
