@@ -1,6 +1,7 @@
 export default function(kapsulePropName, kapsuleType) {
 
   const dummyK = new kapsuleType(); // To extract defaults
+  dummyK._destructor && dummyK._destructor();
 
   return {
     linkProp: function(prop) { // link property config
