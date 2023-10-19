@@ -1,4 +1,4 @@
-import { Scene, Camera, WebGLRenderer, WebGLRendererParameters, Renderer } from 'three';
+import { Scene, Light, Camera, WebGLRenderer, WebGLRendererParameters, Renderer } from 'three';
 import { EffectComposer } from 'three/examples/jsm/postprocessing/EffectComposer.js';
 import { ThreeForceGraphGeneric } from 'three-forcegraph';
 
@@ -64,6 +64,8 @@ export interface ForceGraph3DGenericInstance<ChainableInstance>
   cameraPosition(position: Partial<Coords>, lookAt?: Coords, transitionMs?: number): ChainableInstance;
   zoomToFit(durationMs?: number, padding?: number, nodeFilter?: (node: object) => boolean): ChainableInstance;
   postProcessingComposer(): EffectComposer;
+  lights(): Light[];
+  lights(lights: Light[]): ChainableInstance;
   scene(): Scene;
   camera(): Camera;
   renderer(): WebGLRenderer;

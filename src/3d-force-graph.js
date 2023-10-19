@@ -93,6 +93,7 @@ const linkedRenderObjsProps = Object.assign(...[
 ].map(p => ({ [p]: bindRenderObjs.linkProp(p)})));
 const linkedRenderObjsMethods = Object.assign(
   ...[
+    'lights',
     'cameraPosition',
     'postProcessingComposer'
   ].map(p => ({ [p]: bindRenderObjs.linkMethod(p)})),
@@ -184,10 +185,18 @@ export default Kapsule({
     ...linkedRenderObjsMethods
   },
 
-  stateInit: ({ controlType, rendererConfig, extraRenderers }) => ({
-    forceGraph: new ThreeForceGraph(),
-    renderObjs: ThreeRenderObjects({ controlType, rendererConfig, extraRenderers })
-  }),
+  stateInit: ({ controlType, rendererConfig, extraRenderers }) => {
+    const forceGraph = new ThreeForceGraph();
+    return {
+      forceGraph,
+      renderObjs: ThreeRenderObjects({ controlType, rendererConfig, extraRenderers })
+        .objects([forceGraph]) // Populate scene
+        .lights([
+          new three.AmbientLight(0xcccccc, Math.PI),
+          new three.DirectionalLight(0xffffff, 0.6 * Math.PI)
+        ])
+    }
+  },
 
   init: function(domNode, state) {
     // Wipe DOM
@@ -344,11 +353,6 @@ export default Kapsule({
     // config renderObjs
     state.renderObjs.renderer().useLegacyLights = false; // force behavior for three < 155
     state.renderObjs
-      .objects([ // Populate scene
-        new three.AmbientLight(0xcccccc, Math.PI),
-        new three.DirectionalLight(0xffffff, 0.6 * Math.PI),
-        state.forceGraph
-      ])
       .hoverOrderComparator((a, b) => {
         // Prioritize graph objects
         const aObj = getGraphObj(a);
