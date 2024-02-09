@@ -5,69 +5,70 @@
   <script src="//unpkg.com/dat.gui"></script>
   <script src="//unpkg.com/d3-octree"></script>
   <script src="//unpkg.com/d3-force-3d"></script>
-  <script src="//unpkg.com/three"></script>
-  <script src="//unpkg.com/three-spritetext"></script>
 
   <script src="//unpkg.com/3d-force-graph"></script>
   <!--<script src="../../dist/3d-force-graph.js"></script>-->
 </head>
 
 <body>
-  <div id="graph"></div>
+<div id="graph"></div>
 
-  <script>
-    // controls
-    const controls = { 'DAG Orientation': 'lr'};
-    const gui = new dat.GUI();
-    gui.add(controls, 'DAG Orientation', ['lr', 'td', 'zout', 'radialout', null])
-      .onChange(orientation => graph && graph.dagMode(orientation));
+<script type="importmap">{ "imports": { "three": "//unpkg.com/three/build/three.module.js" }}</script>
+<script type="module">
+  import SpriteText from "//unpkg.com/three-spritetext/dist/three-spritetext.mjs";
 
-    // graph config
-    const graph = ForceGraph3D()
-      .backgroundColor('#101020')
-      .linkColor(() => 'rgba(255, 255, 255, 0.2)')
-      .dagMode('lr')
-      .onDagError(() => false)
-      .dagLevelDistance(180)
-      .nodeId('package')
-      .linkCurvature(0.07)
-      .nodeThreeObject(node => {
-        const sprite = new SpriteText(node.package);
-        sprite.material.depthWrite = false;
-        sprite.color = 'lightsteelblue';
-        sprite.textHeight = 8;
-        return sprite;
-      })
-      .d3Force('collide', d3.forceCollide(13))
-      .d3AlphaDecay(0.02)
-      .d3VelocityDecay(0.3);
+  // controls
+  const controls = { 'DAG Orientation': 'lr'};
+  const gui = new dat.GUI();
+  gui.add(controls, 'DAG Orientation', ['lr', 'td', 'zout', 'radialout', null])
+    .onChange(orientation => graph && graph.dagMode(orientation));
 
-    fetch('../../yarn.lock')
-      .then(r => r.text())
-      .then(text => {
-        const yarnlock = _yarnpkg_lockfile.parse(text);
-        if (yarnlock.type !== 'success') throw new Error('invalid yarn.lock');
-        return yarnlock.object;
-      })
-      .then(yarnlock => {
-        const nodes = [];
-        const links = [];
+  // graph config
+  const graph = ForceGraph3D()
+    .backgroundColor('#101020')
+    .linkColor(() => 'rgba(255, 255, 255, 0.6)')
+    .dagMode('lr')
+    .onDagError(() => false)
+    .dagLevelDistance(180)
+    .nodeId('package')
+    .linkCurvature(0.07)
+    .nodeThreeObject(node => {
+      const sprite = new SpriteText(node.package);
+      sprite.material.depthWrite = false;
+      sprite.color = 'lightsteelblue';
+      sprite.textHeight = 8;
+      return sprite;
+    })
+    .d3Force('collide', d3.forceCollide(13))
+    .d3AlphaDecay(0.02)
+    .d3VelocityDecay(0.3);
 
-        Object.entries(yarnlock).forEach(([package, details]) => {
-          nodes.push({
-            package,
-            version: details.version
-          });
+  fetch('../../yarn.lock')
+    .then(r => r.text())
+    .then(text => {
+      const yarnlock = _yarnpkg_lockfile.parse(text);
+      if (yarnlock.type !== 'success') throw new Error('invalid yarn.lock');
+      return yarnlock.object;
+    })
+    .then(yarnlock => {
+      const nodes = [];
+      const links = [];
 
-          if (details.dependencies) {
-            Object.entries(details.dependencies).forEach(([dep, version]) => {
-              links.push({source: package, target: `${dep}@${version}`});
-            });
-          }
+      Object.entries(yarnlock).forEach(([pkg, details]) => {
+        nodes.push({
+          package: pkg,
+          version: details.version
         });
 
-        graph(document.getElementById('graph'))
-          .graphData({ nodes, links });
+        if (details.dependencies) {
+          Object.entries(details.dependencies).forEach(([dep, version]) => {
+            links.push({source: pkg, target: `${dep}@${version}`});
+          });
+        }
       });
-  </script>
+
+      graph(document.getElementById('graph'))
+        .graphData({ nodes, links });
+    });
+</script>
 </body>

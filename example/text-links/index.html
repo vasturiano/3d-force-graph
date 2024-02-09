@@ -1,9 +1,6 @@
 <head>
   <style> body { margin: 0; } </style>
 
-  <script src="//unpkg.com/three"></script>
-  <script src="//unpkg.com/three-spritetext"></script>
-
   <script src="//unpkg.com/3d-force-graph"></script>
   <!--<script src="../../dist/3d-force-graph.js"></script>-->
 </head>
@@ -11,7 +8,10 @@
 <body>
   <div id="3d-graph"></div>
 
-  <script>
+  <script type="importmap">{ "imports": { "three": "//unpkg.com/three/build/three.module.js" }}</script>
+  <script type="module">
+    import SpriteText from "//unpkg.com/three-spritetext/dist/three-spritetext.mjs";
+
     const Graph = ForceGraph3D()
       (document.getElementById('3d-graph'))
         .jsonUrl('../datasets/miserables.json')
