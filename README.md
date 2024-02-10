@@ -6,7 +6,7 @@
 [![NPM Downloads][npm-downloads-img]][npm-downloads-url]
 
 <p align="center">
-     <a href="https://vasturiano.github.io/3d-force-graph/example/large-graph/"><img width="80%" src="https://vasturiano.github.io/three-forcegraph/example/preview.png"></a>
+     <a href="https://vasturiano.github.io/3d-force-graph/example/large-graph/"><img width="80%" src="https://vasturiano.github.io/3d-force-graph/example/preview.png"></a>
 </p>
 
 A web component to represent a graph data structure in a 3-dimensional space using a [force-directed](https://en.wikipedia.org/wiki/Force-directed_graph_drawing) iterative layout.
