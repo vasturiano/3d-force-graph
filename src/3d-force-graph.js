@@ -148,20 +148,15 @@ export default Kapsule({
       return this;
     },
     pauseAnimation: function(state) {
-      if (state.animationFrameRequestId !== null) {
-        cancelAnimationFrame(state.animationFrameRequestId);
-        state.animationFrameRequestId = null;
-      }
+      this.renderer().setAnimationLoop(null);
       return this;
     },
 
     resumeAnimation: function(state) {
-      if (state.animationFrameRequestId === null) {
-        this._animationCycle();
-      }
+      this.renderer().setAnimationLoop(this._render);
       return this;
     },
-    _animationCycle(state) {
+    _render(state) {
       if (state.enablePointerInteraction) {
         // reset canvas cursor (override dragControls cursor)
         this.renderer().domElement.style.cursor = null;
@@ -170,7 +165,6 @@ export default Kapsule({
       // Frame cycle
       state.forceGraph.tickFrame();
       state.renderObjs.tick();
-      state.animationFrameRequestId = requestAnimationFrame(this._animationCycle);
     },
     scene: state => state.renderObjs.scene(), // Expose scene
     camera: state => state.renderObjs.camera(), // Expose camera
@@ -421,7 +415,7 @@ export default Kapsule({
     //
 
     // Kick-off renderer
-    this._animationCycle();
+    this.renderer().setAnimationLoop(this._render);
   }
 });
 
