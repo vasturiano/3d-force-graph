@@ -5,6 +5,7 @@ const three = window.THREE
   : { AmbientLight, DirectionalLight, Vector3 };
 
 import { DragControls as ThreeDragControls } from 'three/examples/jsm/controls/DragControls.js';
+import { XRButton as ThreeXRButton } from 'three/addons/webxr/XRButton.js';
 
 import ThreeForceGraph from 'three-forcegraph';
 import ThreeRenderObjects from 'three-render-objects';
@@ -124,6 +125,7 @@ export default Kapsule({
       triggerUpdate: false
     },
     enableNodeDrag: { default: true, triggerUpdate: false },
+    enableWebXR: { default: true, triggerUpdate: false },
     onNodeDrag: { default: () => {}, triggerUpdate: false },
     onNodeDragEnd: { default: () => {}, triggerUpdate: false },
     onNodeClick: { triggerUpdate: false },
@@ -413,6 +415,12 @@ export default Kapsule({
       });
 
     //
+
+    // config WebXR
+    if (state.enableWebXR) {
+      document.body.appendChild( ThreeXRButton.createButton( renderer ) );
+      renderer.xr.enabled = true;
+    }
 
     // Kick-off renderer
     this.renderer().setAnimationLoop(this._render);
