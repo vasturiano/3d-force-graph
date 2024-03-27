@@ -1,8 +1,8 @@
-import { AmbientLight, DirectionalLight, Vector3 } from 'three';
+import { AmbientLight, DirectionalLight, Vector3, REVISION } from 'three';
 
 const three = window.THREE
   ? window.THREE // Prefer consumption from global THREE, if exists
-  : { AmbientLight, DirectionalLight, Vector3 };
+  : { AmbientLight, DirectionalLight, Vector3, REVISION };
 
 import { DragControls as ThreeDragControls } from 'three/examples/jsm/controls/DragControls.js';
 
@@ -351,7 +351,7 @@ export default Kapsule({
       });
 
     // config renderObjs
-    state.renderObjs.renderer().useLegacyLights = false; // force behavior for three < 155
+    three.REVISION < 155 && (state.renderObjs.renderer().useLegacyLights = false); // force behavior for three < 155
     state.renderObjs
       .hoverOrderComparator((a, b) => {
         // Prioritize graph objects
