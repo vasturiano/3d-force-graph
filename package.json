@@ -53,18 +53,18 @@
     "three-render-objects": "^1.29"
   },
   "devDependencies": {
-    "@babel/core": "^7.24.3",
-    "@babel/preset-env": "^7.24.3",
+    "@babel/core": "^7.25.2",
+    "@babel/preset-env": "^7.25.4",
     "@rollup/plugin-babel": "^6.0.4",
-    "@rollup/plugin-commonjs": "^25.0.7",
-    "@rollup/plugin-node-resolve": "^15.2.3",
+    "@rollup/plugin-commonjs": "^28.0.0",
+    "@rollup/plugin-node-resolve": "^15.3.0",
     "@rollup/plugin-terser": "^0.4.4",
-    "postcss": "^8.4.38",
-    "rimraf": "^5.0.5",
-    "rollup": "^4.13.1",
-    "rollup-plugin-dts": "^6.1.0",
+    "postcss": "^8.4.47",
+    "rimraf": "^6.0.1",
+    "rollup": "^4.22.4",
+    "rollup-plugin-dts": "^6.1.1",
     "rollup-plugin-postcss": "^4.0.2",
-    "typescript": "^5.4.3"
+    "typescript": "^5.6.2"
   },
   "engines": {
     "node": ">=12"
