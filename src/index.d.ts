@@ -1,6 +1,6 @@
 import { Scene, Light, Camera, WebGLRenderer, WebGLRendererParameters, Renderer } from 'three';
 import { EffectComposer } from 'three/examples/jsm/postprocessing/EffectComposer.js';
-import { ThreeForceGraphGeneric } from 'three-forcegraph';
+import { ThreeForceGraphGeneric, NodeObject, LinkObject } from 'three-forcegraph';
 
 export interface ConfigOptions {
   controlType?: 'trackball' | 'orbit' | 'fly'
@@ -9,15 +9,15 @@ export interface ConfigOptions {
 }
 
 type Accessor<In, Out> = Out | string | ((obj: In) => Out);
-type ObjAccessor<T> = Accessor<object, T>;
+type ObjAccessor<T, InT = object> = Accessor<InT, T>;
 
 type Coords = { x: number; y: number; z: number; };
 
 // don't surface these internal props from inner ThreeForceGraph
 type ExcludedInnerProps = 'onLoading' | 'onFinishLoading' | 'onUpdate' | 'onFinishUpdate' | 'tickFrame' | 'd3AlphaTarget' | 'resetCountdown';
 
-export interface ForceGraph3DGenericInstance<ChainableInstance>
-    extends Omit<ThreeForceGraphGeneric<ChainableInstance>, ExcludedInnerProps> {
+export interface ForceGraph3DGenericInstance<ChainableInstance, N extends NodeObject = NodeObject, L extends LinkObject<N> = LinkObject<N>>
+    extends Omit<ThreeForceGraphGeneric<ChainableInstance, N, L>, ExcludedInnerProps> {
   (element: HTMLElement): ChainableInstance;
   _destructor(): void;
 
@@ -32,20 +32,20 @@ export interface ForceGraph3DGenericInstance<ChainableInstance>
   showNavInfo(enabled: boolean): ChainableInstance;
 
   // Labels
-  nodeLabel(): ObjAccessor<string>;
-  nodeLabel(textAccessor: ObjAccessor<string>): ChainableInstance;
-  linkLabel(): ObjAccessor<string>;
-  linkLabel(textAccessor: ObjAccessor<string>): ChainableInstance;
+  nodeLabel(): ObjAccessor<string, N>;
+  nodeLabel(textAccessor: ObjAccessor<string, N>): ChainableInstance;
+  linkLabel(): ObjAccessor<string, L>;
+  linkLabel(textAccessor: ObjAccessor<string, L>): ChainableInstance;
 
   // Interaction
-  onNodeClick(callback: (node: object, event: MouseEvent) => void): ChainableInstance;
-  onNodeRightClick(callback: (node: object, event: MouseEvent) => void): ChainableInstance;
-  onNodeHover(callback: (node: object | null, previousNode: object | null) => void): ChainableInstance;
-  onNodeDrag(callback: (node: object, translate: Coords) => void): ChainableInstance;
-  onNodeDragEnd(callback: (node: object, translate: Coords) => void): ChainableInstance;
-  onLinkClick(callback: (link: object, event: MouseEvent) => void): ChainableInstance;
-  onLinkRightClick(callback: (link: object, event: MouseEvent) => void): ChainableInstance;
-  onLinkHover(callback: (link: object | null, previousLink: object | null) => void): ChainableInstance;
+  onNodeClick(callback: (node: N, event: MouseEvent) => void): ChainableInstance;
+  onNodeRightClick(callback: (node: N, event: MouseEvent) => void): ChainableInstance;
+  onNodeHover(callback: (node: N | null, previousNode: N | null) => void): ChainableInstance;
+  onNodeDrag(callback: (node: N, translate: Coords) => void): ChainableInstance;
+  onNodeDragEnd(callback: (node: N, translate: Coords) => void): ChainableInstance;
+  onLinkClick(callback: (link: L, event: MouseEvent) => void): ChainableInstance;
+  onLinkRightClick(callback: (link: L, event: MouseEvent) => void): ChainableInstance;
+  onLinkHover(callback: (link: L | null, previousLink: L | null) => void): ChainableInstance;
   onBackgroundClick(callback: (event: MouseEvent) => void): ChainableInstance;
   onBackgroundRightClick(callback: (event: MouseEvent) => void): ChainableInstance;
   linkHoverPrecision(): number;
@@ -62,7 +62,7 @@ export interface ForceGraph3DGenericInstance<ChainableInstance>
   resumeAnimation(): ChainableInstance;
   cameraPosition(): Coords;
   cameraPosition(position: Partial<Coords>, lookAt?: Coords, transitionMs?: number): ChainableInstance;
-  zoomToFit(durationMs?: number, padding?: number, nodeFilter?: (node: object) => boolean): ChainableInstance;
+  zoomToFit(durationMs?: number, padding?: number, nodeFilter?: (node: N) => boolean): ChainableInstance;
   postProcessingComposer(): EffectComposer;
   lights(): Light[];
   lights(lights: Light[]): ChainableInstance;
@@ -76,8 +76,8 @@ export interface ForceGraph3DGenericInstance<ChainableInstance>
   screen2GraphCoords(screenX: number, screenY: number, distance: number): Coords;
 }
 
-export type ForceGraph3DInstance = ForceGraph3DGenericInstance<ForceGraph3DInstance>;
+export type ForceGraph3DInstance<NodeType = NodeObject, LinkType = LinkObject<NodeType>> = ForceGraph3DGenericInstance<ForceGraph3DInstance<NodeType, LinkType>, NodeType, LinkType>;
 
-declare function ForceGraph3D(configOptions?: ConfigOptions): ForceGraph3DInstance;
+declare function ForceGraph3D<NodeType = NodeObject, LinkType = LinkObject<NodeType>>(configOptions?: ConfigOptions): ForceGraph3DInstance<NodeType, LinkType>;
 
 export default ForceGraph3D;
