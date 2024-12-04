@@ -23,8 +23,7 @@
         }))
     };
 
-    const Graph = ForceGraph3D()
-      (document.getElementById('3d-graph'))
+    const Graph = new ForceGraph3D(document.getElementById('3d-graph'))
       .height(window.innerHeight - 60)
       .graphData(gData);
 

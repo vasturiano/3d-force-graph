@@ -32,8 +32,7 @@
     const distance = 1400;
 
     let isRotationActive = true;
-    const Graph = ForceGraph3D()
-      (document.getElementById('3d-graph'))
+    const Graph = new ForceGraph3D(document.getElementById('3d-graph'))
         .enableNodeDrag(false)
         .enableNavigationControls(false)
         .showNavInfo(false)

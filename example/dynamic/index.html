@@ -16,7 +16,7 @@
 
     const elem = document.getElementById("3d-graph");
 
-    const Graph = ForceGraph3D()(elem)
+    const Graph = new ForceGraph3D(elem)
         .enableNodeDrag(false)
         .onNodeClick(removeNode)
         .graphData(initData);

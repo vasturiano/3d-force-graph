@@ -23,8 +23,7 @@
 
     let selectedNodes = new Set();
 
-    const Graph = ForceGraph3D()
-      (document.getElementById('3d-graph'))
+    const Graph = new ForceGraph3D(document.getElementById('3d-graph'))
         .graphData(gData)
         .nodeRelSize(9)
         .nodeColor(node => selectedNodes.has(node) ? 'yellow' : 'grey')

@@ -23,8 +23,7 @@
         }))
     };
 
-    const Graph = ForceGraph3D()
-      (document.getElementById('3d-graph'))
+    const Graph = new ForceGraph3D(document.getElementById('3d-graph'))
         .nodeThreeObject(({ id }) => new THREE.Mesh(
           [
             new THREE.BoxGeometry(Math.random() * 20, Math.random() * 20, Math.random() * 20),

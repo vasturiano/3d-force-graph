@@ -20,8 +20,7 @@
       vz: Math.random()
     }));
 
-    const Graph = ForceGraph3D()
-      (document.getElementById('3d-graph'));
+    const Graph = new ForceGraph3D(document.getElementById('3d-graph'));
 
     Graph.cooldownTime(Infinity)
       .d3AlphaDecay(0)

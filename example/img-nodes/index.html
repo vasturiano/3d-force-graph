@@ -24,8 +24,7 @@
         }))
     };
 
-    const Graph = ForceGraph3D()
-      (document.getElementById('3d-graph'))
+    const Graph = new ForceGraph3D(document.getElementById('3d-graph'))
       .nodeThreeObject(({ img }) => {
         const imgTexture = new THREE.TextureLoader().load(`./imgs/${img}`);
         imgTexture.colorSpace = THREE.SRGBColorSpace;

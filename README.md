@@ -65,8 +65,7 @@ or using a *script* tag
 then
 
 ```js
-const myGraph = ForceGraph3D();
-myGraph(<myDOMElement>)
+const myGraph = new ForceGraph3D(<myDOMElement>)
   .graphData(<myData>);
 ```
 
@@ -74,7 +73,7 @@ myGraph(<myDOMElement>)
 
 ### Initialisation
 ```js
-ForceGraph3d({ configOptions })(<domElement>)
+new ForceGraph3d(<domElement>, { configOptions })
 ```
 
 | Config options | Description | Default |

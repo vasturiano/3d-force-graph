@@ -27,8 +27,7 @@
 
     const nodeColorScale = d3.scaleOrdinal(d3.schemeRdYlGn[4]);
 
-    const Graph = ForceGraph3D()
-      (document.getElementById('3d-graph'))
+    const Graph = new ForceGraph3D(document.getElementById('3d-graph'))
         .nodeColor(node => nodeColorScale(node.id))
         .linkThreeObject(link => {
           // 2 (nodes) x 3 (r+g+b) bytes between [0, 1]

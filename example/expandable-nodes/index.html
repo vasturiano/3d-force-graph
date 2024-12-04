@@ -50,7 +50,7 @@
     };
 
     const elem = document.getElementById('3d-graph');
-    const Graph = ForceGraph3D()(elem)
+    const Graph = new ForceGraph3D(elem)
       .graphData(getPrunedTree())
       .linkDirectionalParticles(2)
       .nodeColor(node => !node.childLinks.length ? 'green' : node.collapsed ? 'red' : 'yellow')

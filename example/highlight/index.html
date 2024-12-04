@@ -40,8 +40,7 @@
     const highlightLinks = new Set();
     let hoverNode = null;
 
-    const Graph = ForceGraph3D()
-      (document.getElementById('3d-graph'))
+    const Graph = new ForceGraph3D(document.getElementById('3d-graph'))
         .graphData(gData)
         .nodeColor(node => highlightNodes.has(node) ? node === hoverNode ? 'rgb(255,0,0,1)' : 'rgba(255,160,0,0.8)' : 'rgba(0,255,255,0.6)')
         .linkWidth(link => highlightLinks.has(link) ? 4 : 1)

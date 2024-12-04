@@ -23,8 +23,7 @@
         }))
     };
 
-    const graph = ForceGraph3D()
-      (document.getElementById('3d-graph'))
+    const graph = new ForceGraph3D(document.getElementById('3d-graph'))
         .graphData(gData);
 
     const planeGeometry = new THREE.PlaneGeometry(1000, 1000, 1, 1);

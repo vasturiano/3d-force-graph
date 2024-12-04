@@ -23,8 +23,7 @@
         }))
     };
 
-    const graph = ForceGraph3D()
-      (document.getElementById('3d-graph'))
+    const graph = new ForceGraph3D(document.getElementById('3d-graph'))
         .nodeLabel(node => node.id)
         .linkColor(link => link.color ? 'red' : 'green' )
         .linkOpacity(1)

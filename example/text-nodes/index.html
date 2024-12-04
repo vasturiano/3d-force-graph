@@ -12,8 +12,7 @@
   <script type="module">
     import SpriteText from "//unpkg.com/three-spritetext/dist/three-spritetext.mjs";
 
-    const Graph = ForceGraph3D()
-      (document.getElementById('3d-graph'))
+    const Graph = new ForceGraph3D(document.getElementById('3d-graph'))
         .jsonUrl('../datasets/miserables.json')
         .nodeAutoColorBy('group')
         .nodeThreeObject(node => {

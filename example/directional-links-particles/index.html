@@ -9,8 +9,7 @@
   <div id="3d-graph"></div>
 
   <script>
-    const Graph = ForceGraph3D()
-      (document.getElementById('3d-graph'))
+    const Graph = new ForceGraph3D(document.getElementById('3d-graph'))
         .jsonUrl('../datasets/miserables.json')
         .nodeLabel('id')
         .nodeAutoColorBy('group')

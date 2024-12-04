@@ -24,7 +24,7 @@
     .onChange(orientation => graph && graph.dagMode(orientation));
 
   // graph config
-  const graph = ForceGraph3D()
+  const graph = new ForceGraph3D(document.getElementById('graph'))
     .backgroundColor('#101020')
     .linkColor(() => 'rgba(255, 255, 255, 0.6)')
     .dagMode('lr')
@@ -67,8 +67,7 @@
         }
       });
 
-      graph(document.getElementById('graph'))
-        .graphData({ nodes, links });
+      graph.graphData({ nodes, links });
     });
 </script>
 </body>

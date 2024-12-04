@@ -21,8 +21,7 @@
       }))
     };
 
-    const Graph = ForceGraph3D()
-    (document.getElementById('3d-graph'))
+    const Graph = new ForceGraph3D(document.getElementById('3d-graph'))
       .graphData(gData)
       .linkDirectionalArrowLength(3.5)
       .linkDirectionalArrowRelPos(1)
