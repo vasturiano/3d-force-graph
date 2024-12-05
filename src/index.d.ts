@@ -16,9 +16,9 @@ type Coords = { x: number; y: number; z: number; };
 // don't surface these internal props from inner ThreeForceGraph
 type ExcludedInnerProps = 'onLoading' | 'onFinishLoading' | 'onUpdate' | 'onFinishUpdate' | 'tickFrame' | 'd3AlphaTarget' | 'resetCountdown';
 
-export declare class ForceGraph3DGeneric<ChainableInstance, N extends NodeObject = NodeObject, L extends LinkObject<N> = LinkObject<N>>
-    extends Omit<ThreeForceGraphGeneric<ChainableInstance, N, L>, ExcludedInnerProps> {
-  constructor(element: HTMLElement, configOptions?: ConfigOptions);
+export interface ForceGraph3DGenericInstance<ChainableInstance, N extends NodeObject = NodeObject, L extends LinkObject<N> = LinkObject<N>>
+  extends Omit<ThreeForceGraphGeneric<ChainableInstance, N, L>, ExcludedInnerProps> {
+
   _destructor(): void;
 
   // Container layout
@@ -76,6 +76,11 @@ export declare class ForceGraph3DGeneric<ChainableInstance, N extends NodeObject
   screen2GraphCoords(screenX: number, screenY: number, distance: number): Coords;
 }
 
-declare class ForceGraph3D<NodeType = NodeObject, LinkType = LinkObject<NodeType>> extends ForceGraph3DGeneric<ForceGraph3D<NodeType, LinkType>, NodeType, LinkType> {}
+export type ForceGraph3DInstance<NodeType extends NodeObject = NodeObject, LinkType extends LinkObject<NodeType> = LinkObject<NodeType>>
+  = ForceGraph3DGenericInstance<ForceGraph3DInstance<NodeType, LinkType>, NodeType, LinkType>;
+
+interface ForceGraph3D<NodeType extends NodeObject = NodeObject, LinkType extends LinkObject<NodeType> = LinkObject<NodeType>> {
+  new(element: HTMLElement, configOptions?: ConfigOptions): ForceGraph3DInstance<NodeType, LinkType>;
+}
 
 export default ForceGraph3D;
