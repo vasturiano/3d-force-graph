@@ -8,9 +8,8 @@
 <body>
   <div id="3d-graph"></div>
 
-  <script type="importmap">{ "imports": { "three": "//unpkg.com/three/build/three.module.js" }}</script>
   <script type="module">
-    import { UnrealBloomPass } from '//unpkg.com/three/examples/jsm/postprocessing/UnrealBloomPass.js';
+    import { UnrealBloomPass } from 'https://esm.sh/three/examples/jsm/postprocessing/UnrealBloomPass.js';
 
     const Graph = new ForceGraph3D(document.getElementById('3d-graph'))
         .backgroundColor('#000003')

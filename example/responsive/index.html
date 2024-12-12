@@ -1,8 +1,6 @@
 <head>
   <style> body { margin: 30px; } </style>
 
-  <script src="//unpkg.com/element-resize-detector/dist/element-resize-detector.min.js"></script>
-
   <script src="//unpkg.com/3d-force-graph"></script>
 <!--  <script src="../../dist/3d-force-graph.js"></script>-->
 </head>
@@ -10,7 +8,9 @@
 <body>
   <div id="3d-graph"></div>
 
-  <script>
+  <script type="module">
+    import elementResizeDetectorMaker from 'https://esm.sh/element-resize-detector';
+
     // Random tree
     const N = 300;
     const gData = {

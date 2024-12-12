@@ -8,9 +8,8 @@
 <body>
   <div id="3d-graph"></div>
 
-  <script type="importmap">{ "imports": { "three": "//unpkg.com/three/build/three.module.js" }}</script>
   <script type="module">
-    import SpriteText from "//unpkg.com/three-spritetext/dist/three-spritetext.mjs";
+    import SpriteText from "https://esm.sh/three-spritetext";
 
     const Graph = new ForceGraph3D(document.getElementById('3d-graph'))
         .jsonUrl('../datasets/miserables.json')

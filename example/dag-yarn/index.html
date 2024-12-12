@@ -2,9 +2,6 @@
   <style> body { margin: 0; } </style>
 
   <script src="//bundle.run/@yarnpkg/lockfile@1.1.0"></script>
-  <script src="//unpkg.com/dat.gui"></script>
-  <script src="//unpkg.com/d3-octree"></script>
-  <script src="//unpkg.com/d3-force-3d"></script>
 
   <script src="//unpkg.com/3d-force-graph"></script>
   <!--<script src="../../dist/3d-force-graph.js"></script>-->
@@ -13,13 +10,14 @@
 <body>
 <div id="graph"></div>
 
-<script type="importmap">{ "imports": { "three": "//unpkg.com/three/build/three.module.js" }}</script>
 <script type="module">
-  import SpriteText from "//unpkg.com/three-spritetext/dist/three-spritetext.mjs";
+  import SpriteText from 'https://esm.sh/three-spritetext';
+  import { forceCollide } from 'https://esm.sh/d3-force-3d';
+  import { GUI } from 'https://esm.sh/dat.gui';
 
   // controls
   const controls = { 'DAG Orientation': 'lr'};
-  const gui = new dat.GUI();
+  const gui = new GUI();
   gui.add(controls, 'DAG Orientation', ['lr', 'td', 'zout', 'radialout', null])
     .onChange(orientation => graph && graph.dagMode(orientation));
 
@@ -39,7 +37,7 @@
       sprite.textHeight = 8;
       return sprite;
     })
-    .d3Force('collide', d3.forceCollide(13))
+    .d3Force('collide', forceCollide(13))
     .d3AlphaDecay(0.02)
     .d3VelocityDecay(0.3);
 

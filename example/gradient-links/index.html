@@ -1,8 +1,6 @@
 <head>
   <style> body { margin: 0; } </style>
 
-  <script src="//unpkg.com/d3"></script>
-
   <script src="//unpkg.com/3d-force-graph"></script>
   <!--<script src="../../dist/3d-force-graph.js"></script>-->
 </head>
@@ -11,7 +9,8 @@
   <div id="3d-graph"></div>
 
   <script type="module">
-    import * as THREE from '//unpkg.com/three/build/three.module.js';
+    import * as THREE from 'https://esm.sh/three';
+    import { scaleOrdinal, schemeRdYlGn, color as d3Color } from 'https://esm.sh/d3';
 
     // Random tree
     const N = 25;
@@ -25,7 +24,7 @@
         }))
     };
 
-    const nodeColorScale = d3.scaleOrdinal(d3.schemeRdYlGn[4]);
+    const nodeColorScale = scaleOrdinal(schemeRdYlGn[4]);
 
     const Graph = new ForceGraph3D(document.getElementById('3d-graph'))
         .nodeColor(node => nodeColorScale(node.id))
@@ -39,7 +38,7 @@
           const colors = new Float32Array([].concat(
             ...[link.source, link.target]
               .map(nodeColorScale)
-              .map(d3.color)
+              .map(d3Color)
               .map(({ r, g, b }) => [r, g, b].map(v => v / 255)
             )));
 

@@ -18,9 +18,8 @@
 <body>
   <div id="3d-graph"></div>
 
-  <script type="importmap">{ "imports": { "three": "https://unpkg.com/three/build/three.module.js" }}</script>
   <script type="module">
-    import { CSS2DRenderer, CSS2DObject } from '//unpkg.com/three/examples/jsm/renderers/CSS2DRenderer.js';
+    import { CSS2DRenderer, CSS2DObject } from 'https://esm.sh/three/examples/jsm/renderers/CSS2DRenderer.js';
 
     const Graph = new ForceGraph3D(document.getElementById('3d-graph'), {
       extraRenderers: [new CSS2DRenderer()]

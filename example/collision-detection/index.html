@@ -3,15 +3,14 @@
 
   <script src="//unpkg.com/3d-force-graph"></script>
   <!--<script src="../../dist/3d-force-graph.js"></script>-->
-
-  <script src="//unpkg.com/d3-octree"></script>
-  <script src="//unpkg.com/d3-force-3d"></script>
 </head>
 
 <body>
   <div id="3d-graph"></div>
 
-  <script>
+  <script type="module">
+    import { forceCollide } from 'https://esm.sh/d3-force-3d';
+
     const N = 50;
     const nodes = [...Array(N).keys()].map(() => ({
       // Initial velocity in random direction
@@ -31,7 +30,7 @@
       .d3Force('charge', null)
 
       // Add collision and bounding box forces
-      .d3Force('collide', d3.forceCollide(Graph.nodeRelSize()))
+      .d3Force('collide', forceCollide(Graph.nodeRelSize()))
       .d3Force('box', () => {
         const CUBE_HALF_SIDE = Graph.nodeRelSize() * N * 0.5;
 

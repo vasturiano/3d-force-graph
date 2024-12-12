@@ -1,7 +1,6 @@
 <head>
   <style> body { margin: 0; } </style>
 
-  <script src="//unpkg.com/dat.gui"></script>
   <script src="//unpkg.com/3d-force-graph"></script>
   <!-- <script src="../../dist/3d-force-graph.js"></script> -->
 </head>
@@ -9,7 +8,9 @@
 <body>
   <div id="3d-graph"></div>
 
-  <script>
+  <script type="module">
+    import { GUI } from 'https://esm.sh/dat.gui';
+
     // Create Random tree
     const N = 20;
     const gData = {
@@ -40,7 +41,7 @@
     };
 
     const settings = new Settings();
-    const gui = new dat.GUI();
+    const gui = new GUI();
 
     const controllerOne = gui.add(settings, 'redDistance', 0, 100);
     const controllerTwo = gui.add(settings, 'greenDistance', 0, 100);
