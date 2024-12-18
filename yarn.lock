@@ -1099,9 +1099,9 @@ caniuse-api@^3.0.0:
     lodash.uniq "^4.5.0"
 
 caniuse-lite@^1.0.0, caniuse-lite@^1.0.30001688:
-  version "1.0.30001688"
-  resolved "https://registry.yarnpkg.com/caniuse-lite/-/caniuse-lite-1.0.30001688.tgz#f9d3ede749f083ce0db4c13db9d828adaf2e8d0a"
-  integrity sha512-Nmqpru91cuABu/DTCXbM2NSRHzM2uVHfPnhJ/1zEAJx/ILBRVmz3pzH4N7DZqbdG0gWClsCC05Oj0mJ/1AWMbA==
+  version "1.0.30001689"
+  resolved "https://registry.yarnpkg.com/caniuse-lite/-/caniuse-lite-1.0.30001689.tgz#67ca960dd5f443903e19949aeacc9d28f6e10910"
+  integrity sha512-CmeR2VBycfa+5/jOfnp/NpWPGd06nf1XYiefUvhXFfZE4GkRc9jv+eGPS4nT558WS/8lYCzV8SlANCIPvbWP1g==
 
 chalk@^4.1.0:
   version "4.1.2"
@@ -1355,9 +1355,9 @@ d3-octree@1:
   integrity sha512-ndfJ/JxxMd3nw31uyKoY2naivF+r29V+Lc0svZxe1JvvIRmi8hUsrMvdOwgS1o6uBHmiz91geQ0ylPP0aj1VUA==
 
 data-bind-mapper@1:
-  version "1.0.0"
-  resolved "https://registry.yarnpkg.com/data-bind-mapper/-/data-bind-mapper-1.0.0.tgz#021e28113cea5cd8f9cf678c650447a334b0c04e"
-  integrity sha512-FCR4YwhbDbknc9t8P3ebGUENQioe/qmAOioiDSxBYUfIp9ysbWUMLNtuym5LbhbfjsQe9N7lJGM2LMw1ZjcPdQ==
+  version "1.0.1"
+  resolved "https://registry.yarnpkg.com/data-bind-mapper/-/data-bind-mapper-1.0.1.tgz#2092a5afe4434b47e459fca9e1c0ecf78c09ee6d"
+  integrity sha512-xWkgLj/mSDs/Y2flAMXwLKxnCh+rFScf4N8hSOtpsMxXYXui7CbtIUYP52VXQze9HhRND2Ua/AiEHZ8j/vtB0w==
   dependencies:
     accessor-fn "1"
 
@@ -1409,9 +1409,9 @@ eastasianwidth@^0.2.0:
   integrity sha512-I88TYZWc9XiYHRQ4/3c5rjjfgkjhLyW2luGIheGERbNQ6OY7yTybanSpDXZa8y7VUP9YmDcYa+eyq4ca7iLqWA==
 
 electron-to-chromium@^1.5.73:
-  version "1.5.73"
-  resolved "https://registry.yarnpkg.com/electron-to-chromium/-/electron-to-chromium-1.5.73.tgz#f32956ce40947fa3c8606726a96cd8fb5bb5f720"
-  integrity sha512-8wGNxG9tAG5KhGd3eeA0o6ixhiNdgr0DcHWm85XPCphwZgD1lIEoi6t3VERayWao7SF7AAZTw6oARGJeVjH8Kg==
+  version "1.5.74"
+  resolved "https://registry.yarnpkg.com/electron-to-chromium/-/electron-to-chromium-1.5.74.tgz#cb886b504a6467e4c00bea3317edb38393c53413"
+  integrity sha512-ck3//9RC+6oss/1Bh9tiAVFy5vfSKbRHAFh7Z3/eTRkEqJeWgymloShB17Vg3Z4nmDNp35vAd1BZ6CMW4Wt6Iw==
 
 emoji-regex@^8.0.0:
   version "8.0.0"
@@ -1657,9 +1657,9 @@ lru-cache@^5.1.1:
     yallist "^3.0.2"
 
 magic-string@^0.30.10, magic-string@^0.30.3:
-  version "0.30.15"
-  resolved "https://registry.yarnpkg.com/magic-string/-/magic-string-0.30.15.tgz#d5474a2c4c5f35f041349edaba8a5cb02733ed3c"
-  integrity sha512-zXeaYRgZ6ldS1RJJUrMrYgNJ4fdwnyI6tVqoiIhyCyv5IVTK9BU8Ic2l253GGETQHxI4HNUwhJ3fjDhKqEoaAw==
+  version "0.30.17"
+  resolved "https://registry.yarnpkg.com/magic-string/-/magic-string-0.30.17.tgz#450a449673d2460e5bbcfba9a61916a1714c7453"
+  integrity sha512-sNPKHvyjVf7gyjwS4xGTaW/mCnF8wnjtifKBEhxfZ7E/S8tQ0rssrwGNn6q8JH/ohItJfSQp9mBtQYuTlH5QnA==
   dependencies:
     "@jridgewell/sourcemap-codec" "^1.5.0"
 
@@ -2378,9 +2378,9 @@ terser@^5.17.4:
     source-map-support "~0.5.20"
 
 three-forcegraph@1:
-  version "1.42.9"
-  resolved "https://registry.yarnpkg.com/three-forcegraph/-/three-forcegraph-1.42.9.tgz#0e27bef31aa1ef49cf0f80c2e3374db4894a8f04"
-  integrity sha512-sujFeXGbdeFHnMiuroImEp3dQl6aDsWr51qm1XLYA9ax+gUuKdRvLBZ9L3VY5saqngBLSyhkWHHMKlzK7xQ0vA==
+  version "1.42.10"
+  resolved "https://registry.yarnpkg.com/three-forcegraph/-/three-forcegraph-1.42.10.tgz#bac268a427d52a993d4744ed6d2e2f0fae22e4ef"
+  integrity sha512-lKwVWY+/7e9smxK0iQ13WdzYfn9fB2hmQUeuegXgqpn5ARLlG2m0x/nkeLdv9gLlfXZ6nOKuT0m8RgZ2XqOrrQ==
   dependencies:
     accessor-fn "1"
     d3-array "1 - 3"
