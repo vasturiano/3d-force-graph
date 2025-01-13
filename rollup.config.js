@@ -5,7 +5,7 @@ import postCss from 'rollup-plugin-postcss';
 import terser from "@rollup/plugin-terser";
 import dts from 'rollup-plugin-dts';
 
-import pkg from './package.json' assert { type: 'json' };
+import pkg from './package.json' with { type: 'json' };
 const { name, homepage, version, dependencies } = pkg;
 
 const umdConf = {
