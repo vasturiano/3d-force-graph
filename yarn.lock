@@ -1463,10 +1463,10 @@ fdir@^6.2.0:
   resolved "https://registry.yarnpkg.com/fdir/-/fdir-6.4.2.tgz#ddaa7ce1831b161bc3657bb99cb36e1622702689"
   integrity sha512-KnhMXsKSPZlAhp7+IjUkRZKPb4fUyccpDrdFXbi4QL1qkmFh9kVY09Yox+n4MaOb3lHZ1Tv829C3oaaXoMYPDQ==
 
-float-tooltip@1:
-  version "1.4.2"
-  resolved "https://registry.yarnpkg.com/float-tooltip/-/float-tooltip-1.4.2.tgz#a128f389aa45a6149ed2f27aae40151653e39479"
-  integrity sha512-sKWm5Q9YKBgpli8c5VEADvBYYH2Jqy+RH/m7FUbDMPUuoXYMRBVYppp8+dDv962XiE2kCKt7TIOV3lUQ+nK0Pw==
+float-tooltip@^1.5:
+  version "1.5.0"
+  resolved "https://registry.yarnpkg.com/float-tooltip/-/float-tooltip-1.5.0.tgz#0e97c4497d5b59a7b3f37b5ff9826b7ab6448668"
+  integrity sha512-CdpIbFdc7PSN+xhJXnAijWhha2vkdrrMRYpyfvrP3kKGJHJP404UrREVvMlKXQq2UXkb9G5oiyPTa5Kq6gRXjg==
   dependencies:
     d3-selection "2 - 3"
     kapsule "^1.16"
@@ -2406,14 +2406,14 @@ three-forcegraph@1:
     ngraph.graph "20"
     tinycolor2 "1"
 
-three-render-objects@^1.33:
-  version "1.33.2"
-  resolved "https://registry.yarnpkg.com/three-render-objects/-/three-render-objects-1.33.2.tgz#2280e0fbd6790fb0c873ecae7517a30ec1428c05"
-  integrity sha512-l2FGxj0SWl0i/aXo3a3CaqVV3yu6z6NN36PNuDfd2dcjbxuqofOY0vQ6yOKqrP18zaDsgo9Wu8pZQAfosSnkfg==
+three-render-objects@^1.34:
+  version "1.34.0"
+  resolved "https://registry.yarnpkg.com/three-render-objects/-/three-render-objects-1.34.0.tgz#f644b5ff1e1abd91cd883f24c0b0afaee2d862a3"
+  integrity sha512-6/+Eq+zSdB/8MlBVhwbR75UJQQn439cZL8jf9qMVv6RLERXZ1CwzjVHdOb2hciQg2gWKHcy2qL7uyR6IOQwa/w==
   dependencies:
     "@tweenjs/tween.js" "18 - 25"
     accessor-fn "1"
-    float-tooltip "1"
+    float-tooltip "^1.5"
     kapsule "^1.16"
     polished "4"
 

@@ -11,6 +11,8 @@ export interface ConfigOptions {
 type Accessor<In, Out> = Out | string | ((obj: In) => Out);
 type ObjAccessor<T, InT = object> = Accessor<InT, T>;
 
+type Label = string | HTMLElement;
+
 type Coords = { x: number; y: number; z: number; };
 
 // don't surface these internal props from inner ThreeForceGraph
@@ -32,10 +34,10 @@ interface ForceGraph3DGenericInstance<ChainableInstance, N extends NodeObject = 
   showNavInfo(enabled: boolean): ChainableInstance;
 
   // Labels
-  nodeLabel(): ObjAccessor<string, N>;
-  nodeLabel(textAccessor: ObjAccessor<string, N>): ChainableInstance;
-  linkLabel(): ObjAccessor<string, L>;
-  linkLabel(textAccessor: ObjAccessor<string, L>): ChainableInstance;
+  nodeLabel(): ObjAccessor<Label, N>;
+  nodeLabel(textAccessor: ObjAccessor<Label, N>): ChainableInstance;
+  linkLabel(): ObjAccessor<Label, L>;
+  linkLabel(textAccessor: ObjAccessor<Label, L>): ChainableInstance;
 
   // Interaction
   onNodeClick(callback: (node: N, event: MouseEvent) => void): ChainableInstance;
