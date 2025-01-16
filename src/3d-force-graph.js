@@ -40,6 +40,7 @@ const linkedFGProps = Object.assign(...[
   'nodeVisibility',
   'nodeThreeObject',
   'nodeThreeObjectExtend',
+  'nodePositionUpdate',
   'linkSource',
   'linkTarget',
   'linkVisibility',
