@@ -16,13 +16,28 @@
         .nodeLabel('id')
         .nodeAutoColorBy('group')
         .onNodeClick(node => {
-          // Aim at node from outside it
-          const distance = 40;
-          const distRatio = 1 + distance/Math.hypot(node.x, node.y, node.z);
+          const camera = Graph.camera();
+          const cameraPos = camera.position;
 
-          const newPos = node.x || node.y || node.z
-            ? { x: node.x * distRatio, y: node.y * distRatio, z: node.z * distRatio }
-            : { x: 0, y: 0, z: distance }; // special case if node is in (0,0,0)
+          // The distance between the clicked node and the camera
+          const currentDistance = Math.hypot(
+            node.x - cameraPos.x,
+            node.y - cameraPos.y,
+            node.z - cameraPos.z
+          );
+          const presetDistance = 40;
+
+          const distRatio = presetDistance / currentDistance;
+
+          // If the distance between the camera and the clicked node is less than the preset value, do not move the camera
+          const newPos =
+            currentDistance > presetDistance
+              ? {
+                  x: distRatio * cameraPos.x + (1 - distRatio) * node.x,
+                  y: distRatio * cameraPos.y + (1 - distRatio) * node.y,
+                  z: distRatio * cameraPos.z + (1 - distRatio) * node.z,
+                }
+              : cameraPos;
 
           Graph.cameraPosition(
             newPos, // new position
