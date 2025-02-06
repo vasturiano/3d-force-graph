@@ -5,6 +5,7 @@ const three = window.THREE
   : { AmbientLight, DirectionalLight, Vector3, REVISION };
 
 import { DragControls as ThreeDragControls } from 'three/examples/jsm/controls/DragControls.js';
+import { XRButton as ThreeXRButton } from 'three/addons/webxr/XRButton.js';
 
 import ThreeForceGraph from 'three-forcegraph';
 import ThreeRenderObjects from 'three-render-objects';
@@ -124,6 +125,7 @@ export default Kapsule({
       triggerUpdate: false
     },
     enableNodeDrag: { default: true, triggerUpdate: false },
+    enableWebXR: { default: true, triggerUpdate: false },
     onNodeDrag: { default: () => {}, triggerUpdate: false },
     onNodeDragEnd: { default: () => {}, triggerUpdate: false },
     onNodeClick: { triggerUpdate: false },
@@ -148,20 +150,15 @@ export default Kapsule({
       return this;
     },
     pauseAnimation: function(state) {
-      if (state.animationFrameRequestId !== null) {
-        cancelAnimationFrame(state.animationFrameRequestId);
-        state.animationFrameRequestId = null;
-      }
+      this.renderer().setAnimationLoop(null);
       return this;
     },
 
     resumeAnimation: function(state) {
-      if (state.animationFrameRequestId === null) {
-        this._animationCycle();
-      }
+      this.renderer().setAnimationLoop(this._render);
       return this;
     },
-    _animationCycle(state) {
+    _render(state) {
       if (state.enablePointerInteraction) {
         // reset canvas cursor (override dragControls cursor)
         this.renderer().domElement.style.cursor = null;
@@ -170,7 +167,6 @@ export default Kapsule({
       // Frame cycle
       state.forceGraph.tickFrame();
       state.renderObjs.tick();
-      state.animationFrameRequestId = requestAnimationFrame(this._animationCycle);
     },
     scene: state => state.renderObjs.scene(), // Expose scene
     camera: state => state.renderObjs.camera(), // Expose camera
@@ -427,8 +423,14 @@ export default Kapsule({
 
     //
 
+    // config WebXR
+    if (state.enableWebXR) {
+      document.body.appendChild( ThreeXRButton.createButton( renderer ) );
+      renderer.xr.enabled = true;
+    }
+
     // Kick-off renderer
-    this._animationCycle();
+    this.renderer().setAnimationLoop(this._render);
   }
 });
 
