@@ -257,13 +257,16 @@ export default Kapsule({
           );
 
           dragControls.addEventListener('dragstart', function (event) {
+            const nodeObj = getGraphObj(event.object);
+            if (!nodeObj) return;
+
             controls.enabled = false; // Disable controls while dragging
 
             // track drag object movement
             event.object.__initialPos = event.object.position.clone();
             event.object.__prevPos = event.object.position.clone();
 
-            const node = getGraphObj(event.object).__data;
+            const node = nodeObj.__data;
             !node.__initialFixedPos && (node.__initialFixedPos = {fx: node.fx, fy: node.fy, fz: node.fz});
             !node.__initialPos && (node.__initialPos = {x: node.x, y: node.y, z: node.z});
 
@@ -276,6 +279,7 @@ export default Kapsule({
 
           dragControls.addEventListener('drag', function (event) {
             const nodeObj = getGraphObj(event.object);
+            if (!nodeObj) return;
 
             if (!event.object.hasOwnProperty('__graphObjType')) {
               // If dragging a child of the node, update the node object instead
@@ -303,10 +307,13 @@ export default Kapsule({
           });
 
           dragControls.addEventListener('dragend', function (event) {
+            const nodeObj = getGraphObj(event.object);
+            if (!nodeObj) return;
+
             delete(event.object.__initialPos); // remove tracking attributes
             delete(event.object.__prevPos);
 
-            const node = getGraphObj(event.object).__data;
+            const node = nodeObj.__data;
 
             // dispose previous controls if needed
             if (node.__disposeControlsAfterDrag) {
