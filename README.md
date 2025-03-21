@@ -59,7 +59,7 @@ import ForceGraph3D from '3d-force-graph';
 or using a *script* tag
 
 ```html
-<script src="//unpkg.com/3d-force-graph"></script>
+<script src="//cdn.jsdelivr.net/npm/3d-force-graph"></script>
 ```
 
 then
