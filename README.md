@@ -115,6 +115,7 @@ new ForceGraph3d(<domElement>, { configOptions })
 | <b>nodeResolution</b>([<i>num</i>]) | Getter/setter for the geometric resolution of each node, expressed in how many slice segments to divide the circumference. Higher values yield smoother spheres. | 8 |
 | <b>nodeThreeObject</b>([<i>Object3d</i>, <i>str</i> or <i>fn</i>]) | Node object accessor function or attribute for generating a custom 3d object to render as graph nodes. Should return an instance of [ThreeJS Object3d](https://threejs.org/docs/index.html#api/core/Object3D). If a <i>falsy</i> value is returned, the default 3d object type will be used instead for that node.  | *default node object is a sphere, sized according to `val` and styled according to `color`.* |
 | <b>nodeThreeObjectExtend</b>([<i>bool</i>, <i>str</i> or <i>fn</i>]) | Node object accessor function, attribute or a boolean value for whether to replace the default node when using a custom `nodeThreeObject` (`false`) or to extend it (`true`).  | `false` |
+| <b>nodePositionUpdate</b>([<i>fn(nodeObject, coords, node)</i>]) | Getter/setter for the custom function to call for updating the position of nodes at every render iteration. It receives the respective node `ThreeJS Object3d`, the coordinates of the node (`{x,y,z}` each), and the node's `data`. If the function returns a truthy value, the regular position update function will not run for that node. | |
 
 ### Link styling
 
@@ -245,3 +246,4 @@ new ForceGraph3d(<domElement>, { configOptions })
 [build-size-url]: https://bundlephobia.com/result?p=3d-force-graph
 [npm-downloads-img]: https://img.shields.io/npm/dt/3d-force-graph
 [npm-downloads-url]: https://www.npmtrends.com/3d-force-graph
+![](https://github.com/vasturiano/3d-force-graph/blob/9376e16343721efd0416710c21db03ce8fa4dfb0/package.json#L57)
