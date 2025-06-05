@@ -16,6 +16,11 @@ See also the [2D canvas version](https://github.com/vasturiano/force-graph), [VR
 
 And check out the [React bindings](https://github.com/vasturiano/react-force-graph).
 
+## ❤️ Support This Project
+
+If you find this module useful and would like to support its development, you can [buy me a ☕](https://www.paypal.com/cgi-bin/webscr?cmd=_donations&business=L398E7PKP47E8&currency_code=USD&source=url). Your contributions help keep open-source sustainable!
+[![paypal](https://www.paypalobjects.com/en_US/i/btn/btn_donate_SM.gif)](https://www.paypal.com/cgi-bin/webscr?cmd=_donations&business=L398E7PKP47E8&currency_code=USD&source=url)
+
 ## Examples
 
 * [Basic](https://vasturiano.github.io/3d-force-graph/example/basic/) ([source](https://github.com/vasturiano/3d-force-graph/blob/master/example/basic/index.html))
@@ -49,10 +54,6 @@ And check out the [React bindings](https://github.com/vasturiano/react-force-gra
 * [Add external objects to scene](https://vasturiano.github.io/3d-force-graph/example/scene/) ([source](https://github.com/vasturiano/3d-force-graph/blob/master/example/scene/index.html))
 * [Bloom Post-Processing Effect](https://vasturiano.github.io/3d-force-graph/example/bloom-effect/) ([source](https://github.com/vasturiano/3d-force-graph/blob/master/example/bloom-effect/index.html))
 * [Pause / Resume animation](https://vasturiano.github.io/3d-force-graph/example/pause-resume/) ([source](https://github.com/vasturiano/3d-force-graph/blob/master/example/pause-resume/index.html))
-
-## Giving Back
-
-[![paypal](https://www.paypalobjects.com/en_US/i/btn/btn_donate_SM.gif)](https://www.paypal.com/cgi-bin/webscr?cmd=_donations&business=L398E7PKP47E8&currency_code=USD&source=url) If this project has helped you and you'd like to contribute back, you can always [buy me a ☕](https://www.paypal.com/cgi-bin/webscr?cmd=_donations&business=L398E7PKP47E8&currency_code=USD&source=url)!
 
 ## Quick start
 
