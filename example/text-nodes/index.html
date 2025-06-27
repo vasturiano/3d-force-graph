@@ -19,8 +19,10 @@
           sprite.material.depthWrite = false; // make sprite background transparent
           sprite.color = node.color;
           sprite.textHeight = 8;
+          sprite.center.y = -0.6; // shift above node
           return sprite;
-        });
+        })
+        .nodeThreeObjectExtend(true);
 
     // Spread nodes a little wider
     Graph.d3Force('charge').strength(-120);
