@@ -150,7 +150,7 @@ new ForceGraph3d(<domElement>, { configOptions })
 | <b>linkDirectionalParticleColor</b>([<i>str</i> or <i>fn</i>]) | Link object accessor function or attribute for the directional particles color. | `color` |
 | <b>linkDirectionalParticleResolution</b>([<i>num</i>]) | Getter/setter for the geometric resolution of each directional particle, expressed in how many slice segments to divide the circumference. Higher values yield smoother particles. | 4 |
 | <b>linkDirectionalParticleThreeObject</b>([<i>Object3d</i>, <i>str</i> or <i>fn</i>]) | Link object accessor function or attribute for a custom 3d object to use in the directional particles. Should return an instance of [ThreeJS Object3d](https://threejs.org/docs/index.html#api/core/Object3D). Activating this will ignore the set values for the particle's width, color and resolution. | |
-| <b>emitParticle</b>(<i>link</i>) | An alternative mechanism for generating particles, this method emits a non-cyclical single particle within a specific link. The emitted particle shares the styling (speed, width, color) of the regular particle props. A valid `link` object that is included in `graphData` should be passed as a single parameter. ||
+| <b>emitParticle</b>(<i>link</i>) | An alternative mechanism for generating particles, this method emits a non-cyclical single particle within a specific link. The emitted particle shares the styling (speed, shape, color) of the regular particle props. A valid `link` object that is included in `graphData` should be passed as a single parameter. ||
 
 ### Render control
 
