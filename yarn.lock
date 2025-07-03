@@ -2410,9 +2410,9 @@ three-forcegraph@1:
     tinycolor2 "1"
 
 three-render-objects@^1.35:
-  version "1.40.2"
-  resolved "https://registry.yarnpkg.com/three-render-objects/-/three-render-objects-1.40.2.tgz#9cf449d01fe05c6d39edc3aed2c0f5610b5c240f"
-  integrity sha512-4LAW9HJS1XcFN4+ujAWrcGAa3UalVTrtXzeWIR9hgJnYSCDBFgGzok9cDP9sXMlw5SjtDWkH6VOnGont+RzfSw==
+  version "1.40.3"
+  resolved "https://registry.yarnpkg.com/three-render-objects/-/three-render-objects-1.40.3.tgz#3a4e3022d5c633a51396fd592a36eb97cd2f68fd"
+  integrity sha512-Uaxb2rhkAnQi2IHnGwjzlfqK1DQArjexH6b+WoqfNDqueNz7AKi4EHQ7Rzww/HJCBSyYWG5F7u6KDpbAmIYRwg==
   dependencies:
     "@tweenjs/tween.js" "18 - 25"
     accessor-fn "1"
