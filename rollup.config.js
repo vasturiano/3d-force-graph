@@ -34,7 +34,12 @@ export default [
     plugins: [
       postCss({ plugins: [] }),
       babel({ exclude: 'node_modules/**' }),
-      resolve(),
+      resolve({
+        alias: {
+          // Fix for issue #696 - ensure three/webgpu can be resolved
+          'three/webgpu': 'three/build/three.webgpu.js'
+        }
+      }),
       commonJs()
     ]
   },
@@ -52,6 +57,12 @@ export default [
     ],
     plugins: [
       postCss({ plugins: [] }),
+      resolve({
+        alias: {
+          // Fix for issue #696 - ensure three/webgpu can be resolved
+          'three/webgpu': 'three/build/three.webgpu.js'
+        }
+      }),
       babel()
     ]
   },
