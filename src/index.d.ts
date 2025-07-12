@@ -73,6 +73,14 @@ interface ForceGraph3DGenericInstance<ChainableInstance, N extends NodeObject = 
   renderer(): WebGLRenderer;
   controls(): object;
 
+  // Force graph methods (from linkedFGMethods)
+  refresh(): ChainableInstance;
+  getGraphBbox(nodeFilter?: (node: N) => boolean): { x: [number, number]; y: [number, number]; z: [number, number] } | null;
+  d3Force(forceName: string): any;
+  d3Force(forceName: string, force: any): ChainableInstance;
+  d3ReheatSimulation(): ChainableInstance;
+  emitParticle(link: L): ChainableInstance;
+
   // Utility
   graph2ScreenCoords(x: number, y: number, z: number): Coords;
   screen2GraphCoords(screenX: number, screenY: number, distance: number): Coords;
