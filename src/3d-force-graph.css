@@ -25,3 +25,12 @@
   cursor: -moz-grabbing;
   cursor: -webkit-grabbing;
 }
+
+/* CSP-compliant styles to replace inline styles - Issue #710 */
+.force-graph-container {
+  position: relative;
+}
+
+.force-graph-renderer {
+  cursor: default;
+}
