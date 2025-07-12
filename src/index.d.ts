@@ -88,3 +88,6 @@ interface IForceGraph3D<NodeType extends NodeObject = NodeObject, LinkType exten
 declare const ForceGraph3D: IForceGraph3D;
 
 export default ForceGraph3D;
+
+// Re-export useful types from three-forcegraph for user convenience
+export { NodeObject, LinkObject } from 'three-forcegraph';
