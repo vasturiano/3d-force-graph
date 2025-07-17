@@ -78,6 +78,8 @@ interface ForceGraph3DGenericInstance<ChainableInstance, N extends NodeObject = 
   screen2GraphCoords(screenX: number, screenY: number, distance: number): Coords;
 }
 
+export type { NodeObject, LinkObject };
+
 export type ForceGraph3DInstance<NodeType extends NodeObject = NodeObject, LinkType extends LinkObject<NodeType> = LinkObject<NodeType>>
   = ForceGraph3DGenericInstance<ForceGraph3DInstance<NodeType, LinkType>, NodeType, LinkType>;
 
@@ -88,6 +90,3 @@ interface IForceGraph3D<NodeType extends NodeObject = NodeObject, LinkType exten
 declare const ForceGraph3D: IForceGraph3D;
 
 export default ForceGraph3D;
-
-// Re-export useful types from three-forcegraph for user convenience
-export { NodeObject, LinkObject } from 'three-forcegraph';
