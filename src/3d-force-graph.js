@@ -108,11 +108,71 @@ const linkedRenderObjsMethods = Object.assign(
 
 //
 
+// CSP-compliant style injection utility
+function injectCSPCompliantStyle(css, nonce = null) {
+  const style = document.createElement('style');
+  style.type = 'text/css';
+  
+  if (nonce) {
+    style.setAttribute('nonce', nonce);
+  }
+  
+  if (style.styleSheet) {
+    style.styleSheet.cssText = css;
+  } else {
+    style.appendChild(document.createTextNode(css));
+  }
+  
+  const head = document.head || document.getElementsByTagName('head')[0];
+  head.appendChild(style);
+  
+  return style;
+}
+
+// CSP-compliant replacement for D3's .style() method
+function setCSPCompliantStyle(element, property, value, nonce = null) {
+  if (!nonce) {
+    // Fallback to regular style setting if no nonce provided
+    element.style[property] = value;
+    return;
+  }
+  
+  // Create a unique class name for this style
+  const className = `csp-style-${Math.random().toString(36).substr(2, 9)}`;
+  const css = `.${className} { ${property}: ${value} !important; }`;
+  
+  injectCSPCompliantStyle(css, nonce);
+  element.classList.add(className);
+}
+
+// Monkey-patch D3 selection to support CSP-compliant styles
+function makeD3CSPCompliant(selection, nonce) {
+  if (!nonce || !selection || !selection.style) return selection;
+  
+  const originalStyle = selection.style;
+  selection.style = function(property, value) {
+    if (arguments.length === 1) {
+      // Getter - use original method
+      return originalStyle.call(this, property);
+    }
+    
+    // Setter - use CSP-compliant method
+    const node = this.node();
+    if (node) {
+      setCSPCompliantStyle(node, property, value, nonce);
+    }
+    return this;
+  };
+  
+  return selection;
+}
+
 export default Kapsule({
 
   props: {
     nodeLabel: { default: 'name', triggerUpdate: false },
     linkLabel: { default: 'name', triggerUpdate: false },
+    cspNonce: { default: null, triggerUpdate: false }, // CSP nonce for inline styles
     linkHoverPrecision: { default: 1, onChange: (p, state) => state.renderObjs.lineHoverPrecision(p), triggerUpdate: false },
     enableNavigationControls: {
       default: true,
@@ -167,7 +227,12 @@ export default Kapsule({
     _animationCycle(state) {
       if (state.enablePointerInteraction) {
         // reset canvas cursor (override dragControls cursor)
-        this.renderer().domElement.style.cursor = null;
+        const renderer = this.renderer().domElement;
+        if (state.cspNonce) {
+          setCSPCompliantStyle(renderer, 'cursor', 'default', state.cspNonce);
+        } else {
+          renderer.className = 'force-graph-renderer';
+        }
       }
 
       // Frame cycle
@@ -207,7 +272,11 @@ export default Kapsule({
 
     // Add relative container
     domNode.appendChild(state.container = document.createElement('div'));
-    state.container.style.position = 'relative';
+    if (state.cspNonce) {
+      setCSPCompliantStyle(state.container, 'position', 'relative', state.cspNonce);
+    } else {
+      state.container.className = 'force-graph-container';
+    }
 
     // Add renderObjs
     const roDomNode = document.createElement('div');
