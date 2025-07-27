@@ -348,6 +348,9 @@ export default Kapsule({
 
             if (state.enableNavigationControls) {
               controls.enabled = true; // Re-enable controls
+
+              controls._status && controls._onPointerCancel?.(); // cancel pressed status on fly controls
+
               controls.domElement && controls.domElement.ownerDocument && controls.domElement.ownerDocument.dispatchEvent(
                 // simulate mouseup to ensure the controls don't take over after dragend
                 new PointerEvent('pointerup', { pointerType: 'touch' })
