@@ -52,6 +52,8 @@ interface ForceGraph3DGenericInstance<ChainableInstance, N extends NodeObject = 
   onBackgroundRightClick(callback: (event: MouseEvent) => void): ChainableInstance;
   linkHoverPrecision(): number;
   linkHoverPrecision(precision: number): ChainableInstance;
+  showPointerCursor(): ObjAccessor<boolean, N | L>;
+  showPointerCursor(objAccessor: ObjAccessor<boolean, N | L>): ChainableInstance;
   enablePointerInteraction(): boolean;
   enablePointerInteraction(enable: boolean): ChainableInstance;
   enableNodeDrag(): boolean;

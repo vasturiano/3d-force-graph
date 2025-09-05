@@ -137,6 +137,7 @@ export default Kapsule({
     onLinkHover: { triggerUpdate: false },
     onBackgroundClick: { triggerUpdate: false },
     onBackgroundRightClick: { triggerUpdate: false },
+    showPointerCursor: { default: true, triggerUpdate: false },
     ...linkedFGProps,
     ...linkedRenderObjsProps
   },
@@ -404,7 +405,8 @@ export default Kapsule({
 
           // set pointer if hovered object is clickable
           renderer.domElement.classList[
-            ((hoverObj && state[`on${objType === 'node' ? 'Node' : 'Link'}Click`]) || (!hoverObj && state.onBackgroundClick)) ? 'add' : 'remove'
+            ((hoverObj && state[`on${objType === 'node' ? 'Node' : 'Link'}Click`]) || (!hoverObj && state.onBackgroundClick)) &&
+            accessorFn(state.showPointerCursor)(objData) ? 'add' : 'remove'
           ]('clickable');
 
           state.hoverObj = hoverObj;
