@@ -61,6 +61,10 @@ interface ForceGraph3DGenericInstance<ChainableInstance, N extends NodeObject = 
   enableNavigationControls(): boolean;
   enableNavigationControls(enable: boolean): ChainableInstance;
 
+  // CSP compliance
+  cspNonce(): string | null;
+  cspNonce(nonce: string | null): ChainableInstance;
+
   // Render control
   pauseAnimation(): ChainableInstance;
   resumeAnimation(): ChainableInstance;
