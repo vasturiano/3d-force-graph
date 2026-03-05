@@ -174,7 +174,7 @@ export default Kapsule({
       // Frame cycle
       state.forceGraph.tickFrame();
       state.renderObjs.tick();
-      state.animationFrameRequestId = requestAnimationFrame(this._animationCycle);
+      _animationCycle(state) {   if (state.enablePointerInteraction) {     this.renderer().domElement.style.cursor = null;   }    state.forceGraph.tickFrame();   state.renderObjs.tick();    state.animationFrameRequestId = requestAnimationFrame(() => this._animationCycle(state)); }
     },
     scene: state => state.renderObjs.scene(), // Expose scene
     camera: state => state.renderObjs.camera(), // Expose camera
