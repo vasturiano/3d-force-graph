@@ -1,0 +1,117 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <title>3D Force Graph - CSP Compliance Test</title>
+  
+  <!-- Strict Content Security Policy for testing -->
+  <meta http-equiv="Content-Security-Policy" content="
+    default-src 'self';
+    script-src 'self' 'nonce-test-nonce-123';
+    style-src 'self' 'nonce-test-nonce-123';
+    connect-src 'self';
+    img-src 'self' data:;
+    font-src 'self';
+    object-src 'none';
+    frame-src 'none';
+    media-src 'none';
+    worker-src 'none';
+  ">
+  
+  <style nonce="test-nonce-123">
+    body {
+      margin: 0;
+      padding: 20px;
+      font-family: Arial, sans-serif;
+      background: #1a1a1a;
+      color: white;
+    }
+    
+    #graph {
+      width: 800px;
+      height: 600px;
+      border: 1px solid #444;
+    }
+    
+    .info {
+      margin-bottom: 20px;
+      padding: 10px;
+      background: #333;
+      border-radius: 5px;
+    }
+    
+    .success {
+      background: #2d5a2d;
+    }
+    
+    .error {
+      background: #5a2d2d;
+    }
+  </style>
+</head>
+<body>
+  <div class="info">
+    <h2>3D Force Graph - CSP Compliance Test</h2>
+    <p>This page uses a strict Content Security Policy that prevents inline styles.</p>
+    <p>The graph should render without any CSP violations when using the cspNonce option.</p>
+  </div>
+  
+  <div id="csp-status" class="info">
+    <strong>CSP Status:</strong> <span id="status">Testing...</span>
+  </div>
+  
+  <div id="graph"></div>
+  
+  <script nonce="test-nonce-123" src="./dist/3d-force-graph.js"></script>
+  <script nonce="test-nonce-123">
+    // Monitor CSP violations
+    let cspViolations = 0;
+    document.addEventListener('securitypolicyviolation', function(e) {
+      cspViolations++;
+      console.error('CSP Violation:', e);
+      updateStatus();
+    });
+    
+    function updateStatus() {
+      const statusEl = document.getElementById('status');
+      const containerEl = document.getElementById('csp-status');
+      
+      if (cspViolations === 0) {
+        statusEl.textContent = 'No CSP violations detected ✓';
+        containerEl.className = 'info success';
+      } else {
+        statusEl.textContent = `${cspViolations} CSP violation(s) detected ✗`;
+        containerEl.className = 'info error';
+      }
+    }
+    
+    // Test data
+    const graphData = {
+      nodes: [
+        { id: 'A', name: 'Node A' },
+        { id: 'B', name: 'Node B' },
+        { id: 'C', name: 'Node C' },
+        { id: 'D', name: 'Node D' }
+      ],
+      links: [
+        { source: 'A', target: 'B' },
+        { source: 'B', target: 'C' },
+        { source: 'C', target: 'D' },
+        { source: 'D', target: 'A' }
+      ]
+    };
+    
+    // Initialize graph with CSP nonce
+    const graph = new ForceGraph3D(document.getElementById('graph'))
+      .cspNonce('test-nonce-123')  // Enable CSP compliance
+      .graphData(graphData)
+      .nodeLabel('name')
+      .nodeColor(() => '#69b3d0')
+      .linkColor(() => '#f0f0f0')
+      .backgroundColor('#000011');
+    
+    // Update status after a delay to allow for any violations to be detected
+    setTimeout(updateStatus, 2000);
+  </script>
+</body>
+</html>
