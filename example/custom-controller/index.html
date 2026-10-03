@@ -1,0 +1,44 @@
+<head>
+  <style>
+    body {
+      margin: 0;
+    }
+  </style>
+
+  <script src="https://unpkg.com/three"></script>
+
+  <!-- <script src="//unpkg.com/3d-force-graph"></script> -->
+  <script src="../../dist/3d-force-graph.js"></script>
+
+  <script src="./controller.js"></script>
+</head>
+
+<body>
+  <div id="3d-graph"></div>
+
+  <script>
+    // Random tree
+    const N = 300;
+    const gData = {
+      nodes: [...Array(N).keys()].map((i) => ({ id: i })),
+      links: [...Array(N).keys()]
+        .filter((id) => id)
+        .map((id) => ({
+          source: id,
+          target: Math.round(Math.random() * (id - 1)),
+        })),
+    };
+
+    const controllerConstructor = (camera, domElement) => {
+      const controller = new FirstPersonControls(camera, domElement);
+      controller.movementSpeed = 150;
+      controller.lookSpeed = 0.1;
+
+      return controller;
+    };
+
+    const Graph = ForceGraph3D({ controlType: controllerConstructor })(
+      document.getElementById("3d-graph")
+    ).graphData(gData);
+  </script>
+</body>
