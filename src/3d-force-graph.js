@@ -185,6 +185,7 @@ export default Kapsule({
       this.graphData({ nodes: [], links: []});
       state.forceGraph._destructor?.();
       state.renderObjs._destructor();
+      state._dragControls?.dispose();
     },
     ...linkedFGMethods,
     ...linkedRenderObjsMethods
